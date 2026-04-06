@@ -37,6 +37,14 @@ Not sure where to start? Pick the description that fits you best:
 
 ---
 
+## Ecosystem Map
+
+![LLM Knowledge Engineering Ecosystem Map](diagrams/ecosystem-map.png)
+
+*[View interactive HTML version](diagrams/ecosystem-map.html)*
+
+---
+
 ## The Evolution
 
 ```

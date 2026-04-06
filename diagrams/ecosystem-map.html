@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Knowledge Engineering Ecosystem Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    color: #8b949e;
+    font-weight: 400;
+  }
+
+  .evolution {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .evo-stage {
+    flex: 1;
+    max-width: 320px;
+    text-align: center;
+    padding: 16px 24px;
+  }
+
+  .evo-stage .year {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .evo-stage .name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .evo-stage .author {
+    font-size: 11px;
+    color: #8b949e;
+    margin-bottom: 8px;
+  }
+
+  .evo-stage .desc {
+    font-size: 12px;
+    color: #8b949e;
+    line-height: 1.4;
+  }
+
+  .evo-stage:nth-child(1) .name { color: #7ee787; }
+  .evo-stage:nth-child(2) .name { color: #79c0ff; }
+  .evo-stage:nth-child(3) .name { color: #d2a8ff; }
+
+  .evo-arrow {
+    display: flex;
+    align-items: center;
+    color: #484f58;
+    font-size: 24px;
+    padding: 0 4px;
+    margin-top: 20px;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: start;
+  }
+
+  .column { padding: 0 8px; }
+
+  .column-header {
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .col-sources .column-header {
+    background: linear-gradient(135deg, #1a3a2a, #162d22);
+    border: 1px solid #238636;
+    color: #7ee787;
+  }
+
+  .col-context .column-header {
+    background: linear-gradient(135deg, #1a2a3a, #162230);
+    border: 1px solid #1f6feb;
+    color: #79c0ff;
+  }
+
+  .col-harness .column-header {
+    background: linear-gradient(135deg, #2a1a3a, #221630);
+    border: 1px solid #8957e5;
+    color: #d2a8ff;
+  }
+
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+
+  .card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .col-sources .card h3 { color: #7ee787; }
+  .col-sources .tag { background: #1a3a2a; color: #7ee787; }
+  .col-context .card h3 { color: #79c0ff; }
+  .col-context .tag { background: #1a2a3a; color: #79c0ff; }
+  .col-harness .card h3 { color: #d2a8ff; }
+  .col-harness .tag { background: #2a1a3a; color: #d2a8ff; }
+
+  .card ul { list-style: none; padding: 0; }
+
+  .card li {
+    font-size: 11px;
+    color: #8b949e;
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .card li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #484f58;
+    font-family: monospace;
+  }
+
+  .arrow-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+    min-height: 400px;
+  }
+
+  .arrow-line {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #30363d, #484f58);
+    position: relative;
+  }
+
+  .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: -4px;
+    border-left: 8px solid #484f58;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .flow-label {
+    font-size: 10px;
+    color: #484f58;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin: 12px 0;
+  }
+
+  .bottom-bar {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #21262d;
+  }
+
+  .bottom-bar .insight {
+    font-size: 13px;
+    color: #8b949e;
+    max-width: 700px;
+    margin: 0 auto 12px;
+    line-height: 1.6;
+  }
+
+  .bottom-bar .insight strong { color: #e6edf3; }
+
+  .bottom-bar .credit {
+    font-size: 11px;
+    color: #484f58;
+  }
+
+  .bottom-bar .credit a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>The Map Everyone's Missing</h1>
+    <div class="subtitle">LLM Knowledge Engineering Ecosystem -- 2026</div>
+  </div>
+
+  <div class="evolution">
+    <div class="evo-stage">
+      <div class="year">2022 -- 2024</div>
+      <div class="name">Prompt Engineering</div>
+      <div class="desc">"Craft the perfect prompt"</div>
+    </div>
+    <div class="evo-arrow">--></div>
+    <div class="evo-stage">
+      <div class="year">2025</div>
+      <div class="name">Context Engineering</div>
+      <div class="author">Karpathy</div>
+      <div class="desc">"Construct the dynamic context window"</div>
+    </div>
+    <div class="evo-arrow">--></div>
+    <div class="evo-stage">
+      <div class="year">2026</div>
+      <div class="name">Harness Engineering</div>
+      <div class="author">Fowler, OpenAI</div>
+      <div class="desc">"Orchestrate the entire system around the model"</div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column col-sources">
+      <div class="column-header">KNOWLEDGE SOURCES</div>
+      <div class="card">
+        <h3>RAG Pipelines <span class="tag">Ch02</span></h3>
+        <ul>
+          <li>Self-RAG, Corrective RAG</li>
+          <li>Adaptive RAG, Agentic RAG</li>
+          <li>1,250x cheaper than long context</li>
+          <li>71% of enterprises use RAG</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Knowledge Graphs <span class="tag">Ch02</span></h3>
+        <ul>
+          <li>Microsoft GraphRAG</li>
+          <li>Entity-relationship reasoning</li>
+          <li>Multi-hop query resolution</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Long Context Windows <span class="tag">Ch02</span></h3>
+        <ul>
+          <li>1M+ token windows (Claude, Gemini)</li>
+          <li>Best for static, bounded docs</li>
+          <li>"Lost in the middle" degradation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="flow-label">feeds into</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <div class="column col-context">
+      <div class="column-header">CONTEXT ENGINEERING</div>
+      <div class="card">
+        <h3>Dynamic Context Assembly <span class="tag">Ch03</span></h3>
+        <ul>
+          <li>6-layer context model (Anthropic)</li>
+          <li>KV-cache hit rate = key metric</li>
+          <li>100:1 input-to-output ratio</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>System Prompts + Instructions <span class="tag">Ch03</span></h3>
+        <ul>
+          <li>Rules, constraints, persona</li>
+          <li>Routing tables for skill dispatch</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tool Definitions + Schemas <span class="tag">Ch07</span></h3>
+        <ul>
+          <li>MCP protocol standard</li>
+          <li>97M+ monthly SDK downloads</li>
+          <li>Meta-tool pattern for efficiency</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Conversation + Memory <span class="tag">Ch06</span></h3>
+        <ul>
+          <li>Episodic / Semantic / Procedural</li>
+          <li>Cross-session persistence</li>
+          <li>Zettelkasten-inspired (A-MEM)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="flow-label">shapes</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <div class="column col-harness">
+      <div class="column-header">HARNESS ENGINEERING</div>
+      <div class="card">
+        <h3>Skill Systems + Routing <span class="tag">Ch05</span></h3>
+        <ul>
+          <li>700K+ community skills</li>
+          <li>Skill Graphs (arscontexta)</li>
+          <li>Progressive disclosure routing</li>
+          <li>85-95% token reduction</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Agent Architecture <span class="tag">Ch04</span></h3>
+        <ul>
+          <li>Planner / Generator / Evaluator</li>
+          <li>Sprint contracts for QA</li>
+          <li>6x performance gap (Meta-Harness)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Safety + Control <span class="tag">Ch04</span></h3>
+        <ul>
+          <li>Guides (feedforward) vs Sensors (feedback)</li>
+          <li>Computational vs Inferential controls</li>
+          <li>Multi-layer content guards</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>MCP / Tool Layer <span class="tag">Ch07</span></h3>
+        <ul>
+          <li>Universal protocol standard</li>
+          <li>Linux Foundation governance</li>
+          <li>Auth, sandboxing, audit trails</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="insight">
+      <strong>The model is the CPU. Context is RAM. The harness is the OS.</strong><br>
+      Each generation contains the last. Harness engineering includes context engineering, which includes prompt engineering.
+    </div>
+    <div class="credit">
+      <a href="https://github.com/kennethlaw325/awesome-llm-knowledge-systems">awesome-llm-knowledge-systems</a> -- The first unified guide connecting every piece of the AI knowledge ecosystem.
+    </div>
+  </div>
+</div>
+</body>
+</html>
