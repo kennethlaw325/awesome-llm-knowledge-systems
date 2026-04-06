@@ -4,6 +4,8 @@
 >
 > **Why it matters:** Half the world's AI researchers are in China. Ignoring this ecosystem means missing half the innovation.
 
+![Chinese vs Western AI Knowledge Engineering](../diagrams/china-comparison.png)
+
 The global conversation about LLM knowledge engineering is incomplete without examining the Chinese ecosystem. With over 748 AI services filed with regulators by December 2025, China has developed a parallel --- and in some areas, divergent --- approach to building knowledge systems with large language models. This chapter maps the key platforms, models, and cultural differences that shape how Chinese developers and enterprises approach knowledge engineering.
 
 ## A. Open-Source RAG and Agent Platforms

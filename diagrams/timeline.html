@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Knowledge Engineering Timeline 2022-2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: #8b949e;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 140px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 120px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #238636, #1f6feb, #8957e5, #d2a8ff);
+    border-radius: 2px;
+  }
+
+  .year-label {
+    position: relative;
+    margin-bottom: 8px;
+    margin-top: 32px;
+  }
+
+  .year-label:first-child { margin-top: 0; }
+
+  .year-label .year {
+    position: absolute;
+    left: -140px;
+    width: 100px;
+    text-align: right;
+    font-size: 28px;
+    font-weight: 800;
+    color: #30363d;
+    top: -4px;
+  }
+
+  .event {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 28px;
+  }
+
+  .event::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #30363d;
+    background: #0d1117;
+  }
+
+  .event.green::before { border-color: #238636; background: #1a3a2a; }
+  .event.blue::before { border-color: #1f6feb; background: #1a2a3a; }
+  .event.purple::before { border-color: #8957e5; background: #2a1a3a; }
+  .event.gold::before { border-color: #d29922; background: #3a2a1a; }
+
+  .event .date {
+    font-size: 10px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .event .title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .event.green .title { color: #7ee787; }
+  .event.blue .title { color: #79c0ff; }
+  .event.purple .title { color: #d2a8ff; }
+  .event.gold .title { color: #e3b341; }
+
+  .event .desc {
+    font-size: 11px;
+    color: #8b949e;
+    line-height: 1.5;
+    max-width: 600px;
+  }
+
+  .event .desc strong { color: #c9d1d9; }
+
+  .era-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .era-prompt { background: #1a3a2a; color: #7ee787; }
+  .era-context { background: #1a2a3a; color: #79c0ff; }
+  .era-harness { background: #2a1a3a; color: #d2a8ff; }
+
+  /* Bottom summary */
+  .summary {
+    margin-top: 48px;
+    padding: 24px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .summary .phases {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 16px;
+  }
+
+  .summary .phase {
+    text-align: center;
+  }
+
+  .summary .phase .years {
+    font-size: 10px;
+    color: #8b949e;
+    margin-bottom: 4px;
+  }
+
+  .summary .phase .label {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .summary .phase .focus {
+    font-size: 10px;
+    color: #8b949e;
+    margin-top: 2px;
+  }
+
+  .summary .phase:nth-child(1) .label { color: #7ee787; }
+  .summary .phase:nth-child(2) .label { color: #79c0ff; }
+  .summary .phase:nth-child(3) .label { color: #d2a8ff; }
+
+  .summary .arrow {
+    color: #484f58;
+    font-size: 18px;
+    align-self: center;
+  }
+
+  .summary .takeaway {
+    font-size: 12px;
+    color: #8b949e;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .summary .takeaway strong { color: #e6edf3; }
+
+  .credit {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 11px;
+    color: #484f58;
+  }
+
+  .credit a { color: #58a6ff; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Key Moments in LLM Knowledge Engineering</h1>
+    <div class="subtitle">2022 -- 2026</div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 2022 -->
+    <div class="year-label"><div class="year">2022</div></div>
+
+    <div class="event green">
+      <div class="date">November 30</div>
+      <div class="title">ChatGPT Launches <span class="era-tag era-prompt">PROMPT ERA</span></div>
+      <div class="desc">100M users in 2 months. The "prompt engineering" era begins.</div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="year-label"><div class="year">2023</div></div>
+
+    <div class="event green">
+      <div class="date">Q1 -- Q2</div>
+      <div class="title">LangChain + LlamaIndex Emerge</div>
+      <div class="desc">RAG becomes the standard pattern for grounding LLMs in external knowledge.</div>
+    </div>
+
+    <div class="event green">
+      <div class="date">November</div>
+      <div class="title">GPT-4 Turbo: 128K Context</div>
+      <div class="desc">4x expansion. "Just put it all in context" school of thought forms.</div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="year-label"><div class="year">2024</div></div>
+
+    <div class="event blue">
+      <div class="date">February</div>
+      <div class="title">Gemini 1.5: 1M Token Context</div>
+      <div class="desc">Paradigm shift. Entire codebases fit in one prompt. RAG vs. long context debate intensifies.</div>
+    </div>
+
+    <div class="event blue">
+      <div class="date">November</div>
+      <div class="title">Anthropic Releases MCP <span class="era-tag era-context">CONTEXT ERA</span></div>
+      <div class="desc">Open protocol for LLM-to-tool integration. The "USB for AI" is born.</div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="year-label"><div class="year">2025</div></div>
+
+    <div class="event gold">
+      <div class="date">January</div>
+      <div class="title">DeepSeek R1: Open-Source Inflection</div>
+      <div class="desc">Matches o1 on reasoning. MIT license. Trained for <strong>under $6M</strong>. The model is no longer the moat.</div>
+    </div>
+
+    <div class="event blue">
+      <div class="date">Mid-2025</div>
+      <div class="title">Karpathy: "Context Engineering" > "Prompt Engineering"</div>
+      <div class="desc">The discipline evolves from crafting prompts to assembling entire context pipelines.</div>
+    </div>
+
+    <div class="event blue">
+      <div class="date">July</div>
+      <div class="title">Manus Publishes Context Engineering Lessons</div>
+      <div class="desc">KV-cache hit rate = key metric. 100:1 input/output ratio. Becomes practitioner reference.</div>
+    </div>
+
+    <div class="event blue">
+      <div class="date">October</div>
+      <div class="title">Anthropic Launches Agent Skills</div>
+      <div class="desc">Reusable, composable capabilities in YAML + markdown. Skills formalize what power users built informally.</div>
+    </div>
+
+    <div class="event purple">
+      <div class="date">December</div>
+      <div class="title">A Defining Month <span class="era-tag era-harness">HARNESS ERA</span></div>
+      <div class="desc">Skills open standard (agentskills.io) + MCP joins Linux Foundation + Progressive disclosure adopted + <strong>Meta acquires Manus ~$2B</strong></div>
+    </div>
+
+    <!-- 2026 -->
+    <div class="year-label"><div class="year">2026</div></div>
+
+    <div class="event gold">
+      <div class="date">January</div>
+      <div class="title">ERNIE 5.0 + Kimi K2.5 Agent Swarm</div>
+      <div class="desc">Baidu: 2.4T params. Kimi: spawns 100 sub-agents, 1,500 coordinated tool calls.</div>
+    </div>
+
+    <div class="event purple">
+      <div class="date">February</div>
+      <div class="title">Heinrich's Skill Graphs Post Goes Viral</div>
+      <div class="desc">8.5K likes, 3.8M views. Skill routing and composition become first-class engineering concerns.</div>
+    </div>
+
+    <div class="event purple">
+      <div class="date">March</div>
+      <div class="title">Meta-Harness Paper: 6x Performance Gap</div>
+      <div class="desc">Same model, different harness = <strong>6x performance difference</strong>. Harness engineering > model selection.</div>
+    </div>
+
+    <div class="event purple">
+      <div class="date">Q1</div>
+      <div class="title">MCP Reaches 97M+ Monthly Downloads</div>
+      <div class="desc">12x growth in 4 months. The protocol is now infrastructure.</div>
+    </div>
+
+    <div class="event purple">
+      <div class="date">April</div>
+      <div class="title">This Guide Published</div>
+      <div class="desc">The first unified map connecting every piece of the LLM knowledge engineering ecosystem.</div>
+    </div>
+
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="phases">
+      <div class="phase">
+        <div class="years">2022 -- 2024</div>
+        <div class="label">Prompt Engineering</div>
+        <div class="focus">The model is the product</div>
+      </div>
+      <div class="arrow">--></div>
+      <div class="phase">
+        <div class="years">2025</div>
+        <div class="label">Context Engineering</div>
+        <div class="focus">The context is the product</div>
+      </div>
+      <div class="arrow">--></div>
+      <div class="phase">
+        <div class="years">2026</div>
+        <div class="label">Harness Engineering</div>
+        <div class="focus">The harness is the product</div>
+      </div>
+    </div>
+    <div class="takeaway"><strong>How you orchestrate the model matters more than which model you choose.</strong></div>
+  </div>
+
+  <div class="credit">
+    <a href="https://github.com/kennethlaw325/awesome-llm-knowledge-systems">awesome-llm-knowledge-systems</a>
+  </div>
+
+</div>
+</body>
+</html>

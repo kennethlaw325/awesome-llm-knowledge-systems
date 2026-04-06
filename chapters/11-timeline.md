@@ -4,6 +4,8 @@
 >
 > **Why it matters:** Context for everything in this guide -- when it happened, who did it, and what changed.
 
+![LLM Knowledge Engineering Timeline 2022-2026](../diagrams/timeline.png)
+
 A chronological map of the events, releases, and ideas that shaped how we build knowledge systems with large language models. Where precise dates are known, they are included. Where only a quarter or month is confirmed, that granularity is used.
 
 ---

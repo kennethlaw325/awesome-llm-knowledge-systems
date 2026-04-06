@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese vs Western AI Knowledge Engineering</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: #8b949e;
+  }
+
+  /* Two-column comparison */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+
+  .side {
+    padding: 0 12px;
+  }
+
+  .side-header {
+    text-align: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .side-west .side-header {
+    background: linear-gradient(135deg, #1a2a3a, #162230);
+    border: 1px solid #1f6feb;
+    color: #79c0ff;
+  }
+
+  .side-east .side-header {
+    background: linear-gradient(135deg, #3a1a1a, #301616);
+    border: 1px solid #da3633;
+    color: #ff7b72;
+  }
+
+  .divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+  }
+
+  .vs {
+    font-size: 14px;
+    font-weight: 700;
+    color: #484f58;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Category rows */
+  .category {
+    margin-bottom: 20px;
+  }
+
+  .category-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #484f58;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+
+  .card h3 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .side-west .card h3 { color: #79c0ff; }
+  .side-east .card h3 { color: #ff7b72; }
+
+  .card .stars {
+    font-size: 10px;
+    color: #8b949e;
+    font-weight: 400;
+  }
+
+  .card .desc {
+    font-size: 11px;
+    color: #8b949e;
+    line-height: 1.4;
+  }
+
+  /* Dimension comparison */
+  .dimensions {
+    margin-top: 40px;
+  }
+
+  .dim-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .dim-row {
+    display: grid;
+    grid-template-columns: 1fr 160px 1fr;
+    gap: 0;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+
+  .dim-west, .dim-east {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .dim-west { color: #79c0ff; text-align: right; }
+  .dim-east { color: #ff7b72; text-align: left; }
+
+  .dim-label {
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8b949e;
+    font-weight: 600;
+  }
+
+  /* LLM comparison */
+  .llm-section {
+    margin-top: 40px;
+  }
+
+  .llm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .llm-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .llm-card h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .llm-card.west h3 { color: #79c0ff; }
+  .llm-card.east h3 { color: #ff7b72; }
+
+  .llm-card .stat {
+    font-size: 11px;
+    color: #8b949e;
+    line-height: 1.5;
+  }
+
+  .llm-card .stat strong { color: #c9d1d9; }
+
+  /* Bottom */
+  .bottom {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #21262d;
+  }
+
+  .bottom .insight {
+    font-size: 13px;
+    color: #8b949e;
+    max-width: 700px;
+    margin: 0 auto 12px;
+    line-height: 1.6;
+  }
+
+  .bottom .insight strong { color: #e6edf3; }
+
+  .bottom .credit {
+    font-size: 11px;
+    color: #484f58;
+  }
+
+  .bottom .credit a { color: #58a6ff; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Chinese vs Western AI Knowledge Engineering</h1>
+    <div class="subtitle">Two ecosystems, different approaches, shared trajectory</div>
+  </div>
+
+  <!-- Platform comparison -->
+  <div class="comparison">
+    <div class="side side-west">
+      <div class="side-header">Western Ecosystem</div>
+
+      <div class="category">
+        <div class="category-label">RAG / Agent Platforms</div>
+        <div class="card">
+          <h3>LangChain <span class="stars">100K+</span></h3>
+          <div class="desc">Code-first, composable chains + agents</div>
+        </div>
+        <div class="card">
+          <h3>LlamaIndex <span class="stars">40K+</span></h3>
+          <div class="desc">Data framework for LLM apps</div>
+        </div>
+        <div class="card">
+          <h3>Haystack <span class="stars">18K+</span></h3>
+          <div class="desc">Production NLP pipelines</div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Agent Frameworks</div>
+        <div class="card">
+          <h3>LangGraph / CrewAI / AutoGen</h3>
+          <div class="desc">Code-heavy, developer-oriented</div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Model Hub</div>
+        <div class="card">
+          <h3>Hugging Face</h3>
+          <div class="desc">Global standard for model hosting</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">
+      <div class="vs">vs</div>
+    </div>
+
+    <div class="side side-east">
+      <div class="side-header">Chinese Ecosystem</div>
+
+      <div class="category">
+        <div class="category-label">RAG / Agent Platforms</div>
+        <div class="card">
+          <h3>Dify <span class="stars">111K+</span></h3>
+          <div class="desc">Visual workflow + RAG, MCP support</div>
+        </div>
+        <div class="card">
+          <h3>RAGFlow <span class="stars">75K+</span></h3>
+          <div class="desc">Deep document understanding + OCR</div>
+        </div>
+        <div class="card">
+          <h3>FastGPT <span class="stars">27K+</span></h3>
+          <div class="desc">Enterprise KB, runs on 2GB RAM</div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Agent Frameworks</div>
+        <div class="card">
+          <h3>Coze Studio (ByteDance) <span class="stars">15K+</span></h3>
+          <div class="desc">Visual, low-code agent building</div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Model Hub</div>
+        <div class="card">
+          <h3>ModelScope (Alibaba)</h3>
+          <div class="desc">Chinese Hugging Face equivalent</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Differences -->
+  <div class="dimensions">
+    <div class="dim-header">Six Key Differences</div>
+
+    <div class="dim-row">
+      <div class="dim-west">Code-first, composable libraries</div>
+      <div class="dim-label">Approach</div>
+      <div class="dim-east">Visual, low-code, all-in-one</div>
+    </div>
+
+    <div class="dim-row">
+      <div class="dim-west">API-first, cloud-native</div>
+      <div class="dim-label">Deployment</div>
+      <div class="dim-east">On-premise dominant (data sovereignty)</div>
+    </div>
+
+    <div class="dim-row">
+      <div class="dim-west">Discord, Reddit, X/Twitter</div>
+      <div class="dim-label">Community</div>
+      <div class="dim-east">WeChat groups, Zhihu, CSDN</div>
+    </div>
+
+    <div class="dim-row">
+      <div class="dim-west">More compute available</div>
+      <div class="dim-label">Innovation Driver</div>
+      <div class="dim-east">Efficiency under constraints (chip export controls)</div>
+    </div>
+
+    <div class="dim-row">
+      <div class="dim-west">Self-regulation emerging</div>
+      <div class="dim-label">Regulation</div>
+      <div class="dim-east">748 AI services filed by Dec 2025</div>
+    </div>
+
+    <div class="dim-row">
+      <div class="dim-west">Mixed open/closed</div>
+      <div class="dim-label">Open Source</div>
+      <div class="dim-east">Open-weight releases outpacing West</div>
+    </div>
+  </div>
+
+  <!-- LLM Comparison -->
+  <div class="llm-section">
+    <div class="dim-header" style="margin-top: 40px;">Leading Models for Knowledge Engineering</div>
+    <div class="llm-grid">
+      <div class="llm-card west">
+        <h3>GPT-4o / o1 (OpenAI)</h3>
+        <div class="stat">Dominant in API consumption. <strong>Closed-weight.</strong></div>
+      </div>
+      <div class="llm-card east">
+        <h3>Qwen3 (Alibaba)</h3>
+        <div class="stat">235B MoE, Apache 2.0. <strong>256K-1M context.</strong></div>
+      </div>
+      <div class="llm-card west">
+        <h3>Claude Opus 4.6 (Anthropic)</h3>
+        <div class="stat">1M context. <strong>MCP native.</strong></div>
+      </div>
+      <div class="llm-card east">
+        <h3>DeepSeek R1</h3>
+        <div class="stat">MIT license. Matched o1. <strong>Trained for $6M.</strong></div>
+      </div>
+      <div class="llm-card west">
+        <h3>Gemini 2.0 (Google)</h3>
+        <div class="stat">2M context. <strong>Natively multimodal.</strong></div>
+      </div>
+      <div class="llm-card east">
+        <h3>Kimi K2.5 (Moonshot)</h3>
+        <div class="stat">Agent Swarm: <strong>100 sub-agents, 1,500 tool calls.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="insight">
+      <strong>Two ecosystems, one trajectory.</strong> The Western approach emphasizes composability and developer tools. The Chinese approach emphasizes visual workflows and enterprise deployment. Both are converging on the same destination: the harness is the product.
+    </div>
+    <div class="credit">
+      <a href="https://github.com/kennethlaw325/awesome-llm-knowledge-systems">awesome-llm-knowledge-systems</a> -- Chapter 9: The Chinese AI Ecosystem
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
