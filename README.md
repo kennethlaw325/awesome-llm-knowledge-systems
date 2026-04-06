@@ -1,0 +1,185 @@
+# The Map Everyone's Missing: LLM Knowledge Engineering in 2026
+
+> I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
+
+---
+
+## TL;DR
+
+- **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last.
+- **RAG is not dead.** 71% of enterprises that tried context-stuffing came back to RAG within 12 months (Gartner Q4 2025). Hybrid architectures are winning.
+- **Context engineering is about what surrounds the call, not the call itself.** Andrej Karpathy's mid-2025 reframe shifted focus from crafting prompts to constructing the entire context window dynamically.
+- **Harness engineering is the operating system layer.** Martin Fowler and OpenAI formalized this in late 2025 -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
+- **No single guide connected all of this until now.** RAG, knowledge graphs, long context, MCP, skill routing, memory systems, and progressive disclosure are all part of one ecosystem. This is the map.
+
+---
+
+## Start Here
+
+AI tools are getting smarter every year, but they only work well when they receive the right information at the right time. This guide explains how that works -- from the basics of telling an AI what to do, all the way up to designing entire systems around AI models.
+
+Think of AI like a brilliant new employee on their first day. Prompt engineering is giving them a single task. Context engineering is giving them all the background information they need to do the task well. Harness engineering is designing their entire work environment -- their desk, their tools, their filing system, their team structure -- so they can do their best work consistently. This guide covers all three, and shows how they connect.
+
+If you are new to this topic, start with the [Glossary](glossary.md) for definitions of key terms. If you build AI applications, jump straight into the chapters below. If you just want the big picture, look at the Ecosystem Map diagram further down this page.
+
+---
+
+## Which Path Should You Take?
+
+Not sure where to start? Pick the description that fits you best:
+
+- **"I just want to understand what all these AI buzzwords mean."** -- Start with the [Glossary](glossary.md), then read [Chapter 1: The Three Generations](chapters/01-evolution.md).
+- **"I'm building an AI application."** -- Read [Ch02: RAG, Long Context & Knowledge Graphs](chapters/02-knowledge-layer.md), then [Ch03: Context Engineering](chapters/03-context-engineering.md), then [Ch04: Harness Engineering](chapters/04-harness-engineering.md).
+- **"I want to make my AI tools work better."** -- Read [Ch05: Skill Systems](chapters/05-skill-systems.md), then [Ch06: Agent Memory](chapters/06-agent-memory.md), then [Ch10: Case Study](chapters/10-case-study.md).
+- **"I want to see real examples."** -- Jump straight to [Ch10: Case Study](chapters/10-case-study.md).
+- **"I work with Chinese AI tools."** -- Start with [Ch09: The Chinese AI Ecosystem](chapters/09-china-ecosystem.md).
+- **"I want the complete picture."** -- Read front to back, starting with Chapter 1.
+
+---
+
+## The Evolution
+
+```
+2022-2024               2025                    2026
+PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG
+                        (Karpathy)              (Fowler, OpenAI)
+
+"Craft the          "Construct the          "Orchestrate the
+ perfect prompt"     dynamic context          entire system
+                     window"                  around the model"
+```
+
+Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering.
+
+---
+
+## Ecosystem Map
+
+```
++---------------------------+     +---------------------------+     +---------------------------+
+|    KNOWLEDGE SOURCES      |     |   CONTEXT ENGINEERING     |     |   HARNESS ENGINEERING     |
+|                           |     |                           |     |                           |
+|  +---------------------+ | --> |  +---------------------+ | --> |  +---------------------+ |
+|  | RAG Pipelines       | |     |  | Dynamic Context     | |     |  | Skill Systems       | |
+|  | - Self-RAG          | |     |  |   Assembly          | |     |  | - Routing Logic     | |
+|  | - Corrective RAG    | |     |  |                     | |     |  | - Progressive       | |
+|  | - Adaptive RAG      | |     |  | KV-Cache            | |     |  |   Disclosure        | |
+|  +---------------------+ |     |  |   Optimization      | |     |  +---------------------+ |
+|                           |     |  |                     | |     |                           |
+|  +---------------------+ |     |  | System Prompts      | |     |  +---------------------+ |
+|  | Knowledge Graphs    | |     |  |   + Instructions    | |     |  | Memory Frameworks   | |
+|  | - GraphRAG          | |     |  |                     | |     |  | - Short-term        | |
+|  | - Entity Relations  | |     |  | Tool Definitions    | |     |  | - Long-term         | |
+|  | - Multi-hop Queries | |     |  |   + Schemas         | |     |  | - Episodic          | |
+|  +---------------------+ |     |  |                     | |     |  +---------------------+ |
+|                           |     |  | Few-shot Examples   | |     |                           |
+|  +---------------------+ |     |  |                     | |     |  +---------------------+ |
+|  | Long Context        | |     |  | Conversation        | |     |  | MCP / Tool Layer    | |
+|  | - 1M+ token windows | |     |  |   History           | |     |  | - Protocol Std      | |
+|  | - Static doc ingest | |     |  +---------------------+ |     |  | - Tool Routing      | |
+|  +---------------------+ |     +---------------------------+     |  | - Auth + Sandboxing | |
++---------------------------+                                       |  +---------------------+ |
+                                                                    |                           |
+                                                                    |  +---------------------+ |
+                                                                    |  | Agent Runtime       | |
+                                                                    |  | - Planning Loops    | |
+                                                                    |  | - Error Recovery    | |
+                                                                    |  | - Multi-agent       | |
+                                                                    |  |   Coordination      | |
+                                                                    |  +---------------------+ |
+                                                                    +---------------------------+
+```
+
+```mermaid
+graph LR
+    subgraph Sources["Knowledge Sources"]
+        RAG[RAG Pipelines]
+        KG[Knowledge Graphs]
+        LC[Long Context Windows]
+    end
+
+    subgraph Context["Context Engineering"]
+        DCA[Dynamic Context Assembly]
+        KVC[KV-Cache Optimization]
+        SP[System Prompts + Instructions]
+        TD[Tool Definitions + Schemas]
+        FSE[Few-shot Examples]
+        CH[Conversation History]
+    end
+
+    subgraph Harness["Harness Engineering"]
+        SK[Skill Systems + Routing]
+        MEM[Memory Frameworks]
+        MCP[MCP / Tool Layer]
+        AR[Agent Runtime + Planning]
+        PD[Progressive Disclosure]
+    end
+
+    Sources --> Context --> Harness
+```
+
+---
+
+## Table of Contents
+
+### Chapters
+
+| # | Chapter | Description |
+|---|---------|-------------|
+| 01 | [The Three Generations](/chapters/01-evolution.md) | From prompt engineering to context engineering to harness engineering |
+| 02 | [RAG, Long Context & Knowledge Graphs](/chapters/02-knowledge-layer.md) | The knowledge retrieval layer -- what works, what doesn't, and why hybrid wins |
+| 03 | [Context Engineering](/chapters/03-context-engineering.md) | The art of filling the context window -- KV-cache, the 100:1 ratio, dynamic assembly |
+| 04 | [Harness Engineering](/chapters/04-harness-engineering.md) | Building the OS around the model -- guides, sensors, and the 6x performance gap |
+| 05 | [Skill Systems & Skill Graphs](/chapters/05-skill-systems.md) | From flat files to traversable graphs -- progressive disclosure in practice |
+| 06 | [Agent Memory](/chapters/06-agent-memory.md) | The missing layer -- episodic, semantic, and procedural memory architectures |
+| 07 | [MCP: The Standard That Won](/chapters/07-mcp.md) | Model Context Protocol -- from launch to 97M+ monthly downloads |
+| 08 | [AI-Native Knowledge Management](/chapters/08-tools-landscape.md) | Tools landscape -- Notion AI, Obsidian, Mem, and the AI-native gap |
+| 09 | [The Chinese AI Ecosystem](/chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- a parallel universe of innovation |
+| 10 | [Case Study: A Real-World Knowledge Harness](/chapters/10-case-study.md) | How one developer built a complete harness with 65% token reduction |
+| 11 | [Timeline](/chapters/11-timeline.md) | Key moments in LLM knowledge engineering, 2022-2026 |
+
+---
+
+## Who Is This For?
+
+- **AI engineers** building production LLM applications who need the full picture, not just one slice
+- **Developer experience teams** designing SDK and tool integrations around LLMs
+- **Technical leaders** evaluating architecture decisions across RAG, agents, and tool use
+- **Power users** of AI coding tools (Cursor, Claude Code, Copilot) who want to understand why their setup works -- or doesn't
+- **Researchers** looking for a practitioner's map of how theoretical advances connect in production
+
+You do NOT need a PhD to read this. You DO need to care about building things that work.
+
+---
+
+## Why This Guide Exists
+
+The LLM ecosystem in 2026 has a fragmentation problem. Not a lack of information -- an excess of disconnected information.
+
+There are mass surveys on RAG. Comprehensive prompt engineering guides. MCP specification documents. Agent framework comparisons. Memory system papers. Each one is excellent in isolation. None of them show you how the pieces fit together.
+
+This guide is that missing layer. It connects RAG to context engineering, context engineering to harness engineering, harness engineering to agent runtimes -- and shows you the decisions that matter at each boundary.
+
+---
+
+## Contributing
+
+Contributions are welcome. This is a living document.
+
+- **Corrections**: If a claim is wrong or a source is outdated, open an issue with the correct information and a link.
+- **Additions**: New chapters, case studies, or diagrams -- open a PR with a clear description of what you're adding and why.
+- **Translations**: Translation PRs go in `/translations/`. Maintain the same file structure. Chinese translation available: [中文版](translations/README-zh.md)
+
+Please keep the tone professional but accessible. Cite sources. No hype.
+
+---
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+Use this however you want. Attribution appreciated but not required.
+
+---
+
+*Last updated: April 2026*

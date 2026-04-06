@@ -1,0 +1,134 @@
+## Glossary
+
+> Plain-language definitions for every technical term used in this guide. No PhD required.
+
+### A
+
+**A2A (Agent-to-Agent Protocol)**
+A standard way for AI agents to talk to each other and coordinate tasks, like a common language that lets different AI assistants hand off work between themselves.
+
+**Agent Memory**
+The ability of an AI agent to remember information across conversations or tasks. Think of it like a notebook the agent keeps between sessions so it does not start from scratch every time.
+
+**Agentic RAG**
+A version of RAG where the AI actively decides what information to look up, when to look it up, and whether the results are good enough -- rather than following a fixed retrieval step every time.
+
+### C
+
+**Claude Code**
+Anthropic's command-line tool that lets Claude work directly in your terminal -- reading files, running commands, and editing code as an AI pair programmer.
+
+**Codex (OpenAI)**
+OpenAI's tool for running coding tasks in a sandboxed cloud environment, where an AI agent can read your repository, write code, and run tests autonomously.
+
+**Context Engineering**
+The practice of carefully designing what information an AI receives before it responds. If prompt engineering is writing the question, context engineering is choosing which reference materials to put on the AI's desk.
+
+**Context Window**
+The total amount of text an AI model can "see" at once -- both your input and its output. Like the size of a whiteboard: everything the model reads and writes must fit on it.
+
+### E
+
+**Embeddings**
+A way of converting text into lists of numbers so that similar meanings end up close together mathematically. This lets computers measure how related two pieces of text are, the way you might notice two books cover similar topics.
+
+### F
+
+**Few-shot Learning**
+Teaching an AI how to do a task by showing it a handful of examples inside your prompt, rather than retraining the whole model. Like showing someone three completed forms so they know how to fill out the fourth.
+
+**Fine-tuning**
+Taking a pre-trained AI model and training it further on your own specific data so it becomes better at a particular job. Like hiring a generalist and then giving them specialized on-the-job training.
+
+### G
+
+**GraphRAG**
+A version of RAG that organizes retrieved information into a graph of connected entities and relationships, making it better at answering questions that require combining facts from multiple sources.
+
+### H
+
+**Harness Engineering**
+Designing the surrounding system -- tools, memory, rules, and workflows -- that wraps around an AI model and shapes how it behaves in practice. The model is the engine; the harness is the entire car.
+
+### I
+
+**Inference**
+The process of an AI model generating a response to your input. Every time you send a message and get an answer back, the model is performing inference.
+
+### K
+
+**Knowledge Graph**
+A structured map of facts where entities (people, places, concepts) are connected by labeled relationships. Like a web of index cards connected by labeled strings showing how everything relates.
+
+**KV-Cache**
+A memory shortcut that lets the AI reuse calculations from earlier in a conversation instead of redoing them from scratch, making responses faster and cheaper when the conversation history stays the same.
+
+### L
+
+**LLM (Large Language Model)**
+An AI system trained on vast amounts of text that can understand and generate human language. ChatGPT, Claude, and Gemini are all LLMs.
+
+**Long Context**
+The ability of newer AI models to process very large amounts of text at once -- sometimes entire books or codebases -- within a single conversation.
+
+### M
+
+**MCP (Model Context Protocol)**
+An open standard that lets AI assistants connect to external tools and data sources through a universal plug-and-play interface, like USB for AI applications.
+
+**MoE (Mixture of Experts)**
+A model architecture where only a subset of the model's "brain" activates for any given input, making it possible to build very large models that remain fast because not every part runs every time.
+
+### O
+
+**Obsidian**
+A note-taking application that stores your notes as plain text files on your own computer and lets you link them together into a personal knowledge base.
+
+### P
+
+**Progressive Disclosure**
+A design principle where you show only the essential information first and reveal more detail on demand. Like a FAQ page: you see the questions, and click to expand the answers you actually need.
+
+**Prompt Engineering**
+The craft of writing instructions to an AI model in a way that gets the best possible response. Small changes in wording can produce very different results.
+
+### R
+
+**RAG (Retrieval-Augmented Generation)**
+A technique where the AI looks up relevant information from an external source before answering, so its response is grounded in actual data rather than relying solely on what it memorized during training.
+
+### S
+
+**Self-RAG**
+A version of RAG where the AI evaluates its own retrieved information and generated answer for quality, deciding whether to retrieve more or revise its response before giving you the final result.
+
+**Skill (AI Agent Skill)**
+A reusable, packaged capability that an AI agent can invoke -- like a recipe it follows for a specific task such as "review this PR" or "run a daily review."
+
+**Skill Graph**
+A map of all the skills an AI agent has available, including how they relate to each other and when each one should be triggered.
+
+**System Prompt**
+Hidden instructions given to an AI model before your conversation begins, setting its role, rules, and behavior. Like a job description the employee reads before their first day.
+
+### T
+
+**Token**
+The basic unit an AI model reads and writes -- roughly three-quarters of a word in English. Models think in tokens, and pricing and context limits are measured in them.
+
+**Tool Use / Function Calling**
+The ability of an AI model to trigger external actions -- like searching the web, running code, or calling an API -- instead of only generating text.
+
+### V
+
+**Vector Database**
+A database purpose-built to store and search embeddings, making it fast to find the most similar items among millions of entries. The engine behind most RAG systems.
+
+### W
+
+**Wikilink**
+A double-bracketed link (like `[[Note Title]]`) used in tools such as Obsidian to connect one note to another, creating a web of linked knowledge.
+
+---
+
+[Back to README](README.md)
