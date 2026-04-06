@@ -12,7 +12,7 @@ The global conversation about LLM knowledge engineering is incomplete without ex
 
 China's open-source AI ecosystem has produced several platforms that rival or exceed their Western counterparts in GitHub popularity. What distinguishes these projects is their emphasis on visual workflows, enterprise deployment readiness, and deep document understanding --- reflecting the practical demands of Chinese enterprise customers.
 
-### Dify (111K+ GitHub Stars)
+### Dify (136K+ GitHub Stars)
 
 [Dify](https://github.com/langgenius/dify) is the most-starred agentic AI platform globally. Licensed under Apache 2.0, it provides a visual canvas for building RAG pipelines, agentic workflows, and multi-step reasoning chains. Since version 1.0, Dify has supported the Model Context Protocol (MCP), allowing seamless integration with external tool servers. Its strength lies in bridging the gap between no-code users who design workflows visually and developers who need programmatic control. Enterprise users can self-host the entire stack, which is critical in the Chinese market where data sovereignty requirements often preclude cloud-only solutions.
 

@@ -40,6 +40,10 @@ Google launches Gemini 1.0, its first natively multimodal model. Built from the 
 
 Google releases Gemini 1.5 Pro with a 1-million-token context window. This is not incremental --- it is a paradigm shift. An entire codebase, a full book, hours of video transcript can now fit in a single prompt. The "RAG vs. long context" debate intensifies. Practitioners begin to realize that long context does not eliminate retrieval; it changes what retrieval is for.
 
+### March --- Kimi Achieves 2M Chinese Character Context
+
+Moonshot AI's Kimi reaches a 2-million Chinese character context window, the longest for any model optimized for Chinese text. This enables full-document processing for Chinese enterprise use cases --- legal contracts, regulatory filings, technical manuals --- that were previously impractical.
+
 ### November --- Anthropic Releases the Model Context Protocol (MCP)
 
 Anthropic publishes MCP as an open specification for connecting LLMs to external tools and data sources. MCP standardizes how models discover, authenticate with, and invoke tools --- replacing the fragmented landscape of custom function-calling implementations. It is designed as a protocol, not a product: any model provider or tool developer can implement it. The analogy to USB or HTTP is deliberate. This moment marks the beginning of interoperable knowledge infrastructure.
@@ -51,10 +55,6 @@ Anthropic publishes MCP as an open specification for connecting LLMs to external
 ### January --- DeepSeek R1 and the Open-Source Inflection
 
 DeepSeek releases R1, an open-weight reasoning model that matches OpenAI's o1 on key benchmarks. Trained for under $6 million and released under the MIT license, it demonstrates that frontier reasoning capabilities are no longer exclusive to well-funded labs. Enterprise open-source model adoption in China surges from 23% to 67%. The knowledge engineering implication: the foundation model is no longer the bottleneck or the moat.
-
-### March --- Kimi Achieves 2M Chinese Character Context
-
-Moonshot AI's Kimi reaches a 2-million Chinese character context window, the longest for any model optimized for Chinese text. This enables full-document processing for Chinese enterprise use cases --- legal contracts, regulatory filings, technical manuals --- that were previously impractical.
 
 ### Mid-2025 --- "Context Engineering" Enters the Lexicon
 
@@ -141,7 +141,7 @@ The trajectory is clear. The next chapter of this story will not be about larger
 - Google, "Gemini 1.5: Our Next-Generation Model" (February 2024)
 - Anthropic, "Introducing the Model Context Protocol" (November 2024)
 - DeepSeek, "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" (January 2025)
-- Moonshot AI, Kimi Long-Context Technical Blog (March 2025)
+- Moonshot AI, Kimi Long-Context Technical Blog (March 2024)
 - Karpathy, A., remarks on context engineering (mid-2025)
 - Manus, "Context Engineering for AI Agents" blog post (July 2025)
 - Notion, "Introducing Notion 3.0" (September 2025)
