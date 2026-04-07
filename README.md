@@ -1,5 +1,7 @@
 # The Map Everyone's Missing: LLM Knowledge Engineering in 2026
 
+**English** | [繁體中文](translations/README-zh.md) | [简体中文](translations/README_zh-CN.md) | [日本語](translations/README_ja.md) | [한국어](translations/README_ko.md) | [Español](translations/README_es.md)
+
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
 ---
@@ -177,7 +179,7 @@ Contributions are welcome. This is a living document.
 
 - **Corrections**: If a claim is wrong or a source is outdated, open an issue with the correct information and a link.
 - **Additions**: New chapters, case studies, or diagrams -- open a PR with a clear description of what you're adding and why.
-- **Translations**: Translation PRs go in `/translations/`. Maintain the same file structure. Chinese translation available: [中文版](translations/README-zh.md)
+- **Translations**: Translation PRs go in `/translations/`. Maintain the same file structure. Available translations: [繁體中文](translations/README-zh.md) | [简体中文](translations/README_zh-CN.md) | [日本語](translations/README_ja.md) | [한국어](translations/README_ko.md) | [Español](translations/README_es.md)
 
 Please keep the tone professional but accessible. Cite sources. No hype.
 
