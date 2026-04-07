@@ -1,6 +1,8 @@
-> This is a Chinese translation of the [English README](../README.md). 章節內容目前為英文。
-
 # 每個人都遺漏的地圖：2026 年 LLM 知識工程全景指南
+
+[English](../README.md) | **繁體中文** | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | [Español](README_es.md)
+
+> 此為 [English README](../README.md) 的繁體中文翻譯。章節內容目前為英文。
 
 > 我分析了超過 50 份 awesome lists、調查報告和指南——沒有一份把所有東西串起來。RAG 論文不提 harness engineering（系統編排工程）。Memory frameworks（記憶框架）忽略 skill systems（技能系統）。MCP 文件跳過 progressive disclosure（漸進式揭露）。這份指南畫出了完整的地圖。
 
