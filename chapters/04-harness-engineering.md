@@ -83,6 +83,31 @@ The meta-harness approach treated harness parameters (number of retries, plannin
 
 This result has a profound implication: **harness engineering is not a solved design problem with known best practices -- it is an optimization problem with a large and poorly understood search space.** Teams that treat harness design as a one-time architecture decision are likely operating far below the frontier.
 
+### From Research to Production: The Advisor Tool (April 2026)
+
+The meta-harness finding was a research result. A month later, Anthropic shipped the first productised meta-harness pattern: the **Advisor Tool** (beta, `advisor-tool-2026-03-01`). The pattern pairs a faster executor model with a more capable advisor model. The executor handles the bulk of the work; when it hits a decision point, it calls `advisor()` and receives a strategic plan or course correction (typically 400-700 text tokens, 1,400-1,800 including thinking) without leaving the current API request.
+
+The default configurations recommended by Anthropic are telling:
+
+| Executor | Advisor | Intended use |
+|----------|---------|--------------|
+| Haiku 4.5 | Opus 4.6 | Step up in intelligence from Haiku-only |
+| Sonnet 4.6 | Opus 4.6 | Match Opus-solo quality at Sonnet cost |
+| Opus 4.6 | Opus 4.6 | Quality refinement on hardest tasks |
+
+This is the 6x meta-harness gap translated into a pricing strategy. Instead of paying Opus rates for every token, you pay Sonnet rates for execution and Opus rates for the 1-2 advisor calls that actually shape the output. Anthropic's suggested prompting pattern is worth quoting because it codifies harness timing into a rule:
+
+> "Call advisor BEFORE substantive work -- before writing, before committing to an interpretation, before building on an assumption. [...] On tasks longer than a few steps, call advisor at least once before committing to an approach and once before declaring done."
+
+Several details from the documentation matter for practitioners:
+
+- **Server-side sub-inference.** The advisor runs inside the same `/v1/messages` request. The executor emits a `server_tool_use` block, Anthropic runs a separate inference pass with the full transcript, and the result comes back as an `advisor_tool_result`. No extra round trips from your code.
+- **Cache break-even at ~3 calls.** Enabling `caching` on the advisor tool writes the advisor's transcript to a 5-minute or 1-hour cache. The first call costs extra; payoff begins around the third call. Short tasks should leave caching off.
+- **Conciseness prompt cuts output 35-45%.** A single instruction -- "The advisor should respond in under 100 words and use enumerated steps, not explanations" -- measurably reduces the advisor's largest cost driver without changing call frequency.
+- **Explicit reconcile protocol.** When advisor advice conflicts with empirical evidence the executor has already gathered, Anthropic's system prompt tells the executor to make one more advisor call framed as "I found X, you suggest Y, which constraint breaks the tie?" rather than silently switching. This is a production-grade answer to the "should I trust the planner or the data" question that shows up whenever multiple roles disagree.
+
+The Advisor Tool is important beyond its immediate utility. It is a signal that meta-harness thinking has moved from research curiosity to commercial primitive. The "same model, different harness, 6x gap" finding is no longer something you need a research team to exploit -- Anthropic exposes it as a tool call. Expect other labs to follow with their own advisor/executor pairings, and expect harness engineering job descriptions to start listing multi-model coordination as a core skill.
+
 ## 4.6 Anthropic's Three-Agent Architecture
 
 Anthropic's research on multi-agent systems (2025-2026) converged on a recurring three-role architecture:
