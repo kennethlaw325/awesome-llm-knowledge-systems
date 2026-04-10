@@ -7,7 +7,12 @@
 > "Every component in a harness encodes an assumption about what the model can't do on its own, and those assumptions are worth stress testing."
 > -- Anthropic, "Building Effective Agents," 2025
 
+> "模型從來都沒有長手。"
+> -- Cab, on why tool use is a harness problem, not a model problem
+
 An agent is not a model. An agent is a **model plus a harness** -- the surrounding system of prompts, tools, memory, control flow, evaluation logic, and orchestration code that turns raw inference into reliable behavior. The model is the engine; the harness is the vehicle. This chapter examines how practitioners design, evaluate, and evolve that vehicle.
+
+**A note on intuition.** The metaphor that makes this concrete for many beginners is Cab's observation that "the model never literally grew hands." When a coding agent edits a file, it is not the model that edited the file -- it is the harness, triggered by a tool-call the model returned as text. Every capability we attribute to "the AI" is actually a capability of the harness surrounding the model. Strip the harness away and you get a model that can only produce text. Strip the model away and you get a harness that has nothing to route. Harness engineering is the discipline of deciding where that line sits and how the two halves cooperate.
 
 ---
 
@@ -177,3 +182,8 @@ The practical recommendation: when onboarding a new model, start by running your
 - **Karpathy, Andrej.** "Software 3.0." Talk / essay, 2025. Framing of models as components within larger software systems.
 - **LangChain.** "Agent Architecture Patterns." LangChain documentation, 2025. Practical patterns for control flow and tool orchestration.
 - **Harrison Chase.** "The Rise of the Agent Engineer." Blog post, 2025. Role definition for harness-focused engineering.
+
+### Further reading for beginners
+
+- **Cab.** "A Layer-by-Layer Walk Through Harness Engineering." Traditional Chinese essay, 2026. Builds up from a single `POST /v1/messages` call through prompt engineering, function calling, agent loops, and finally full harness complexity. Notable for the "模型從來都沒有長手" metaphor, which reframes tool use as a harness problem rather than a model capability, and for its explicit walk through what Claude Code's harness is actually doing behind the scenes. Recommended as a gentle on-ramp before reading this chapter's theory-first framings (Fowler-Bockeler, IMPACT, Meta-Harness).
+- **Anthropic.** ["Building Effective Agents"](https://www.anthropic.com/research/building-effective-agents) --- the canonical short-form introduction for readers coming from a non-research background. Pairs well with the Cab essay above: Cab gives the build-up, Anthropic gives the concrete patterns.
