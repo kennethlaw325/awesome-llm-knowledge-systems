@@ -145,6 +145,10 @@ The Google Developers Blog formalizes the **three-level progressive disclosure a
 
 **Mem0ᵍ**, the directed labeled graph variant of Mem0, goes to production. The architecture flows from an **Entity Extractor** to a **Relations Generator**, producing labeled triplets of the form `(source, relation, destination)` with typed edges like `lives_in`, `prefers`, and `owns`. A **Conflict Detector** paired with an **LLM-powered Update Resolver** handles contradictions as new facts arrive. Mem0ᵍ closes the gap between "dump everything into context" and selective retrieval approaches by giving memory a queryable semantic structure.
 
+### April 2026 --- Anthropic Advisor Tool Beta
+
+Anthropic ships the **Advisor Tool** beta (`advisor-tool-2026-03-01`) on the Claude API. The pattern pairs a faster executor model (Sonnet or Haiku) with a stronger advisor model (Opus) in the same `/v1/messages` request. The executor calls `advisor()` at decision points; Anthropic runs a server-side sub-inference that reads the full transcript and returns a 400-700 token plan, which the executor then acts on. This is the first productised **meta-harness** primitive: the 6x performance gap the Stanford / MIT / KRAFTON paper demonstrated in March 2026 is now exposed as a tool call. Practitioners no longer need a research team to exploit multi-model coordination; they can enable it with a single tool entry. Early guidance from Anthropic's docs is telling: call advisor **before substantive work**, and again **before declaring done**. Caching pays off at roughly three advisor calls per conversation; shorter tasks should leave caching off.
+
 ---
 
 ## The Pattern
