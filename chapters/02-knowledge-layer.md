@@ -56,6 +56,10 @@ Long context windows (128K, 200K, 1M+ tokens) are genuinely transformative for s
 
 **Latency at scale.** Processing 1M tokens takes meaningfully longer than processing 5K tokens, even with optimized inference. For user-facing applications where sub-second response times matter, targeted retrieval wins.
 
+### 2026 Update: Titans + MIRAS Reframes the Long-Context Tradeoff
+
+Every limitation above assumes a Transformer-style context window: a flat span of tokens read by attention, with the same per-token cost regardless of position, and the same "lost in the middle" failure modes. **Titans + MIRAS**, the April 2026 architecture family from Google Research, breaks that assumption. In Titans, memory is not the attention window --- it is a **trainable neural module** that updates its own weights by gradient descent during inference, so the model literally compresses long history into weight updates rather than carrying it forward as tokens. MIRAS provides the training recipes that keep this learn-while-you-infer process stable. At comparable parameter counts, Google reports Titans outperforming Mamba-2, Gated DeltaNet, and Transformer++ on long-range recall and multi-hop reasoning. None of this refutes the original long-context limitations --- those still hold for the attention-window paradigm that GPT-4 Turbo, Gemini 1.5, and Claude continue to use --- but it does establish that **the "attention budget is scarce" framing is now a property of one architecture family, not a universal constraint.** For practitioners, this means the long-context tradeoff is no longer a single curve. There are now at least two: the attention-window curve (where lost-in-the-middle and per-token cost dominate) and the trainable-memory curve (where the cost shifts toward inference-time weight updates and the failure modes shift toward stability and forgetting). RAG remains a strong default for both, but the *reasons* RAG wins are different in each regime.
+
 ---
 
 ## GraphRAG: When Flat Retrieval Is Not Enough
@@ -88,7 +92,7 @@ The indexing cost of GraphRAG is significantly higher than standard RAG. Build t
 
 Through 2024 and most of 2025, GraphRAG was framed as an **alternative to RAG** --- a different way to retrieve chunks for a model with a limited context window. By 2026, that framing has shifted. As frontier models push context windows into the multi-million-token range (Gemini 1.5 at 1M, Kimi past 2M Chinese characters, with further expansion underway), the question is no longer "how do we retrieve a small number of relevant chunks" but "how do we navigate a context that is already large enough to hold most of what we need."
 
-In that world, the knowledge graph stops being a **retrieval substitute** and becomes a **structured index layer for long context**. The graph is not there to decide which chunks to load --- the chunks are already in the window. The graph is there to give the model a semantic map of what is in the window: which entities are present, how they are related, which sections correspond to which topics, where contradictions live, and which multi-hop paths connect the question to the relevant evidence. GraphRAG re-emerges as a **semantic backbone** that lets an agent walk a million-token window efficiently, rather than as a workaround for the 8K-token windows it was born in.
+In that world, the knowledge graph stops being a **retrieval substitute** and becomes a **structured index layer for long context**. The graph is not there to decide which chunks to load --- the chunks are already in the window. The graph is there to give the model a semantic map of what is in the window: which entities are present, how they are related, which sections correspond to which topics, where contradictions live, and which multi-hop paths connect the question to the relevant evidence. GraphRAG re-emerges as a **semantic backbone** that lets an agent walk a million-token window efficiently, rather than as a workaround for the 8K-token windows it was born in. The April 2026 arrival of trainable memory modules (Titans + MIRAS) does not displace this role --- the early evidence is that knowledge graphs and trainable memory will **coexist and likely compose** in production stacks, with the graph providing typed, queryable structure over what the trainable module has already compressed into weights.
 
 ---
 
@@ -186,6 +190,7 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 - Jeong, S. et al. (2024). "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity." [arXiv:2403.14403](https://arxiv.org/abs/2403.14403)
 - RAGFlow. (2025). "Year-End Review: From RAG to Context Engine." [github.com/infiniflow/ragflow](https://github.com/infiniflow/ragflow)
 - NirDiamant. (2025). "RAG Techniques." [github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques)
+- Google Research. (April 2026). "Titans + MIRAS: Helping AI Have Long-Term Memory." [research.google/blog/titans-miras-helping-ai-have-long-term-memory/](https://research.google/blog/titans-miras-helping-ai-have-long-term-memory/) --- trainable memory modules outperforming Mamba-2 / Gated DeltaNet / Transformer++ at comparable sizes.
 
 ---
 

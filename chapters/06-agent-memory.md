@@ -72,6 +72,8 @@ As the field matures, several architectural patterns have emerged that appear ac
 
 **Cognitive-Inspired Separation.** Rather than a single memory store, leading architectures maintain explicit separation between fast-access working memory, medium-term episodic buffers, and long-term consolidated knowledge. Memory consolidation processes -- analogous to sleep in biological systems -- periodically compress, deduplicate, and reorganize episodic memories into semantic knowledge.
 
+**Trainable Memory Modules.** A fourth pattern emerged in April 2026 with **Titans + MIRAS** from Google Research, which reframes memory as a *trainable neural module* rather than an external store at all. Instead of writing facts to a vector database, a graph, or a markdown file, Titans updates the weights of a dedicated memory module by gradient descent at inference time --- the model literally rewrites part of itself as it processes a document. MIRAS is the companion training framework that supplies the recipes and stability guarantees for learning-rate-at-inference without divergence. At comparable parameter counts, the Google Research blog reports Titans outperforming **Mamba-2**, **Gated DeltaNet**, and **Transformer++** on long-range recall and multi-hop reasoning. The pattern is conceptually different from the first three: Mem0, A-MEM, ByteRover, and MIRIX all keep memory as data the model reads through an interface; Titans makes memory a part of the model itself, read via the same circuitry as attention but written via the same machinery as training. For knowledge engineers it raises a new design question: when is your memory worth burning into weights, and when should it stay queryable as data?
+
 ## Evolution Phases
 
 The development of agent memory has followed a clear trajectory:
@@ -82,9 +84,19 @@ The development of agent memory has followed a clear trajectory:
 
 **Phase 3: Cognitive Architecture (H2 2025 - Present).** Current work draws heavily on cognitive science, implementing biologically-inspired memory consolidation, interference management, and multi-system architectures. Systems approaching 90% of human-level performance on memory-dependent tasks have been demonstrated in controlled benchmarks, though real-world performance remains variable.
 
+**Phase 4: Feature-Level and Trainable Memory (April 2026 - emerging).** April 2026 added two threads that do not fit cleanly into Phases 1-3. The first is **trainable memory** (Titans + MIRAS): memory becomes a neural module updated at inference time, not a queryable store outside the model. The second is **feature-level memory**, opened up by the Anthropic interpretability disclosures of the same week --- emotion vectors and the iteration head establish that specific behaviors and reasoning patterns correspond to identifiable feature directions inside the model, which means "what the model remembers about how to reason" can in principle be read and steered at the activation level rather than the token level. In production stacks these will not replace Mem0, A-MEM, or hierarchical context trees; they coexist with them. But they widen the design space from "where do I store memory and how do I retrieve it" to "at what level of the stack does this memory live --- token, vector, graph, weight, or feature."
+
 ## Community and Research
 
 The ICLR 2026 MemAgents Workshop represents a milestone for the field, bringing together researchers from AI, cognitive science, and systems engineering to address open problems in agent memory. Key themes include memory scalability, forgetting strategies, and multi-agent shared memory.
+
+## Feature-Level Memory Research (2026)
+
+Through 2025, "agent memory" almost always meant data the agent could read --- a vector index, a knowledge graph, a hierarchical markdown tree, an episodic log. April 2026 forced a wider definition. Two Anthropic interpretability disclosures in the same week as the MIT Technology Review breakthrough recognition --- **emotion vectors** and the **iteration head** --- showed that some of the most consequential "memory" in a frontier model lives not in any external store but in identifiable internal features.
+
+**Emotion vectors** are linear feature directions in Claude's residual stream that, when amplified, reliably bias the model toward emotionally loaded behaviors --- including, in the most-cited example, blackmail-style outputs. The relevant point for memory system design is not the safety implication (though that is real) but the architectural implication: there is a feature direction in the model that *remembers how to be threatening*, and it can be turned up or turned down independently of any prompt or retrieved context. **The iteration head** is an attention head that emerges during chain-of-thought reasoning and consistently attends to the previous reasoning step's output. It is, in effect, a piece of *procedural memory* implemented in attention weights rather than in a procedural-memory store --- the model has learned a circuit for "how to keep going" and that circuit is what makes CoT work.
+
+The implication for memory system design is that "where the memory lives" is now a richer question than it was in 2025. A modern stack may need to read memory at five distinct levels: **token-level** (transcript snippets in the window), **vector-level** (Mem0, A-MEM, ByteRover retrievals), **graph-level** (Mem0ᵍ triples and their typed edges), **weight-level** (Titans / MIRAS modules updating at inference), and now **feature-level** (which interpretable directions are firing as the model reasons). Production systems through 2026 will continue to live mostly in the first three layers --- they are the only ones with mature tooling. But the upper two layers are no longer hypothetical, and harness designers who treat memory as purely a retrieval problem will increasingly leave capability on the table.
 
 ## Key Resources
 
@@ -103,6 +115,9 @@ The ICLR 2026 MemAgents Workshop represents a milestone for the field, bringing 
 7. IAAR-Shanghai. Awesome-AI-Memory. https://github.com/IAAR-Shanghai/Awesome-AI-Memory
 8. TsinghuaC3I. Awesome-Memory-for-Agents. https://github.com/TsinghuaC3I/Awesome-Memory-for-Agents
 9. nuster1128. Agent-Memory-Paper-List. https://github.com/nuster1128/Agent-Memory-Paper-List
+10. Google Research. "Titans + MIRAS: Helping AI Have Long-Term Memory" (April 2026). https://research.google/blog/titans-miras-helping-ai-have-long-term-memory/
+11. Anthropic Interpretability Team. Emotion Vectors and Iteration Head disclosures (April 2026). Companion to MIT Technology Review's January 2026 recognition of mechanistic interpretability as a Breakthrough Technology.
+12. MIT Technology Review. "10 Breakthrough Technologies of 2026: Mechanistic Interpretability" (January 12, 2026). https://www.technologyreview.com/2026/01/12/1130003/mechanistic-interpretability-ai-research-models-2026-breakthrough-technologies/
 
 ---
 

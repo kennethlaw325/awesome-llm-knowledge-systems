@@ -48,6 +48,8 @@ Qwen3 is Alibaba's flagship model family. The largest variant is a 235-billion-p
 
 DeepSeek R1 matched OpenAI's o1 on mathematical and scientific reasoning benchmarks while being released under the MIT license. The model was reportedly trained for under $6 million, a fraction of comparable Western models. This cost efficiency sent shockwaves through the industry: enterprise adoption of open-source models in China jumped from 23% to 67% in the months following its release. DeepSeek R1 demonstrated that frontier-level reasoning does not require frontier-level budgets, fundamentally shifting the economics of knowledge engineering.
 
+In April 2026, DeepSeek extended its architectural contributions with **manifold-constrained hyper-connections (mHC)**, a generalization of the residual connection used in Transformer++-style models. Where a standard residual stream carries a single channel of information forward across layers, mHC carries **multiple internal streams** that are each constrained to lie on a learned low-dimensional manifold. The construction is designed to give later layers richer access to earlier representations without the dimensional collapse that simple multi-stream residuals suffer from at scale. DeepSeek's blog reports gains on long-horizon reasoning benchmarks at comparable parameter counts, with the largest improvements on tasks where information must be carried across many intervening layers. As of April 2026 the result should be **flagged as awaiting independent replication** --- it is a single-lab disclosure on a single-lab model, and the field has been burned by architectural claims that did not survive third-party reproduction. If the result holds, mHC joins MoE, MLA, and DeepSeek's earlier multi-token prediction work as the third or fourth architectural primitive that originated in the Chinese open-weight ecosystem before crossing into mainstream use.
+
 ### Kimi K2.5 (Moonshot AI)
 
 Kimi K2.5 introduced "Agent Swarm" --- a capability where a single query can spawn up to 100 sub-agents that coordinate through approximately 1,500 tool calls. This is not a research demo; it is a production feature used for complex research tasks where the system parallelizes web search, document analysis, and synthesis across dozens of concurrent agents. Earlier, Kimi achieved a 2-million Chinese character context window (approximately March 2025), making it the longest-context model optimized specifically for Chinese text.
@@ -107,6 +109,7 @@ Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should b
 - GLM-4/5 Technical Report, Zhipu AI (2025-2026)
 - Cyberspace Administration of China, "Generative AI Service Filing List" (December 2025)
 - "The State of Open Source AI in China," Linux Foundation Research (2025)
+- DeepSeek. "DeepSeek mHC: Manifold-Constrained Hyper-Connections" (April 2026). [https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections](https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections) --- flagged as awaiting independent replication.
 
 ---
 
