@@ -39,11 +39,19 @@ Not sure where to start? Pick the description that fits you best:
 
 ---
 
-## Ecosystem Map
+## Use Cases
 
-![LLM Knowledge Engineering Ecosystem Map](diagrams/ecosystem-map.png)
+This guide helps you design systems for these real-world scenarios. Each row links to the chapters that matter most for that build:
 
-*[View interactive HTML version](diagrams/ecosystem-map.html)*
+| Scenario | What You're Building | Core Chapters |
+|----------|---------------------|---------------|
+| **Personal Second Brain** | Personal notes + papers + web clippings searchable via natural-language queries | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch08](/chapters/08-tools-landscape.md) |
+| **Internal Company Knowledge Base** | Employees query policy / handbooks / runbooks — low hallucination bar, citations required | [Ch02](/chapters/02-knowledge-layer.md) · [Ch04](/chapters/04-harness-engineering.md) · [Ch06](/chapters/06-agent-memory.md) |
+| **Developer Documentation Assistant** | Engineers query codebases / API docs / past incident postmortems across multi-repo environments | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch07](/chapters/07-mcp.md) |
+| **Support / QA Agent** | Customer or internal tickets → context-aware replies with cited sources and follow-up memory | [Ch03](/chapters/03-context-engineering.md) · [Ch06](/chapters/06-agent-memory.md) · [Ch04](/chapters/04-harness-engineering.md) |
+| **Domain-Specific Knowledge Automation** *(legal, healthcare, finance, engineering)* | Reuse decades of domain documents — regulated, IP-sensitive, often requires local models and audit trails | [Ch02](/chapters/02-knowledge-layer.md) · [Ch09](/chapters/09-china-ecosystem.md) · [Ch12](/chapters/12-local-models.md) |
+
+If your scenario doesn't fit cleanly, it's probably a composition of these — start from the closest row and adapt.
 
 ---
 
@@ -63,7 +71,41 @@ Each generation does not replace the last -- it contains it. Harness engineering
 
 ---
 
+## The Lifecycle
+
+The Ecosystem Map shows **what** the pieces are. The Lifecycle shows **how data moves through them**:
+
+```
+                    ┌───── feedback ──────────────┐
+                    ▼                             │
+ INGEST  ───▶ PROCESS  ───▶ STORE  ───▶ QUERY ───▶ IMPROVE
+    │             │            │          │           │
+ Docs          Chunking      Vector DB    RAG        Evals
+ APIs          Embeddings    Graph DB     GraphRAG   Feedback
+ Web clips     Cleaning      Cache        Agents     Fine-tune
+ Crawlers      Multi-modal   Long doc     Tool use   Skill updates
+    │             │            │          │           │
+   Ch02       Ch02 · Ch03    Ch02-08    Ch02-07     Ch06
+```
+
+```mermaid
+flowchart LR
+    I[INGEST<br/>Docs · APIs · Webscrape] --> P[PROCESS<br/>Chunking · Embeddings · Cleaning]
+    P --> S[STORE<br/>Vector DB · Graph DB · Cache]
+    S --> Q[QUERY<br/>RAG · GraphRAG · Agents]
+    Q --> M[IMPROVE<br/>Evals · Feedback · Fine-tune]
+    M -. feedback .-> I
+```
+
+Every production system moves data through all five stages — even if some are implicit. A good harness design makes **each stage inspectable and replaceable**. Ch02 covers Ingest/Process/Store; Ch03–Ch07 cover Query; Ch06 and Ch10 cover Improve.
+
+---
+
 ## Ecosystem Map
+
+![LLM Knowledge Engineering Ecosystem Map](diagrams/ecosystem-map.png)
+
+*[View interactive HTML version](diagrams/ecosystem-map.html)*
 
 ```
 +---------------------------+     +---------------------------+     +---------------------------+
@@ -148,18 +190,6 @@ graph LR
 | 10 | [Case Study: A Real-World Knowledge Harness](/chapters/10-case-study.md) | How one developer built a complete harness with 65% token reduction |
 | 11 | [Timeline](/chapters/11-timeline.md) | Key moments in LLM knowledge engineering, 2022-2026 |
 | 12 | [Local Models for Knowledge Engineering](/chapters/12-local-models.md) | Run your knowledge harness locally -- embedding, RAG, compilation, and the fine-tuning endgame |
-
----
-
-## Who Is This For?
-
-- **AI engineers** building production LLM applications who need the full picture, not just one slice
-- **Developer experience teams** designing SDK and tool integrations around LLMs
-- **Technical leaders** evaluating architecture decisions across RAG, agents, and tool use
-- **Power users** of AI coding tools (Cursor, Claude Code, Copilot) who want to understand why their setup works -- or doesn't
-- **Researchers** looking for a practitioner's map of how theoretical advances connect in production
-
-You do NOT need a PhD to read this. You DO need to care about building things that work.
 
 ---
 
