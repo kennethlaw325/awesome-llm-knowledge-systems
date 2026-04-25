@@ -8,6 +8,8 @@
 
 A chronological map of the events, releases, and ideas that shaped how we build knowledge systems with large language models. Where precise dates are known, they are included. Where only a quarter or month is confirmed, that granularity is used.
 
+This is a **curated** timeline, not an exhaustive one. An event makes it onto this list only when it introduces, validates, or operationalizes a primitive, pattern, or narrative beat the framework tracks. Many notable releases — model version bumps, funding rounds, vertical products — are deliberately absent. See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full inclusion criteria.
+
 ---
 
 ## 2022
