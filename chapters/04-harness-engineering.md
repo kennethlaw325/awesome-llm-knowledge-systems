@@ -115,19 +115,19 @@ The Advisor Tool is important beyond its immediate utility. It is a signal that 
 
 ## 4.6 Anthropic's Three-Agent Architecture
 
-Anthropic's research on multi-agent systems (2025-2026) converged on a recurring three-role architecture:
+A recurring three-role pattern, often summarized by the practitioner community as **Planner / Generator / Evaluator**, became a common framing for multi-agent harnesses through 2025. The framing is best read as a pedagogical synthesis of patterns described in Anthropic's [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) (orchestrator-worker, evaluator-optimizer) rather than as a label Anthropic itself adopted in primary writing. The March 31, 2026 Claude Code source leak (covered later in this section) confirmed the distinction: in production, Anthropic's actual harness is organized around layered self-healing memory, not a literal three-role decomposition. The roles still describe a useful taxonomy, so this section uses them to discuss separation of concerns:
 
 - **Planner:** Decomposes the task into subtasks, maintains the overall plan, and decides when to revise.
 - **Generator:** Executes individual subtasks -- writing code, drafting text, calling tools.
 - **Evaluator:** Assesses Generator output against task requirements and provides structured feedback.
 
-This separation of concerns directly addresses two failure modes Anthropic identified:
+This separation of concerns is widely used to address two failure modes that the chapter labels **context anxiety** and **self-evaluation bias** (the labels are framings this guide uses; the underlying observations appear in patterns inspired by Anthropic's published agent research):
 
 **Context Anxiety.** When a single agent handles planning, execution, and evaluation, it tends to hedge. It qualifies its outputs, adds unnecessary caveats, and spends tokens on meta-commentary rather than task execution. Separating the roles lets each agent focus without carrying the cognitive load of the others.
 
 **Self-Evaluation Bias.** Models are systematically poor at evaluating their own output. They exhibit a well-documented leniency bias -- rating their own work higher than an independent judge would. The three-agent architecture mitigates this by using a separate evaluator (potentially a different model or a differently prompted instance) that has no investment in the generated output.
 
-A subtlety Anthropic emphasized: **evaluator calibration is itself a harness engineering problem.** An overly strict evaluator causes infinite revision loops. An overly lenient one passes low-quality work. The evaluator's threshold and criteria need tuning as carefully as the generator's instructions.
+A subtlety the practitioner community has emphasized, consistent with patterns observed in Anthropic's evaluator-optimizer guidance: **evaluator calibration is itself a harness engineering problem.** An overly strict evaluator causes infinite revision loops. An overly lenient one passes low-quality work. The evaluator's threshold and criteria need tuning as carefully as the generator's instructions.
 
 ### The Claude Code Leak: An Empirical Look (March 31, 2026)
 
@@ -208,8 +208,7 @@ This is the broader pattern: **the managed-inference turn.** Frontier vendors ar
 - **OpenAI.** "Codex: From Research to Production." OpenAI blog, 2025. Three-engineer, ~1M lines, ~1,500 PRs case study.
 - **swyx (Shawn Wang).** "The IMPACT Framework for Agent Design." Blog / conference talk, 2025. Six-dimension harness design checklist.
 - **Stanford / MIT / KRAFTON.** "Meta-Harness: Automated Optimization of LLM Agent Harnesses." arXiv preprint, March 2026. 6x performance gap finding, automated harness tuning.
-- **Anthropic.** "Building Effective Agents." Anthropic engineering guide, 2025. Three-agent architecture, context anxiety, self-evaluation bias, stress-testing imperative.
-- **Anthropic.** "Multi-Agent Systems: Planner-Generator-Evaluator Architectures." Research report, 2025-2026. Evaluator calibration findings.
+- **Anthropic.** "Building Effective Agents." Anthropic engineering blog, December 19, 2024. [https://www.anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) --- describes orchestrator-worker patterns and evaluator-optimizer workflows; this guide labels the relevant failure modes "context anxiety" and "self-evaluation bias" pedagogically. The practitioner-community summary as a Planner / Generator / Evaluator triple is a framing built on these patterns; Anthropic itself does not use that exact triple in primary writing. The actual Claude Code architecture, as revealed by the March 31, 2026 source leak (Section 4.6), is organized around layered self-healing memory rather than role decomposition.
 - **Meta / Manus Acquisition.** Various reporting, early 2026. ~$2B acquisition validating harness-as-moat thesis.
 - **Karpathy, Andrej.** "Software 3.0." Talk / essay, 2025. Framing of models as components within larger software systems.
 - **LangChain.** "Agent Architecture Patterns." LangChain documentation, 2025. Practical patterns for control flow and tool orchestration.
