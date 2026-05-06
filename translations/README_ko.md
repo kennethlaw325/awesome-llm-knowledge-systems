@@ -179,7 +179,7 @@ graph LR
 
 | # | 장 | 설명 |
 |---|---|------|
-| 01 | [세 세대](../chapters/01-evolution.md) | 프롬프트 엔지니어링에서 컨텍스트 엔지니어링, 하네스 엔지니어링으로 |
+| 01 | [세 세대](chapters/ko/01-evolution.md) 🌐 | 프롬프트 엔지니어링에서 컨텍스트 엔지니어링, 하네스 엔지니어링으로 |
 | 02 | [RAG, 롱 컨텍스트 & 지식 그래프](../chapters/02-knowledge-layer.md) | 지식 검색 계층 -- 무엇이 효과적이고, 무엇이 아닌지, 왜 하이브리드가 이기는지 |
 | 03 | [Context Engineering(컨텍스트 공학)](../chapters/03-context-engineering.md) | 컨텍스트 윈도우 채우기의 기술 -- KV-cache, 100:1 비율, 동적 조립 |
 | 04 | [Harness Engineering(하네스 공학)](../chapters/04-harness-engineering.md) | 모델 주변에 OS 구축 -- 가이드, 센서, 6배 성능 격차 |
@@ -188,7 +188,7 @@ graph LR
 | 07 | [MCP: 승리한 표준](../chapters/07-mcp.md) | Model Context Protocol -- 출시부터 월간 9,700만 이상 다운로드까지 |
 | 08 | [AI 네이티브 지식 관리](../chapters/08-tools-landscape.md) | 도구 전경 -- Notion AI, Obsidian, Mem, AI 네이티브 격차 |
 | 09 | [중국 AI 생태계](../chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- 혁신의 평행 우주 |
-| 10 | [사례 연구: 실제 세계의 지식 하네스](../chapters/10-case-study.md) | 한 개발자가 완전한 하네스를 구축하여 65% 토큰 절감을 달성한 방법 |
+| 10 | [사례 연구: 실제 세계의 지식 하네스](chapters/ko/10-case-study.md) 🌐 | 한 개발자가 완전한 하네스를 구축하여 65% 토큰 절감을 달성한 방법 |
 | 11 | [타임라인](../chapters/11-timeline.md) | LLM 지식 공학의 핵심 순간, 2022-2026 |
 | 12 | [로컬 모델과 지식 공학](../chapters/12-local-models.md) | 자신의 하드웨어에서 지식 하네스를 실행 — Embedding, RAG, 컴파일, 파인튜닝의 엔드게임 |
 
