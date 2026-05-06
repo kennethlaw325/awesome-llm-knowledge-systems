@@ -13,7 +13,7 @@
 - **프롬프트 엔지니어링은 시작에 불과했습니다.** 이 분야는 세 세대에 걸쳐 진화했습니다: Prompt Engineering(2022-2024), Context Engineering(컨텍스트 엔지니어링, 2025), Harness Engineering(하네스 엔지니어링, 2026). 각 층은 이전 층을 포함합니다.
 - **RAG(검색 증강 생성)는 죽지 않았습니다.** context-stuffing(컨텍스트 채우기)을 시도한 기업의 71%가 12개월 이내에 RAG로 돌아왔습니다(Gartner 2025 Q4). 하이브리드 아키텍처가 승리하고 있습니다.
 - **Context engineering은 호출 자체가 아닌 호출 주변 환경에 초점을 맞춥니다.** Andrej Karpathy가 2025년 중반에 재정의하며, 프롬프트 설계에서 전체 컨텍스트 윈도우의 동적 구성으로 초점을 전환했습니다.
-- **Harness engineering은 운영체제 계층입니다.** Martin Fowler와 OpenAI가 2025년 말에 공식화했습니다. 모델은 CPU, 컨텍스트는 RAM, 하네스는 모든 것을 조율하는 OS입니다.
+- **Harness engineering은 운영체제 계층입니다.** Birgitta Böckeler(Martin Fowler의 *Exploring Generative AI* 시리즈, 2026년 4월)와 OpenAI Codex 팀의 harness 설계 프레이밍이 이를 공식화했습니다. 모델은 CPU, 컨텍스트는 RAM, 하네스는 모든 것을 조율하는 OS입니다.
 - **지금까지 이 모든 것을 연결한 가이드는 없었습니다.** RAG, 지식 그래프, 롱 컨텍스트, MCP, 스킬 라우팅, 메모리 시스템, 점진적 공개는 모두 하나의 생태계의 일부입니다. 이것이 그 지도입니다.
 
 ---
@@ -41,6 +41,22 @@ AI를 첫 출근한 뛰어난 신입사원이라고 상상해 보세요. Prompt 
 
 ---
 
+## 사용 사례
+
+이 가이드는 다음과 같은 실제 시나리오에 맞춘 시스템을 설계하는 데 도움을 줍니다. 각 행은 해당 시나리오에서 가장 중요한 장에 대한 링크입니다:
+
+| 시나리오 | 무엇을 구축하는가 | 핵심 장 |
+|----------|---------------------|---------|
+| **개인 세컨드 브레인** | 개인 메모, 논문, 웹 클리핑을 자연어 쿼리로 검색 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch08](/chapters/08-tools-landscape.md) |
+| **사내 지식 베이스** | 직원이 정책 / 핸드북 / 런북을 조회 — 환각 허용도 낮음, 인용 필수 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch04](/chapters/04-harness-engineering.md) · [Ch06](/chapters/06-agent-memory.md) |
+| **개발자 문서 어시스턴트** | 엔지니어가 멀티 레포 환경에서 코드베이스 / API 문서 / 과거 인시던트 포스트모템 조회 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch07](/chapters/07-mcp.md) |
+| **지원 / QA 에이전트** | 고객 또는 사내 티켓 → 인용된 출처가 있는 문맥 인식 응답과 후속 메모리 | [Ch03](/chapters/03-context-engineering.md) · [Ch06](/chapters/06-agent-memory.md) · [Ch04](/chapters/04-harness-engineering.md) |
+| **도메인 특화 지식 자동화** *(법률, 의료, 금융, 엔지니어링)* | 수십 년의 도메인 문서 재활용 — 규제 대상, IP 민감, 종종 로컬 모델과 감사 로그 필요 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch09](/chapters/09-china-ecosystem.md) · [Ch12](/chapters/12-local-models.md) |
+
+시나리오가 깔끔하게 맞지 않으면, 보통은 위의 조합입니다 — 가장 가까운 행에서 시작하여 적응시키세요.
+
+---
+
 ## 진화 과정
 
 ```
@@ -54,6 +70,37 @@ PROMPT ENG               CONTEXT ENG              HARNESS ENG
 ```
 
 각 세대는 이전 세대를 대체하는 것이 아니라 포함합니다. Harness engineering은 context engineering을 포함하고, context engineering은 prompt engineering을 포함합니다.
+
+---
+
+## 라이프사이클
+
+생태계 지도는 **부품이 무엇인지** 보여줍니다. 라이프사이클은 **데이터가 부품 사이를 어떻게 흐르는지** 보여줍니다:
+
+```
+                    ┌───── 피드백 ──────────────────┐
+                    ▼                              │
+ INGEST  ───▶ PROCESS  ───▶ STORE  ───▶ QUERY ───▶ IMPROVE
+ 수집          처리          저장        조회       개선
+    │             │            │          │           │
+ 문서          청킹           벡터 DB      RAG        Evals
+ API           Embedding      그래프 DB    GraphRAG   피드백
+ 웹 클립       클리닝         캐시        Agents     Fine-tune
+ 크롤러        멀티모달       장문 문서    도구 사용  스킬 업데이트
+    │             │            │          │           │
+   Ch02       Ch02 · Ch03   Ch02-08     Ch02-07      Ch06
+```
+
+```mermaid
+flowchart LR
+    I[INGEST 수집<br/>문서 · API · 웹] --> P[PROCESS 처리<br/>청킹 · Embedding · 클리닝]
+    P --> S[STORE 저장<br/>벡터 DB · 그래프 DB · 캐시]
+    S --> Q[QUERY 조회<br/>RAG · GraphRAG · Agents]
+    Q --> M[IMPROVE 개선<br/>Evals · 피드백 · Fine-tune]
+    M -. 피드백 .-> I
+```
+
+모든 프로덕션 시스템은 암묵적으로라도 데이터를 다섯 단계로 통과시킵니다. 좋은 하네스 설계는 **각 단계를 검사 가능하고 교체 가능하게** 만듭니다. Ch02는 Ingest / Process / Store, Ch03–Ch07은 Query, Ch06과 Ch10은 Improve를 다룹니다.
 
 ---
 
@@ -143,6 +190,7 @@ graph LR
 | 09 | [중국 AI 생태계](../chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- 혁신의 평행 우주 |
 | 10 | [사례 연구: 실제 세계의 지식 하네스](../chapters/10-case-study.md) | 한 개발자가 완전한 하네스를 구축하여 65% 토큰 절감을 달성한 방법 |
 | 11 | [타임라인](../chapters/11-timeline.md) | LLM 지식 공학의 핵심 순간, 2022-2026 |
+| 12 | [로컬 모델과 지식 공학](../chapters/12-local-models.md) | 자신의 하드웨어에서 지식 하네스를 실행 — Embedding, RAG, 컴파일, 파인튜닝의 엔드게임 |
 
 ---
 
@@ -188,4 +236,4 @@ MIT License. 자세한 내용은 [LICENSE](../LICENSE)를 참조하세요.
 
 ---
 
-*최종 업데이트: 2026년 4월*
+*최종 업데이트: 2026년 5월*
