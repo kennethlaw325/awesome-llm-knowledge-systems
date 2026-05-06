@@ -188,7 +188,7 @@ graph LR
 | 08 | [AI ネイティブ知識管理](../chapters/08-tools-landscape.md) | ツールランドスケープ——Notion AI、Obsidian、Mem、AIネイティブギャップ |
 | 09 | [中国AIエコシステム](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——イノベーションの並行宇宙 |
 | 10 | [ケーススタディ：実世界のナレッジハーネス](chapters/ja/10-case-study.md) 🌐 | 一人の開発者が完全なハーネスを構築し65%のトークン削減を達成した方法 |
-| 11 | [タイムライン](../chapters/11-timeline.md) | LLMナレッジエンジニアリングの重要な瞬間、2022-2026 |
+| 11 | [タイムライン](chapters/ja/11-timeline.md) 🌐 | LLMナレッジエンジニアリングの重要な瞬間、2022-2026 |
 | 12 | [ローカルモデルとナレッジエンジニアリング](../chapters/12-local-models.md) | 自分のハードウェアでナレッジハーネスを動かす——Embedding、RAG、コンパイル、ファインチューニングのエンドゲーム |
 
 ---
