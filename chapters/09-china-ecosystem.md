@@ -108,13 +108,13 @@ Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should b
 - MaxKB GitHub Repository: [https://github.com/1Panel-dev/MaxKB](https://github.com/1Panel-dev/MaxKB)
 - Coze Studio GitHub Repository: [https://github.com/coze-dev/coze-studio](https://github.com/coze-dev/coze-studio)
 - DB-GPT GitHub Repository: [https://github.com/eosphoros-ai/DB-GPT](https://github.com/eosphoros-ai/DB-GPT)
-- Qwen3 Technical Report, Alibaba Cloud (2025)
-- DeepSeek R1 Paper: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" (2025)
-- Kimi K2.5 Agent Swarm Technical Blog, Moonshot AI (2026)
-- ERNIE 5.0 Launch Announcement, Baidu (January 2026)
-- GLM-4/5 Technical Report, Zhipu AI (2025-2026)
-- Cyberspace Administration of China, "Generative AI Service Filing List" (December 2025)
-- "The State of Open Source AI in China," Linux Foundation Research (2025)
+- Qwen3 Technical Report and model cards, Alibaba Cloud (2025) --- canonical entry points: [https://huggingface.co/Qwen](https://huggingface.co/Qwen) and the Qwen team's Hugging Face write-ups. Apache 2.0 licensing detail confirmed via repository LICENSE files.
+- DeepSeek R1 Paper: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" (January 2025). [https://github.com/deepseek-ai/DeepSeek-R1](https://github.com/deepseek-ai/DeepSeek-R1) hosts the model and links to the technical report PDF.
+- Moonshot AI. Kimi K2.5 Agent Swarm coverage circulated in early 2026 across Moonshot's blog and tech press; the 100-sub-agent / ~1500 tool-call figures cited here are reported from secondary tech-press summaries. Primary access via [https://platform.moonshot.ai](https://platform.moonshot.ai).
+- Baidu. ERNIE 5.0 launch (January 2026); 2.4T parameter / native full-modality claims circulated through Baidu official channels and Chinese tech press. No single primary URL is cited here; treat the modality and parameter figures as widely-reported but secondary.
+- Zhipu AI. GLM-4/5 model cards on Hugging Face and the official ZhipuAI blog; "744B MoE GLM-5" + agent-native tool tokens are reported across model card and blog coverage. Primary entry point: [https://www.zhipuai.cn](https://www.zhipuai.cn).
+- Cyberspace Administration of China, "Generative AI Service Filing" disclosures (December 2025) --- the 748-services figure is widely reproduced in Chinese tech press; the underlying registry is published in batches via the CAC official site.
+- "Open Source AI in China" market commentary --- the 23%-to-67% Chinese enterprise open-source adoption shift after R1 is reported across multiple secondary outlets through 2025-2026; treat as widely-cited but no single primary survey is pinned here.
 - DeepSeek. "DeepSeek mHC: Manifold-Constrained Hyper-Connections" (April 2026). [https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections](https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections) --- flagged as awaiting independent replication.
 - DeepSeek. V4 model release on Hugging Face (April 24, 2026). MIT license; V4-Pro 1.6T (49B active) / V4-Flash 284B (13B active); 1M-token default context.
 - Fortune. "DeepSeek unveils V4 model, with rock-bottom prices and close integration with Huawei's chips" (April 24, 2026). [https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/](https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/)

@@ -19,9 +19,9 @@ The term "context engineering" entered mainstream usage in mid-2025 when Karpath
 
 The distinction matters because modern agents rarely send the same context twice. Each inference call is the product of routing logic, retrieval pipelines, compression heuristics, and tool availability checks that together determine what fills the window and what gets left out.
 
-## 3.2 Anthropic's Six-Layer Context Model
+## 3.2 A Six-Layer Context Model
 
-Anthropic's engineering guide (published mid-2025) decomposed the context window into six conceptual layers, ordered from most persistent to most ephemeral:
+Drawing on patterns described in Anthropic's [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) and adjacent practitioner writing, the context window can usefully be decomposed into six conceptual layers, ordered from most persistent to most ephemeral. The labels here are this guide's pedagogical synthesis, not a taxonomy Anthropic itself publishes:
 
 | Layer | Contents | Typical Persistence |
 |-------|----------|-------------------|
@@ -52,7 +52,7 @@ These are infrastructure-level decisions, not prompt-level ones. They illustrate
 
 ## 3.4 Five Dominant Patterns
 
-Aurimas Griciunas (August 2025) synthesized the emerging practice into five recurring patterns observed across production systems:
+Aurimas Griciūnas synthesized the emerging practice into five recurring patterns observed across production systems (canonical write-up: "State of Context Engineering in 2026," SwirlAI Newsletter, March 22, 2026, [https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026](https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026); see also "Breaking Down Context Engineering"):
 
 **Progressive Disclosure.** Do not load everything upfront. Present a lightweight index first; expand sections only when the model (or routing logic) determines they are relevant. This is the context-window equivalent of lazy loading. Anthropic's own agent skills system uses this pattern -- 17 skills consume roughly 1,700 tokens at rest, expanding only on invocation.
 
@@ -66,17 +66,11 @@ Aurimas Griciunas (August 2025) synthesized the emerging practice into five recu
 
 ## 3.5 The Academic Landscape
 
-Two major surveys arrived in mid-2025, establishing context engineering as a formal research area:
-
-The **ArXiv survey** (July 2025) provided the first comprehensive taxonomy, organizing techniques along dimensions of persistence (ephemeral vs. durable), granularity (token-level vs. document-level), and timing (pre-inference vs. mid-inference). It cataloged over 200 papers touching context management, from early work on retrieval-augmented generation through to contemporary agent memory systems.
-
-The **Alibaba Cloud survey** (also mid-2025) took a broader scope, reviewing over 1,400 papers across the full lifecycle of LLM context -- from pre-training context length extensions through fine-tuning for long contexts to inference-time context engineering. Its contribution was connecting upstream model capabilities (what context lengths and structures the model was trained to handle) with downstream engineering choices (how to fill and manage that window in production).
-
-Together, these surveys formalized what practitioners had been discovering empirically: context engineering is not a single technique but a design space with multiple independent dimensions.
+Mid-2025 brought the first comprehensive academic survey of context engineering as a formal research area: **"A Survey of Context Engineering for Large Language Models"** (Mei et al., arXiv 2507.13334, July 17-21, 2025), which through systematic analysis of over 1,400 research papers established a technical roadmap for the field. The survey organizes the design space along two axes: **foundational components** (context retrieval and generation, context processing, context management) and **system implementations** (RAG, memory systems, tool-integrated reasoning, multi-agent systems). Its load-bearing finding is a fundamental capability asymmetry: current models are remarkably proficient at understanding complex contexts but exhibit pronounced limitations in generating equally sophisticated long-form outputs. For practitioners, the survey is the closest thing the field has to a textbook --- it formalized what had been discovered empirically that context engineering is not a single technique but a design space with multiple independent dimensions.
 
 ## 3.6 Agentic Context Engineering (ACE)
 
-The ACE paper (late 2025) introduced a conceptual shift: treating contexts not as static assemblies but as **evolving playbooks**. In an ACE system, the context is a living document that the agent itself maintains -- adding observations, updating plans, pruning irrelevant history, and restructuring its own instructions based on task progress.
+The ACE paper, **"Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models"** (Zhang et al., arXiv 2510.04618, October 6, 2025; companion repo at [github.com/ace-agent/ace](https://github.com/ace-agent/ace)), introduced a conceptual shift: treating contexts not as static assemblies but as **evolving playbooks**. In an ACE system, the context is a living document that the agent itself maintains --- adding observations, updating plans, pruning irrelevant history, and restructuring its own instructions based on task progress. Reported headline gains: +10.6% on agent benchmarks and +8.6% on finance tasks, with reductions in adaptation latency and rollout cost; on the AppWorld leaderboard, ACE matches the top-ranked production-level agent on the overall average and surpasses it on the harder test-challenge split despite using a smaller open-source model. ACE also names the failure modes it is engineered against: **brevity bias** (drops domain insights for concise summaries) and **context collapse** (iterative rewriting erodes details over time).
 
 This moves context engineering from a purely infrastructure concern (what the harness assembles before each call) into a collaborative one (what the harness prepares *and* what the model actively reshapes). The boundary between "context the system provides" and "context the model creates" becomes fluid.
 
@@ -96,15 +90,12 @@ Several principles emerge from this landscape:
 
 ## Sources
 
-- **Karpathy, Andrej.** "Context Engineering." X/Twitter thread, June 2025. Coined the working definition adopted across the field.
-- **Anthropic.** "Building Effective Agents." Anthropic engineering guide, 2025. Introduced the six-layer context model.
-- **Ji, Yichao "Peak."** "Context Engineering Lessons from Building Manus." Blog post, July 2025. KV-cache optimization, tool masking, todo-list rewriting.
-- **Griciunas, Aurimas.** "5 Dominant Patterns in Context Engineering." Blog post, August 2025. Pattern taxonomy for production systems.
-- **ArXiv Survey.** "Context Engineering for Large Language Models." arXiv preprint, July 2025. First comprehensive academic taxonomy.
-- **Alibaba Cloud Survey.** "A Survey on Context Engineering for LLMs." 2025. 1,400+ paper review across the full context lifecycle.
-- **ACE Paper.** "Agentic Context Engineering: Contexts as Evolving Playbooks." 2025. Framework for agent-maintained contexts.
-- **Anthropic.** "Prompt Engineering Guide -- Extended Thinking and Context Windows." 2025.
-- **LangChain.** "Context Engineering for Agents." LangChain blog, 2025.
-- **Liu, Jason.** "Context Engineering" series. Blog, 2025. Practical techniques for retrieval and compression.
-- **FlowHunt.** "The Definitive Guide to Context Engineering." FlowHunt blog, 2025.
-- **Willison, Simon.** "Context Engineering Overview." Blog, 2025. Accessible introduction connecting the ecosystem.
+- **Karpathy, Andrej.** Public remarks on "context engineering" (mid-2025). Widely-shared framing across X and the AI engineering community that coined the working definition adopted across the field.
+- **Anthropic.** "Building Effective Agents." Anthropic engineering blog, December 19, 2024. [https://www.anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) --- describes orchestrator-worker patterns and evaluator-optimizer workflows; this guide labels the six conceptual layers in §3.2 pedagogically.
+- **Ji, Yichao "Peak"** (Manus). "Context Engineering Lessons from Building Manus." Blog post, July 2025. [manus.im/blog](https://manus.im/blog) --- KV-cache hit rate as the operational metric, append-only context structure, tool masking via logit bias, rolling todo-list rewrites.
+- **Griciūnas, Aurimas.** "State of Context Engineering in 2026." SwirlAI Newsletter, March 22, 2026. [https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026](https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026). See also "Breaking Down Context Engineering": [https://www.newsletter.swirlai.com/p/breaking-down-context-engineering](https://www.newsletter.swirlai.com/p/breaking-down-context-engineering)
+- **Mei, Lingrui et al.** "A Survey of Context Engineering for Large Language Models." arXiv 2507.13334, July 17-21, 2025. [https://arxiv.org/abs/2507.13334](https://arxiv.org/abs/2507.13334) --- 1,400+ paper review establishing context engineering as a formal research area.
+- **Zhang, Qizheng et al.** "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models." arXiv 2510.04618, October 6, 2025. [https://arxiv.org/abs/2510.04618](https://arxiv.org/abs/2510.04618). Companion repo: [github.com/ace-agent/ace](https://github.com/ace-agent/ace). Frames contexts as evolving playbooks; names brevity bias and context collapse.
+- **Schmid, Philipp.** "The New Skill in AI is Not Prompting, It's Context Engineering" and follow-up. [https://www.philschmid.de/context-engineering](https://www.philschmid.de/context-engineering); [https://www.philschmid.de/context-engineering-part-2](https://www.philschmid.de/context-engineering-part-2)
+- **LangChain blog.** Context-engineering coverage at [blog.langchain.com](https://blog.langchain.com) --- the Agent Engineer framing as a practitioner pattern (no single canonical post; cited as discourse anchor).
+- **Willison, Simon.** Ongoing AI engineering coverage at [simonwillison.net](https://simonwillison.net) --- accessible practitioner introductions that connect the ecosystem.

@@ -144,7 +144,7 @@ The focus here is on the architectural question: where do local models fit in yo
 - Ollama: [https://ollama.ai](https://ollama.ai)
 - llama.cpp: [https://github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 - Unsloth: [https://github.com/unslothai/unsloth](https://github.com/unslothai/unsloth)
-- Karpathy, A., "LLM Wiki" Gist (2026)
+- Karpathy, Andrej. "LLM Wiki" pattern --- Gist defining the raw → wiki → schema layered architecture and the Ingest / Compile / Lint / Query operations referenced throughout this chapter. [https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
 - Open LLM Leaderboard: [https://huggingface.co/spaces/open-llm-leaderboard](https://huggingface.co/spaces/open-llm-leaderboard)
 - Nomic Embed: [https://huggingface.co/nomic-ai/nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5)
 - r/LocalLLaMA: [https://reddit.com/r/LocalLLaMA](https://reddit.com/r/LocalLLaMA)

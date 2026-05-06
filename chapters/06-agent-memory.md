@@ -74,7 +74,7 @@ The benchmark numbers are why the approach broke through. MemPalace reports **96
 
 As the field matures, several architectural patterns have emerged that appear across multiple frameworks:
 
-**Multi-Level Hierarchies.** The MIRIX framework exemplifies this pattern with its four-layer architecture: Core Memory (immutable identity and preferences), Episodic Memory (interaction history), Semantic Memory (extracted knowledge), and Procedural Memory (learned workflows). Each layer has different update frequencies, retention policies, and retrieval mechanisms. This separation prevents catastrophic forgetting while allowing rapid adaptation.
+**Multi-Type Hierarchies.** The MIRIX framework (Wang and Chen, "MIRIX: Multi-Agent Memory System for LLM-Based Agents," arXiv 2507.07957, July 10, 2025) exemplifies this pattern with **six distinct memory types** --- Core Memory, Episodic Memory, Semantic Memory, Procedural Memory, Resource Memory, and Knowledge Vault --- coordinated by a multi-agent framework with six per-type Memory Managers and a Meta Memory Manager that handles task routing. Each type has different update frequencies, retention policies, and retrieval mechanisms. This separation prevents catastrophic forgetting while allowing rapid adaptation. The reference application monitors screen activity in real time to build a personalized memory base; on the ScreenshotVQA multimodal benchmark, MIRIX reports 35% higher accuracy than a RAG baseline at 99.9% lower storage, and 85.4% on the LOCOMO long-form conversation benchmark.
 
 **Git-Inspired Versioning.** Several systems now version memories like code, maintaining history, supporting branching (for speculative reasoning), and enabling rollback when memory updates prove incorrect. This is especially important in multi-agent systems where different agents may update shared memories concurrently.
 
@@ -118,7 +118,7 @@ The implication for memory system design is that "where the memory lives" is now
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
 3. ByteRover: Hierarchical Context Trees for LLM Memory. https://github.com/byterover
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
-5. MIRIX: Multi-Level Memory Architecture for Intelligent Agents. arXiv, 2025.
+5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, July 10, 2025. https://arxiv.org/abs/2507.07957. Companion repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents
 7. IAAR-Shanghai. Awesome-AI-Memory. https://github.com/IAAR-Shanghai/Awesome-AI-Memory
 8. TsinghuaC3I. Awesome-Memory-for-Agents. https://github.com/TsinghuaC3I/Awesome-Memory-for-Agents

@@ -86,11 +86,11 @@ But even this framing had a ceiling. It described *what goes into the model* but
 
 ## Generation 3: Harness Engineering (2026)
 
-In late 2025, two influential pieces formalized the next evolution:
+From late 2025 through early 2026, two influential pieces formalized the next evolution:
 
-**Martin Fowler** published an analysis arguing that the most impactful engineering work in LLM applications was happening not in model training or prompt crafting, but in *the harness* -- the surrounding system of tools, routing, memory, planning, and error recovery that orchestrates model calls into reliable workflows.
+**Birgitta Böckeler** (ThoughtWorks), writing in Martin Fowler's *Exploring Generative AI* memo series in April 2026, published an analysis arguing that the most impactful engineering work in LLM applications was happening not in model training or prompt crafting, but in *the harness* -- the surrounding system of tools, routing, memory, planning, and error recovery that orchestrates model calls into reliable workflows.
 
-**OpenAI's Codex team** published a blog post describing their architecture for agentic coding. The key insight: Codex's quality was primarily determined not by the model but by the harness -- the system that decided *when* to call the model, *what context* to provide, *which tools* to make available, and *how* to validate and recover from errors.
+**OpenAI's Codex team** has published case-study material on the harness side of agentic coding (see openai.com/index/introducing-codex for the public-facing material). The widely-cited "three engineers / ~1M lines / ~1,500 PRs" figure circulated in 2025-2026 OpenAI talks and posts; the underlying observation is that Codex's quality was primarily determined not by the model but by the harness -- the system that decided *when* to call the model, *what context* to provide, *which tools* to make available, and *how* to validate and recover from errors.
 
 ### The Phil Schmid Analogy
 
@@ -108,9 +108,9 @@ Research published in early 2026 quantified what practitioners already suspected
 
 This meant that harness engineering offered more leverage than model improvement for most practical applications. A better harness on a good model outperformed a great model with a mediocre harness.
 
-### swyx's IMPACT Framework
+### The IMPACT Framework
 
-[swyx](https://www.swyx.io/) (Shawn Wang) proposed the IMPACT framework for evaluating harness quality:
+In mid-2020s practitioner discourse, the IMPACT mnemonic emerged as a checklist for evaluating harness quality:
 
 - **I**nstructions -- clarity and completeness of system instructions
 - **M**emory -- persistence and retrieval across sessions
@@ -169,12 +169,12 @@ A 19-author survey from Shanghai Jiao Tong and collaborators, **"Externalization
 - Yao, S. et al. (2022). "ReAct: Synergizing Reasoning and Acting in Language Models." [arXiv:2210.03629](https://arxiv.org/abs/2210.03629)
 - Yao, S. et al. (2023). "Tree of Thoughts: Deliberate Problem Solving with Large Language Models." [arXiv:2305.10601](https://arxiv.org/abs/2305.10601)
 - Wang, X. et al. (2022). "Self-Consistency Improves Chain of Thought Reasoning in Language Models." [arXiv:2203.11171](https://arxiv.org/abs/2203.11171)
-- Karpathy, A. (2025). Post on context engineering. [X/Twitter](https://x.com/karpathy)
-- Manus. (2025). "Context Engineering Lessons from Building Manus." [manus.im/blog](https://manus.im/blog)
-- Fowler, M. (2025). "Harness Engineering for LLM Applications." [martinfowler.com](https://martinfowler.com/)
-- OpenAI. (2025). "How Codex Works: An Architecture for Agentic Coding." [openai.com/blog](https://openai.com/blog)
-- Schmid, P. (2025). "The Model-Context-Harness Analogy." [philschmid.de](https://www.philschmid.de/)
-- swyx. (2025). "The IMPACT Framework for LLM Harness Engineering." [swyx.io](https://www.swyx.io/)
+- Karpathy, A. (mid-2025). Public remarks coining "context engineering" as the right term for the discipline; widely-shared framing across X and the AI engineering community.
+- Manus. (2025). "Context Engineering Lessons from Building Manus." [manus.im/blog](https://manus.im/blog) --- KV-cache hit rate as the operational metric, append-only context, tool masking via logit bias, rolling todo-list rewrites.
+- Böckeler, Birgitta. (April 2, 2026). "Harness engineering for coding agent users." martinfowler.com (*Exploring Generative AI* series). [https://martinfowler.com/articles/harness-engineering.html](https://martinfowler.com/articles/harness-engineering.html) --- Guides vs. Sensors, Computational vs. Inferential taxonomy.
+- OpenAI. Codex public-facing material: [https://openai.com/index/introducing-codex](https://openai.com/index/introducing-codex). Anchor for the harness-design framing of Codex; the widely-cited "three engineers / ~1M lines / ~1,500 PRs" figures circulated in 2025-2026 OpenAI talks and posts and are reported here as community-cited rather than from a single canonical post.
+- Schmid, Philipp. "The New Skill in AI is Not Prompting, It's Context Engineering" and follow-up. [https://www.philschmid.de/context-engineering](https://www.philschmid.de/context-engineering); [https://www.philschmid.de/context-engineering-part-2](https://www.philschmid.de/context-engineering-part-2) --- Model = CPU, Context = RAM, Harness = OS analogy.
+- IMPACT mnemonic. Intent / Memory / Planning / Authority / Control flow / Tools --- a six-dimension harness design checklist that emerged in mid-2020s practitioner discourse. Used in this chapter as a pedagogical framing; not attributed to a specific primary source.
 - Meta/Manus acquisition reporting. (2026). Various sources.
 - Zhou, C. et al. (April 2026). "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering." [arXiv:2604.08224](https://arxiv.org/abs/2604.08224) --- 19-author survey from Shanghai Jiao Tong and collaborators that independently uses the Weights → Context → Harness three-layer historical framing. Cited in this chapter's "Coexistence, Not Replacement" section as evidence the practitioner thesis converged with academic literature.
 

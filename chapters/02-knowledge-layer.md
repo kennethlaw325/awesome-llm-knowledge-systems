@@ -182,7 +182,7 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 
 ## Sources
 
-- Gartner. (2025). "Enterprise RAG Adoption Survey, Q4 2025." Referenced in multiple industry analyses.
+- Gartner. "Enterprise RAG Adoption" survey commentary, Q4 2025 --- the 71%-revert figure cited at the top of this chapter circulates across multiple industry analyses; primary access requires a Gartner subscription, so the figure is reported here as widely-cited industry stat rather than from a freely-reachable primary URL.
 - Liu, N. F. et al. (2023). "Lost in the Middle: How Language Models Use Long Contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
 - Microsoft. (2024). "GraphRAG: Unlocking LLM discovery on narrative private datasets." [microsoft.com/research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-datasets/)
 - Asai, A. et al. (2023). "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection." [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
