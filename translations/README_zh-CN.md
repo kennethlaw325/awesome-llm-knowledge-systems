@@ -176,9 +176,11 @@ graph LR
 
 ### 章节
 
+> 🌐 = 已有简体中文翻译。其他章节链接到英文版, 翻译会陆续上线。
+
 | # | 章节 | 说明 |
 |---|------|------|
-| 01 | [三个世代](../chapters/01-evolution.md) | 从 prompt engineering 到 context engineering 再到 harness engineering |
+| 01 | [三个世代](chapters/zh-CN/01-evolution.md) 🌐 | 从 prompt engineering 到 context engineering 再到 harness engineering |
 | 02 | [RAG、长上下文与知识图谱](../chapters/02-knowledge-layer.md) | 知识检索层——什么有效、什么无效、为什么混合架构胜出 |
 | 03 | [Context Engineering（上下文工程）](../chapters/03-context-engineering.md) | 填充 context window 的艺术——KV-cache、100:1 比率、动态组装 |
 | 04 | [Harness Engineering（系统编排工程）](../chapters/04-harness-engineering.md) | 围绕模型构建操作系统——引导、传感器，以及 6 倍性能差距 |
@@ -187,7 +189,7 @@ graph LR
 | 07 | [MCP：胜出的标准](../chapters/07-mcp.md) | Model Context Protocol——从发布到月下载量超过 9,700 万次 |
 | 08 | [AI 原生知识管理](../chapters/08-tools-landscape.md) | 工具全景——Notion AI、Obsidian、Mem，以及 AI 原生差距 |
 | 09 | [中国 AI 生态系统](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——一个平行的创新宇宙 |
-| 10 | [案例研究：真实世界的知识 Harness](../chapters/10-case-study.md) | 一位开发者如何构建完整的 harness 并实现 65% 的 token 缩减 |
+| 10 | [案例研究：真实世界的知识 Harness](chapters/zh-CN/10-case-study.md) 🌐 | 一位开发者如何构建完整的 harness 并实现 65% 的 token 缩减 |
 | 11 | [时间线](../chapters/11-timeline.md) | LLM 知识工程的关键时刻，2022-2026 |
 | 12 | [本地模型与知识工程](../chapters/12-local-models.md) | 在自己硬件上跑整个知识 harness——Embedding、RAG、编译流程，以及微调终局 |
 
