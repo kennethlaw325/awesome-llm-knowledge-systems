@@ -4,6 +4,23 @@
 
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
+<details>
+<summary><b>What's new in May 2026</b> (click to expand)</summary>
+
+Late-April / early-May 2026 added seven structurally significant timeline entries plus a full attribution-audit pass. If you visited before May 6, here is what shifted (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+
+- **April 7 Mythos breach addendum** — the Glasswing distribution model was breached within ~14 hours of public announcement, foreshadowing the offensive-side cyber thesis ([Ch11](chapters/11-timeline.md))
+- **April 8 Anthropic Managed Agents** — first frontier-vendor primitive that meters the orchestrator seat itself, separately from inference ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
+- **April 23 Memory for Managed Agents** — closes the loop with the March 31 Claude Code source-leak finding (three-layer self-healing memory now ships as a vendor-managed primitive) ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **April 27 Microsoft–OpenAI restructure** — cloud exclusivity ends, AGI provision no longer load-bearing; reframes the substrate-portability narrative ([Ch08](chapters/08-tools-landscape.md), [Ch11](chapters/11-timeline.md))
+- **April 28 Bedrock Managed Agents (AWS × OpenAI)** — first time *the OpenAI agent harness* is named and sold as a separate product surface; cross-vendor convergence on the Managed Agents pattern ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **April 28 AHE paper** ([arXiv 2604.25850](https://arxiv.org/abs/2604.25850)) — observability-driven harness evolution; 69.7% → 77.0% on Terminal-Bench 2 with cross-family transfer ([Ch04 §4.5](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **Late April AgentFlow** ([arXiv 2604.20801](https://arxiv.org/abs/2604.20801)) — harness synthesis as a viable engineering surface; 84.3% TerminalBench-2 plus ten externally-validated zero-day CVEs on Chrome with Kimi K2.5 ([Ch04](chapters/04-harness-engineering.md), [Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md))
+- **`## The Pattern` updated** — adds a fifth thread (harness synthesis), revises the cloud-native-primitives thread to reflect substrate / triggering / memory unbundling
+- **Attribution audit, all chapters** — twelve fixes across Ch01 / Ch02 / Ch03 / Ch04 / Ch05 / Ch06 / Ch07 / Ch09 / Ch11 / Ch12. Notable factual corrections: §4.2 renamed "The Böckeler Taxonomy" (was misattributed Fowler 2025; actual is Birgitta Böckeler April 2026 on martinfowler.com); Ch03 §3.5 cited two academic surveys that conflated or fabricated (real survey is Mei et al. arXiv 2507.13334); Ch06 MIRIX was described as four-layer (actual is six memory types per arXiv 2507.07957)
+
+</details>
+
 ---
 
 ## TL;DR
