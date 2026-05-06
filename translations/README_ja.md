@@ -178,7 +178,7 @@ graph LR
 
 | # | 章 | 説明 |
 |---|---|------|
-| 01 | [3つの世代](../chapters/01-evolution.md) | プロンプトエンジニアリングからコンテキストエンジニアリング、ハーネスエンジニアリングへ |
+| 01 | [3つの世代](chapters/ja/01-evolution.md) 🌐 | プロンプトエンジニアリングからコンテキストエンジニアリング、ハーネスエンジニアリングへ |
 | 02 | [RAG、ロングコンテキスト＆ナレッジグラフ](../chapters/02-knowledge-layer.md) | 知識検索層——何が有効で、何が無効で、なぜハイブリッドが勝つのか |
 | 03 | [Context Engineering（コンテキスト工学）](../chapters/03-context-engineering.md) | コンテキストウィンドウを埋める技術——KV-cache、100:1比率、動的アセンブリ |
 | 04 | [Harness Engineering（ハーネス工学）](../chapters/04-harness-engineering.md) | モデルの周りにOSを構築——ガイド、センサー、6倍のパフォーマンスギャップ |
@@ -187,7 +187,7 @@ graph LR
 | 07 | [MCP：勝利した標準](../chapters/07-mcp.md) | Model Context Protocol——ローンチから月間9,700万以上のダウンロードへ |
 | 08 | [AI ネイティブ知識管理](../chapters/08-tools-landscape.md) | ツールランドスケープ——Notion AI、Obsidian、Mem、AIネイティブギャップ |
 | 09 | [中国AIエコシステム](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——イノベーションの並行宇宙 |
-| 10 | [ケーススタディ：実世界のナレッジハーネス](../chapters/10-case-study.md) | 一人の開発者が完全なハーネスを構築し65%のトークン削減を達成した方法 |
+| 10 | [ケーススタディ：実世界のナレッジハーネス](chapters/ja/10-case-study.md) 🌐 | 一人の開発者が完全なハーネスを構築し65%のトークン削減を達成した方法 |
 | 11 | [タイムライン](../chapters/11-timeline.md) | LLMナレッジエンジニアリングの重要な瞬間、2022-2026 |
 | 12 | [ローカルモデルとナレッジエンジニアリング](../chapters/12-local-models.md) | 自分のハードウェアでナレッジハーネスを動かす——Embedding、RAG、コンパイル、ファインチューニングのエンドゲーム |
 
