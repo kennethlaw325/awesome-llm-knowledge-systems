@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "The Map Everyone's Missing: LLM Knowledge Engineering in 2026"
+message: "If you reference this guide in research, blog posts, or talks, please cite it using the metadata below."
+type: dataset
+authors:
+  - family-names: Law
+    given-names: Kenneth
+    alias: kennethlaw325
+abstract: >-
+  An opinionated, structured synthesis of how LLM knowledge engineering
+  evolved between 2022 and 2026. Connects RAG, knowledge graphs, long
+  context, MCP, skill routing, agent memory, and progressive disclosure
+  into one coherent map across three generations: prompt engineering
+  (2022-2024), context engineering (2025), and harness engineering
+  (2026). Includes a curated 2022-2026 timeline of inclusion-criteria
+  filtered events, a glossary, twelve in-depth chapters, and a real-world
+  case study.
+keywords:
+  - LLM
+  - large-language-models
+  - retrieval-augmented-generation
+  - context-engineering
+  - harness-engineering
+  - agent-memory
+  - knowledge-graph
+  - model-context-protocol
+  - progressive-disclosure
+  - skill-systems
+  - agent-architectures
+  - 2026
+license: MIT
+repository-code: "https://github.com/kennethlaw325/awesome-llm-knowledge-systems"
+url: "https://github.com/kennethlaw325/awesome-llm-knowledge-systems"
+date-released: 2026-05-06
