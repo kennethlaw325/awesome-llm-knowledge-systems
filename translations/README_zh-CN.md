@@ -190,7 +190,7 @@ graph LR
 | 08 | [AI 原生知识管理](../chapters/08-tools-landscape.md) | 工具全景——Notion AI、Obsidian、Mem，以及 AI 原生差距 |
 | 09 | [中国 AI 生态系统](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——一个平行的创新宇宙 |
 | 10 | [案例研究：真实世界的知识 Harness](chapters/zh-CN/10-case-study.md) 🌐 | 一位开发者如何构建完整的 harness 并实现 65% 的 token 缩减 |
-| 11 | [时间线](../chapters/11-timeline.md) | LLM 知识工程的关键时刻，2022-2026 |
+| 11 | [时间线](chapters/zh-CN/11-timeline.md) 🌐 | LLM 知识工程的关键时刻，2022-2026 |
 | 12 | [本地模型与知识工程](../chapters/12-local-models.md) | 在自己硬件上跑整个知识 harness——Embedding、RAG、编译流程，以及微调终局 |
 
 ---
