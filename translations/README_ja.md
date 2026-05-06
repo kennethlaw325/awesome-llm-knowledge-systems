@@ -13,7 +13,7 @@
 - **プロンプトエンジニアリングは始まりに過ぎない。** この分野は3つの世代を経て進化してきました：Prompt Engineering（2022-2024）、Context Engineering（コンテキストエンジニアリング、2025）、Harness Engineering（ハーネスエンジニアリング、2026）。各層は前の層を包含しています。
 - **RAG（検索拡張生成）は死んでいない。** context-stuffing（コンテキスト詰め込み）を試した企業の71%が12ヶ月以内にRAGに戻りました（Gartner 2025 Q4）。ハイブリッドアーキテクチャが勝っています。
 - **Context engineeringは呼び出しそのものではなく、呼び出しの周囲に注目する。** Andrej Karpathyが2025年半ばに再定義し、焦点をプロンプトの設計からコンテキストウィンドウ全体の動的構築へと移しました。
-- **Harness engineeringはオペレーティングシステム層。** Martin FowlerとOpenAIが2025年末に正式に提唱しました。モデルはCPU、コンテキストはRAM、ハーネスはすべてを統括するOSです。
+- **Harness engineeringはオペレーティングシステム層。** Birgitta Böckeler（Martin Fowlerの *Exploring Generative AI* シリーズ、2026年4月）とOpenAI Codexチームのharness設計フレーミングがこれを定式化しました。モデルはCPU、コンテキストはRAM、ハーネスはすべてを統括するOSです。
 - **今まで、これらすべてを繋げたガイドは存在しなかった。** RAG、ナレッジグラフ、ロングコンテキスト、MCP、スキルルーティング、メモリシステム、プログレッシブ・ディスクロージャーはすべて一つのエコシステムの一部です。これがその地図です。
 
 ---
@@ -41,6 +41,22 @@ AIを優秀な新入社員の初日だと想像してください。Prompt engin
 
 ---
 
+## ユースケース
+
+このガイドは以下の現実のシナリオに合わせたシステム設計を支援します。各行は、そのシナリオで最も重要な章へのリンクです：
+
+| シナリオ | 何を構築しているか | 中核となる章 |
+|----------|--------------------|--------------|
+| **個人のセカンドブレイン** | 個人のメモ、論文、ウェブクリップを自然言語クエリで検索可能にする | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch08](/chapters/08-tools-landscape.md) |
+| **社内ナレッジベース** | 従業員がポリシー／ハンドブック／ランブックを照会——ハルシネーション許容度が低く、引用必須 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch04](/chapters/04-harness-engineering.md) · [Ch06](/chapters/06-agent-memory.md) |
+| **開発者ドキュメントアシスタント** | エンジニアが複数リポジトリにまたがるコードベース／APIドキュメント／過去のインシデントポストモーテムを照会 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch07](/chapters/07-mcp.md) |
+| **サポート／QAエージェント** | 顧客または社内チケット → 引用元付きの文脈対応の返信＋フォローアップメモリ | [Ch03](/chapters/03-context-engineering.md) · [Ch06](/chapters/06-agent-memory.md) · [Ch04](/chapters/04-harness-engineering.md) |
+| **ドメイン特化ナレッジ自動化** *（法務、医療、金融、エンジニアリング）* | 数十年分のドメイン文書を再利用——規制対象、知財センシティブ、しばしばローカルモデルと監査ログが必要 | [Ch02](/chapters/02-knowledge-layer.md) · [Ch09](/chapters/09-china-ecosystem.md) · [Ch12](/chapters/12-local-models.md) |
+
+シナリオがきれいに当てはまらない場合、それは恐らくこれらの組み合わせです——最も近い行から始めて適応させてください。
+
+---
+
 ## 進化の歴程
 
 ```
@@ -54,6 +70,37 @@ PROMPT ENG               CONTEXT ENG              HARNESS ENG
 ```
 
 各世代は前の世代を置き換えるのではなく、包含します。Harness engineeringはcontext engineeringを含み、context engineeringはprompt engineeringを含みます。
+
+---
+
+## ライフサイクル
+
+エコシステムマップは**部品が何か**を示します。ライフサイクルは**データが部品の間をどう流れるか**を示します：
+
+```
+                    ┌───── フィードバック ──────────┐
+                    ▼                              │
+ INGEST  ───▶ PROCESS  ───▶ STORE  ───▶ QUERY ───▶ IMPROVE
+ 取込          処理          保存        照会       改善
+    │             │            │          │           │
+ 文書          チャンク化     ベクタDB     RAG        Evals
+ API           Embedding      グラフDB     GraphRAG   フィードバック
+ ウェブクリップ クリーニング   キャッシュ   Agents     Fine-tune
+ クローラ      マルチモーダル  長文書      ツール使用 スキル更新
+    │             │            │          │           │
+   Ch02       Ch02 · Ch03   Ch02-08     Ch02-07      Ch06
+```
+
+```mermaid
+flowchart LR
+    I[INGEST 取込<br/>文書 · API · ウェブ] --> P[PROCESS 処理<br/>チャンク化 · Embedding · クリーニング]
+    P --> S[STORE 保存<br/>ベクタDB · グラフDB · キャッシュ]
+    S --> Q[QUERY 照会<br/>RAG · GraphRAG · Agents]
+    Q --> M[IMPROVE 改善<br/>Evals · フィードバック · Fine-tune]
+    M -. フィードバック .-> I
+```
+
+すべての本番システムは、暗黙的なものも含めてデータを5つの段階に流します。良いハーネス設計は**各段階を検査可能かつ置換可能にします**。Ch02はIngest／Process／Store、Ch03–Ch07はQuery、Ch06とCh10はImproveをカバーします。
 
 ---
 
@@ -142,6 +189,7 @@ graph LR
 | 09 | [中国AIエコシステム](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——イノベーションの並行宇宙 |
 | 10 | [ケーススタディ：実世界のナレッジハーネス](../chapters/10-case-study.md) | 一人の開発者が完全なハーネスを構築し65%のトークン削減を達成した方法 |
 | 11 | [タイムライン](../chapters/11-timeline.md) | LLMナレッジエンジニアリングの重要な瞬間、2022-2026 |
+| 12 | [ローカルモデルとナレッジエンジニアリング](../chapters/12-local-models.md) | 自分のハードウェアでナレッジハーネスを動かす——Embedding、RAG、コンパイル、ファインチューニングのエンドゲーム |
 
 ---
 
@@ -187,4 +235,4 @@ MIT License。詳細は [LICENSE](../LICENSE) を参照。
 
 ---
 
-*最終更新：2026年4月*
+*最終更新：2026年5月*

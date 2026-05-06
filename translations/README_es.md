@@ -13,7 +13,7 @@
 - **La ingenieria de prompts fue solo el comienzo.** El campo ha evolucionado a traves de tres generaciones: Prompt Engineering (2022-2024), Context Engineering (ingenieria de contexto, 2025) y Harness Engineering (ingenieria de orquestacion, 2026). Cada capa subsume la anterior.
 - **RAG (Generacion Aumentada por Recuperacion) no esta muerto.** El 71% de las empresas que probaron context-stuffing (relleno de contexto) volvieron a RAG en 12 meses (Gartner Q4 2025). Las arquitecturas hibridas estan ganando.
 - **Context engineering se trata de lo que rodea la llamada, no de la llamada en si.** La redefinicion de Andrej Karpathy a mediados de 2025 cambio el enfoque de disenar prompts a construir dinamicamente toda la ventana de contexto.
-- **Harness engineering es la capa del sistema operativo.** Martin Fowler y OpenAI lo formalizaron a finales de 2025 -- el modelo es la CPU, el contexto es la RAM, y el harness es el SO que orquesta todo.
+- **Harness engineering es la capa del sistema operativo.** Birgitta Böckeler (en la serie *Exploring Generative AI* de Martin Fowler, abril de 2026) y el enfoque de diseno de harness del equipo Codex de OpenAI formalizaron esto -- el modelo es la CPU, el contexto es la RAM, y el harness es el SO que orquesta todo.
 - **Hasta ahora, ninguna guia habia conectado todo esto.** RAG, grafos de conocimiento, contexto largo, MCP, enrutamiento de habilidades, sistemas de memoria y divulgacion progresiva son todos parte de un mismo ecosistema. Este es el mapa.
 
 ---
@@ -41,6 +41,22 @@ No estas seguro de por donde empezar? Elige la descripcion que mejor te describa
 
 ---
 
+## Casos de Uso
+
+Esta guia te ayuda a disenar sistemas para estos escenarios del mundo real. Cada fila enlaza a los capitulos mas importantes para esa construccion:
+
+| Escenario | Que estas construyendo | Capitulos centrales |
+|-----------|------------------------|---------------------|
+| **Segundo Cerebro Personal** | Notas personales + papers + recortes web buscables mediante consultas en lenguaje natural | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch08](/chapters/08-tools-landscape.md) |
+| **Base de Conocimiento Interna** | Empleados consultan politicas / manuales / runbooks — baja tolerancia a alucinacion, citas requeridas | [Ch02](/chapters/02-knowledge-layer.md) · [Ch04](/chapters/04-harness-engineering.md) · [Ch06](/chapters/06-agent-memory.md) |
+| **Asistente de Documentacion para Desarrolladores** | Ingenieros consultan codebases / docs de API / postmortems de incidentes pasados en entornos multi-repo | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch07](/chapters/07-mcp.md) |
+| **Agente de Soporte / QA** | Tickets de cliente o internos → respuestas con conciencia de contexto, fuentes citadas y memoria de seguimiento | [Ch03](/chapters/03-context-engineering.md) · [Ch06](/chapters/06-agent-memory.md) · [Ch04](/chapters/04-harness-engineering.md) |
+| **Automatizacion de Conocimiento de Dominio Especifico** *(legal, salud, finanzas, ingenieria)* | Reutilizar decadas de documentos del dominio — regulado, sensible en IP, a menudo requiere modelos locales y rastros de auditoria | [Ch02](/chapters/02-knowledge-layer.md) · [Ch09](/chapters/09-china-ecosystem.md) · [Ch12](/chapters/12-local-models.md) |
+
+Si tu escenario no encaja limpiamente, probablemente sea una composicion de estos — empieza desde la fila mas cercana y adapta.
+
+---
+
 ## La Evolucion
 
 ```
@@ -55,6 +71,37 @@ PROMPT ENG               CONTEXT ENG              HARNESS ENG
 ```
 
 Cada generacion no reemplaza a la anterior -- la contiene. Harness engineering incluye context engineering, que incluye prompt engineering.
+
+---
+
+## El Ciclo de Vida
+
+El Mapa del Ecosistema muestra **cuales son las piezas**. El ciclo de vida muestra **como se mueven los datos a traves de ellas**:
+
+```
+                    ┌───── retroalimentacion ──────┐
+                    ▼                              │
+ INGEST  ───▶ PROCESS  ───▶ STORE  ───▶ QUERY ───▶ IMPROVE
+ ingestar     procesar     almacenar   consultar  mejorar
+    │             │            │          │           │
+ Docs          Chunking      Vector DB    RAG       Evals
+ APIs          Embeddings    Graph DB     GraphRAG  Feedback
+ Web clips     Limpieza      Cache        Agents    Fine-tune
+ Crawlers      Multi-modal   Long doc     Tool use  Skill updates
+    │             │            │          │           │
+   Ch02       Ch02 · Ch03   Ch02-08     Ch02-07     Ch06
+```
+
+```mermaid
+flowchart LR
+    I[INGEST<br/>Docs · APIs · Webscrape] --> P[PROCESS<br/>Chunking · Embeddings · Limpieza]
+    P --> S[STORE<br/>Vector DB · Graph DB · Cache]
+    S --> Q[QUERY<br/>RAG · GraphRAG · Agents]
+    Q --> M[IMPROVE<br/>Evals · Feedback · Fine-tune]
+    M -. retroalimentacion .-> I
+```
+
+Todo sistema en produccion mueve datos a traves de las cinco etapas — incluso si algunas son implicitas. Un buen diseno de harness hace que **cada etapa sea inspeccionable y reemplazable**. Ch02 cubre Ingest/Process/Store; Ch03–Ch07 cubren Query; Ch06 y Ch10 cubren Improve.
 
 ---
 
@@ -153,6 +200,7 @@ graph LR
 | 09 | [El Ecosistema de IA Chino](../chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- un universo paralelo de innovacion |
 | 10 | [Caso de Estudio: Un Harness de Conocimiento del Mundo Real](../chapters/10-case-study.md) | Como un desarrollador construyo un harness completo con 65% de reduccion de tokens |
 | 11 | [Linea de Tiempo](../chapters/11-timeline.md) | Momentos clave en la ingenieria de conocimiento LLM, 2022-2026 |
+| 12 | [Modelos Locales para la Ingenieria de Conocimiento](../chapters/12-local-models.md) | Ejecuta tu harness de conocimiento localmente — embedding, RAG, compilacion y el endgame de fine-tuning |
 
 ---
 
@@ -198,4 +246,4 @@ Usa esto como quieras. La atribucion se agradece pero no es obligatoria.
 
 ---
 
-*Ultima actualizacion: abril 2026*
+*Ultima actualizacion: mayo 2026*

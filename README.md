@@ -11,7 +11,7 @@
 - **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last.
 - **RAG is not dead.** 71% of enterprises that tried context-stuffing came back to RAG within 12 months (Gartner Q4 2025). Hybrid architectures are winning.
 - **Context engineering is about what surrounds the call, not the call itself.** Andrej Karpathy's mid-2025 reframe shifted focus from crafting prompts to constructing the entire context window dynamically.
-- **Harness engineering is the operating system layer.** Martin Fowler and OpenAI formalized this in late 2025 -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
+- **Harness engineering is the operating system layer.** Birgitta Böckeler (writing in Martin Fowler's *Exploring Generative AI* memo series, April 2026) and the OpenAI Codex team's harness-design framing formalized this -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
 - **No single guide connected all of this until now.** RAG, knowledge graphs, long context, MCP, skill routing, memory systems, and progressive disclosure are all part of one ecosystem. This is the map.
 
 ---
@@ -225,4 +225,4 @@ Use this however you want. Attribution appreciated but not required.
 
 ---
 
-*Last updated: April 2026*
+*Last updated: May 2026*
