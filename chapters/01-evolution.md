@@ -158,6 +158,8 @@ A harness engineer still writes prompts. They still do context engineering. But 
 
 The evolution is not about abandoning earlier techniques. It is about recognizing that they are necessary but insufficient -- and building the layers above them that turn raw LLM capability into reliable, production-grade applications.
 
+A 19-author survey from Shanghai Jiao Tong and collaborators, **"Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering"** (arXiv 2604.08224, April 9, 2026), independently arrives at the same three-layer organization this chapter uses: the field's progression, in their framing, runs from *weights* to *context* to *harness*, and they treat memory, skills, protocols, and harness engineering as four externalized components unified by harness as the integration layer. The convergence is worth flagging for readers coming from the academic literature: this is not a practitioner-only framing and it is not unique to this guide --- it is the organizing axis that the academic survey of late April 2026 also chose.
+
 ---
 
 ## Sources
@@ -174,6 +176,7 @@ The evolution is not about abandoning earlier techniques. It is about recognizin
 - Schmid, P. (2025). "The Model-Context-Harness Analogy." [philschmid.de](https://www.philschmid.de/)
 - swyx. (2025). "The IMPACT Framework for LLM Harness Engineering." [swyx.io](https://www.swyx.io/)
 - Meta/Manus acquisition reporting. (2026). Various sources.
+- Zhou, C. et al. (April 2026). "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering." [arXiv:2604.08224](https://arxiv.org/abs/2604.08224) --- 19-author survey from Shanghai Jiao Tong and collaborators that independently uses the Weights → Context → Harness three-layer historical framing. Cited in this chapter's "Coexistence, Not Replacement" section as evidence the practitioner thesis converged with academic literature.
 
 ---
 
