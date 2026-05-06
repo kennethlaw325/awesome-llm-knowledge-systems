@@ -2,7 +2,7 @@
 
 [English](../README.md) | **繁體中文** | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | [Español](README_es.md)
 
-> 此為 [English README](../README.md) 的繁體中文翻譯。章節內容目前為英文。
+> 此為 [English README](../README.md) 的繁體中文翻譯。全部 12 章已翻譯為繁體中文（從簡中基線經 OpenCC `s2twp` 轉換 + 台港用語調整，翻譯品質為 v0；歡迎以英文版為事實基準提交翻譯改進 PR）。
 
 > 我分析了超過 50 份 awesome lists、調查報告和指南——沒有一份把所有東西串起來。RAG 論文不提 harness engineering（系統編排工程）。Memory frameworks（記憶框架）忽略 skill systems（技能系統）。MCP 文件跳過 progressive disclosure（漸進式揭露）。這份指南畫出了完整的地圖。
 
@@ -184,11 +184,11 @@ graph LR
 | 02 | [RAG、長上下文與知識圖譜](chapters/zh/02-knowledge-layer.md) 🌐 | 知識檢索層——什麼有效、什麼無效、為什麼混合架構勝出 |
 | 03 | [Context Engineering（上下文工程）](chapters/zh/03-context-engineering.md) 🌐 | 填充 context window 的藝術——KV-cache、100:1 比率、動態組裝 |
 | 04 | [Harness Engineering（系統編排工程）](chapters/zh/04-harness-engineering.md) 🌐 | 圍繞模型建構作業系統——引導、感測器，以及 6 倍效能差距 |
-| 05 | [Skill Systems 與 Skill Graphs（技能系統與技能圖）](../chapters/05-skill-systems.md) | 從平面檔案到可遍歷的圖——漸進式揭露的實踐 |
-| 06 | [Agent Memory（代理記憶）](../chapters/06-agent-memory.md) | 缺失的一層——情節記憶、語義記憶與程序記憶架構 |
-| 07 | [MCP：勝出的標準](../chapters/07-mcp.md) | Model Context Protocol——從發布到月下載量超過 9,700 萬次 |
-| 08 | [AI 原生知識管理](../chapters/08-tools-landscape.md) | 工具全景——Notion AI、Obsidian、Mem，以及 AI 原生差距 |
-| 09 | [中國 AI 生態系統](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——一個平行的創新宇宙 |
+| 05 | [Skill Systems 與 Skill Graphs（技能系統與技能圖）](chapters/zh/05-skill-systems.md) 🌐 | 從平面檔案到可遍歷的圖——漸進式揭露的實踐 |
+| 06 | [Agent Memory（代理記憶）](chapters/zh/06-agent-memory.md) 🌐 | 缺失的一層——情節記憶、語義記憶與程序記憶架構 |
+| 07 | [MCP：勝出的標準](chapters/zh/07-mcp.md) 🌐 | Model Context Protocol——從發布到月下載量超過 9,700 萬次 |
+| 08 | [AI 原生知識管理](chapters/zh/08-tools-landscape.md) 🌐 | 工具全景——Notion AI、Obsidian、Mem，以及 AI 原生差距 |
+| 09 | [中國 AI 生態系統](chapters/zh/09-china-ecosystem.md) 🌐 | Dify、RAGFlow、DeepSeek、Kimi——一個平行的創新宇宙 |
 | 10 | [案例研究：真實世界的知識 Harness](chapters/zh/10-case-study.md) 🌐 | 一位開發者如何建構完整的 harness 並實現 65% 的 token 縮減 |
 | 11 | [時間線](chapters/zh/11-timeline.md) 🌐 | LLM 知識工程的關鍵時刻，2022-2026 |
 | 12 | [本地模型與知識工程](chapters/zh/12-local-models.md) 🌐 | 在自己硬體上跑整個知識 harness——Embedding、RAG、編譯流程，以及微調終局 |
