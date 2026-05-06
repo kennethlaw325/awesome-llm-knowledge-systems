@@ -24,7 +24,7 @@ Las herramientas de IA se vuelven mas inteligentes cada ano, pero solo funcionan
 
 Piensa en la IA como un brillante empleado nuevo en su primer dia. Prompt engineering es darle una tarea. Context engineering es darle toda la informacion de fondo que necesita para hacer bien la tarea. Harness engineering es disenar todo su entorno de trabajo -- su escritorio, sus herramientas, su sistema de archivos, la estructura de su equipo -- para que pueda rendir al maximo de forma consistente. Esta guia cubre los tres niveles y muestra como se conectan.
 
-Si eres nuevo en este tema, comienza con el [Glossary (glosario)](../glossary.md) para conocer las definiciones de los terminos clave. Si desarrollas aplicaciones de IA, salta directamente a los capitulos de abajo. Si solo quieres ver el panorama general, mira el Ecosystem Map (mapa del ecosistema) mas abajo en esta pagina.
+Si eres nuevo en este tema, comienza con el [Glosario](glossary_es.md) para conocer las definiciones de los terminos clave. Si desarrollas aplicaciones de IA, salta directamente a los capitulos de abajo. Si solo quieres ver el panorama general, mira el Ecosystem Map (mapa del ecosistema) mas abajo en esta pagina.
 
 ---
 
@@ -32,7 +32,7 @@ Si eres nuevo en este tema, comienza con el [Glossary (glosario)](../glossary.md
 
 No estas seguro de por donde empezar? Elige la descripcion que mejor te describa:
 
-- **"Solo quiero entender que significan todos estos terminos de IA."** -- Empieza con el [Glossary (glosario)](../glossary.md), luego lee el [Capitulo 1: Las Tres Generaciones](../chapters/01-evolution.md).
+- **"Solo quiero entender que significan todos estos terminos de IA."** -- Empieza con el [Glosario](glossary_es.md), luego lee el [Capitulo 1: Las Tres Generaciones](../chapters/01-evolution.md).
 - **"Estoy desarrollando una aplicacion de IA."** -- Lee en orden el [Cap. 2: RAG, Contexto Largo y Grafos de Conocimiento](../chapters/02-knowledge-layer.md), [Cap. 3: Context Engineering](../chapters/03-context-engineering.md), [Cap. 4: Harness Engineering](../chapters/04-harness-engineering.md).
 - **"Quiero que mis herramientas de IA funcionen mejor."** -- Lee el [Cap. 5: Sistemas de Habilidades](../chapters/05-skill-systems.md), [Cap. 6: Memoria de Agentes](../chapters/06-agent-memory.md), [Cap. 10: Caso de Estudio](../chapters/10-case-study.md).
 - **"Quiero ver ejemplos reales."** -- Salta directamente al [Cap. 10: Caso de Estudio](../chapters/10-case-study.md).
