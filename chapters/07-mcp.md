@@ -45,6 +45,8 @@ The breadth of MCP adoption tells the story of its dominance:
 - **Hugging Face** hosts a registry of community MCP servers alongside its model hub.
 - **LangChain** and other orchestration frameworks provide native MCP client support, making it the default tool integration method.
 
+**MCP as a synthesis dimension.** A subtler 2026 development: MCP tool selection is starting to appear as one of the *variables* in automated harness-synthesis systems rather than as a fixed substrate. The AgentFlow paper (arXiv 2604.20801, April 2026) treats agent roles, prompts, *tools*, communication topology, and coordination protocol as five dimensions of a typed-graph DSL its synthesis loop searches over. For an MCP-aware harness designer this is two-edged. MCP's standardization makes the tool dimension genuinely searchable --- a synthesis loop can swap one MCP server for another without rewriting the integration layer. But the same standardization makes MCP servers themselves selection candidates: the question is no longer "which servers do I install" but "which servers does my harness *evolve into using* under observability pressure."
+
 ## Connection to Knowledge Engineering
 
 MCP is not itself a knowledge engineering technique -- it is the infrastructure layer that makes knowledge engineering scalable. Every approach discussed in this report -- RAG pipelines, knowledge graphs, memory systems, context engineering patterns -- requires feeding external knowledge into models. MCP standardizes how that feeding happens.
@@ -113,19 +115,20 @@ Industry analysts project the AI tool integration market -- of which MCP is the 
 - **[modelcontextprotocol.io](https://modelcontextprotocol.io)** -- Official specification, SDKs, and documentation.
 - **Anthropic MCP Courses** -- Available on [Skilljar](https://anthropic.skilljar.com) and [DeepLearning.AI](https://www.deeplearning.ai/short-courses/), covering protocol fundamentals and server development.
 - **The New Stack** -- Ongoing technical coverage of MCP architecture, adoption, and challenges. Notable articles on the meta-tool pattern and enterprise deployment patterns.
-- **Pento MCP Year in Review (2025)** -- Comprehensive analysis of MCP's first year, adoption metrics, and ecosystem growth.
+- **MCP SDK download statistics** -- npm (`@modelcontextprotocol/sdk`, [https://www.npmjs.com/package/@modelcontextprotocol/sdk](https://www.npmjs.com/package/@modelcontextprotocol/sdk)) and PyPI (`mcp`, [https://pypi.org/project/mcp/](https://pypi.org/project/mcp/)) for first-party adoption metrics.
 
 ## Sources
 
 1. Anthropic. "Introducing the Model Context Protocol." November 2024. https://www.anthropic.com/news/model-context-protocol
 2. Model Context Protocol Specification. https://modelcontextprotocol.io
 3. Linux Foundation. "Agentic AI Foundation Established." 2025. https://www.linuxfoundation.org/press/agentic-ai-foundation
-4. Pento. "MCP Year in Review: From Zero to 97M Downloads." 2025. https://pento.ai/blog/mcp-year-in-review
+4. MCP SDK download statistics, npm: [https://www.npmjs.com/package/@modelcontextprotocol/sdk](https://www.npmjs.com/package/@modelcontextprotocol/sdk) and PyPI: [https://pypi.org/project/mcp/](https://pypi.org/project/mcp/) (Q1 2026 cumulative ~97M downloads, widely cited in secondary coverage).
 5. The New Stack. "The Meta-Tool Pattern: Progressive Disclosure for AI Tools." 2025.
 6. Anthropic. MCP Course. Skilljar. https://anthropic.skilljar.com
 7. DeepLearning.AI. "Building MCP Servers." https://www.deeplearning.ai/short-courses/
 8. Microsoft. "MCP Support in Windows and Azure." 2025. https://devblogs.microsoft.com
 9. OpenAI. "Agents SDK: MCP Integration." 2025. https://openai.com/index/new-tools-for-building-agents
+10. AgentFlow / "Synthesizing Multi-Agent Harnesses for Vulnerability Discovery." arXiv 2604.20801, April 2026. [https://arxiv.org/abs/2604.20801](https://arxiv.org/abs/2604.20801)
 
 ---
 

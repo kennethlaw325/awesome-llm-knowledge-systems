@@ -92,6 +92,8 @@ The framing lands the same point this report has been making from Chapter 4 onwa
 
 The practical takeaway for knowledge engineering: the "harness" is no longer just the thing that wraps the model for production use. It is also the thing that has to scale in lockstep with generation speed --- or deployment throughput silently caps out while everyone insists the AI is making them faster.
 
+**And the substrate itself is now portable.** On April 27, 2026, Microsoft and OpenAI announced an amended partnership agreement that ended OpenAI's cloud exclusivity to Azure (OpenAI can now serve API access via AWS, Google Cloud, or any provider), capped revenue-share payments asymmetrically, and removed the long-disputed AGI clause that would have let OpenAI exit financial obligations on a unilateral declaration of AGI. For knowledge-engineering teams this matters not as business news but as a substrate change: the largest closed-weight frontier model is no longer locked behind one cloud. "Which cloud do you run on" stops being a constraint on "which models do you have access to" --- for the GPT family, at least, on the same terms the open-weight ecosystem already enjoys. Combined with DeepSeek V4's day-one Ascend-NPU support (Chapter 11, April 24), the second half of 2026 begins with portable substrate as the default expectation rather than the exception.
+
 ## Sources
 
 1. Notion. "Introducing Notion 3.0." September 2025. https://www.notion.so/blog
@@ -104,6 +106,8 @@ The practical takeaway for knowledge engineering: the "harness" is no longer jus
 8. Heptabase. https://heptabase.com
 9. Capacities. https://capacities.io
 10. Tana. https://tana.inc
+11. Microsoft. "The next phase of the Microsoft-OpenAI partnership." April 27, 2026. [https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/](https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/)
+12. OpenAI. "The next phase of the Microsoft partnership." April 27, 2026. [https://openai.com/index/next-phase-of-microsoft-partnership/](https://openai.com/index/next-phase-of-microsoft-partnership/)
 
 ---
 

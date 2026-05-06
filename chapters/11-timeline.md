@@ -98,7 +98,7 @@ Several developments converge in December 2025:
 
 ### February --- Heinrich's Skill Graphs Post
 
-A post by Heinrich on skill graphs --- how to organize, compose, and route between agent skills using graph structures --- accumulates 8,500 likes and 3.8 million views. The viral reception indicates that the practitioner community is hungry for architectural patterns, not just model capabilities. Skill routing and composition emerge as first-class engineering concerns.
+A post by Heinrich (`@arscontexta`) on skill graphs --- how to organize, compose, and route between agent skills using graph structures --- went viral in early 2026, crossing into the broader AI-engineering audience. The reception indicates that the practitioner community is hungry for architectural patterns, not just model capabilities. Skill routing and composition emerge as first-class engineering concerns. Original post: [https://x.com/arscontexta/status/2023957499183829467](https://x.com/arscontexta/status/2023957499183829467).
 
 ### March --- The Research Papers
 
@@ -138,6 +138,12 @@ The agent-memory architecture race got a viral entry. **MemPalace** (`MemPalace/
 ### April 7, 2026 --- Claude Mythos Preview
 
 Anthropic releases **Claude Mythos Preview** (not Claude 4.6), scoring **93.9% on SWE-bench Verified** --- a 13.1 point leap over Opus 4.6's 80.8% --- and 77.8% on SWE-bench Pro. Mythos is not publicly available. It is reserved for the **Project Glasswing** coalition (Apple, Google, Microsoft, Amazon, and others) for cybersecurity research, with approximately 40 whitelisted teams getting access at $25 / $125 per million input / output tokens. This is the first time Anthropic has gated a flagship tier behind a research coalition rather than a public preview.
+
+Within approximately 14 hours of the Glasswing program being publicly announced, Anthropic disclosed unauthorized access to Claude Mythos Preview "through one of our third-party vendor environments." The breach is significant for the harness narrative for two reasons. First, it makes concrete what "harness as security perimeter" means in practice: the model itself was not compromised, but the *distribution harness* --- the third-party vendor stack used to gate Glasswing access --- was. Second, it foreshadows the inversion of the cyber-defense thesis behind Mythos: a model whose stated job is to find vulnerabilities for defenders was itself reachable through the supply chain that fronted it.
+
+### April 8, 2026 --- Anthropic Managed Agents (Public Beta)
+
+Anthropic ships **Claude Managed Agents** as a public-beta hosted runtime for long-horizon agent work. Where the Advisor Tool (April 2026) productized *what to think about* and Claude Opus 4.7's task budgets (April 16) productized *how hard to think*, Managed Agents productizes *where the loop runs*. The service exposes four primitives --- **sessions** (durable context state outside the model's context window, with durable session logs), **harnesses** (Anthropic-managed orchestration with scoped permissions), **sandboxes** (Anthropic-operated execution environments for tool calls), and **tracing** --- and prices the substrate at **standard API token rates plus $0.08 per session-hour**. The pricing detail matters: it is the first frontier-vendor primitive that bills the *orchestrator seat* itself, separate from inference. Read alongside the Manus acquisition (early 2026) and Routines (April 14), the trajectory is clear: the harness layer that 2025 framed as "the moat" is in 2026 being unbundled into vendor-sold primitives. The self-hosted harness is not gone, but its scope has narrowed to the workloads --- local execution, sub-minute cadence, non-GitHub triggers, on-device data --- that the managed primitives don't yet cover.
 
 ### April 2026 --- MCP Dev Summit and SEP-1686 Tasks Primitive
 
@@ -195,6 +201,30 @@ Anthropic ships **Claude Opus 4.7** in general availability across the Claude AP
 
 **DeepSeek V4** ships in preview --- two open-weight Mixture-of-Experts models (V4-Pro at 1.6T parameters / 49B active, V4-Flash at 284B / 13B active) released under MIT license on Hugging Face with a 1M-token context window as default. Pricing is the sharpest cost cut of 2026 to date: V4-Flash at **$0.28 per million output tokens**, V4-Pro at **$3.48** --- a 73% per-token inference FLOPs reduction versus V3 driven by architecture rather than hardware. On coding benchmarks, V4-Pro takes the top of the leaderboard: **LiveCodeBench 93.5%** (ahead of Gemini 3.1 Pro at 91.7% and Claude Opus 4.6 at 88.8%) and a **Codeforces rating of 3206** (overtaking GPT-5.4 at 3168). The structural detail that matters most for the China narrative arc, however, is not benchmarks or pricing but **inference substrate**. Training used a hybrid cluster including NVIDIA A100 and H20 hardware, but the model was **day-zero adapted for Huawei's Ascend 950PR**, with DeepSeek and Huawei jointly reporting **inference parity --- and on this specific architecture, ~2.8x compute throughput --- between Ascend NPUs and NVIDIA H20 GPUs.** This is the subtler form of the sovereign-silicon argument: not "we trained without NVIDIA" (which remains hard) but "we serve without NVIDIA" (which is increasingly possible). For Chinese enterprise customers facing US export controls, V4 is the first time a frontier-class open-weight model has shipped with a credible domestic-silicon serving path on day one. Read alongside DeepSeek's January 2025 R1 inflection, V4 closes a year-long story arc: the Chinese open-weight ecosystem can now release a frontier-coding model **and** the substrate to serve it, on the same day.
 
+### April 27, 2026 --- The Microsoft-OpenAI Restructure
+
+Microsoft and OpenAI announce an amended partnership agreement that materially loosens the relationship that has defined frontier model distribution since 2019. Three changes matter for the field, in declining order of long-term consequence:
+
+1. **OpenAI's cloud exclusivity ends.** OpenAI can now serve API access to its models through any cloud provider, including AWS and Google Cloud. Microsoft remains primary cloud partner with first-product-ship rights on Azure, but the lockstep of "OpenAI = Azure" is gone.
+2. **The AGI clause is removed.** The provision that would have let OpenAI exit financial obligations on a unilateral declaration that AGI had been achieved no longer exists. Investor valuations no longer hinge on a definition of AGI that no two parties agreed on.
+3. **Revenue share is asymmetrically capped.** Microsoft no longer pays revenue share to OpenAI; OpenAI's payments to Microsoft continue through 2030 but under a total cap, not the open-ended structure that previously existed.
+
+The framing is widely reported as IPO preparation --- OpenAI is targeting a Q4 2026 IPO at a possible ~$1T valuation, and removing the AGI commercial trigger and the cloud monogamy is what an IPO-ready cap table looks like. For knowledge engineers, the practical consequence is that the largest closed-weight frontier model will now be available under the same multi-cloud distribution shape that DeepSeek and the open-weight ecosystem already enjoy. "Pick your cloud" stops being a choice that constrains "pick your model" --- at least for the GPT family.
+
+### April 28, 2026 --- AHE: Observability-Driven Harness Evolution
+
+A team from Fudan University, Peking University, and Shanghai Qiji Zhifeng publishes **"Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses"** (arXiv 2604.25850). AHE reframes the harness-optimization problem the March 2026 Meta-Harness paper opened: instead of treating harness configurations as a search space and running an optimizer over it, AHE instruments three observability pillars --- **component observability** (an explicit, revertible action space over harness components), **experience observability** (condensed trajectory evidence from prior runs), and **decision observability** (falsifiable edit predictions that the system commits to before executing them) --- and lets the harness evolve itself by reading its own runtime signals.
+
+The benchmark numbers update the Meta-Harness story: starting from a Codex-CLI-style baseline at 69.7% pass@1 on Terminal-Bench 2, after 10 AHE iterations the harness reaches **77.0%**, surpassing the human-designed Codex-CLI baseline (71.9%) and showing **+5.1 to +10.1 pp cross-family gains** when transferred to model families the harness was not optimized on. The cross-family transfer detail is the structural news: an evolved harness is not just over-fit to one model's quirks, it carries forward as the substrate underneath turns over. For practitioners, AHE makes the discipline that Section 4.8 of this guide called "stress-testing" automatable --- not as a single-shot search but as a continuous observability loop the harness runs against itself.
+
+### April 2026 --- AgentFlow and Harness-Synthesis-as-Offensive-Capability
+
+"Synthesizing Multi-Agent Harnesses for Vulnerability Discovery" (arXiv 2604.20801) introduces **AgentFlow**, a typed-graph DSL over five harness dimensions (agent roles, prompts, tools, communication topology, coordination protocol) with a feedback-driven outer loop and structural validation for candidate edits. On **TerminalBench-2**, AgentFlow's synthesized harness reaches **84.3% with Claude Opus 4.6** --- the highest score on the public Opus 4.6 leaderboard, and a step beyond AHE's 77.0% (on a different baseline model).
+
+The benchmark is not the news. The news is that the same synthesis loop, re-run on Chrome with Kimi K2.5 as the model, produced **ten previously unknown zero-day vulnerabilities, including two Critical sandbox-escape CVEs (CVE-2026-5280 and CVE-2026-6297)**. This is the first published instance of an automatically-synthesized agent harness producing externally-validated security findings. Read alongside Anthropic's Mythos coalition (April 7), AgentFlow shows that the offensive side of the cybersecurity thesis is no longer gated to one frontier vendor's preview tier --- an open synthesis loop, an open model, and a target program are sufficient. The "harness as moat" framing of 2025 acquires a counterpart in 2026: **the harness as offensive capability**, with all the dual-use discomfort that implies.
+
+For knowledge engineers, AgentFlow + AHE together establish that harness synthesis is now a viable engineering surface. Practitioners building production harnesses in mid-2026 should expect the Manual / Meta-Harness / AHE / AgentFlow trajectory to compress: the design choices a senior harness engineer makes by hand today are the design choices a synthesis loop will make automatically tomorrow.
+
 ---
 
 ## The Pattern
@@ -215,8 +245,9 @@ Reading this timeline vertically, a pattern emerges:
 - **Test-time compute as a new scaling axis.** CATTS demonstrates that test-time compute is a *targeting* problem, not a budget problem: a 9.1% gain at 2.3x fewer tokens when rollouts are steered by consensus-aware uncertainty. Combined with the Advisor Tool, this establishes a two-axis optimization: one axis picks what to think about, the other picks how hard to think.
 - **Cloud-native harness primitives.** Claude Code Routines ships the first managed substrate for scheduled / API / GitHub-event triggered agent loops. The orchestrator seat --- previously a self-hosted concern involving cron jobs, daemons, and laptops that must stay open --- becomes a vendor-sold primitive. The tradeoff surface shifts to what still requires self-hosting (browser automation, sub-minute cadence, non-GitHub triggers).
 - **Memory as trainable module.** Titans + MIRAS reframes long context by making memory a neural module updated by gradient descent at inference time, not an external vector store. At comparable sizes it outperforms Mamba-2, Gated DeltaNet, and Transformer++ on long-range recall. The knowledge layer gains a third option alongside attention windows and retrieval pipelines: *learned memory*.
+- **Harness synthesis becomes a viable engineering surface.** Late April compresses the Meta-Harness (March) → AHE (April 28) → AgentFlow (late April) trajectory. Harnesses are now optimized as observability loops (AHE: 69.7% → 77.0% on Terminal-Bench 2 with cross-family transfer) and synthesized as typed graphs (AgentFlow: 84.3% on TerminalBench-2 with Opus 4.6, plus ten externally-validated zero-day CVEs when the same loop is re-run on Chrome with Kimi K2.5). The design choices a senior harness engineer makes by hand today are the design choices a synthesis loop will make automatically tomorrow --- and the dual-use signal in AgentFlow (synthesis-as-offensive-capability) closes the Mythos / Glasswing arc from the opposite direction.
 
-And ARC-AGI-3 sits above all four threads as the benchmark that refuses to grade them on the old terms. Its agents must build their own world models with no instructions, reminding the field that instruction-following is not the same as autonomous problem framing.
+And ARC-AGI-3 sits above all five threads as the benchmark that refuses to grade them on the old terms. Its agents must build their own world models with no instructions, reminding the field that instruction-following is not the same as autonomous problem framing.
 
 The trajectory is clear. The next chapter of this story will not be about larger models. It will be about better systems --- and in 2026, "better systems" increasingly means systems the harness can *read*, *steer*, and *allocate compute across*, not just prompt.
 
@@ -241,7 +272,7 @@ The trajectory is clear. The next chapter of this story will not be about larger
 - Anthropic, agentskills.io open standard (December 2025)
 - Baidu, ERNIE 5.0 Launch (January 2026)
 - Moonshot AI, Kimi K2.5 Agent Swarm (January 2026)
-- Heinrich, "Skill Graphs for Agent Systems" (February 2026)
+- Heinrich (@arscontexta), Skill Graphs concept --- X post, early 2026: [https://x.com/arscontexta/status/2023957499183829467](https://x.com/arscontexta/status/2023957499183829467); GitHub: [https://github.com/agenticnotetaking/arscontexta](https://github.com/agenticnotetaking/arscontexta)
 - "Meta-Harness: Quantifying the Impact of Harness Engineering on LLM Performance" (March 2026)
 - "SkillReducer: Managing Skill Proliferation in Large-Scale Agent Systems" (March 2026)
 - MCP SDK download statistics, npm/PyPI (Q1 2026)
@@ -262,6 +293,20 @@ The trajectory is clear. The next chapter of this story will not be about larger
 - DeepSeek, V4 model release on Hugging Face (April 24, 2026). MIT license; V4-Pro 1.6T / V4-Flash 284B; 1M-token default context.
 - Fortune, "DeepSeek unveils V4 model, with rock-bottom prices and close integration with Huawei's chips" (April 24, 2026): [https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/](https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/)
 - South China Morning Post, "DeepSeek unveils next-gen AI model as Huawei vows 'full support' with new chips" (April 24, 2026): [https://www.scmp.com/tech/big-tech/article/3351239/deepseek-releases-next-gen-ai-model-world-leading-efficiency](https://www.scmp.com/tech/big-tech/article/3351239/deepseek-releases-next-gen-ai-model-world-leading-efficiency)
+- Resultsense, "Anthropic probes unauthorised access to Claude Mythos" (April 23, 2026): [https://www.resultsense.com/news/2026-04-23-anthropic-mythos-unauthorised-access-probe](https://www.resultsense.com/news/2026-04-23-anthropic-mythos-unauthorised-access-probe)
+- Schneier on Security, "On Anthropic's Mythos Preview and Project Glasswing" (April 2026): [https://www.schneier.com/blog/archives/2026/04/on-anthropics-mythos-preview-and-project-glasswing.html](https://www.schneier.com/blog/archives/2026/04/on-anthropics-mythos-preview-and-project-glasswing.html)
+- Arnav.au, "Anthropic Mythos AI Breach 2026" (April 29, 2026): [https://arnav.au/2026/04/29/anthropic-mythos-ai-breach-2026/](https://arnav.au/2026/04/29/anthropic-mythos-ai-breach-2026/)
+- Anthropic, "Claude Managed Agents overview" (April 8, 2026): [https://platform.claude.com/docs/en/managed-agents/overview](https://platform.claude.com/docs/en/managed-agents/overview)
+- Anthropic Engineering, "Scaling Managed Agents: Decoupling the brain from the body" (April 2026): [https://www.anthropic.com/engineering/managed-agents](https://www.anthropic.com/engineering/managed-agents)
+- SiliconANGLE, "Anthropic launches Claude Managed Agents to speed up AI agent development" (April 8, 2026): [https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/](https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/)
+- InfoWorld, "Anthropic rolls out Claude Managed Agents" (April 2026): [https://www.infoworld.com/article/4156852/anthropic-rolls-out-claude-managed-agents.html](https://www.infoworld.com/article/4156852/anthropic-rolls-out-claude-managed-agents.html)
+- Microsoft Official Blog, "The next phase of the Microsoft-OpenAI partnership" (April 27, 2026): [https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/](https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/)
+- OpenAI, "The next phase of the Microsoft partnership" (April 27, 2026): [https://openai.com/index/next-phase-of-microsoft-partnership/](https://openai.com/index/next-phase-of-microsoft-partnership/)
+- CNBC, "OpenAI shakes up partnership with Microsoft, capping revenue share payments" (April 27, 2026): [https://www.cnbc.com/2026/04/27/openai-microsoft-partnership-revenue-cap.html](https://www.cnbc.com/2026/04/27/openai-microsoft-partnership-revenue-cap.html)
+- PitchBook, "OpenAI loosens Microsoft's grip ahead of IPO push" (April 2026): [https://pitchbook.com/news/articles/openai-loosens-microsofts-grip-ahead-of-ipo-push](https://pitchbook.com/news/articles/openai-loosens-microsofts-grip-ahead-of-ipo-push)
+- Lin et al., "Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses," arXiv 2604.25850 (April 28, 2026): [https://arxiv.org/abs/2604.25850](https://arxiv.org/abs/2604.25850)
+- Agentic Harness Engineering companion repository: [https://github.com/china-qijizhifeng/agentic-harness-engineering](https://github.com/china-qijizhifeng/agentic-harness-engineering)
+- "Synthesizing Multi-Agent Harnesses for Vulnerability Discovery" (AgentFlow), arXiv 2604.20801 (April 2026): [https://arxiv.org/abs/2604.20801](https://arxiv.org/abs/2604.20801)
 
 ---
 

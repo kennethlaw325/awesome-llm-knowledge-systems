@@ -31,9 +31,9 @@ The harness is everything that is not the model weights. It includes:
 
 A bare model API call with a user message is a trivial harness. A production agent with planning, multi-step tool use, self-evaluation, and persistent memory is a complex one. The discipline of harness engineering is about making principled decisions across this spectrum.
 
-## 4.2 The Fowler-Bockeler Taxonomy
+## 4.2 The Böckeler Taxonomy
 
-Martin Fowler and Birgitta Bockeler (ThoughtWorks, 2025) proposed a two-axis taxonomy for harness components that has become a standard reference:
+Birgitta Böckeler (ThoughtWorks, April 2026), writing in Martin Fowler's *Exploring Generative AI* series, proposed a two-axis taxonomy for harness components that has become a standard reference:
 
 **Axis 1: Direction**
 - **Guides (Feedforward):** Components that shape behavior *before* the model acts. System prompts, few-shot examples, tool schemas, planning templates. These set the rails.
@@ -54,7 +54,7 @@ The insight is that computational controls are cheaper and more reliable but les
 
 ## 4.3 OpenAI Codex: Scale Through Harness
 
-The OpenAI Codex blog post (2025) offered a striking data point: **three engineers plus the Codex agent system produced approximately one million lines of code across roughly 1,500 pull requests.** The productivity multiplier was not primarily about model quality -- it was about harness design.
+A striking data point widely cited in the practitioner community describes OpenAI's internal use of Codex: **three engineers plus the Codex agent system produced approximately one million lines of code across roughly 1,500 pull requests.** The productivity multiplier was not primarily about model quality -- it was about harness design. (The specific figures circulated through 2025-2026 OpenAI talks and posts; for the public-facing material on Codex's harness, see [openai.com/index/introducing-codex](https://openai.com/index/introducing-codex).)
 
 The Codex harness included:
 - Automated PR decomposition (breaking large tasks into reviewable units)
@@ -67,7 +67,7 @@ The lesson: at sufficient harness maturity, the model becomes a component in a l
 
 ## 4.4 The IMPACT Framework
 
-swyx (Shawn Wang) proposed the IMPACT framework as a systematic way to think about harness design dimensions:
+In mid-2020s practitioner discourse, the **IMPACT mnemonic** --- Intent, Memory, Planning, Authority, Control flow, Tools --- emerged as a systematic way to think about harness design dimensions:
 
 - **Intent:** How does the system understand what the user actually wants? Includes intent classification, clarification dialogues, and goal decomposition.
 - **Memory:** What does the system remember across turns and sessions? Includes conversation buffers, vector stores, structured knowledge bases, and user preference systems.
@@ -87,6 +87,8 @@ Their key finding: on the same benchmark, with the same base model, different ha
 The meta-harness approach treated harness parameters (number of retries, planning depth, tool selection strategy, memory window size, evaluation stringency) as a search space and used automated optimization to find high-performing configurations. The system could adapt the harness to different task types, different models, and different cost constraints.
 
 This result has a profound implication: **harness engineering is not a solved design problem with known best practices -- it is an optimization problem with a large and poorly understood search space.** Teams that treat harness design as a one-time architecture decision are likely operating far below the frontier.
+
+The Meta-Harness paper is now one data point in a fast-moving line. In April 2026, the **AHE paper** ("Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses," arXiv 2604.25850, Fudan / Peking / Shanghai Qiji Zhifeng) reframed the problem from search to *observability*: instead of treating harness configurations as a search space and running an optimizer over it, AHE instruments three observability pillars --- component (an explicit, revertible action space), experience (condensed trajectory evidence), and decision (falsifiable edit predictions made before execution) --- and lets the harness evolve itself by reading its own runtime signals. After 10 AHE iterations, a Codex-CLI-style baseline at 69.7% pass@1 on Terminal-Bench 2 reaches 77.0%, surpassing the human-designed baseline (71.9%) with **+5.1 to +10.1 pp cross-family gains** when transferred to model families the harness was not optimized on. The cross-family transfer is the structural news: an evolved harness is not over-fit to one model's quirks, it carries forward as the substrate underneath turns over. The Meta-Harness finding ("harness engineering is an optimization problem with a large search space") and the AHE finding ("...and the search can run as a continuous observability loop, not a one-shot optimization") together describe an engineering practice that is rapidly leaving manual tuning behind.
 
 ### From Research to Production: The Advisor Tool (April 2026)
 
@@ -172,6 +174,8 @@ The practical recommendation: when onboarding a new model, start by running your
 
 A mature harness eventually inverts the stress-testing question: instead of asking "which components can I remove," it asks "which components should I spend more compute on, and when." The April 2026 **CATTS** preprint (Consensus-Aware Test-Time Scaling, arXiv 2602.12276) gives that question a usable answer. CATTS samples a small committee of rollouts per agent step and uses the disagreement among them as a per-step uncertainty score; that score is then used to allocate test-time compute non-uniformly --- more rollouts where the committee disagrees, fewer where it converges. On WebArena-Lite and GoBrowse, the technique reports **+9.1%** task accuracy at **2.3x fewer tokens** than uniform scaling. For a mature harness, CATTS slots in next to the Advisor Tool: the advisor pattern decides *what* to think about, while CATTS decides *how hard* to think about each step. Both replace assumptions ("always retry three times," "always use Opus on hard problems") with measured uncertainty signals computed at runtime.
 
+The April 2026 AHE result (Section 4.5) makes the same point structurally: stress-testing is not a one-time review activity but a continuous observability loop. Manual stress-testing remains valuable as a discipline practitioners can run today; AHE shows it is also automatable.
+
 ## 4.9 Cloud-Native Harness Primitives
 
 Through 2025 and the first quarter of 2026, the harness was overwhelmingly something you built and ran yourself. Even the most sophisticated patterns --- the three-agent architecture, the Advisor Tool, KAIROS-style autonomous loops --- still assumed your code held the orchestrator seat. You wrote the cron job, you ran the daemon, you kept the laptop awake, you owned the failure modes. The substrate was generic compute (a Mac mini, a VPS, a Kubernetes pod), and the harness layer was your responsibility from process supervisor up.
@@ -183,6 +187,8 @@ The cloud-side execution detail matters more than it sounds. A self-hosted file-
 The tradeoff is a new ceiling. A managed primitive prices itself by trigger and quota, not by the physics of the workload. It assumes your loop fits the schedule / API / GitHub-event shape, that the per-day quota is enough, and that Anthropic's substrate is the right place for your code and data to live. For a non-trivial set of harness workloads, none of those assumptions hold cleanly. **Browser automation** of authenticated sessions still benefits from running on a machine that already has the user's cookies, profile, and trust state. **High-frequency orchestration** --- sub-minute polling, real-time market or sensor data, anything where 25 invocations per day is insulting --- needs a runtime billed by the second, not by the trigger. **Non-GitHub event sources** (Discord messages, internal webhooks, custom MCP servers, on-device file system events) have no first-class trigger in Routines yet; surfacing them requires writing the bridge yourself, which puts you back on a self-hosted machine to run the bridge anyway. And anything that depends on local files, local model inference, or local network access remains structurally off-cloud.
 
 The honest framing for harness engineers in 2026: cloud-native primitives like Routines are the right answer for the **GitHub-event-triggered, scheduled, API-called** quadrant of the harness workload, and they are likely to compress that quadrant's operational cost dramatically over the next twelve months. The self-hosted harness is not going away --- it is being narrowed to where it actually pays for itself. The discipline to develop is the same discipline this chapter has been building toward: knowing which assumption each component encodes, and noticing when the substrate underneath it changes.
+
+**Routines vs. Managed Agents.** It is worth being precise about what Anthropic actually shipped in April 2026, because the two pieces are sometimes conflated. **Claude Managed Agents** (public beta, April 8, 2026) is the *substrate*: a hosted runtime that exposes sessions (durable context state outside the model's context window), Anthropic-operated sandboxes, scoped tool execution, and tracing. Pricing is **standard token rates plus $0.08 per session-hour** --- the first frontier-vendor primitive that meters the orchestrator seat itself, separately from inference. **Claude Code Routines** (research preview, April 14, 2026) is a *triggering surface* that runs on top of that substrate (or compatible alternatives): schedule, API call, GitHub event, with quotas of 5 / 15 / 25 invocations per day for Pro / Max / Team-Enterprise tiers. The two answer different questions. Managed Agents answers "where does the agent loop physically run, and how is its state durably maintained between turns?" Routines answers "what makes the loop start in the first place?" A self-hosted harness that adopts Routines but not Managed Agents keeps owning its state and execution environment; one that adopts Managed Agents but builds its own triggering layer keeps owning when work begins. In practice, most cloud-native harness designs in mid-2026 will adopt both --- but the unbundling is the architectural point. Anthropic is no longer selling "the harness" as one thing; it is selling its constituent primitives.
 
 ## 4.10 The Managed-Inference Turn (April 2026)
 
@@ -204,15 +210,18 @@ This is the broader pattern: **the managed-inference turn.** Frontier vendors ar
 
 ## Sources
 
-- **Fowler, Martin and Bockeler, Birgitta.** "Harness Architecture for LLM Agents." ThoughtWorks Technology Radar / blog, 2025. Guides vs. Sensors, Computational vs. Inferential taxonomy.
-- **OpenAI.** "Codex: From Research to Production." OpenAI blog, 2025. Three-engineer, ~1M lines, ~1,500 PRs case study.
-- **swyx (Shawn Wang).** "The IMPACT Framework for Agent Design." Blog / conference talk, 2025. Six-dimension harness design checklist.
+- **Böckeler, Birgitta.** "Harness engineering for coding agent users." martinfowler.com (Exploring Generative AI series), April 2, 2026. [https://martinfowler.com/articles/harness-engineering.html](https://martinfowler.com/articles/harness-engineering.html) --- Guides vs. Sensors, Computational vs. Inferential taxonomy.
+- **OpenAI.** Codex public-facing material: [https://openai.com/index/introducing-codex](https://openai.com/index/introducing-codex). Anchor for the harness-design framing of OpenAI Codex; the widely-cited "three engineers / ~1M lines / ~1,500 PRs" figures circulated through 2025-2026 OpenAI talks and posts and are reported here as community-cited rather than from a single canonical post.
+- **IMPACT mnemonic.** Intent / Memory / Planning / Authority / Control flow / Tools --- a six-dimension harness design checklist that emerged in mid-2020s practitioner discourse. Used in this chapter as a pedagogical framing; not attributed to a specific primary source.
 - **Stanford / MIT / KRAFTON.** "Meta-Harness: Automated Optimization of LLM Agent Harnesses." arXiv preprint, March 2026. 6x performance gap finding, automated harness tuning.
+- **Lin et al.** "Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses." arXiv 2604.25850, April 28, 2026. [https://arxiv.org/abs/2604.25850](https://arxiv.org/abs/2604.25850) --- Fudan / Peking / Shanghai Qiji Zhifeng. Observability-pillar reframing of the meta-harness search problem; 69.7% → 77.0% on Terminal-Bench 2 with cross-family transfer.
+- **Anthropic.** "Claude Managed Agents overview." API documentation, April 8, 2026. [https://platform.claude.com/docs/en/managed-agents/overview](https://platform.claude.com/docs/en/managed-agents/overview)
+- **Anthropic Engineering.** "Scaling Managed Agents: Decoupling the brain from the body." April 2026. [https://www.anthropic.com/engineering/managed-agents](https://www.anthropic.com/engineering/managed-agents) --- four primitives (sessions, harnesses, sandboxes, tracing); $0.08 per session-hour pricing on top of standard token rates.
 - **Anthropic.** "Building Effective Agents." Anthropic engineering blog, December 19, 2024. [https://www.anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) --- describes orchestrator-worker patterns and evaluator-optimizer workflows; this guide labels the relevant failure modes "context anxiety" and "self-evaluation bias" pedagogically. The practitioner-community summary as a Planner / Generator / Evaluator triple is a framing built on these patterns; Anthropic itself does not use that exact triple in primary writing. The actual Claude Code architecture, as revealed by the March 31, 2026 source leak (Section 4.6), is organized around layered self-healing memory rather than role decomposition.
 - **Meta / Manus Acquisition.** Various reporting, early 2026. ~$2B acquisition validating harness-as-moat thesis.
-- **Karpathy, Andrej.** "Software 3.0." Talk / essay, 2025. Framing of models as components within larger software systems.
+- **Karpathy, Andrej.** "Software 3.0" / "Software Is Changing (Again)" talks at AI Engineer World's Fair / YC AI Startup School, 2025. Framing of models as a new kind of programmable component (English as the programming surface). Talk video and slides on Karpathy's YouTube and personal site.
 - **LangChain.** "Agent Architecture Patterns." LangChain documentation, 2025. Practical patterns for control flow and tool orchestration.
-- **Harrison Chase.** "The Rise of the Agent Engineer." Blog post, 2025. Role definition for harness-focused engineering.
+- **Harrison Chase.** "Agent Engineer" framing, 2025 --- LangChain blog and X posts. The phrase entered practitioner vocabulary as a role-definition framing for harness-focused engineering; cited here as a pattern in 2025-era discourse rather than a single canonical post.
 - **"CATTS: Consensus-Aware Test-Time Scaling for Agents."** arXiv 2602.12276 (April 2026 release cycle). Vote-derived uncertainty as a test-time compute allocator; +9.1% / 2.3x fewer tokens vs. uniform scaling on WebArena-Lite and GoBrowse. [https://arxiv.org/abs/2602.12276](https://arxiv.org/abs/2602.12276)
 - **Anthropic.** "Introducing Routines in Claude Code." Anthropic blog, April 14, 2026. [https://claude.com/blog/introducing-routines-in-claude-code](https://claude.com/blog/introducing-routines-in-claude-code)
 - **Anthropic.** "Claude Code Routines documentation." [https://code.claude.com/docs/en/routines](https://code.claude.com/docs/en/routines) --- triggers (schedule / API / GitHub event), quotas (Pro 5/day, Max 15/day, Team/Enterprise 25/day), cloud-side execution semantics.
@@ -224,5 +233,5 @@ This is the broader pattern: **the managed-inference turn.** Frontier vendors ar
 
 ### Further reading for beginners
 
-- **Cab.** "A Layer-by-Layer Walk Through Harness Engineering." Traditional Chinese essay, 2026. Builds up from a single `POST /v1/messages` call through prompt engineering, function calling, agent loops, and finally full harness complexity. Notable for the "模型從來都沒有長手" metaphor, which reframes tool use as a harness problem rather than a model capability, and for its explicit walk through what Claude Code's harness is actually doing behind the scenes. Recommended as a gentle on-ramp before reading this chapter's theory-first framings (Fowler-Bockeler, IMPACT, Meta-Harness).
+- **Cab.** "A Layer-by-Layer Walk Through Harness Engineering." Traditional Chinese essay, 2026. Builds up from a single `POST /v1/messages` call through prompt engineering, function calling, agent loops, and finally full harness complexity. Notable for the "模型從來都沒有長手" metaphor, which reframes tool use as a harness problem rather than a model capability, and for its explicit walk through what Claude Code's harness is actually doing behind the scenes. Recommended as a gentle on-ramp before reading this chapter's theory-first framings (the Böckeler taxonomy, IMPACT, Meta-Harness).
 - **Anthropic.** ["Building Effective Agents"](https://www.anthropic.com/research/building-effective-agents) --- the canonical short-form introduction for readers coming from a non-research background. Pairs well with the Cab essay above: Cab gives the build-up, Anthropic gives the concrete patterns.

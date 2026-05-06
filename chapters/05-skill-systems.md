@@ -142,11 +142,11 @@ The practical effect is that skill libraries are becoming portable across provid
 
 - **Anthropic.** "Claude Code Skills." Documentation and open standard specification, October 2025 (launch), December 2025 (open standard via agentskills.io). 87K+ GitHub stars by early 2026.
 - **OpenAI.** "Agent Design Best Practices." OpenAI documentation, 2025. Recommendation of fewer than 20 tools per agent, accuracy degradation past 10.
-- **Heinrich / arscontexta.** "Skill Graphs: Progressive Disclosure for Agent Capabilities." Blog series and implementation, 2025-2026. Wikilink-based skill networks, YAML scanning, partial loading architecture.
+- **Heinrich (@arscontexta).** Skill Graphs concept and implementation. X posts (2026): [https://x.com/arscontexta/status/2023957499183829467](https://x.com/arscontexta/status/2023957499183829467) (Skill Graphs > SKILL.md). GitHub: [https://github.com/agenticnotetaking/arscontexta](https://github.com/agenticnotetaking/arscontexta) --- Claude Code plugin generating individualized markdown-graph knowledge systems with wikilinks and YAML frontmatter scanning. Secondary analysis: Linas Substack, "Skill Graphs: The Architecture That Solves the AI Agent Context Window Problem." [https://linas.substack.com/p/skill-graphs](https://linas.substack.com/p/skill-graphs)
 - **SkillReducer Paper.** "Less Is More: Compressing Agent Skills for Improved Performance." March 2026. 55,315 skills analyzed, 26.4% lacking routing descriptions, 60%+ non-actionable content, 2.8% quality improvement from compression.
 - **Model Context Protocol (MCP).** Anthropic specification, 2024-2025. Standardized tool discovery and invocation protocol.
 - **awesome-llm-skills.** Community collection on GitHub. Curated skill libraries across platforms.
 - **awesome-agent-skills.** GitHub collection, 1,000+ skills from official platform teams.
 - **awesome-claude-code.** GitHub collection. Claude Code-specific skills and configurations.
 - **OpenAI.** "Function Calling Best Practices." 2025. Empirical data on tool count vs. accuracy tradeoffs.
-- **Griciunas, Aurimas.** "Tool and Capability Management." In "5 Dominant Patterns in Context Engineering," 2025. Meta-tool pattern description.
+- **Griciūnas, Aurimas.** "State of Context Engineering in 2026." SwirlAI Newsletter, March 2026. [https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026](https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026) --- Progressive disclosure / compression / sliding window patterns; meta-tool pattern. See also "Breaking Down Context Engineering": [https://www.newsletter.swirlai.com/p/breaking-down-context-engineering](https://www.newsletter.swirlai.com/p/breaking-down-context-engineering)
