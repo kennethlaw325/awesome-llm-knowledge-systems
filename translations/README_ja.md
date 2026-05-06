@@ -2,7 +2,7 @@
 
 [English](../README.md) | [繁體中文](README-zh.md) | [简体中文](README_zh-CN.md) | **日本語** | [한국어](README_ko.md) | [Español](README_es.md)
 
-> これは [English README](../README.md) の日本語翻訳です。各章の内容は現在英語のままです。
+> これは [English README](../README.md) の日本語翻訳です。全 12 章を日本語に翻訳済み（v0 機械翻訳の品質；ネイティブ話者によるリファインメント PR を歓迎します。事実の基準は英語版です）。
 
 > 50以上のawesome list、調査レポート、ガイドを分析しましたが、すべてを繋げているものは一つもありませんでした。RAGの論文はハーネスエンジニアリングに触れません。メモリフレームワークはスキルシステムを無視しています。MCPのドキュメントはプログレッシブ・ディスクロージャーを飛ばしています。このガイドが完全な地図を描きます。
 
@@ -182,11 +182,11 @@ graph LR
 | 02 | [RAG、ロングコンテキスト＆ナレッジグラフ](chapters/ja/02-knowledge-layer.md) 🌐 | 知識検索層——何が有効で、何が無効で、なぜハイブリッドが勝つのか |
 | 03 | [Context Engineering（コンテキスト工学）](chapters/ja/03-context-engineering.md) 🌐 | コンテキストウィンドウを埋める技術——KV-cache、100:1比率、動的アセンブリ |
 | 04 | [Harness Engineering（ハーネス工学）](chapters/ja/04-harness-engineering.md) 🌐 | モデルの周りにOSを構築——ガイド、センサー、6倍のパフォーマンスギャップ |
-| 05 | [スキルシステム＆スキルグラフ](../chapters/05-skill-systems.md) | フラットファイルから走査可能なグラフへ——プログレッシブ・ディスクロージャーの実践 |
-| 06 | [エージェントメモリ](../chapters/06-agent-memory.md) | 欠けている層——エピソード記憶、意味記憶、手続き記憶のアーキテクチャ |
-| 07 | [MCP：勝利した標準](../chapters/07-mcp.md) | Model Context Protocol——ローンチから月間9,700万以上のダウンロードへ |
-| 08 | [AI ネイティブ知識管理](../chapters/08-tools-landscape.md) | ツールランドスケープ——Notion AI、Obsidian、Mem、AIネイティブギャップ |
-| 09 | [中国AIエコシステム](../chapters/09-china-ecosystem.md) | Dify、RAGFlow、DeepSeek、Kimi——イノベーションの並行宇宙 |
+| 05 | [スキルシステム＆スキルグラフ](chapters/ja/05-skill-systems.md) 🌐 | フラットファイルから走査可能なグラフへ——プログレッシブ・ディスクロージャーの実践 |
+| 06 | [エージェントメモリ](chapters/ja/06-agent-memory.md) 🌐 | 欠けている層——エピソード記憶、意味記憶、手続き記憶のアーキテクチャ |
+| 07 | [MCP：勝利した標準](chapters/ja/07-mcp.md) 🌐 | Model Context Protocol——ローンチから月間9,700万以上のダウンロードへ |
+| 08 | [AI ネイティブ知識管理](chapters/ja/08-tools-landscape.md) 🌐 | ツールランドスケープ——Notion AI、Obsidian、Mem、AIネイティブギャップ |
+| 09 | [中国AIエコシステム](chapters/ja/09-china-ecosystem.md) 🌐 | Dify、RAGFlow、DeepSeek、Kimi——イノベーションの並行宇宙 |
 | 10 | [ケーススタディ：実世界のナレッジハーネス](chapters/ja/10-case-study.md) 🌐 | 一人の開発者が完全なハーネスを構築し65%のトークン削減を達成した方法 |
 | 11 | [タイムライン](chapters/ja/11-timeline.md) 🌐 | LLMナレッジエンジニアリングの重要な瞬間、2022-2026 |
 | 12 | [ローカルモデルとナレッジエンジニアリング](chapters/ja/12-local-models.md) 🌐 | 自分のハードウェアでナレッジハーネスを動かす——Embedding、RAG、コンパイル、ファインチューニングのエンドゲーム |
