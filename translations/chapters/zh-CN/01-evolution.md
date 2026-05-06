@@ -180,4 +180,4 @@ IMPACT 把 context engineering 定位为更广 harness engineering 学科里的*
 
 ---
 
-*下一章: [第 2 章 —— RAG、长上下文与知识图谱](../../../chapters/02-knowledge-layer.md)（英文）*
+*下一章: [第 2 章 —— RAG、长上下文与知识图谱](02-knowledge-layer.md)*
