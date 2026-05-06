@@ -24,7 +24,7 @@ AIツールは年々賢くなっていますが、正しい情報を正しいタ
 
 AIを優秀な新入社員の初日だと想像してください。Prompt engineeringは一つのタスクを与えること。Context engineeringはタスクを遂行するために必要なすべての背景情報を与えること。Harness engineeringは仕事環境全体を設計すること——デスク、ツール、ファイルシステム、チーム構成——安定して最高のパフォーマンスを発揮できるようにすること。このガイドはこの3つの層すべてをカバーし、それらがどう繋がるかを示します。
 
-初めての方は、まず [Glossary（用語集）](../glossary.md) で主要な用語の定義を確認してください。AIアプリケーションを開発している方は、以下の章に直接進んでください。全体像だけ知りたい方は、このページの下にあるEcosystem Map（エコシステムマップ）をご覧ください。
+初めての方は、まず [用語集](glossary_ja.md) で主要な用語の定義を確認してください。AIアプリケーションを開発している方は、以下の章に直接進んでください。全体像だけ知りたい方は、このページの下にあるEcosystem Map（エコシステムマップ）をご覧ください。
 
 ---
 
@@ -32,7 +32,7 @@ AIを優秀な新入社員の初日だと想像してください。Prompt engin
 
 どこから始めればいいか分からない？最も当てはまる説明を選んでください：
 
-- **「AIのバズワードが何を意味するのか理解したい」** ——まず [Glossary（用語集）](../glossary.md) を見て、次に [第1章：3つの世代](../chapters/01-evolution.md) を読む。
+- **「AIのバズワードが何を意味するのか理解したい」** ——まず [用語集](glossary_ja.md) を見て、次に [第1章：3つの世代](../chapters/01-evolution.md) を読む。
 - **「AIアプリケーションを開発している」** ——順番に [第2章：RAG、ロングコンテキスト＆ナレッジグラフ](../chapters/02-knowledge-layer.md)、[第3章：Context Engineering](../chapters/03-context-engineering.md)、[第4章：Harness Engineering](../chapters/04-harness-engineering.md) を読む。
 - **「AIツールをもっと使いこなしたい」** ——[第5章：スキルシステム](../chapters/05-skill-systems.md)、[第6章：エージェントメモリ](../chapters/06-agent-memory.md)、[第10章：ケーススタディ](../chapters/10-case-study.md) を読む。
 - **「実際の事例が見たい」** ——直接 [第10章：ケーススタディ](../chapters/10-case-study.md) へ。

@@ -24,7 +24,7 @@ AI 도구는 매년 더 똑똑해지고 있지만, 올바른 정보를 올바른
 
 AI를 첫 출근한 뛰어난 신입사원이라고 상상해 보세요. Prompt engineering은 하나의 작업을 주는 것입니다. Context engineering은 작업을 잘 수행하는 데 필요한 모든 배경 정보를 주는 것입니다. Harness engineering은 전체 업무 환경을 설계하는 것입니다 -- 책상, 도구, 파일 시스템, 팀 구조 -- 꾸준히 최고의 성과를 낼 수 있도록. 이 가이드는 이 세 가지 계층을 모두 다루고, 그것들이 어떻게 연결되는지 보여줍니다.
 
-이 주제가 처음이라면, 먼저 [Glossary(용어집)](../glossary.md)에서 주요 용어의 정의를 확인하세요. AI 애플리케이션을 개발하고 있다면, 아래 장으로 바로 이동하세요. 전체 그림만 보고 싶다면, 이 페이지 아래의 Ecosystem Map(생태계 지도)을 보세요.
+이 주제가 처음이라면, 먼저 [용어집](glossary_ko.md)에서 주요 용어의 정의를 확인하세요. AI 애플리케이션을 개발하고 있다면, 아래 장으로 바로 이동하세요. 전체 그림만 보고 싶다면, 이 페이지 아래의 Ecosystem Map(생태계 지도)을 보세요.
 
 ---
 
@@ -32,7 +32,7 @@ AI를 첫 출근한 뛰어난 신입사원이라고 상상해 보세요. Prompt 
 
 어디서 시작할지 모르겠나요? 가장 잘 맞는 설명을 선택하세요:
 
-- **"AI 버즈워드가 무슨 뜻인지 이해하고 싶다."** -- 먼저 [Glossary(용어집)](../glossary.md)를 보고, [제1장: 세 세대](../chapters/01-evolution.md)를 읽으세요.
+- **"AI 버즈워드가 무슨 뜻인지 이해하고 싶다."** -- 먼저 [용어집](glossary_ko.md)를 보고, [제1장: 세 세대](../chapters/01-evolution.md)를 읽으세요.
 - **"AI 애플리케이션을 개발하고 있다."** -- 순서대로 [제2장: RAG, 롱 컨텍스트 & 지식 그래프](../chapters/02-knowledge-layer.md), [제3장: Context Engineering](../chapters/03-context-engineering.md), [제4장: Harness Engineering](../chapters/04-harness-engineering.md)을 읽으세요.
 - **"AI 도구를 더 잘 활용하고 싶다."** -- [제5장: 스킬 시스템](../chapters/05-skill-systems.md), [제6장: 에이전트 메모리](../chapters/06-agent-memory.md), [제10장: 사례 연구](../chapters/10-case-study.md)를 읽으세요.
 - **"실제 사례를 보고 싶다."** -- 바로 [제10장: 사례 연구](../chapters/10-case-study.md)로 이동하세요.
