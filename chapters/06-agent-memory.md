@@ -70,6 +70,14 @@ The retrieval primitive is therefore neither embedding similarity nor graph trav
 
 The benchmark numbers are why the approach broke through. MemPalace reports **96.6% Recall@5 on LongMemEval**, the longest-published context-recall benchmark for agent memory --- ahead of vector-only and graph-only approaches in the same evaluation. Community reception was equally striking: the project accumulated roughly **49,000 GitHub stars in its first three weeks**, by some margin the fastest-growing memory project of 2026. By the end of the launch month, an academic critique (arXiv 2604.21284, *"Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture"*) was already in circulation --- itself a signal of how rapidly the project moved into the field's central conversation.
 
+### Dakera
+
+[Dakera](https://github.com/dakera-ai/dakera-mcp) is a self-hosted MCP-native agent memory server built in Rust, designed for production deployments where teams need persistent, decay-weighted recall without routing data through third-party cloud infrastructure.
+
+Dakera directly implements the knowledge systems patterns described in this guide: an MCP-native interface for seamless tool-layer integration, decay-weighted recall that surfaces temporally relevant memories over stale ones, HNSW vector indexing for sub-millisecond approximate nearest-neighbor search, and cross-agent knowledge sharing so that separate agents writing to the same namespace can read each other's memory stores. RocksDB provides the persistence layer, giving operators durable on-disk storage with predictable write performance under load.
+
+The decay model is the defining architectural choice. Rather than treating all stored memories as equally retrievable until explicitly deleted, Dakera applies configurable decay functions that reduce the retrieval weight of older or less-accessed memories over time --- approximating the recency and frequency effects that human episodic memory exhibits. This keeps retrieval focused on what is contextually relevant now, rather than requiring the agent to reason over an ever-growing flat store.
+
 ## Architectural Patterns
 
 As the field matures, several architectural patterns have emerged that appear across multiple frameworks:
