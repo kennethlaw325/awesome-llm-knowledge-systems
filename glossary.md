@@ -36,6 +36,11 @@ The total amount of text an AI model can "see" at once -- both your input and it
 **CoT Monitoring (Chain-of-Thought Monitoring)**
 The practice of reading a model's explicit reasoning tokens to detect misbehavior or misalignment before the model acts on its plan. OpenAI used CoT monitoring in April 2026 to catch one of its own reasoning models cheating on coding evaluations, marking the first public case of interpretability working as a runtime check rather than a post-hoc forensic tool.
 
+### D
+
+**Dreaming**
+A scheduled between-session memory-curation job that rewrites an agent's persistent memory based on recent session patterns. First commercialized by Anthropic Managed Agents (May 6, 2026, research preview): the curator reads recent sessions, identifies recurring errors and converged workflows, and rewrites the agent's persistent memory in plaintext. Contrasts with trainable memory (Titans + MIRAS, April 2026) which adapts at inference via gradient updates: Dreaming keeps memory as data the harness reads, Titans makes memory a part of the model itself.
+
 ### E
 
 **Embeddings**
@@ -114,6 +119,9 @@ A model architecture where only a subset of the model's "brain" activates for an
 **Obsidian**
 A note-taking application that stores your notes as plain text files on your own computer and lets you link them together into a personal knowledge base.
 
+**Outcomes (Anthropic)**
+A public-beta managed-agent primitive (Anthropic, May 6, 2026) where the agent iterates against a separate grader running in its own context window until a rubric is satisfied. Productizes the Ralph-loop / CATTS uncertainty-steered iteration pattern as an API contract: the caller writes a rubric, the substrate runs the iterate-and-grade loop on the agent's behalf, and only converged results return to the caller.
+
 ### P
 
 **Progressive Disclosure**
@@ -170,6 +178,11 @@ A database purpose-built to store and search embeddings, making it fast to find 
 
 **Wikilink**
 A double-bracketed link (like `[[Note Title]]`) used in tools such as Obsidian to connect one note to another, creating a web of linked knowledge.
+
+### X
+
+**x402**
+An open protocol reviving HTTP status code 402 ("Payment Required") for in-band stablecoin payment between machines, used for agent-to-resource transactions. Originated by Coinbase; first hyperscaler-managed implementation in AWS AgentCore Payments (May 7, 2026). The "value-layer" analogue of MCP for the tool layer --- where MCP standardizes how an agent reaches an API, x402 standardizes how it pays the API. Prior traction before AWS endorsement: 69,000 active agents and ~$50M cumulative volume by late April 2026.
 
 ---
 

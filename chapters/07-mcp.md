@@ -20,6 +20,8 @@ Think of MCP as USB for AI. Before USB, every peripheral needed its own connecto
 
 **2026 (present).** MCP SDK downloads exceed 97 million per month across all package registries. The ecosystem includes 75+ official connectors maintained by the foundation, with thousands more community-built servers. The protocol has become the default integration layer for AI applications, much as REST became the default for web APIs.
 
+The protocol's consolidation moment arrived on **May 6, 2026** when AWS shipped the **AWS MCP Server** at general availability --- the first hyperscaler-managed remote MCP endpoint, exposing 15,000+ AWS API operations through one authenticated server, with IAM context keys for fine-grained access and a sandboxed `run_script` tool for server-side Python. The Linux Foundation donation (Dec 2025) and 97M downloads (Q1 2026) established MCP as the standard; AWS GA marks the moment the standard becomes infrastructure. The pattern echoes S3's consolidation of object storage: many self-hosted servers do not disappear, but the centre of gravity shifts to "one managed endpoint at the cloud boundary."
+
 ## Why It Won
 
 Several factors explain MCP's rapid dominance:
@@ -46,6 +48,8 @@ The breadth of MCP adoption tells the story of its dominance:
 - **LangChain** and other orchestration frameworks provide native MCP client support, making it the default tool integration method.
 
 **MCP as a synthesis dimension.** A subtler 2026 development: MCP tool selection is starting to appear as one of the *variables* in automated harness-synthesis systems rather than as a fixed substrate. The AgentFlow paper (arXiv 2604.20801, April 2026) treats agent roles, prompts, *tools*, communication topology, and coordination protocol as five dimensions of a typed-graph DSL its synthesis loop searches over. For an MCP-aware harness designer this is two-edged. MCP's standardization makes the tool dimension genuinely searchable --- a synthesis loop can swap one MCP server for another without rewriting the integration layer. But the same standardization makes MCP servers themselves selection candidates: the question is no longer "which servers do I install" but "which servers does my harness *evolve into using* under observability pressure."
+
+**MCP for tools, x402 for value.** On **May 7, 2026**, AWS announced **AgentCore Payments** in preview --- the first managed payment primitive for autonomous agents --- built with Coinbase and Stripe and built around the **x402** open protocol, which revives HTTP status code 402 ("Payment Required") for in-band stablecoin payment between machines. Coinbase's prior x402 traction --- 69,000 active agents, 165M transactions, ~$50M cumulative volume by late April 2026 --- meant the protocol had reached scale before the hyperscaler endorsement. With MCP carrying the tool-call layer and x402 carrying the value-transfer layer, agents now have a cross-protocol stack: MCP standardizes how an agent reaches an API, x402 standardizes how it pays the API. The pairing is significant for knowledge engineering because paid resources (premium data, licensed content, gated APIs) become first-class citizens of the agent's action space, with budget enforcement handled deterministically at the protocol layer rather than via LLM-judged rules.
 
 ## Connection to Knowledge Engineering
 
@@ -129,6 +133,9 @@ Industry analysts project the AI tool integration market -- of which MCP is the 
 8. Microsoft. "MCP Support in Windows and Azure." 2025. https://devblogs.microsoft.com
 9. OpenAI. "Agents SDK: MCP Integration." 2025. https://openai.com/index/new-tools-for-building-agents
 10. AgentFlow / "Synthesizing Multi-Agent Harnesses for Vulnerability Discovery." arXiv 2604.20801, April 2026. [https://arxiv.org/abs/2604.20801](https://arxiv.org/abs/2604.20801)
+11. AWS. "AWS MCP Server now generally available" (May 6, 2026). [https://aws.amazon.com/about-aws/whats-new/2026/05/aws-mcp-server/](https://aws.amazon.com/about-aws/whats-new/2026/05/aws-mcp-server/) and [https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/](https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/) --- first hyperscaler-managed remote MCP endpoint at GA; 15,000+ API operations through one authenticated server.
+12. AWS. "Agents that transact: Amazon Bedrock AgentCore now includes Payments (preview)" (May 7, 2026). [https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore-payments-preview/](https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore-payments-preview/) and [https://aws.amazon.com/blogs/machine-learning/agents-that-transact-introducing-amazon-bedrock-agentcore-payments-built-with-coinbase-and-stripe/](https://aws.amazon.com/blogs/machine-learning/agents-that-transact-introducing-amazon-bedrock-agentcore-payments-built-with-coinbase-and-stripe/) --- URL slug uses `/04/` but launch is May 7, 2026.
+13. x402 specification. [https://www.x402.org/](https://www.x402.org/) and Coinbase reference implementation [https://github.com/coinbase/x402](https://github.com/coinbase/x402).
 
 ---
 

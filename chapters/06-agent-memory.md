@@ -82,6 +82,8 @@ As the field matures, several architectural patterns have emerged that appear ac
 
 **Trainable Memory Modules.** A fourth pattern emerged in April 2026 with **Titans + MIRAS** from Google Research, which reframes memory as a *trainable neural module* rather than an external store at all. Instead of writing facts to a vector database, a graph, or a markdown file, Titans updates the weights of a dedicated memory module by gradient descent at inference time --- the model literally rewrites part of itself as it processes a document. MIRAS is the companion training framework that supplies the recipes and stability guarantees for learning-rate-at-inference without divergence. At comparable parameter counts, the Google Research blog reports Titans outperforming **Mamba-2**, **Gated DeltaNet**, and **Transformer++** on long-range recall and multi-hop reasoning. The pattern is conceptually different from the first three: Mem0, A-MEM, ByteRover, and MIRIX all keep memory as data the model reads through an interface; Titans makes memory a part of the model itself, read via the same circuitry as attention but written via the same machinery as training. For knowledge engineers it raises a new design question: when is your memory worth burning into weights, and when should it stay queryable as data?
 
+A second commercial direction emerged on **May 6, 2026** with Anthropic's **Dreaming** (research preview): instead of training memory into weights at inference time, Dreaming runs a scheduled between-session job that reads recent sessions, identifies recurring errors and converged workflows, and **rewrites the agent's persistent memory in plaintext**. Where Titans makes memory a part of the model itself (updated by gradient descent), Dreaming keeps memory as data the harness reads (updated by an LLM curation pass). The two are now the contrasting commercial templates for long-term agent memory: **trainable memory** (gradient updates at inference, model-internal) versus **curated memory** (LLM-rewritten plaintext, substrate-external). For knowledge engineers the design question sharpens --- when is the memory worth burning into weights (Titans), when is it worth keeping queryable as a store the model can read (Mem0, A-MEM, ByteRover, MemPalace), and when is it worth keeping editable as plaintext a curator pass can revise (Dreaming)?
+
 ## Evolution Phases
 
 The development of agent memory has followed a clear trajectory:
@@ -128,6 +130,8 @@ The implication for memory system design is that "where the memory lives" is now
 12. MIT Technology Review. "10 Breakthrough Technologies of 2026: Mechanistic Interpretability" (January 12, 2026). https://www.technologyreview.com/2026/01/12/1130003/mechanistic-interpretability-ai-research-models-2026-breakthrough-technologies/
 13. MemPalace GitHub Repository. https://github.com/MemPalace/mempalace --- MIT-licensed spatial-metaphor memory system, first commit April 5, 2026.
 14. "Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture," arXiv 2604.21284 (April 2026). https://arxiv.org/abs/2604.21284
+15. Anthropic. "New in Claude Managed Agents: dreaming, outcomes, and multiagent orchestration" (May 6, 2026). https://claude.com/blog/new-in-claude-managed-agents --- Dreaming as the curated-memory counterpart to trainable-memory (Titans).
+16. Simon Willison. Live blog of Code w/ Claude 2026 SF (May 6, 2026). https://simonwillison.net/2026/May/6/code-w-claude-2026/
 
 ---
 
