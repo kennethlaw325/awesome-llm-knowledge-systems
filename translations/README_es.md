@@ -2,7 +2,7 @@
 
 [English](../README.md) | [繁體中文](README-zh.md) | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | **Español**
 
-> Esta es una traduccion al espanol del [English README](../README.md). El contenido de los capitulos esta actualmente en ingles.
+> Esta es una traduccion al espanol del [English README](../README.md). 2 de 12 capitulos traducidos al espanol (Cap. 1 y Cap. 10; el resto en ingles por ahora). Calidad de traduccion v0 maquinal; PRs de refinamiento por hablantes nativos son bienvenidos. El ingles es la fuente de verdad.
 
 > Analice mas de 50 awesome lists, encuestas y guias -- ninguna de ellas conectaba los puntos. Los papers de RAG no mencionan la ingenieria de harness. Los frameworks de memoria ignoran los sistemas de habilidades. La documentacion de MCP omite la divulgacion progresiva. Esta guia dibuja el mapa completo.
 
@@ -32,10 +32,10 @@ Si eres nuevo en este tema, comienza con el [Glosario](glossary_es.md) para cono
 
 No estas seguro de por donde empezar? Elige la descripcion que mejor te describa:
 
-- **"Solo quiero entender que significan todos estos terminos de IA."** -- Empieza con el [Glosario](glossary_es.md), luego lee el [Capitulo 1: Las Tres Generaciones](../chapters/01-evolution.md).
+- **"Solo quiero entender que significan todos estos terminos de IA."** -- Empieza con el [Glosario](glossary_es.md), luego lee el [Capitulo 1: Las Tres Generaciones](chapters/es/01-evolution.md) 🌐.
 - **"Estoy desarrollando una aplicacion de IA."** -- Lee en orden el [Cap. 2: RAG, Contexto Largo y Grafos de Conocimiento](../chapters/02-knowledge-layer.md), [Cap. 3: Context Engineering](../chapters/03-context-engineering.md), [Cap. 4: Harness Engineering](../chapters/04-harness-engineering.md).
-- **"Quiero que mis herramientas de IA funcionen mejor."** -- Lee el [Cap. 5: Sistemas de Habilidades](../chapters/05-skill-systems.md), [Cap. 6: Memoria de Agentes](../chapters/06-agent-memory.md), [Cap. 10: Caso de Estudio](../chapters/10-case-study.md).
-- **"Quiero ver ejemplos reales."** -- Salta directamente al [Cap. 10: Caso de Estudio](../chapters/10-case-study.md).
+- **"Quiero que mis herramientas de IA funcionen mejor."** -- Lee el [Cap. 5: Sistemas de Habilidades](../chapters/05-skill-systems.md), [Cap. 6: Memoria de Agentes](../chapters/06-agent-memory.md), [Cap. 10: Caso de Estudio](chapters/es/10-case-study.md) 🌐.
+- **"Quiero ver ejemplos reales."** -- Salta directamente al [Cap. 10: Caso de Estudio](chapters/es/10-case-study.md) 🌐.
 - **"Trabajo con herramientas de IA chinas."** -- Comienza con el [Cap. 9: El Ecosistema de IA Chino](../chapters/09-china-ecosystem.md).
 - **"Quiero el panorama completo."** -- Lee de principio a fin, empezando por el Capitulo 1.
 
@@ -189,7 +189,7 @@ graph LR
 
 | # | Capitulo | Descripcion |
 |---|----------|-------------|
-| 01 | [Las Tres Generaciones](../chapters/01-evolution.md) | De la ingenieria de prompts a la ingenieria de contexto y la ingenieria de harness |
+| 01 | [Las Tres Generaciones](chapters/es/01-evolution.md) 🌐 | De la ingenieria de prompts a la ingenieria de contexto y la ingenieria de harness |
 | 02 | [RAG, Contexto Largo y Grafos de Conocimiento](../chapters/02-knowledge-layer.md) | La capa de recuperacion de conocimiento -- que funciona, que no, y por que gana lo hibrido |
 | 03 | [Context Engineering (Ingenieria de Contexto)](../chapters/03-context-engineering.md) | El arte de llenar la ventana de contexto -- KV-cache, la proporcion 100:1, ensamblaje dinamico |
 | 04 | [Harness Engineering (Ingenieria de Harness)](../chapters/04-harness-engineering.md) | Construyendo el SO alrededor del modelo -- guias, sensores y la brecha de rendimiento de 6x |
@@ -198,7 +198,7 @@ graph LR
 | 07 | [MCP: El Estandar que Gano](../chapters/07-mcp.md) | Model Context Protocol -- del lanzamiento a mas de 97 millones de descargas mensuales |
 | 08 | [Gestion de Conocimiento AI-Nativa](../chapters/08-tools-landscape.md) | Panorama de herramientas -- Notion AI, Obsidian, Mem y la brecha AI-nativa |
 | 09 | [El Ecosistema de IA Chino](../chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- un universo paralelo de innovacion |
-| 10 | [Caso de Estudio: Un Harness de Conocimiento del Mundo Real](../chapters/10-case-study.md) | Como un desarrollador construyo un harness completo con 65% de reduccion de tokens |
+| 10 | [Caso de Estudio: Un Harness de Conocimiento del Mundo Real](chapters/es/10-case-study.md) 🌐 | Como un desarrollador construyo un harness completo con 65% de reduccion de tokens |
 | 11 | [Linea de Tiempo](../chapters/11-timeline.md) | Momentos clave en la ingenieria de conocimiento LLM, 2022-2026 |
 | 12 | [Modelos Locales para la Ingenieria de Conocimiento](../chapters/12-local-models.md) | Ejecuta tu harness de conocimiento localmente — embedding, RAG, compilacion y el endgame de fine-tuning |
 
