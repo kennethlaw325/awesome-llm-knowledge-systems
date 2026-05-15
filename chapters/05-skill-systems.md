@@ -136,6 +136,8 @@ Two details make the Google spec notable beyond the numbers:
 
 The practical effect is that skill libraries are becoming portable across providers, and "how many tokens does your baseline agent context consume" has become a first-class metric that vendors compete on.
 
+The convergence widened again on **May 6, 2026** when AWS shipped its general-availability **AWS MCP Server** and adopted **"Skills over SOPs"** as the canonical agent entry point --- the first hyperscaler to ship Skills (the Anthropic / OpenAI / Google open standard from December 2025) as production agent guidance. With four vendors now aligned --- Anthropic, OpenAI, Google, and AWS --- Skills crosses the threshold from "the convention three frontier labs use" to "the way agent capabilities are described across the cloud stack." For practitioners, the practical effect is that a skill authored against the agentskills.io spec is now portable across the platforms where the majority of production agents run.
+
 ---
 
 ## Sources
@@ -150,3 +152,5 @@ The practical effect is that skill libraries are becoming portable across provid
 - **awesome-claude-code.** GitHub collection. Claude Code-specific skills and configurations.
 - **OpenAI.** "Function Calling Best Practices." 2025. Empirical data on tool count vs. accuracy tradeoffs.
 - **Griciūnas, Aurimas.** "State of Context Engineering in 2026." SwirlAI Newsletter, March 2026. [https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026](https://www.newsletter.swirlai.com/p/state-of-context-engineering-in-2026) --- Progressive disclosure / compression / sliding window patterns; meta-tool pattern. See also "Breaking Down Context Engineering": [https://www.newsletter.swirlai.com/p/breaking-down-context-engineering](https://www.newsletter.swirlai.com/p/breaking-down-context-engineering)
+- **AWS.** "AWS MCP Server now generally available" (May 6, 2026): [https://aws.amazon.com/about-aws/whats-new/2026/05/aws-mcp-server/](https://aws.amazon.com/about-aws/whats-new/2026/05/aws-mcp-server/)
+- **AWS News Blog.** "The AWS MCP Server is now generally available" (May 6, 2026): [https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/](https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/) --- "Skills over SOPs" adoption makes AWS the first hyperscaler to ship Skills as production agent guidance.
