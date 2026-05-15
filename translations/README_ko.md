@@ -2,7 +2,7 @@
 
 [English](../README.md) | [繁體中文](README-zh.md) | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | **한국어** | [Español](README_es.md)
 
-> 이 문서는 [English README](../README.md)의 한국어 번역입니다. 각 장의 내용은 현재 영어로 되어 있습니다.
+> 이 문서는 [English README](../README.md)의 한국어 번역입니다. 12개 장 모두 한국어로 번역 완료 (v0 기계 번역 품질; 네이티브 화자의 리파인먼트 PR을 환영합니다. 사실의 기준은 영어판입니다).
 
 > 50개 이상의 awesome list, 설문조사, 가이드를 분석했지만, 모든 것을 연결한 것은 하나도 없었습니다. RAG 논문은 하네스 엔지니어링을 언급하지 않습니다. 메모리 프레임워크는 스킬 시스템을 무시합니다. MCP 문서는 점진적 공개를 건너뜁니다. 이 가이드가 완전한 지도를 그립니다.
 
@@ -180,17 +180,17 @@ graph LR
 | # | 장 | 설명 |
 |---|---|------|
 | 01 | [세 세대](chapters/ko/01-evolution.md) 🌐 | 프롬프트 엔지니어링에서 컨텍스트 엔지니어링, 하네스 엔지니어링으로 |
-| 02 | [RAG, 롱 컨텍스트 & 지식 그래프](../chapters/02-knowledge-layer.md) | 지식 검색 계층 -- 무엇이 효과적이고, 무엇이 아닌지, 왜 하이브리드가 이기는지 |
-| 03 | [Context Engineering(컨텍스트 공학)](../chapters/03-context-engineering.md) | 컨텍스트 윈도우 채우기의 기술 -- KV-cache, 100:1 비율, 동적 조립 |
-| 04 | [Harness Engineering(하네스 공학)](../chapters/04-harness-engineering.md) | 모델 주변에 OS 구축 -- 가이드, 센서, 6배 성능 격차 |
-| 05 | [스킬 시스템 & 스킬 그래프](../chapters/05-skill-systems.md) | 플랫 파일에서 순회 가능한 그래프로 -- 점진적 공개의 실천 |
-| 06 | [에이전트 메모리](../chapters/06-agent-memory.md) | 빠진 계층 -- 에피소드 기억, 의미 기억, 절차 기억 아키텍처 |
-| 07 | [MCP: 승리한 표준](../chapters/07-mcp.md) | Model Context Protocol -- 출시부터 월간 9,700만 이상 다운로드까지 |
-| 08 | [AI 네이티브 지식 관리](../chapters/08-tools-landscape.md) | 도구 전경 -- Notion AI, Obsidian, Mem, AI 네이티브 격차 |
-| 09 | [중국 AI 생태계](../chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- 혁신의 평행 우주 |
+| 02 | [RAG, 롱 컨텍스트 & 지식 그래프](chapters/ko/02-knowledge-layer.md) 🌐 | 지식 검색 계층 -- 무엇이 효과적이고, 무엇이 아닌지, 왜 하이브리드가 이기는지 |
+| 03 | [Context Engineering(컨텍스트 공학)](chapters/ko/03-context-engineering.md) 🌐 | 컨텍스트 윈도우 채우기의 기술 -- KV-cache, 100:1 비율, 동적 조립 |
+| 04 | [Harness Engineering(하네스 공학)](chapters/ko/04-harness-engineering.md) 🌐 | 모델 주변에 OS 구축 -- 가이드, 센서, 6배 성능 격차 |
+| 05 | [스킬 시스템 & 스킬 그래프](chapters/ko/05-skill-systems.md) 🌐 | 플랫 파일에서 순회 가능한 그래프로 -- 점진적 공개의 실천 |
+| 06 | [에이전트 메모리](chapters/ko/06-agent-memory.md) 🌐 | 빠진 계층 -- 에피소드 기억, 의미 기억, 절차 기억 아키텍처 |
+| 07 | [MCP: 승리한 표준](chapters/ko/07-mcp.md) 🌐 | Model Context Protocol -- 출시부터 월간 9,700만 이상 다운로드까지 |
+| 08 | [AI 네이티브 지식 관리](chapters/ko/08-tools-landscape.md) 🌐 | 도구 전경 -- Notion AI, Obsidian, Mem, AI 네이티브 격차 |
+| 09 | [중국 AI 생태계](chapters/ko/09-china-ecosystem.md) 🌐 | Dify, RAGFlow, DeepSeek, Kimi -- 혁신의 평행 우주 |
 | 10 | [사례 연구: 실제 세계의 지식 하네스](chapters/ko/10-case-study.md) 🌐 | 한 개발자가 완전한 하네스를 구축하여 65% 토큰 절감을 달성한 방법 |
-| 11 | [타임라인](../chapters/11-timeline.md) | LLM 지식 공학의 핵심 순간, 2022-2026 |
-| 12 | [로컬 모델과 지식 공학](../chapters/12-local-models.md) | 자신의 하드웨어에서 지식 하네스를 실행 — Embedding, RAG, 컴파일, 파인튜닝의 엔드게임 |
+| 11 | [타임라인](chapters/ko/11-timeline.md) 🌐 | LLM 지식 공학의 핵심 순간, 2022-2026 |
+| 12 | [로컬 모델과 지식 공학](chapters/ko/12-local-models.md) 🌐 | 자신의 하드웨어에서 지식 하네스를 실행 — Embedding, RAG, 컴파일, 파인튜닝의 엔드게임 |
 
 ---
 
