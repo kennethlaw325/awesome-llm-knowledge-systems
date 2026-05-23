@@ -1,6 +1,8 @@
 ## Glossary
 
 > Plain-language definitions for every technical term used in this guide. No PhD required.
+>
+> **Even faster orientation (one-screen primer):** [@sairahul1's "20 AI Concepts You Must Understand in 2026"](https://x.com/sairahul1/status/2057740928908161461) (May 15, 2026) catalogs the field in five clusters — *how AI works*, *usage*, and *beyond chat* — useful as a pre-glossary mental anchor before chapter dives. This guide's value is connecting those concepts into a working system; the catalog gives you the vocabulary.
 
 ### A
 
