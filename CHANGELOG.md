@@ -8,6 +8,10 @@ The guide is a living document — chapter and timeline updates ship continuousl
 
 ## May 2026
 
+### 2026-05-24 — Late-May Ch11 timeline update
+
+- **PR #(pending)** — Two new May 2026 timeline entries: **May 19 Code with Claude London** (self-hosted sandboxes public beta + MCP tunnels research preview, splitting the Managed Agents substrate along the perimeter line) and **May 21 MCP 2026-07-28 Release Candidate locked** (stateless protocol core, Extensions framework, MCP Apps, Tasks-as-extension, authorization hardening, formal deprecation policy). Timeline-only update; chapter-body integrations across Ch04 §4.9, Ch07, and glossary terms (MCP Apps, stateless MCP, self-hosted sandboxes) deferred to a follow-up PR pending Kenneth's keep/soften/drop call on the entries.
+
 ### 2026-05-06 — Translation sync + 2026 attribution audit
 
 - **PR #16** — Sync 5 translation READMEs (繁體中文 / 简体中文 / 日本語 / 한국어 / Español) to current English content. Adds Use Cases section, The Lifecycle section, and Chapter 12 row to each translation's Table of Contents. English README's TL;DR Harness Engineering bullet aligned with the verified Böckeler / OpenAI Codex attribution.
