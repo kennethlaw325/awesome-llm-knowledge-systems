@@ -99,6 +99,12 @@ The ability of newer AI models to process very large amounts of text at once -- 
 **MCP (Model Context Protocol)**
 An open standard that lets AI assistants connect to external tools and data sources through a universal plug-and-play interface, like USB for AI applications.
 
+**MCP Apps**
+A 2026-07-28 MCP Release Candidate primitive (locked May 21, 2026) that lets servers ship interactive HTML interfaces alongside tool calls. The host renders the interface in a sandboxed iframe; UI templates are declared upfront for security review and caching. MCP Apps is the first MCP-native deliverable that is not a tool call -- a knowledge-base server can ship a search box, a research server can ship a result-comparison view, a procurement server can ship a confirm-purchase modal, all without bolting on a separate UI spec.
+
+**MCP Tunnel**
+A private-network deployment pattern shipped by Anthropic Managed Agents in research preview on May 19, 2026 (Code with Claude London). A lightweight gateway deployed inside a customer's private network makes a single outbound connection to Anthropic, after which agents can call internal databases, APIs, knowledge bases, and ticketing systems as MCP tools -- with no inbound firewall rules, no public endpoints, and no VPN. The symmetric counterpart to self-hosted sandboxes: where self-hosted sandboxes keep tool *execution* inside the customer perimeter, MCP tunnels keep tool *reach* inside the perimeter.
+
 **Managed Agents**
 A hosted-runtime model in which the agent harness's substrate -- sandbox, session state, scoped tool execution, tracing -- is operated by the model vendor rather than the developer. Anthropic shipped the first commercial example in public beta on April 8, 2026 ([platform.claude.com/docs/en/managed-agents/overview](https://platform.claude.com/docs/en/managed-agents/overview)). Per SiliconANGLE launch coverage, pricing is standard API token rates plus a per-agent-runtime-hour fee for the substrate (the per-hour figure is not in primary Anthropic documentation). Distinct from cloud-native triggering surfaces (e.g. Claude Code Routines), which sit on top of a Managed Agents-style substrate but answer a different question ("what makes the loop start").
 
@@ -140,6 +146,9 @@ Anthropic's April 2026 cloud-native harness primitive for Claude Code, in which 
 
 ### S
 
+**Self-Hosted Sandbox**
+A Managed Agents deployment shape shipped by Anthropic in public beta on May 19, 2026 (Code with Claude London). The agent loop -- orchestration, context management, error recovery -- stays on Anthropic's infrastructure, while tool *execution* moves to the customer's own environment or a managed sandbox provider (Cloudflare, Daytona, Modal, Vercel are first-party supported). Reframes Managed Agents from "fully Anthropic-hosted" to "Anthropic-orchestrated, customer-perimeter-respecting" -- the harness engineer picks layer by layer which pieces of the loop live where, instead of choosing between fully self-hosted and fully managed.
+
 **Self-RAG**
 A version of RAG where the AI evaluates its own retrieved information and generated answer for quality, deciding whether to retrieve more or revise its response before giving you the final result.
 
@@ -148,6 +157,9 @@ A billing model that meters the orchestrator seat -- the substrate on which an a
 
 **Skill (AI Agent Skill)**
 A reusable, packaged capability that an AI agent can invoke -- like a recipe it follows for a specific task such as "review this PR" or "run a daily review."
+
+**Stateless MCP**
+The architectural shift introduced in the MCP 2026-07-28 Release Candidate (locked May 21, 2026): the protocol core no longer uses an `initialize` / `initialized` handshake or `Mcp-Session-Id` headers. Client metadata travels in `_meta` on every request, so any MCP request can land on any server instance -- no sticky routing, no shared session store. Resolves the horizontal-scaling friction that surfaced with Streamable HTTP adoption in 2025. The durable-state primitives that motivated the *stateful* turn (SEP-1686 Tasks, AgentCore bidirectional runtime) are re-implemented on top of the stateless core, as extensions, rather than baked into every request. Stateless core + stateful work on top, not stateful all the way down.
 
 **Skill Graph**
 A map of all the skills an AI agent has available, including how they relate to each other and when each one should be triggered.
