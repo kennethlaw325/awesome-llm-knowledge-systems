@@ -8,9 +8,9 @@ The guide is a living document — chapter and timeline updates ship continuousl
 
 ## May 2026
 
-### 2026-05-24 — Late-May Ch11 timeline update
+### 2026-05-24 — Late-May 2026 update
 
-- **PR #(pending)** — Two new May 2026 timeline entries: **May 19 Code with Claude London** (self-hosted sandboxes public beta + MCP tunnels research preview, splitting the Managed Agents substrate along the perimeter line) and **May 21 MCP 2026-07-28 Release Candidate locked** (stateless protocol core, Extensions framework, MCP Apps, Tasks-as-extension, authorization hardening, formal deprecation policy). Timeline-only update; chapter-body integrations across Ch04 §4.9, Ch07, and glossary terms (MCP Apps, stateless MCP, self-hosted sandboxes) deferred to a follow-up PR pending Kenneth's keep/soften/drop call on the entries.
+- **PR #42** — Two new May 2026 timeline entries: **May 19 Code with Claude London** (self-hosted sandboxes public beta + MCP tunnels research preview, splitting the Managed Agents substrate along the perimeter line) and **May 21 MCP 2026-07-28 Release Candidate locked** (stateless protocol core, MCP Apps as first non-tool-call MCP deliverable, Tasks moved to extension status, plus Extensions framework / OAuth 2.0 hardening / formal deprecation policy). Per-chapter integrations: Ch04 §4.9 (perimeter-split substrate as the next move after the cloud-native triangle), Ch07 (new "The 2026-07-28 Release Candidate" section closing the stateless-core / stateful-extensions arc). Glossary additions: MCP Apps, MCP Tunnel, Self-Hosted Sandbox, Stateless MCP. **Editorial note:** Entry 2 (May 21 MCP RC) softened from a 5-primitive enumeration in the timeline body to a 3-headline framing (stateless core / MCP Apps / Tasks-as-extension), with the remaining structural changes folded into a single closing list-form sentence; per-primitive depth lives in the Ch07 expansion instead.
 
 ### 2026-05-06 — Translation sync + 2026 attribution audit
 
