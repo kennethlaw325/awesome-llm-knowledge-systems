@@ -124,6 +124,23 @@ The April-2026 "stateful MCP" story turned out to be one step in a longer arc, n
 
 **Implications for knowledge engineering.** The RC is structurally a *contraction* (smaller core, more in extensions) and a *capability expansion* (UI surface added) at the same time. For knowledge harness designers, two effects are immediate. First, **horizontal scaling stops being a deployment-pattern problem and becomes a deployment-config problem** --- the protocol no longer fights the load balancer. Second, **the surface between "tool" and "interface" begins to blur**: a knowledge server can answer a query as a tool call, return a result handle as a task, and present a follow-up disambiguation question as an MCP App, all inside the same conversation. The protocol is no longer just plumbing for stateless RPC; it is becoming the **substrate for stateful, multi-surface agent interactions** --- with the discipline to keep its own core stateless even as it carries stateful work on top.
 
+## 2026-06-01: Security Considerations Move to the IETF
+
+The RC hardened *authorization* --- six SEPs covering mandatory `iss` validation and OAuth 2.0 / OIDC alignment. What it did not do, and explicitly does not do, is define how a server should behave once a request is authorized. On **June 1, 2026**, that gap got its own document: the first **IETF Internet-Draft** scoped to MCP security, `draft-mohiuddin-mcp-security-considerations-00` (Anas Mohiuddin Syed). Its opening sentence is the thesis --- *"The MCP specification does not define normative security requirements."*
+
+The draft catalogs six vulnerability classes that have already been publicly reported in shipping MCP servers, and the list reads like a tour of everything the protocol layer leaves to the implementer:
+
+- **SSRF** --- a server fetches a URL the model supplied without validating the resolved IP, and the agent becomes a proxy into the cloud metadata endpoint or the private network.
+- **Excessive tool permissions** --- a server mounts more of the filesystem, or more of the API surface, than any single tool needs.
+- **Prompt-injection surface exposure** --- instructions smuggled inside tool *output* (not input) hijack the model that reads them.
+- **MCP lifecycle bypass** --- tool calls processed before the initialization handshake completes, side-stepping whatever the handshake was supposed to gate.
+- **Information leakage** --- error messages and tool responses that return more internal state than the caller should see.
+- **Authentication-enforcement gaps** --- servers running on localhost with no auth at all, on the assumption that "local" means "trusted."
+
+For each, the draft proposes a concrete, implementable mitigation: validate resolved IPs at connection time (block RFC 1918, loopback, link-local), enforce OS-level egress restrictions, disable HTTP redirects by default and re-validate every redirect target, scope filesystem access minimally, complete the handshake before processing any tool call, and emit structured logs of every tool invocation. It pairs the analysis with an open-source detection tool, **mcp-safeguard**, pitched as a CI-pipeline check (`scan --target ./my-mcp-server/`) so the audit runs on every commit rather than once at review.
+
+The structural news is not the specific findings --- most are familiar web-security failure modes re-skinned for an agent context. It is *where the document lives*. MCP security is moving out of vendor blog posts and into independent, standards-track scrutiny. A protocol gets an IETF security-considerations draft when it is load-bearing enough that someone outside the maintaining organization decides the gaps need an addressable, citable specification. For knowledge-harness designers wiring MCP servers into production, the six classes double as a pre-deployment checklist; for the protocol, the draft is a maturity marker --- the RFC the spec deliberately left blank is now being written.
+
 ## Market Context
 
 Industry analysts project the AI tool integration market -- of which MCP is the dominant protocol -- at $1.8 billion for 2025, with significant growth expected as enterprise adoption accelerates. This figure encompasses MCP infrastructure, server development, gateway services, and related tooling.
@@ -152,6 +169,7 @@ Industry analysts project the AI tool integration market -- of which MCP is the 
 13. x402 specification. [https://www.x402.org/](https://www.x402.org/) and Coinbase reference implementation [https://github.com/coinbase/x402](https://github.com/coinbase/x402).
 14. Model Context Protocol blog. "The 2026-07-28 MCP Specification Release Candidate" (locked May 21, 2026). [https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/) --- stateless protocol core, Extensions framework, MCP Apps, Tasks moved to extension status, OAuth 2.0 / OIDC authorization hardening (six SEPs), formal deprecation policy. Final spec ships July 28, 2026.
 15. The New Stack. "MCP's biggest growing pains for production use will soon be solved" (May 2026). [https://thenewstack.io/model-context-protocol-roadmap-2026/](https://thenewstack.io/model-context-protocol-roadmap-2026/) --- independent secondary coverage of the 2026-07-28 RC priorities.
+16. IETF Internet-Draft. "Security Considerations for Model Context Protocol (MCP) Implementations in AI Agent Systems," `draft-mohiuddin-mcp-security-considerations-00` (June 2026; expires December 3, 2026). [https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/) --- author Anas Mohiuddin Syed; six vulnerability classes plus the open-source `mcp-safeguard` detection tool. Companion write-up: [https://dev.to/syedanas01/i-built-the-first-security-scanner-for-mcp-servers-heres-what-i-found-2np2](https://dev.to/syedanas01/i-built-the-first-security-scanner-for-mcp-servers-heres-what-i-found-2np2) (linked GitHub repo not resolvable at draft time --- flagged for verification).
 
 ---
 

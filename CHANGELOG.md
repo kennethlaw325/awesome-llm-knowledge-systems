@@ -6,6 +6,14 @@ The guide is a living document — chapter and timeline updates ship continuousl
 
 ---
 
+## June 2026
+
+### 2026-06-03 — Early-June 2026 update
+
+- **PR (early-June wave)** — Two new June 2026 timeline entries: **June 1 IETF MCP security Internet-Draft** (`draft-mohiuddin-mcp-security-considerations-00` by Anas Mohiuddin Syed — first standards-track document scoped to MCP security; six vulnerability classes with mitigations plus the open-source `mcp-safeguard` scanner) and **June 2 Microsoft Build: MAI-Thinking-1 + MAI-Code-1-Flash** (first in-house Microsoft reasoning model trained without OpenAI data; 5B coding model trained directly against production GitHub Copilot harnesses). Per-chapter integrations: Ch07 (new "2026-06-01: Security Considerations Move to the IETF" section closing the post-RC authorization-vs-operational-security gap), Ch04 §4.5 ("the symmetric move: training the model for the harness" — harness-native training as the inverse of harness synthesis). Glossary addition: **Harness-Native Training**. README "What's new" callout rolled forward to June 2026. **Caveats:** the IETF draft is firmly dated to month (June 2026; I-D expires December 3, 2026) — the day (June 1) is derived from the 185-day I-D expiry rule; the `mcp-safeguard` GitHub repository named in secondary coverage was not resolvable via the GitHub API at draft time (the IETF I-D itself, which names the tool, is the primary source); Microsoft's `microsoft.ai` and CNBC URLs may 403 to automated crawlers, so GitHub Changelog (June 2, 2026) is the load-bearing dated primary for MAI-Code-1-Flash.
+
+---
+
 ## May 2026
 
 ### 2026-05-24 — Late-May 2026 update
