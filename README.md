@@ -5,9 +5,14 @@
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
 <details>
-<summary><b>What's new in May 2026</b> (click to expand)</summary>
+<summary><b>What's new in June 2026</b> (click to expand)</summary>
 
-Late-April through late-May 2026 added nine structurally significant timeline entries plus a full attribution-audit pass. If you visited before May 24, here is what shifted (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+Early June 2026 added two timeline entries on top of the late-May wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+
+- **June 2 Microsoft Build — MAI-Thinking-1 + MAI-Code-1-Flash** — Microsoft ships its first in-house reasoning model (reported trained without OpenAI data) plus a 5B coding model **trained directly against the production GitHub Copilot harnesses**. The framework beat: harness-native training is the *symmetric inverse* of harness synthesis — instead of evolving the harness for a fixed model, you shape the model to fit a fixed harness ([Ch04 §4.5](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
+- **June 1 IETF MCP security I-D** ([draft-mohiuddin-mcp-security-considerations-00](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/)) — the first standards-track document scoped to MCP security, opening on *"The MCP specification does not define normative security requirements."* Catalogs six vulnerability classes (SSRF, excessive tool permissions, prompt-injection surface, lifecycle bypass, information leakage, auth-enforcement gaps) with mitigations + the open-source `mcp-safeguard` scanner; MCP security maturation moves out of the vendor spec into independent scrutiny ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md))
+
+*From the late-May wave (full detail in [CHANGELOG.md](CHANGELOG.md)):*
 
 - **April 7 Mythos breach addendum** — the Glasswing distribution model was breached within ~14 hours of public announcement, foreshadowing the offensive-side cyber thesis ([Ch11](chapters/11-timeline.md))
 - **April 8 Anthropic Managed Agents** — first frontier-vendor primitive that meters the orchestrator seat itself, separately from inference ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)

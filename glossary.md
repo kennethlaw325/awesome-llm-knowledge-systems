@@ -70,6 +70,9 @@ Designing the surrounding system -- tools, memory, rules, and workflows -- that 
 **Harness Synthesis**
 The class of techniques in which an outer-loop optimizer (search-based, observability-based, or otherwise) automatically modifies a harness -- its tools, prompts, role decomposition, communication topology, and coordination protocol -- based on runtime signals from the target task. See **AHE** (arXiv 2604.25850) and **AgentFlow** (arXiv 2604.20801) for the two reference April 2026 implementations. Distinct from *meta-harness* (a 2025 / early 2026 framing that treated the harness as a one-shot optimization target rather than a continuously evolving artifact).
 
+**Harness-Native Training**
+Training a model directly against a specific production agent harness so it learns to operate that harness's tools and workflows --- not just to produce correct output in isolation. The reference example is Microsoft's **MAI-Code-1-Flash** (Build, June 2, 2026), a 5B-parameter coding model trained against the GitHub Copilot harnesses used in production; Microsoft reports ~60% fewer tokens on hard tasks and a price-to-performance edge over Claude Haiku 4.5. Harness-native training is the **symmetric inverse of harness synthesis**: where harness synthesis (see **Harness Synthesis**, **AHE**) holds the model fixed and evolves the harness, harness-native training holds the harness fixed and shapes the model to fit it. The two together make model-and-harness a co-design problem optimizable from both ends. Trade-off: a model tuned to one vendor's harness is most valuable inside that harness, which sharpens the *harness-as-moat* dynamic.
+
 ### I
 
 **Inference**
