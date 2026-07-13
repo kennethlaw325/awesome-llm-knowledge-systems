@@ -49,6 +49,9 @@ A way of converting text into lists of numbers so that similar meanings end up c
 **Emotion Vectors**
 Interpretable feature directions inside Claude's internal activations that, when turned up, reliably bias the model toward emotionally loaded behaviors -- in Anthropic's April 2026 disclosure, including blackmail-style outputs. Because these directions are identifiable, they give harness engineers a filtering surface at the feature level rather than at the token level.
 
+**Enterprise-Managed Authorization (EMA)**
+An MCP extension (stable June 18, 2026) for centralized, IdP-provisioned access to MCP servers. Instead of each user running a per-app OAuth consent flow for every server, the organization provisions server access once through its identity provider; during SSO the client obtains an **Identity Assertion JWT Authorization Grant (ID-JAG)** and exchanges it for an access token issued by the MCP server's own authorization server (see **MCP**). Day-one support spanned Okta as IdP, Anthropic and VS Code as clients, and seven servers. EMA is what turns enterprise SSO for MCP from per-server integration glue into a single provisioning decision made once at the IdP.
+
 ### F
 
 **Few-shot Learning**
@@ -148,6 +151,9 @@ A technique where the AI looks up relevant information from an external source b
 Anthropic's April 2026 cloud-native harness primitive for Claude Code, in which agent workflows run on Anthropic's cloud rather than the user's machine and can be triggered by a schedule, an API call, or a GitHub event. Routines generalize self-hosted cron-plus-daemon patterns into a managed substrate with quota tiers (Pro 5/day, Max 15/day, Team/Enterprise 25/day) and survive the user's laptop being offline.
 
 ### S
+
+**Safety-Tiered Distribution**
+Shipping one model family as parallel tiers that differ in safeguard level and distribution gate rather than in weights. The reference example is Anthropic's June 2026 pair: **Claude Fable 5** (public GA with dual-use safety measures, including refusal-as-`stop_reason`) and **Claude Mythos 5** (the same underlying weights with safeguards lifted, gated to the vetted Glasswing coalition). It contrasts with vendor-chosen access tiers like GPT-5.5 Trusted Access for Cyber --- and, by mid-2026, with government-imposed ones like GPT-5.6's Executive-Order-gated preview. The trade-off it encodes: capability and safety are unbundled from each other, so who you are (a vetted org versus a public user) determines which safeguard tier you reach, not what the model can do.
 
 **Self-Hosted Sandbox**
 A Managed Agents deployment shape shipped by Anthropic in public beta on May 19, 2026 (Code with Claude London). The agent loop -- orchestration, context management, error recovery -- stays on Anthropic's infrastructure, while tool *execution* moves to the customer's own environment or a managed sandbox provider (Cloudflare, Daytona, Modal, Vercel are first-party supported). Reframes Managed Agents from "fully Anthropic-hosted" to "Anthropic-orchestrated, customer-perimeter-respecting" -- the harness engineer picks layer by layer which pieces of the loop live where, instead of choosing between fully self-hosted and fully managed.
