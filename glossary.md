@@ -49,6 +49,9 @@ A way of converting text into lists of numbers so that similar meanings end up c
 **Emotion Vectors**
 Interpretable feature directions inside Claude's internal activations that, when turned up, reliably bias the model toward emotionally loaded behaviors -- in Anthropic's April 2026 disclosure, including blackmail-style outputs. Because these directions are identifiable, they give harness engineers a filtering surface at the feature level rather than at the token level.
 
+**Enterprise-Managed Authorization (EMA)**
+An MCP extension (stable June 18, 2026) for centralized, IdP-provisioned access to MCP servers. Instead of each user running a per-app OAuth consent flow for every server, the organization provisions server access once through its identity provider; during SSO the client obtains an **Identity Assertion JWT Authorization Grant (ID-JAG)** and exchanges it for an access token issued by the MCP server's own authorization server (see **MCP**). Day-one support spanned Okta as IdP, Anthropic and VS Code as clients, and seven servers. EMA is what turns enterprise SSO for MCP from per-server integration glue into a single provisioning decision made once at the IdP.
+
 ### F
 
 **Few-shot Learning**
@@ -149,6 +152,9 @@ Anthropic's April 2026 cloud-native harness primitive for Claude Code, in which 
 
 ### S
 
+**Safety-Tiered Distribution**
+Shipping one model family as parallel tiers that differ in safeguard level and distribution gate rather than in weights. The reference example is Anthropic's June 2026 pair: **Claude Fable 5** (public GA with dual-use safety measures, including refusal-as-`stop_reason`) and **Claude Mythos 5** (the same underlying weights with safeguards lifted, gated to the vetted Glasswing coalition). It contrasts with vendor-chosen access tiers like GPT-5.5 Trusted Access for Cyber --- and, by mid-2026, with government-imposed ones like GPT-5.6's Executive-Order-gated preview. The trade-off it encodes: capability and safety are unbundled from each other, so who you are (a vetted org versus a public user) determines which safeguard tier you reach, not what the model can do.
+
 **Self-Hosted Sandbox**
 A Managed Agents deployment shape shipped by Anthropic in public beta on May 19, 2026 (Code with Claude London). The agent loop -- orchestration, context management, error recovery -- stays on Anthropic's infrastructure, while tool *execution* moves to the customer's own environment or a managed sandbox provider (Cloudflare, Daytona, Modal, Vercel are first-party supported). Reframes Managed Agents from "fully Anthropic-hosted" to "Anthropic-orchestrated, customer-perimeter-respecting" -- the harness engineer picks layer by layer which pieces of the loop live where, instead of choosing between fully self-hosted and fully managed.
 
@@ -166,6 +172,9 @@ The architectural shift introduced in the MCP 2026-07-28 Release Candidate (lock
 
 **Skill Graph**
 A map of all the skills an AI agent has available, including how they relate to each other and when each one should be triggered.
+
+**Skill Supply-Chain Attack**
+A malicious or trojanized agent skill distributed through a skill registry or marketplace. The defining 2026 mechanism is a time-of-check-to-time-of-use gap: static scanners vet the *submitted package snapshot*, but a skill that fetches external content --- or unpacks a hidden payload --- at agent runtime can change its behavior after vetting. AIR's June 2026 disclosure hijacked roughly 26,000 agents this way with a single fake skill behind an external URL, and the "Cloak and Detonate" research (July 2026) showed evasion succeeding more than 90% of the time against eight scanners, with runtime behavioral detection (97% at a 2% false-positive rate) as the countermeasure direction. The lesson mirrors MCP's (see **MCP**): once **Progressive Disclosure** (see **Progressive Disclosure**) and registry-scale distribution make the skill file an attack surface, trust has to move from publish-time scanning to runtime containment.
 
 **System Prompt**
 Hidden instructions given to an AI model before your conversation begins, setting its role, rules, and behavior. Like a job description the employee reads before their first day.

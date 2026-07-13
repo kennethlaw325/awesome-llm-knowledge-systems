@@ -113,6 +113,16 @@ The Model Context Protocol works with local models through Ollama's OpenAI-compa
 
 ---
 
+## 2026: Local Models Get an OS-Native API and Vendor QAT
+
+Two mid-2026 releases changed the local-inference picture this chapter describes.
+
+**Apple opens Foundation Models to any provider (WWDC26, June 8).** Apple's Foundation Models framework --- the same Swift API that powers Apple Intelligence, with streaming, tool calling, and `@Generable` structured output --- shipped a public **`LanguageModel` / `LanguageModelExecutor` protocol**, and Apple ships a reference **`MLXLanguageModel`** backend that loads any mlx-community model from Hugging Face at runtime and caches it on disk. For local knowledge engineering this matters: local open-source models become a *first-class, OS-native backend* rather than a third-party integration. A macOS or iOS knowledge app can now target one Swift API and swap between Apple's on-device model and a downloaded open-weight model without rewriting its inference layer (Anthropic and Google are shipping conforming Swift packages). The Ollama-as-universal-backend pattern above gains an Apple-native sibling.
+
+**Gemma 4 QAT (June 5).** Google published **quantization-aware training checkpoints** for all five Gemma 4 sizes (E2B, E4B, 12B, 26B-A4B, and 31B), simulating 4-bit precision *during* training so the quantized weights recover most of the BF16 quality rather than losing it at post-hoc compression. The release shipped **day-one artifacts across llama.cpp (GGUF), Ollama, LM Studio, and MLX**, with vLLM support day-one for E2B, E4B, 12B, and 31B --- the 26B-A4B MoE was excluded from the vLLM w4a16-ct QAT format because its 704-wide expert dimension loses too much quality at 4-bit. On memory: Google's own blog publishes no percentage figure; a third-party analysis estimates roughly **72% VRAM reduction versus BF16**, while Google's own stated figure is only that E2B drops under 1GB via a mobile format. The beat worth noting is the *release pattern itself*: vendor-native QAT plus simultaneous multi-runtime day-one distribution is becoming the default shape of a serious open-weight launch, which lowers the friction of the "run it locally" decision this chapter argues for.
+
+---
+
 ## What This Chapter Does Not Cover
 
 This chapter intentionally omits:
@@ -148,6 +158,8 @@ The focus here is on the architectural question: where do local models fit in yo
 - Open LLM Leaderboard: [https://huggingface.co/spaces/open-llm-leaderboard](https://huggingface.co/spaces/open-llm-leaderboard)
 - Nomic Embed: [https://huggingface.co/nomic-ai/nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5)
 - r/LocalLLaMA: [https://reddit.com/r/LocalLLaMA](https://reddit.com/r/LocalLLaMA)
+- Apple. "Bring an LLM provider to the Foundation Models framework," WWDC26 Session 339 (June 8, 2026). [https://developer.apple.com/videos/play/wwdc2026/339/](https://developer.apple.com/videos/play/wwdc2026/339/) and Session 241 [https://developer.apple.com/videos/play/wwdc2026/241/](https://developer.apple.com/videos/play/wwdc2026/241/) --- public `LanguageModel` / `LanguageModelExecutor` Swift protocol; reference `MLXLanguageModel` backend for Hugging Face mlx-community models.
+- Google. "Quantization-Aware Training for Gemma 4" (June 5, 2026). [https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/](https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/) --- QAT checkpoints for all five sizes; day-one llama.cpp / Ollama / LM Studio / MLX; vLLM day-one except the 26B-A4B MoE. Third-party VRAM analysis (~72% vs BF16; Google's own figure only that E2B drops under 1GB via a mobile format): [https://runaihome.com/blog/gemma-4-qat-local-ai-hardware-update-2026/](https://runaihome.com/blog/gemma-4-qat-local-ai-hardware-update-2026/).
 
 ---
 

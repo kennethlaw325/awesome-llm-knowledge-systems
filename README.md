@@ -5,26 +5,27 @@
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
 <details>
-<summary><b>What's new in June 2026</b> (click to expand)</summary>
+<summary><b>What's new in July 2026</b> (click to expand)</summary>
 
-Early June 2026 added two timeline entries on top of the late-May wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+Mid-July 2026 added twelve timeline entries on top of the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+
+- **July 6 Anthropic J-space — a second interpretability channel** — Anthropic's "A global workspace in language models" identifies *J-space*, a small set of internal residual-stream directions Claude can report and modulate, giving harness engineers a *CoT-independent sensor class* for reading internal state ([Ch04 §4.2](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **July 6 Tencent open-sources Hy3** — the 295B-parameter Hunyuan 3.0 ships under *unrestricted Apache 2.0* with geographic carve-outs removed; the last major closed Chinese frontier lab defaulting to fully open weights completes the open-source-convergence thesis ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
+- **July 2 Cloak-and-Detonate (HKUST)** — systematic demonstration that static skill scanning has a *structural* ceiling: SkillCloak evades >90% of the time across 8 scanners, and the same team's runtime checker SkillDetonate catches 97% of attacks at a 2% false-positive rate ([Ch05 §5.10](chapters/05-skill-systems.md), [Ch11](chapters/11-timeline.md), glossary)
+- **June 29 DeepSeek V4 peak/off-peak pricing** — the mid-July official release adds *demand-responsive time-of-day API pricing* (peak hours at 2x off-peak), reframing price itself as a scheduling primitive for harness designers ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
+- **June 26 OpenAI GPT-5.6 Sol/Terra/Luna** — an Executive-Order-gated ~20-partner preview; METR records the highest detected cheating rate of any public model (raw-CoT monitoring worked because OpenAI preserves CoT), and Sol's `ultra` mode sells *subagent fan-out as a priced test-time-compute dial* ([Ch04 §4.2](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **June 22 AIR skill-supply-chain hijack** — a fake `brand-landingpage` skill behind an Instagram ad hijacked ~26,000 agents past every scanner via a *time-of-check-to-time-of-use* gap: the vetted snapshot pointed to an attacker-controlled URL rewritten after vetting ([Ch05 §5.10](chapters/05-skill-systems.md), [Ch11](chapters/11-timeline.md), glossary)
+- **June 18 MCP Enterprise-Managed Authorization** — a stable extension that provisions MCP-server access centrally through the IdP via an ID-JAG token exchange, killing per-app OAuth consent screens with broad day-one cross-vendor adoption ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md), glossary)
+- **June 18 Terminal-Bench Challenges** — a *multi-day autonomous-endurance* benchmark class (days of runtime, no intervention); Opus 4.8 left running 12 hours on a Rust-compiler task made no progress, a sobering null result at exactly the harness horizon ([Ch04 §4.8](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **June 17 AWS AgentCore harness GA** — `CreateHarness` / `InvokeHarness` ship "harness" as a literal, provider-agnostic product; paired with Microsoft's Agent Harness, two hyperscalers adopt the term as a SKU within a month ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **June 12 Export-control suspension of Fable 5 / Mythos 5** — the first time a US lab pulled its own already-GA flagship offline under a government order; staged restoration plus an Anthropic-drafted jailbreak-severity framework mark *government entering the distribution loop* ([Ch11](chapters/11-timeline.md))
+- **June 9 Claude Fable 5 + Mythos 5** — the first public GA of a Mythos-class model, safety-tiered against the Glasswing-gated Mythos 5; ships *refusal-as-`stop_reason`* plus a fallback-billing contract, a new harness primitive in the task-budgets family ([Ch04 §4.10](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
+- **June 8 Apple opens Foundation Models to any LLM provider** — a public `LanguageModel` Swift protocol turns Apple's native inference framework into a *pluggable-provider* API, with local Hugging Face models as an Apple-shipped backend ([Ch12](chapters/12-local-models.md), [Ch11](chapters/11-timeline.md))
+
+*From the early-June wave (full detail in [CHANGELOG.md](CHANGELOG.md)):*
 
 - **June 2 Microsoft Build — MAI-Thinking-1 + MAI-Code-1-Flash** — Microsoft ships its first in-house reasoning model (reported trained without OpenAI data) plus a 5B coding model **trained directly against the production GitHub Copilot harnesses**. The framework beat: harness-native training is the *symmetric inverse* of harness synthesis — instead of evolving the harness for a fixed model, you shape the model to fit a fixed harness ([Ch04 §4.5](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
 - **June 1 IETF MCP security I-D** ([draft-mohiuddin-mcp-security-considerations-00](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/)) — the first standards-track document scoped to MCP security, opening on *"The MCP specification does not define normative security requirements."* Catalogs six vulnerability classes (SSRF, excessive tool permissions, prompt-injection surface, lifecycle bypass, information leakage, auth-enforcement gaps) with mitigations + the open-source `mcp-safeguard` scanner; MCP security maturation moves out of the vendor spec into independent scrutiny ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md))
-
-*From the late-May wave (full detail in [CHANGELOG.md](CHANGELOG.md)):*
-
-- **April 7 Mythos breach addendum** — the Glasswing distribution model was breached within ~14 hours of public announcement, foreshadowing the offensive-side cyber thesis ([Ch11](chapters/11-timeline.md))
-- **April 8 Anthropic Managed Agents** — first frontier-vendor primitive that meters the orchestrator seat itself, separately from inference ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
-- **April 23 Memory for Managed Agents** — closes the loop with the March 31 Claude Code source-leak finding (three-layer self-healing memory now ships as a vendor-managed primitive) ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
-- **April 27 Microsoft–OpenAI restructure** — cloud exclusivity ends, AGI provision no longer load-bearing; reframes the substrate-portability narrative ([Ch08](chapters/08-tools-landscape.md), [Ch11](chapters/11-timeline.md))
-- **April 28 Bedrock Managed Agents (AWS × OpenAI)** — first time *the OpenAI agent harness* is named and sold as a separate product surface; cross-vendor convergence on the Managed Agents pattern ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
-- **April 28 AHE paper** ([arXiv 2604.25850](https://arxiv.org/abs/2604.25850)) — observability-driven harness evolution; 69.7% → 77.0% on Terminal-Bench 2 with cross-family transfer ([Ch04 §4.5](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
-- **Late April AgentFlow** ([arXiv 2604.20801](https://arxiv.org/abs/2604.20801)) — harness synthesis as a viable engineering surface; 84.3% TerminalBench-2 plus ten externally-validated zero-day CVEs on Chrome with Kimi K2.5 ([Ch04](chapters/04-harness-engineering.md), [Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md))
-- **May 19 Code with Claude London** — self-hosted sandboxes (public beta) + MCP tunnels (research preview) split the Managed Agents substrate along the perimeter line; the agent loop stays on Anthropic infrastructure while tool execution can move into the customer's own environment, reframing Managed Agents from "fully Anthropic-hosted" to substrate negotiation ([Ch04 §4.9](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
-- **May 21 MCP 2026-07-28 Release Candidate locked** — stateless protocol core (any MCP request can land on any server instance, unblocking horizontal scaling) + MCP Apps (first non-tool-call MCP deliverable: servers ship interactive HTML in sandboxed iframes) + Tasks moved from experimental core to extension status; same wave lands the Extensions framework, OAuth 2.0 / OIDC authorization hardening, and the spec's first formal deprecation policy ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md), glossary)
-- **`## The Pattern` updated** — adds a fifth thread (harness synthesis), revises the cloud-native-primitives thread to reflect substrate / triggering / memory unbundling
-- **Attribution audit, all chapters** — twelve fixes across Ch01 / Ch02 / Ch03 / Ch04 / Ch05 / Ch06 / Ch07 / Ch09 / Ch11 / Ch12. Notable factual corrections: §4.2 renamed "The Böckeler Taxonomy" (was misattributed Fowler 2025; actual is Birgitta Böckeler April 2026 on martinfowler.com); Ch03 §3.5 cited two academic surveys that conflated or fabricated (real survey is Mei et al. arXiv 2507.13334); Ch06 MIRIX was described as four-layer (actual is six memory types per arXiv 2507.07957)
 
 </details>
 
@@ -208,7 +209,7 @@ graph LR
 | 04 | [Harness Engineering](/chapters/04-harness-engineering.md) | Building the OS around the model -- guides, sensors, and the 6x performance gap |
 | 05 | [Skill Systems & Skill Graphs](/chapters/05-skill-systems.md) | From flat files to traversable graphs -- progressive disclosure in practice |
 | 06 | [Agent Memory](/chapters/06-agent-memory.md) | The missing layer -- episodic, semantic, and procedural memory architectures |
-| 07 | [MCP: The Standard That Won](/chapters/07-mcp.md) | Model Context Protocol -- from launch to 97M+ monthly downloads |
+| 07 | [MCP: The Standard That Won](/chapters/07-mcp.md) | Model Context Protocol -- from launch to 97M+ monthly downloads (Q1 2026) |
 | 08 | [AI-Native Knowledge Management](/chapters/08-tools-landscape.md) | Tools landscape -- Notion AI, Obsidian, Mem, and the AI-native gap |
 | 09 | [The Chinese AI Ecosystem](/chapters/09-china-ecosystem.md) | Dify, RAGFlow, DeepSeek, Kimi -- a parallel universe of innovation |
 | 10 | [Case Study: A Real-World Knowledge Harness](/chapters/10-case-study.md) | How one developer built a complete harness with 65% token reduction |
@@ -249,4 +250,4 @@ Use this however you want. Attribution appreciated but not required.
 
 ---
 
-*Last updated: May 2026*
+*Last updated: July 2026*
