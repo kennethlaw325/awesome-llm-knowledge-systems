@@ -173,6 +173,9 @@ The architectural shift introduced in the MCP 2026-07-28 Release Candidate (lock
 **Skill Graph**
 A map of all the skills an AI agent has available, including how they relate to each other and when each one should be triggered.
 
+**Skill Supply-Chain Attack**
+A malicious or trojanized agent skill distributed through a skill registry or marketplace. The defining 2026 mechanism is a time-of-check-to-time-of-use gap: static scanners vet the *submitted package snapshot*, but a skill that fetches external content --- or unpacks a hidden payload --- at agent runtime can change its behavior after vetting. AIR's June 2026 disclosure hijacked roughly 26,000 agents this way with a single fake skill behind an external URL, and the "Cloak and Detonate" research (July 2026) showed evasion succeeding more than 90% of the time against eight scanners, with runtime behavioral detection (97% at a 2% false-positive rate) as the countermeasure direction. The lesson mirrors MCP's (see **MCP**): once **Progressive Disclosure** (see **Progressive Disclosure**) and registry-scale distribution make the skill file an attack surface, trust has to move from publish-time scanning to runtime containment.
+
 **System Prompt**
 Hidden instructions given to an AI model before your conversation begins, setting its role, rules, and behavior. Like a job description the employee reads before their first day.
 
