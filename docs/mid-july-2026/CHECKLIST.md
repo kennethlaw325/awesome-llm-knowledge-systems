@@ -40,8 +40,10 @@ Expected commits (oldest first):
 - [x] June 17 — AWS AgentCore harness GA
 - [x] June 18 — MCP Enterprise-Managed Authorization
 - [x] June 18 — Terminal-Bench Challenges
+- [x] June 22 — AIR fake-skill supply-chain incident (26,000 agents hijacked past every scanner)
 - [x] June 26 — OpenAI GPT-5.6 Sol/Terra/Luna (EO-gated preview, METR CoT catch, priced ultra mode)
 - [x] June 29 — DeepSeek V4 peak/off-peak pricing
+- [x] July 2 — Cloak-and-Detonate (HKUST): scanner evasion formalized + runtime detection
 - [x] July 6 — Tencent Hy3 (Hunyuan 3.0) under Apache 2.0
 - [x] July 6 — Anthropic J-space ("A global workspace in language models")
 - [x] June 2 Microsoft Build entry EXTENDED (Agent Harness + Foundry Hosted Agents)
@@ -58,11 +60,11 @@ Expected commits (oldest first):
 - [x] Ch09 — DeepSeek V4 peak pricing; Huawei + China Mobile carrier-scale validation; GLM-5.2; Hy3
 - [x] Ch08 — Notion 3.6 External Agents; Tana → Tana Outliner correction; Heptabase/Capacities
 - [x] Ch12 — Apple `LanguageModel` protocol; Gemma 4 QAT
-- [x] Ch05 — SKIPPED (no `wave-skills-addendum.md` present at implementation time)
+- [x] Ch05 — new §5.10 "Skill Security and the Supply-Chain Problem" (AIR incident + Cloak-and-Detonate); skills.sh API GA (§5.2); Compositional Skill Routing (§5.5); Workflow-to-Skill (§5.8). Integrated from `wave-skills-addendum.md`, which arrived after the initial pass.
 
 ## Step 5 — Glossary / README / CHANGELOG
 
-- [x] Glossary — **Safety-Tiered Distribution** (S), **Enterprise-Managed Authorization (EMA)** (E)
+- [x] Glossary — **Safety-Tiered Distribution** (S), **Enterprise-Managed Authorization (EMA)** (E), **Skill Supply-Chain Attack** (S)
 - [x] README — What's-new block → July 2026; June entries demoted; late-May list dropped; Ch07 ToC row date-qualified; footer May → July (STALE FIX)
 - [x] CHANGELOG — new `## July 2026` section with mid-July wave bullet + caveats
 
@@ -75,7 +77,7 @@ Expected commits (oldest first):
 
 ## Editorial exclusions (recorded in `PR-description.md` and `per-chapter-changes.md`)
 
-Tree Ring Memory (issue #48), Remio (issue #47), Qwen3.7-Plus, Claude Cowork web/mobile (folded into Ch04), KV-cache marketplace proposal (arXiv 2606.13361), Anthropic SDK metering pause (chapter-level). Neutral reasons only.
+Tree Ring Memory (issue #48), Remio (issue #47), Qwen3.7-Plus, Claude Cowork web/mobile (folded into Ch04), KV-cache marketplace proposal (arXiv 2606.13361), Anthropic SDK metering pause (chapter-level), agentskills.io adoption-count updates + Microsoft .NET Agent Skills (June 29, vendor-adoption counts, no new primitive), NVIDIA SkillSpector standalone entry (folded into the June 22 incident), OKX AI agent marketplace (off-axis). Neutral reasons only.
 
 ---
 

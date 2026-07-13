@@ -1,10 +1,10 @@
 # Mid-July 2026 update: 10 timeline entries + June 2 extension + nine-chapter integration
 
-Adds the mid-July 2026 wave (window 2026-06-03 → 2026-07-14) on top of the early-June wave. Ten new timeline entries, one entry extension, targeted integration across nine chapters, two glossary terms, README roll-forward, and a CHANGELOG entry. Scope kept surgical and on-thesis; English-only (no translation propagation this wave).
+Adds the mid-July 2026 wave (window 2026-06-03 → 2026-07-14) on top of the early-June wave. Twelve new timeline entries, one entry extension, targeted integration across ten chapters, three glossary terms, README roll-forward, and a CHANGELOG entry. Scope kept surgical and on-thesis; English-only (no translation propagation this wave).
 
 ## Timeline entries (Ch11)
 
-Ten new entries (chronological): **June 8** Apple opens Foundation Models to any LLM provider · **June 9** Claude Fable 5 + Mythos 5 (first public GA of a Mythos-class model) · **June 12** export-control suspension + staged restoration + jailbreak-severity framework · **June 17** AWS AgentCore harness GA · **June 18** MCP Enterprise-Managed Authorization · **June 18** Terminal-Bench Challenges · **June 26** OpenAI GPT-5.6 Sol/Terra/Luna · **June 29** DeepSeek V4 peak/off-peak pricing · **July 6** Tencent Hy3 · **July 6** Anthropic J-space. The June 2 Microsoft Build entry is extended with Agent Harness + Foundry Hosted Agents. `## The Pattern` gains a sixth thread — **government enters the distribution loop** — and `## Sources` gains the new primaries.
+Twelve new entries (chronological): **June 8** Apple opens Foundation Models to any LLM provider · **June 9** Claude Fable 5 + Mythos 5 (first public GA of a Mythos-class model) · **June 12** export-control suspension + staged restoration + jailbreak-severity framework · **June 17** AWS AgentCore harness GA · **June 18** MCP Enterprise-Managed Authorization · **June 18** Terminal-Bench Challenges · **June 22** AIR skill-supply-chain hijack · **June 26** OpenAI GPT-5.6 Sol/Terra/Luna · **June 29** DeepSeek V4 peak/off-peak pricing · **July 2** Cloak-and-Detonate (HKUST) · **July 6** Tencent Hy3 · **July 6** Anthropic J-space. The June 2 Microsoft Build entry is extended with Agent Harness + Foundry Hosted Agents. `## The Pattern` gains a sixth thread — **government enters the distribution loop** — and `## Sources` gains the new primaries.
 
 ## Per-chapter integration
 
@@ -16,19 +16,19 @@ Ten new entries (chronological): **June 8** Apple opens Foundation Models to any
 - **Ch09** — DeepSeek V4 peak pricing; Huawei + China Mobile carrier-scale inference validation; GLM-5.2; Hy3.
 - **Ch08** — Notion 3.6 External Agents; Tana → Tana Outliner brand-split correction; Heptabase v1.98.0 + Capacities AI Chat Connectors 2.0.
 - **Ch12** — Apple `LanguageModel` protocol; Gemma 4 QAT.
-- **Ch05** — untouched (no skills-axis addendum this wave).
-- **Glossary** — **Safety-Tiered Distribution**, **Enterprise-Managed Authorization (EMA)**.
+- **Ch05** — new "Skill Security and the Supply-Chain Problem" section (§5.10: AIR incident + Cloak-and-Detonate); skills.sh API GA (§5.2); Compositional Skill Routing (§5.5); Workflow-to-Skill (§5.8).
+- **Glossary** — **Safety-Tiered Distribution**, **Enterprise-Managed Authorization (EMA)**, **Skill Supply-Chain Attack**.
 - **README** — "What's new" rolled forward to July 2026 (early-June demoted, late-May dropped); Ch07 ToC row date-qualified; stale *Last updated* footer corrected to July 2026.
 
 ## Sourcing & caveats
 
 All sources are primary or first-tier secondary. Two figures were re-fetched at implementation time: Hy3's post-preview hallucination rate (**12.5% → 5.4%**, HF model card) and MemSyco-Bench's Qwen3-8B sycophancy pair (**27.4% → 44.7%**, arXiv HTML) — both confirmed, so the exact figures are printed rather than a qualitative fallback.
 
-Caveats carried into the CHANGELOG: the Tana brand split is dated to month precision (March 2026; no day in source); Capacities AI Chat Connectors 2.0 is month precision (June 2026); the Hy3 hallucination figure is per Tencent's HF card; the DeepSeek V4 announcement is dated June 29-30 (TechNode: June 30); the AWS AgentCore harness GA whats-new post is June 17 with the New York Summit showcase June 18. The June 12 entry carries no time-of-day precision; the jailbreak-severity framework is Anthropic-authored (a consensus draft with Glasswing partners, not a published joint standard); the GPT-5.6 review is METR + Apollo only.
+Caveats carried into the CHANGELOG: the Tana brand split is dated to month precision (March 2026; no day in source); Capacities AI Chat Connectors 2.0 is month precision (June 2026); the Hy3 hallucination figure is per Tencent's HF card; the DeepSeek V4 announcement is dated June 29-30 (TechNode: June 30); the AWS AgentCore harness GA whats-new post is June 17 with the New York Summit showcase June 18. The June 12 entry carries no time-of-day precision; the jailbreak-severity framework is Anthropic-authored (a consensus draft with Glasswing partners, not a published joint standard); the GPT-5.6 review is METR + Apollo only. The AIR incident is dated to AIR's June 22 disclosure (THN coverage June 23); Cloak-and-Detonate to its arXiv submission July 2 (THN coverage July 6); NVIDIA SkillSpector is named per NVIDIA's repo (the incident reports don't name it), open-sourced mid-June 2026.
 
 ## Excluded from scope (neutral reasons)
 
-Tree Ring Memory (issue #48 — launched July 7, ~5 stars, no external validation; does not yet clear the bar); Remio (issue #47 — cloud-BYOK personal index, not a local-model primitive); Qwen3.7-Plus (no authoritative primary source); Claude Cowork web/mobile (folded into Ch04 as one sentence); KV-cache marketplace proposal arXiv 2606.13361 (proposal-only, no operational case); Anthropic Agent-SDK metering pause (chapter-level, not timeline).
+Tree Ring Memory (issue #48 — launched July 7, ~5 stars, no external validation; does not yet clear the bar); Remio (issue #47 — cloud-BYOK personal index, not a local-model primitive); Qwen3.7-Plus (no authoritative primary source); Claude Cowork web/mobile (folded into Ch04 as one sentence); KV-cache marketplace proposal arXiv 2606.13361 (proposal-only, no operational case); Anthropic Agent-SDK metering pause (chapter-level, not timeline); agentskills.io adoption-count updates and Microsoft .NET Agent Skills (June 29 — vendor-adoption counts, no new primitive); NVIDIA SkillSpector standalone entry (folded into the June 22 incident); OKX AI agent marketplace (off-axis).
 
 ## Not touched
 

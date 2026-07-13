@@ -3,7 +3,7 @@
 Scope: ten new timeline entries + one entry extension, targeted integration across nine chapters, two glossary terms, README roll-forward, CHANGELOG entry. English-only; no translation propagation this wave. Surgical additions only — existing prose was not rewritten.
 
 ## chapters/11-timeline.md
-- Ten new entries inserted after the June 2 Microsoft Build entry, before `## The Pattern`, in chronological order (June 8 → July 6).
+- Twelve new entries inserted after the June 2 Microsoft Build entry, before `## The Pattern`, in chronological order (June 8 → July 6), including two skill-security entries (June 22 AIR incident, July 2 Cloak-and-Detonate).
 - June 2 Microsoft Build entry extended by two sentences (Agent Harness + Foundry Hosted Agents), cross-referencing the new June 17 AWS entry.
 - `## The Pattern` gains a sixth thread ("government enters the distribution loop") placed after the ARC-AGI-3 line and before the closing "trajectory is clear" paragraph — chronologically honest (June-July), so the existing "four/five threads" April framing is left intact.
 - `## Sources` gains new primary source lines for every new entry.
@@ -55,7 +55,12 @@ Scope: ten new timeline entries + one entry extension, targeted integration acro
 - Sources: added Apple WWDC26 sessions and Gemma 4 QAT (+ third-party VRAM analysis).
 
 ## chapters/05-skill-systems.md
-- UNTOUCHED. `wave-skills-addendum.md` was not present at implementation time, so per the work order Ch05 was skipped entirely.
+- New `## 5.10 Skill Security and the Supply-Chain Problem` (the chapter's first security coverage): the scanning ecosystem (Cisco skill-scanner, NVIDIA SkillSpector open-sourced mid-June, skills.sh audit); the June 22 AIR incident (TOCTOU / external-URL bypass, 26,000 agents); Cloak-and-Detonate (arXiv 2607.02357, evasion + SkillDetonate 97%@2%FP); framework tie-in to the Ch07 IETF security draft (publish-time scanning → runtime containment).
+- §5.2: Vercel skills.sh API GA (June 5) — queryable registry API, OIDC-token auth, 600 req/min per team and per project, 600,000+ indexed skills, per-skill security audit.
+- §5.5: Compositional Skill Routing (arXiv 2606.18051, single author Xueping Gao, Alibaba Cloud) — CompSkillBench; Iterative Skill-Aware Decomposition 51.0%→67.7%.
+- §5.8: Workflow-to-Skill (arXiv 2606.06893, Wuhan / Nanchang University) — RWSA; +10.5% relative behavioral-replay consistency.
+- Sources: added skills.sh, Compositional Skill Routing, Workflow-to-Skill, AIR incident, Cloak-and-Detonate, NVIDIA SkillSpector.
+- Integrated from `wave-skills-addendum.md`, which arrived after the initial pass (Ch05 was briefly UNTOUCHED).
 
 ## Not touched
 - `translations/` — English-first, consistent with the last three waves.
@@ -68,3 +73,6 @@ Scope: ten new timeline entries + one entry extension, targeted integration acro
 - **Claude Cowork web/mobile** — folded into Ch04 §4.9 as one sentence; not a standalone timeline entry.
 - **KV-cache marketplace proposal** (arXiv 2606.13361) — proposal-only, no operational case yet.
 - **Anthropic Agent-SDK metering pause** — integrated at chapter level (Ch04 §4.9), not as a timeline entry.
+- **agentskills.io adoption-count updates + Microsoft .NET Agent Skills** (June 29) — vendor-adoption counts, no new primitive.
+- **NVIDIA SkillSpector standalone entry** — folded into the June 22 AIR incident entry.
+- **OKX AI agent marketplace** — off-axis for this guide.
