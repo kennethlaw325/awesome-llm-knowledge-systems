@@ -18,6 +18,8 @@ In January 2026, Notion introduced multi-model support, allowing users to route 
 
 Notion's strength is its combination of structured data (databases, relations, rollups) with unstructured content (pages, blocks). This hybrid structure gives AI agents rich metadata to work with -- not just text to search, but typed properties, relations between entities, and explicit hierarchies.
 
+**Notion 3.6** (July 1, 2026) turned the workspace into a coordination substrate for *other vendors'* agents. Its **External Agents** feature makes **Claude** and **Cursor** the first two external agents that operate as visible, assignable teammates on shared Notion task boards --- @-mentionable, watchable, and accountable in the same surfaces human collaborators use. (This is distinct from the earlier **3.5 Developer Platform** launch of May 13, 2026, which named Codex and Decagon as External Agents API partners.) The same release added **Notion Workers** (custom code now buildable and deployable, including on Windows), five new MCP connectors (Mercury, Mixpanel, Miro, Box, ClickHouse), native PPTX / XLSX / DOCX read-write, and an audit log for Custom Agent actions; Notion reports its MCP "usage has 10×'d in the past month." The beat is the inversion: where earlier Notion AI was the agent acting *inside* Notion, Notion is now the shared board that *other* agent products plug into as teammates.
+
 ## Obsidian
 
 Obsidian holds approximately 8% of the overall knowledge management market, but that number dramatically understates its influence. Among developers, researchers, and technical knowledge workers -- the demographic most actively experimenting with AI-enhanced knowledge systems -- Obsidian dominates the personal knowledge management (PKM) niche.
@@ -48,11 +50,11 @@ This approach is a direct bet that AI retrieval has become good enough to replac
 
 Several newer platforms are exploring alternative approaches:
 
-**[Heptabase](https://heptabase.com)** uses a visual canvas model where notes exist as cards on an infinite spatial surface. Users arrange, connect, and cluster notes visually, creating spatial relationships that complement textual links. This spatial dimension adds a layer of organization that text-based systems cannot replicate.
+**[Heptabase](https://heptabase.com)** uses a visual canvas model where notes exist as cards on an infinite spatial surface. Users arrange, connect, and cluster notes visually, creating spatial relationships that complement textual links. This spatial dimension adds a layer of organization that text-based systems cannot replicate. As of **v1.98.0** (June 2, 2026), its AI Agent gets direct, snapshot-undoable edit access to tag databases.
 
-**[Capacities](https://capacities.io)** introduces object-based knowledge management, where every piece of content is a typed object (person, project, meeting, concept) with defined properties and relations. This strongly-typed approach produces cleaner structured data for AI consumption than freeform note-taking.
+**[Capacities](https://capacities.io)** introduces object-based knowledge management, where every piece of content is a typed object (person, project, meeting, concept) with defined properties and relations. This strongly-typed approach produces cleaner structured data for AI consumption than freeform note-taking. As of **AI Chat Connectors 2.0** (June 2026), external AI apps --- any MCP client --- get full CRUD over the typed object graph (creating pages and tasks, instantiating typed objects, updating properties).
 
-**[Tana](https://tana.inc)** implements supertags -- a system where any node can be tagged with a type that defines its structure, fields, and behaviors. Supertags create a user-defined schema layer on top of an outliner, enabling structured data capture without sacrificing the flexibility of freeform notes.
+**[Tana Outliner](https://outliner.tana.inc)** implements supertags -- a system where any node can be tagged with a type that defines its structure, fields, and behaviors. Supertags create a user-defined schema layer on top of an outliner, enabling structured data capture without sacrificing the flexibility of freeform notes. *A naming note:* in March 2026, Tana Inc. reassigned the **"Tana"** brand and `tana.inc` to a new agentic-meeting product (AI agents that act live during video calls, populating a persistent context graph); the supertag outliner described here now lives at **Tana Outliner** (`outliner.tana.inc`). Per Tana's own note, "web content describing 'Tana' as a note-taking app, PKM, or outliner refers to this product, Tana Outliner."
 
 ## The AI-Assisted vs. AI-Native Gap
 
@@ -105,13 +107,14 @@ The practical takeaway for knowledge engineering: the "harness" is no longer jus
 5. Smart Connections. https://github.com/brianpetro/obsidian-smart-connections
 6. Claudian. https://github.com/claudian-ai/claudian
 7. Mem. https://mem.ai
-8. Heptabase. https://heptabase.com
-9. Capacities. https://capacities.io
-10. Tana. https://tana.inc
+8. Heptabase. https://heptabase.com --- changelog (v1.98.0, June 2, 2026): https://wiki.heptabase.com/changelog (AI Agent snapshot-undoable edit access to tag databases).
+9. Capacities. https://capacities.io --- "What's new: release 66" (June 2026): https://capacities.io/whats-new/release-66 (AI Chat Connectors 2.0, MCP-client CRUD over the typed object graph).
+10. Tana Outliner. https://outliner.tana.inc --- supertag outliner; "Tana as it is now" (March 2026): https://outliner.tana.inc/articles/tana-current-march-2026 and Tana Inc. changelog https://tana.inc/changelog/2026-06-26-transcription-language (the `tana.inc` brand reassigned to a new agentic-meeting product in March 2026).
 11. Microsoft. "The next phase of the Microsoft-OpenAI partnership." April 27, 2026. [https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/](https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/)
 12. OpenAI. "The next phase of the Microsoft partnership." April 27, 2026. [https://openai.com/index/next-phase-of-microsoft-partnership/](https://openai.com/index/next-phase-of-microsoft-partnership/)
 13. Anthropic. "New in Claude Managed Agents: dreaming, outcomes, and multiagent orchestration." May 6, 2026. [https://claude.com/blog/new-in-claude-managed-agents](https://claude.com/blog/new-in-claude-managed-agents)
 14. AWS. "The AWS MCP Server is now generally available." May 6, 2026. [https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/](https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/)
+15. Notion. "Release notes" (July 1, 2026): [https://www.notion.com/releases/2026-07-01](https://www.notion.com/releases/2026-07-01) and (May 13, 2026): [https://www.notion.com/releases/2026-05-13](https://www.notion.com/releases/2026-05-13) --- 3.6 External Agents (Claude, Cursor); 3.5 Developer Platform (Codex, Decagon as API partners); Notion Workers; five new MCP connectors; native PPTX/XLSX/DOCX; Custom Agent audit log; MCP "usage has 10×'d in the past month."
 
 ---
 
