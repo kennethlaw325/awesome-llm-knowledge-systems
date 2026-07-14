@@ -7,8 +7,11 @@
 <details>
 <summary><b>What's new in July 2026</b> (click to expand)</summary>
 
-Mid-July 2026 added twelve timeline entries on top of the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+The mid-July 2026 waves added a new Chapter 13 on Loop Engineering and two further timeline entries, on top of twelve earlier timeline entries and the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
 
+- **July 14 New Chapter 13 — Loop Engineering** — the June 2026 "loop engineering" frame gets a full chapter: Peter Steinberger's catalyst post, Addy Osmani's naming essay and "Own the Outer Loop" follow-up, Boris Cherny, the generator-evaluator split (Rajasekaran), Stripe's minions, LangChain's four stacked rungs, and adoption signals — framed as *emerging and contested*, five weeks old with no academic literature yet ([Ch13](chapters/13-loop-engineering.md), [Ch01](chapters/01-evolution.md), glossary)
+- **June 16 Loop stacking goes institutional and bilingual** — LangChain's "The Art of Loop Engineering" (four stacked rungs; Swyx's "loopcraft") and 程序员鱼皮's 保姆级 Chinese guide land the same day, nine days after the naming ([Ch11](chapters/11-timeline.md))
+- **June 7 The week "loop engineering" got its name** — Steinberger's viral "design loops that prompt your agents" post, Osmani's same-day naming essay, and Cherny's "my job is to write loops" converge in one week; Anthropic's @ClaudeDevs "Getting started with loops" article (July 6, ~6.0M impressions) institutionalizes it within a month, still calling it "loops" ([Ch01](chapters/01-evolution.md), [Ch11](chapters/11-timeline.md), [Ch13](chapters/13-loop-engineering.md))
 - **July 6 Anthropic J-space — a second interpretability channel** — Anthropic's "A global workspace in language models" identifies *J-space*, a small set of internal residual-stream directions Claude can report and modulate, giving harness engineers a *CoT-independent sensor class* for reading internal state ([Ch04 §4.2](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
 - **July 6 Tencent open-sources Hy3** — the 295B-parameter Hunyuan 3.0 ships under *unrestricted Apache 2.0* with geographic carve-outs removed; the last major closed Chinese frontier lab defaulting to fully open weights completes the open-source-convergence thesis ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
 - **July 2 Cloak-and-Detonate (HKUST)** — systematic demonstration that static skill scanning has a *structural* ceiling: SkillCloak evades >90% of the time across 8 scanners, and the same team's runtime checker SkillDetonate catches 97% of attacks at a 2% false-positive rate ([Ch05 §5.10](chapters/05-skill-systems.md), [Ch11](chapters/11-timeline.md), glossary)
@@ -33,7 +36,7 @@ Mid-July 2026 added twelve timeline entries on top of the early-June wave. Most 
 
 ## TL;DR
 
-- **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last.
+- **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last -- and a contested fourth layer, *loop engineering*, emerged in mid-2026 ([Ch13](chapters/13-loop-engineering.md)).
 - **RAG is not dead.** 71% of enterprises that tried context-stuffing came back to RAG within 12 months (Gartner Q4 2025). Hybrid architectures are winning.
 - **Context engineering is about what surrounds the call, not the call itself.** Andrej Karpathy's mid-2025 reframe shifted focus from crafting prompts to constructing the entire context window dynamically.
 - **Harness engineering is the operating system layer.** Birgitta Böckeler (writing in Martin Fowler's *Exploring Generative AI* memo series, April 2026) and the OpenAI Codex team's harness-design framing formalized this -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
@@ -58,6 +61,7 @@ Not sure where to start? Pick the description that fits you best:
 - **"I just want to understand what all these AI buzzwords mean."** -- Start with the [Glossary](glossary.md), then read [Chapter 1: The Three Generations](chapters/01-evolution.md).
 - **"I'm building an AI application."** -- Read [Ch02: RAG, Long Context & Knowledge Graphs](chapters/02-knowledge-layer.md), then [Ch03: Context Engineering](chapters/03-context-engineering.md), then [Ch04: Harness Engineering](chapters/04-harness-engineering.md).
 - **"I want to make my AI tools work better."** -- Read [Ch05: Skill Systems](chapters/05-skill-systems.md), then [Ch06: Agent Memory](chapters/06-agent-memory.md), then [Ch10: Case Study](chapters/10-case-study.md).
+- **"I want my agents to run without me pushing every step."** -- Read [Ch13: Loop Engineering](chapters/13-loop-engineering.md), then [Ch04: Harness Engineering](chapters/04-harness-engineering.md) and [Ch06: Agent Memory](chapters/06-agent-memory.md).
 - **"I want to see real examples."** -- Jump straight to [Ch10: Case Study](chapters/10-case-study.md).
 - **"I work with Chinese AI tools."** -- Start with [Ch09: The Chinese AI Ecosystem](chapters/09-china-ecosystem.md).
 - **"I want the complete picture."** -- Read front to back, starting with Chapter 1.
@@ -83,16 +87,16 @@ If your scenario doesn't fit cleanly, it's probably a composition of these — s
 ## The Evolution
 
 ```
-2022-2024               2025                    2026
-PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG
-                        (Karpathy)              (Fowler, OpenAI)
+2022-2024               2025                    2026                    2026 (mid)?
+PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG (emerging)
+                        (Karpathy)              (Fowler, OpenAI)        (Steinberger, Osmani)
 
-"Craft the          "Construct the          "Orchestrate the
- perfect prompt"     dynamic context          entire system
-                     window"                  around the model"
+"Craft the              "Construct the          "Orchestrate the        "Design the system
+ perfect prompt"        dynamic context         entire system           that prompts
+                        window"                 around the model"       the agent"
 ```
 
-Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering.
+Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering. Loop engineering, the newest and still-contested layer, wraps all three -- the system that runs the harness on a timer, spawns helpers, and feeds it back to itself.
 
 ---
 
@@ -215,6 +219,7 @@ graph LR
 | 10 | [Case Study: A Real-World Knowledge Harness](/chapters/10-case-study.md) | How one developer built a complete harness with 65% token reduction |
 | 11 | [Timeline](/chapters/11-timeline.md) | Key moments in LLM knowledge engineering, 2022-2026 |
 | 12 | [Local Models for Knowledge Engineering](/chapters/12-local-models.md) | Run your knowledge harness locally -- embedding, RAG, compilation, and the fine-tuning endgame |
+| 13 | [Loop Engineering](/chapters/13-loop-engineering.md) | The emerging fourth layer -- designing the system that prompts the agent, and whether it is its own generation |
 
 ---
 
