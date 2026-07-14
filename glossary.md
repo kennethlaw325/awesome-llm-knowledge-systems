@@ -62,6 +62,9 @@ Taking a pre-trained AI model and training it further on your own specific data 
 
 ### G
 
+**Generator-Evaluator Split**
+An agent-reliability pattern that separates the agent producing work from an independent, deliberately skeptical agent that judges it --- adopted because agents reliably over-rate their own output. Introduced in Prithvi Rajasekaran's "Harness design for long-running application development" (Anthropic, March 2026), which took its structure from Generative Adversarial Networks (GANs) and found that tuning a standalone evaluator to be skeptical is far more tractable than making a generator self-critical. The evaluator verifies behavior rather than reading the diff --- clicking through the running application, screenshotting, and testing UI features, API endpoints, and database states. The pattern is productized in run-until-condition primitives such as Claude Code's `/goal`, where a separate, fresh model judges the stop condition after every turn. See **Outer Loop**, **Loop Engineering**.
+
 **GraphRAG**
 A version of RAG that organizes retrieved information into a graph of connected entities and relationships, making it better at answering questions that require combining facts from multiple sources.
 
@@ -100,6 +103,9 @@ An AI system trained on vast amounts of text that can understand and generate hu
 **Long Context**
 The ability of newer AI models to process very large amounts of text at once -- sometimes entire books or codebases -- within a single conversation.
 
+**Loop Engineering**
+The practice, named in June 2026, of building the system that prompts an agent for you rather than prompting it by hand each turn. Coined in Addy Osmani's June 7, 2026 essay, which defines it as "replacing yourself as the person who prompts the agent" by designing "the system that does it instead," and catalyzed by a viral Peter Steinberger post the same week. It sits one floor above **Harness Engineering**: a loop is a harness that runs on a timer, spawns helper sub-agents, and feeds itself from persisted state --- distinct from a plain scheduler because it reads the current state each pass and re-decides what to do, rather than firing a fixed command on a clock. The term is practitioner-only and contested (no academic literature as of mid-2026); this guide tracks it as an emerging fourth layer rather than a settled generation. See Chapter 13.
+
 ### M
 
 **MCP (Model Context Protocol)**
@@ -133,6 +139,9 @@ A note-taking application that stores your notes as plain text files on your own
 
 **Outcomes (Anthropic)**
 A public-beta managed-agent primitive (Anthropic, May 6, 2026) where the agent iterates against a separate grader running in its own context window until a rubric is satisfied. Productizes the Ralph-loop / CATTS uncertainty-steered iteration pattern as an API contract: the caller writes a rubric, the substrate runs the iterate-and-grade loop on the agent's behalf, and only converged results return to the caller.
+
+**Outer Loop**
+The judgment layer a human keeps while agents run the inner execution loop (investigate, implement, test/verify, report). From Addy Osmani's July 2026 follow-up "Own the Outer Loop," which structures it as three pillars --- Quality (back-pressure checks before agents act), Verdict ("the final decision we make before work enters our dependent system"), and Answerability ("the guarantee that if someone asks, I can explain why"). Osmani names three failure modes of over-delegating it: cognitive debt (erosion of your understanding of how to solve problems), cognitive surrender (blindly accepting what AI gives you), and the orchestration tax (spinning up more agents than your judgment can cover). The complement to **Loop Engineering** and **Generator-Evaluator Split**: the loop is only as good as the outer loop around it. See Chapter 13.
 
 ### P
 

@@ -162,6 +162,16 @@ A 19-author survey from Shanghai Jiao Tong and collaborators, **"Externalization
 
 ---
 
+## An Emerging Fourth Generation? Loop Engineering (mid-2026)
+
+This chapter's title deliberately stays *The Three Generations*. But in June 2026 a fourth candidate layer crystallized fast enough to note here, even though it is too new to promote into the numbered sequence. Within a single week --- Peter Steinberger's viral June 7 post that you "shouldn't be prompting coding agents anymore ... You should be designing loops that prompt your agents," Addy Osmani's same-day essay that named **loop engineering**, and Boris Cherny (Claude Code) framing his own job as "writing loops" --- practitioners began describing a layer *above* the harness: the system that prompts the agent for you on a schedule, spawns helpers, and feeds itself.
+
+Its proponents define the relation to Generation 3 precisely. Osmani places loop engineering "one floor above the harness": a loop, in his framing, is the harness "but it runs on a timer, it spawns little helpers, and it feeds itself." That is the same nested logic this chapter already uses --- the loop is simply the outermost box, wrapping harness, context, and prompt, so a loop engineer still writes prompts, still does context engineering, and still builds a harness. What separates a loop from a plain scheduler is that it reads the current state each pass and re-decides, rather than firing a fixed command on a clock.
+
+Two honesty caveats keep this out of the numbered generations for now. The term is roughly five weeks old at the time of writing, lives entirely in practitioner discourse --- blogs, podcasts, X --- with no academic literature behind it, and its reception is split between readers who call it a genuine shift and readers who call it a premature rebranding of scheduling. This guide therefore tracks loop engineering as *emerging* rather than settled, the same posture it takes toward any claim that has not yet cleared primary-source and time-tested scrutiny. [Chapter 13](13-loop-engineering.md) covers the frame in full, with each load-bearing claim tied to a source and the gaps named rather than filled.
+
+---
+
 ## Sources
 
 - Brown, T. et al. (2020). "Language Models are Few-Shot Learners." [arXiv:2005.14165](https://arxiv.org/abs/2005.14165)
@@ -177,6 +187,9 @@ A 19-author survey from Shanghai Jiao Tong and collaborators, **"Externalization
 - IMPACT mnemonic. Intent / Memory / Planning / Authority / Control flow / Tools --- a six-dimension harness design checklist that emerged in mid-2020s practitioner discourse. Used in this chapter as a pedagogical framing; not attributed to a specific primary source.
 - Meta/Manus acquisition reporting. (2026). Various sources.
 - Zhou, C. et al. (April 2026). "Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering." [arXiv:2604.08224](https://arxiv.org/abs/2604.08224) --- 19-author survey from Shanghai Jiao Tong and collaborators that independently uses the Weights → Context → Harness three-layer historical framing. Cited in this chapter's "Coexistence, Not Replacement" section as evidence the practitioner thesis converged with academic literature.
+- Steinberger, Peter (@steipete). Post catalyzing the "design loops that prompt your agents" framing (June 7, 2026). [https://x.com/steipete/status/2063697162748260627](https://x.com/steipete/status/2063697162748260627) --- cited in the "Emerging Fourth Generation" section; the post itself does not use the phrase "loop engineering."
+- Osmani, Addy. "Loop Engineering" (June 7, 2026). [https://addyosmani.com/blog/loop-engineering/](https://addyosmani.com/blog/loop-engineering/) --- the essay that named the practice; source of the "one floor above the harness" relation used in this chapter's fourth-generation section.
+- Cherny, Boris. Lenny's Podcast / Lenny's Newsletter interview (mid-2026). [https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens) --- the "my job is to write loops" framing; a spoken quote, transcribed inconsistently across outlets.
 
 ---
 
