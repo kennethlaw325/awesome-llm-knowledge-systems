@@ -164,3 +164,5 @@ The focus here is on the architectural question: where do local models fit in yo
 ---
 
 *Previous: [Chapter 11 - Key Moments in LLM Knowledge Engineering](11-timeline.md)*
+
+*Next: [Chapter 13 - Loop Engineering](13-loop-engineering.md)*
