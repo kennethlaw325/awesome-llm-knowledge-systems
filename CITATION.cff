@@ -10,11 +10,11 @@ abstract: >-
   An opinionated, structured synthesis of how LLM knowledge engineering
   evolved between 2022 and 2026. Connects RAG, knowledge graphs, long
   context, MCP, skill routing, agent memory, and progressive disclosure
-  into one coherent map across three generations (and an emerging fourth):
-  prompt engineering
+  into one coherent map across three generations (and two contested
+  emerging layers): prompt engineering
   (2022-2024), context engineering (2025), and harness engineering
   (2026). Includes a curated 2022-2026 timeline of inclusion-criteria
-  filtered events, a glossary, thirteen in-depth chapters, and a real-world
+  filtered events, a glossary, fourteen in-depth chapters, and a real-world
   case study.
 keywords:
   - LLM

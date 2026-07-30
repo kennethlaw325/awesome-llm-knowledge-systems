@@ -13,6 +13,9 @@ The ability of an AI agent to remember information across conversations or tasks
 **Agentic RAG**
 A version of RAG where the AI actively decides what information to look up, when to look it up, and whether the results are good enough -- rather than following a fixed retrieval step every time.
 
+**Anchor (Graph Engineering)**
+An unarguable, externally grounded measurement --- a test result, a metric, a ground-truth check --- that some node of a multi-agent graph must touch. Introduced by Carlos E. Perez in the July 2026 graph-engineering discourse: without anchors, a graph of agents that review each other's work degenerates into an echo chamber that converges on confident agreement rather than correctness. Like requiring at least one member of a committee to check the actual bank statement instead of everyone agreeing the budget looks right. See **Graph Engineering**; Chapter 14.
+
 **ARC-AGI-3**
 François Chollet's 2026 interactive benchmark for agentic intelligence, in which agents are dropped into game-like environments with no instructions and must explore, infer the goal, and build a world model on their own. Unlike earlier ARC benchmarks built from static puzzle grids, ARC-AGI-3 grades exploration efficiency, goal inference, and world-model formation as separate axes of capability.
 
@@ -23,6 +26,9 @@ A test-time scaling method for multi-step agents in which a small committee of r
 
 **Claude Code**
 Anthropic's command-line tool that lets Claude work directly in your terminal -- reading files, running commands, and editing code as an AI pair programmer.
+
+**Client ID Metadata Documents (CIMD)**
+The client-identification mechanism mandated by the finalized MCP 2026-07-28 specification, replacing Dynamic Client Registration: an MCP client is identified by a metadata document hosted at a URL rather than by registering itself separately with every server. Like presenting a business card hosted at your own address instead of filling in a new-vendor form at every office you visit. See **MCP**.
 
 **Codex (OpenAI)**
 OpenAI's tool for running coding tasks in a sandboxed cloud environment, where an AI agent can read your repository, write code, and run tests autonomously.
@@ -64,6 +70,9 @@ Taking a pre-trained AI model and training it further on your own specific data 
 
 **Generator-Evaluator Split**
 An agent-reliability pattern that separates the agent producing work from an independent, deliberately skeptical agent that judges it --- adopted because agents reliably over-rate their own output. Introduced in Prithvi Rajasekaran's "Harness design for long-running application development" (Anthropic, March 2026), which took its structure from Generative Adversarial Networks (GANs) and found that tuning a standalone evaluator to be skeptical is far more tractable than making a generator self-critical. The evaluator verifies behavior rather than reading the diff --- clicking through the running application, screenshotting, and testing UI features, API endpoints, and database states. The pattern is productized in run-until-condition primitives such as Claude Code's `/goal`, where a separate, fresh model judges the stop condition after every turn. See **Outer Loop**, **Loop Engineering**.
+
+**Graph Engineering**
+The July 2026 claim that the layer above **Loop Engineering** is the graph: the explicit wiring of which agents exist, who may delegate to whom, and how their loops supervise and correct one another. Crystallized in the essays that followed a July 17-18, 2026 Peter Steinberger post, and contested from day one --- LangChain's response argues the practice is three years old (a loop being simply a directed cyclic graph) and only the name is new. Not to be confused with knowledge graphs or **GraphRAG**, which structure what a system *knows*; graph engineering structures who the system *is*. The term is roughly two weeks old at the time of writing, and this guide tracks it as a claim under test rather than a settled layer. See Chapter 14.
 
 **GraphRAG**
 A version of RAG that organizes retrieved information into a graph of connected entities and relationships, making it better at answering questions that require combining facts from multiple sources.
@@ -137,6 +146,9 @@ A model architecture where only a subset of the model's "brain" activates for an
 **Obsidian**
 A note-taking application that stores your notes as plain text files on your own computer and lets you link them together into a personal knowledge base.
 
+**Org Graph / Work Graph**
+The two graph objects in graph engineering, from Yash Thakker's July 2026 explainx.ai guide: the *org graph* is the stable chart of which agents exist, what each is for, and which delegation edges are permitted; the *work graph* is the ephemeral task decomposition a particular job spawns, executes, and discards. Like a company's org chart versus the ad hoc working group assembled for one project and dissolved afterward. See **Graph Engineering**; Chapter 14.
+
 **Outcomes (Anthropic)**
 A public-beta managed-agent primitive (Anthropic, May 6, 2026) where the agent iterates against a separate grader running in its own context window until a rubric is satisfied. Productizes the Ralph-loop / CATTS uncertainty-steered iteration pattern as an API contract: the caller writes a rubric, the substrate runs the iterate-and-grade loop on the agent's behalf, and only converged results return to the caller.
 
@@ -177,7 +189,7 @@ A billing model that meters the orchestrator seat -- the substrate on which an a
 A reusable, packaged capability that an AI agent can invoke -- like a recipe it follows for a specific task such as "review this PR" or "run a daily review."
 
 **Stateless MCP**
-The architectural shift introduced in the MCP 2026-07-28 Release Candidate (locked May 21, 2026): the protocol core no longer uses an `initialize` / `initialized` handshake or `Mcp-Session-Id` headers. Client metadata travels in `_meta` on every request, so any MCP request can land on any server instance -- no sticky routing, no shared session store. Resolves the horizontal-scaling friction that surfaced with Streamable HTTP adoption in 2025. The durable-state primitives that motivated the *stateful* turn (SEP-1686 Tasks, AgentCore bidirectional runtime) are re-implemented on top of the stateless core, as extensions, rather than baked into every request. Stateless core + stateful work on top, not stateful all the way down.
+The architectural shift introduced in the MCP 2026-07-28 Release Candidate (locked May 21, 2026) and shipped final in the 2026-07-28 specification (July 28, 2026): the protocol core no longer uses an `initialize` / `initialized` handshake or `Mcp-Session-Id` headers. Client metadata travels in `_meta` on every request, so any MCP request can land on any server instance -- no sticky routing, no shared session store. Resolves the horizontal-scaling friction that surfaced with Streamable HTTP adoption in 2025. The durable-state primitives that motivated the *stateful* turn (SEP-1686 Tasks, AgentCore bidirectional runtime) are re-implemented on top of the stateless core, as extensions, rather than baked into every request. Stateless core + stateful work on top, not stateful all the way down.
 
 **Skill Graph**
 A map of all the skills an AI agent has available, including how they relate to each other and when each one should be triggered.

@@ -68,6 +68,8 @@ Not every long-context announcement survives scrutiny. The startup **Subquadrati
 
 ## GraphRAG: When Flat Retrieval Is Not Enough
 
+(Naming note: the knowledge graphs in this chapter structure what a system *knows*; the separate "graph engineering" frame that surfaced in July 2026 --- covered in [Chapter 14](14-graph-engineering.md) --- is about how multi-agent systems are wired, not about knowledge retrieval.)
+
 Standard RAG treats documents as independent chunks. This works for factual lookup ("What is the return policy?") but fails for questions requiring *relationship reasoning* ("Which suppliers are connected to both our delayed shipments and our quality complaints?").
 
 [Microsoft's GraphRAG](https://github.com/microsoft/graphrag) (2024-2025) introduced a hybrid approach: build a knowledge graph from source documents, then use graph traversal alongside vector retrieval to answer queries.
@@ -97,6 +99,16 @@ The indexing cost of GraphRAG is significantly higher than standard RAG. Build t
 Through 2024 and most of 2025, GraphRAG was framed as an **alternative to RAG** --- a different way to retrieve chunks for a model with a limited context window. By 2026, that framing has shifted. As frontier models push context windows into the multi-million-token range (Gemini 1.5 at 1M, Kimi past 2M Chinese characters, with further expansion underway), the question is no longer "how do we retrieve a small number of relevant chunks" but "how do we navigate a context that is already large enough to hold most of what we need."
 
 In that world, the knowledge graph stops being a **retrieval substitute** and becomes a **structured index layer for long context**. The graph is not there to decide which chunks to load --- the chunks are already in the window. The graph is there to give the model a semantic map of what is in the window: which entities are present, how they are related, which sections correspond to which topics, where contradictions live, and which multi-hop paths connect the question to the relevant evidence. GraphRAG re-emerges as a **semantic backbone** that lets an agent walk a million-token window efficiently, rather than as a workaround for the 8K-token windows it was born in. The April 2026 arrival of trainable memory modules (Titans + MIRAS) does not displace this role --- the early evidence is that knowledge graphs and trainable memory will **coexist and likely compose** in production stacks, with the graph providing typed, queryable structure over what the trainable module has already compressed into weights. The first at-scale operational case of exactly this graph-as-index-layer role arrived in June 2026: **Agents-K1** ("Agents-K1: Towards Agent-native Knowledge Orchestration," arXiv 2606.13669, June 11, 2026) processed **2.46 million papers** into agent-native knowledge graphs and released a **1-million-paper Scholar-KG** publicly, reporting large downstream gains on Frontierscience-Research (Gemini-3 from 7.9% to 24.6%, GPT-5.2 from 25.2% to 39.4%) when the graph is used as the retrieval substrate.
+
+### 2026 Update: Graph Tooling Consolidates, Agent Memory Splits Off (July 2026)
+
+A mid-2026 check of the graph-tooling landscape (GitHub figures verified via the GitHub API, July 2026) shows three distinct stories:
+
+**The frameworks have a new leader.** [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) (EMNLP 2025 paper; MIT license), the lightweight graph+vector dual-level framework, has overtaken Microsoft's original as the most-starred graph-RAG framework at ~38k stars versus ~35k (July 2026) --- on steady feature growth rather than any single landmark. Microsoft's GraphRAG itself is on a v3.x line ([v3.1.1 released July 18, 2026](https://github.com/microsoft/graphrag/releases)) and remains actively developed.
+
+**Graph-based agent memory splits off as its own category.** Distinct from GraphRAG's document-retrieval lineage, a cluster of projects now uses graphs as the *memory substrate for agents*: [getzep/graphiti](https://github.com/getzep/graphiti) (~29k stars, July 2026; real-time bi-temporal knowledge graphs for agent memory), [topoteretes/cognee](https://github.com/topoteretes/cognee) (~29k stars, July 2026; the Berlin startup behind it closed a [Pebblebed-led seed round](https://www.eu-startups.com/2026/02/german-ai-infrastructure-startup-cognee-lands-e7-5-million-to-scale-enterprise-grade-memory-technology/) of EUR 7.5M in February 2026 to build an enterprise graph memory layer), and Neo4j Labs' [agent-memory](https://github.com/neo4j-labs/agent-memory) (["Lenny's Memory,"](https://neo4j.com/blog/developer/meet-lennys-memory-building-context-graphs-for-ai-agents/) launched January 2026), which signals graph-database vendors moving from KG construction to agent memory directly. Chapter 6 covers agent memory in depth; the graph substrate is now one of its main branches.
+
+**The evidence base matures --- and one flagship stalls.** [GraphRAG-Bench](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark) ("When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation"), accepted at ICLR 2026, is the first widely cited neutral analysis of when graph-based RAG actually outperforms vanilla RAG --- a direct empirical answer to this section's "when GraphRAG matters / when it is overkill" question. Meanwhile Ant Group's [OpenSPG/KAG](https://github.com/OpenSPG/KAG), the marquee Chinese-ecosystem entry, has gone quiet: no repository pushes since January 28, 2026 and no release since June 2025 --- coasting rather than accelerating.
 
 ---
 
@@ -180,6 +192,7 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 | Project | Description | Link |
 |---------|-------------|------|
 | Microsoft GraphRAG | Knowledge graph + RAG hybrid | [github.com/microsoft/graphrag](https://github.com/microsoft/graphrag) |
+| LightRAG | Lightweight graph+vector RAG framework (most-starred, ~38k, July 2026) | [github.com/HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) |
 | RAGFlow | Open-source RAG engine with deep document understanding | [github.com/infiniflow/ragflow](https://github.com/infiniflow/ragflow) |
 | NirDiamant/RAG_Techniques | Comprehensive collection of RAG implementations | [github.com/NirDiamant/RAG_Techniques](https://github.com/NirDiamant/RAG_Techniques) |
 | LangChain | Framework with extensive RAG tooling | [github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain) |
@@ -202,6 +215,12 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 - AWS. "Amazon Bedrock Managed Knowledge Base is now generally available" (June 17, 2026). [https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-bedrock-managed-knowledge-base/](https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-bedrock-managed-knowledge-base/) --- fully-managed RAG; six connectors; managed vector storage; hybrid search; agentic retrieval (query planning, interim-response evaluation, re-ranking).
 - MIT Technology Review. "A startup claims it broke through a bottleneck that's holding back LLMs" (June 19, 2026). [https://www.technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms/](https://www.technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms/) --- Subquadratic's SubQ 12M-token claim via Subquadratic Selective Attention (SSA); Appen benchmarks; Will Depue pushback; SubQ reuses Qwen weights. Frame as contested.
 - "Agents-K1: Towards Agent-native Knowledge Orchestration." arXiv 2606.13669 (June 11, 2026). [https://arxiv.org/abs/2606.13669](https://arxiv.org/abs/2606.13669) --- 2.46M papers processed into agent-native KGs; 1M-paper Scholar-KG released publicly; baseline gains on Frontierscience-Research (Gemini-3 7.9%→24.6%, GPT-5.2 25.2%→39.4%).
+- HKUDS. "LightRAG: Simple and Fast Retrieval-Augmented Generation" (EMNLP 2025). [github.com/HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) --- ~38k stars vs microsoft/graphrag's ~35k as of July 2026 (GitHub API).
+- Microsoft. GraphRAG releases. [github.com/microsoft/graphrag/releases](https://github.com/microsoft/graphrag/releases) --- v3.1.1 (July 18, 2026); the project's 2026 v3.x line.
+- GraphRAG-Bench. "When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation" (ICLR 2026). [github.com/GraphRAG-Bench/GraphRAG-Benchmark](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark)
+- EU-Startups. "German AI infrastructure startup Cognee lands EUR 7.5 million to scale enterprise-grade memory technology" (February 2026). [eu-startups.com](https://www.eu-startups.com/2026/02/german-ai-infrastructure-startup-cognee-lands-e7-5-million-to-scale-enterprise-grade-memory-technology/) --- Pebblebed-led seed for an enterprise graph memory layer.
+- Neo4j. "Meet Lenny's Memory: Building Context Graphs for AI Agents" (January 2026). [neo4j.com/blog/developer](https://neo4j.com/blog/developer/meet-lennys-memory-building-context-graphs-for-ai-agents/) --- graph-native agent memory library (neo4j-labs/agent-memory).
+- OpenSPG/KAG releases. [github.com/OpenSPG/KAG/releases](https://github.com/OpenSPG/KAG/releases) --- last repository push January 28, 2026; last release v0.8.0 (June 2025), verified via GitHub API.
 
 ---
 

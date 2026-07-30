@@ -4,7 +4,7 @@
 >
 > **Why it matters:** It is the newest and least-settled layer in this guide's evolution story, and the one most likely to shape how autonomous agent work actually gets scheduled, verified, and reviewed over the next year.
 
-This is the shortest-lived idea in this guide. The term "loop engineering" is roughly five weeks old at the time of writing: it was named in early June 2026, spread through practitioner blogs, podcasts, and X within days, and has no academic literature behind it yet. What follows is deliberately hedged. Where a claim rests on a spoken podcast quote transcribed three different ways, or on a viral post that named nothing, this chapter says so. The goal is to describe an emerging frame accurately, not to certify it as a settled generation.
+This is the shortest-lived idea in this guide. (It held that title for six weeks: in late July 2026 the same playbook produced a claim of a next layer above the loop, graph engineering, covered in [Chapter 14](14-graph-engineering.md).) The term "loop engineering" is roughly five weeks old at the time of writing: it was named in early June 2026, spread through practitioner blogs, podcasts, and X within days, and has no academic literature behind it yet. What follows is deliberately hedged. Where a claim rests on a spoken podcast quote transcribed three different ways, or on a viral post that named nothing, this chapter says so. The goal is to describe an emerging frame accurately, not to certify it as a settled generation.
 
 The frame is worth describing because it is doing real work in practitioner discourse: it gives a name to a shift that harness engineering (Chapter 4) implied but did not isolate --- the move from *prompting an agent* to *designing the system that prompts the agent*. Whether that deserves its own layer or is simply harness engineering with a scheduler attached is exactly the open question this chapter leaves open.
 
@@ -192,3 +192,5 @@ Five weeks after it got a name, loop engineering has a definition, a stated rela
 ---
 
 *Previous: [Chapter 12: Local Models for Knowledge Engineering](12-local-models.md)*
+
+*Next: [Chapter 14: Graph Engineering](14-graph-engineering.md)*
