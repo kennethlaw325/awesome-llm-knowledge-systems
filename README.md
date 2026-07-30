@@ -7,8 +7,14 @@
 <details>
 <summary><b>What's new in July 2026</b> (click to expand)</summary>
 
-The mid-July 2026 waves added a new Chapter 13 on Loop Engineering and two further timeline entries, on top of twelve earlier timeline entries and the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+The late-July 2026 wave adds a new Chapter 14 on Graph Engineering and six further timeline entries, on top of the mid-July waves (Chapter 13 plus fourteen timeline entries) and the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
 
+- **July 28 The MCP 2026-07-28 specification ships final** — the largest revision since authorization was added: a *stateless request/response core*, Multi Round-Trip Requests (SEP-2322), RFC 9207 issuer validation, Client ID Metadata Documents replacing Dynamic Client Registration, and a formal extensions framework, with a 12-month deprecation window for Roots / Sampling / Logging / HTTP+SSE ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md), glossary)
+- **July 24 Claude Opus 5** — pricing unchanged from Opus 4.8 at half Fable 5's rate, 1M context / 128K output, a *five-level `effort` dial*, paid Fast mode, and mid-conversation tool changes without prompt-cache invalidation (beta); benchmark figures are Anthropic's own claims ([Ch04 §4.10](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **July 17-22 New Chapter 14 — Graph Engineering** — the second layer-name in six weeks gets a full chapter: Steinberger's July 17-18 catalyst post, the org-graph / work-graph split (Thakker), loops supervising loops held down by *anchors* (Perez), governed topologies (TrueFoundry, Eigent), and LangChain's double-edged "3 Years of Graph Engineering with LangGraph" response — framed as *emerging and contested*, two weeks old, with the skeptics given equal weight and an explicit September 2026 survival gate ([Ch14](chapters/14-graph-engineering.md), [Ch01](chapters/01-evolution.md), glossary)
+- **July 18 Anthropic resolves Fable 5 subscription access** — Max and Team Premium keep Fable 5 permanently from July 20 at 50% of weekly usage limits, while Pro and Team Standard move to usage-credit rates — closing the arc that began with the June 12 export-control suspension ([Ch11](chapters/11-timeline.md))
+- **July 17 Moonshot releases Kimi K3** — at 2.8T parameters (MoE) the largest open-weight model ever released, with 1M context and native vision; topping Arena's frontend coding leaderboard as an open-weight model, weights following July 27 under Moonshot's bespoke Kimi K3 License ("open weight," in the company's own framing, not "open source") — server-class only, so the open-weight frontier widens without changing the local-deployment story ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
+- **July 17 WAIC 2026 and the founding of WAICO** — the World AI Conference in Shanghai produces the agreement establishing the World Artificial Intelligence Cooperation Organization, the first intergovernmental organization dedicated to AI, headquartered in Shanghai ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
 - **July 14 New Chapter 13 — Loop Engineering** — the June 2026 "loop engineering" frame gets a full chapter: Peter Steinberger's catalyst post, Addy Osmani's naming essay and "Own the Outer Loop" follow-up, Boris Cherny, the generator-evaluator split (Rajasekaran), Stripe's minions, LangChain's four stacked rungs, and adoption signals — framed as *emerging and contested*, five weeks old with no academic literature yet ([Ch13](chapters/13-loop-engineering.md), [Ch01](chapters/01-evolution.md), glossary)
 - **July 6 Anthropic J-space — a second interpretability channel** — Anthropic's "A global workspace in language models" identifies *J-space*, a small set of internal residual-stream directions Claude can report and modulate, giving harness engineers a *CoT-independent sensor class* for reading internal state ([Ch04 §4.2](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
 - **July 6 Tencent open-sources Hy3** — the 295B-parameter Hunyuan 3.0 ships under *unrestricted Apache 2.0* with geographic carve-outs removed; the last major closed Chinese frontier lab defaulting to fully open weights completes the open-source-convergence thesis ([Ch09](chapters/09-china-ecosystem.md), [Ch11](chapters/11-timeline.md))
@@ -36,7 +42,7 @@ The mid-July 2026 waves added a new Chapter 13 on Loop Engineering and two furth
 
 ## TL;DR
 
-- **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last -- and a contested fourth layer, *loop engineering*, emerged in mid-2026 ([Ch13](chapters/13-loop-engineering.md)).
+- **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last -- and a contested fourth layer, *loop engineering*, emerged in mid-2026 ([Ch13](chapters/13-loop-engineering.md)), followed six weeks later by a fifth claim, *graph engineering* ([Ch14](chapters/14-graph-engineering.md)).
 - **RAG is not dead.** 71% of enterprises that tried context-stuffing came back to RAG within 12 months (Gartner Q4 2025). Hybrid architectures are winning.
 - **Context engineering is about what surrounds the call, not the call itself.** Andrej Karpathy's mid-2025 reframe shifted focus from crafting prompts to constructing the entire context window dynamically.
 - **Harness engineering is the operating system layer.** Birgitta Böckeler (writing in Martin Fowler's *Exploring Generative AI* memo series, April 2026) and the OpenAI Codex team's harness-design framing formalized this -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
@@ -62,6 +68,7 @@ Not sure where to start? Pick the description that fits you best:
 - **"I'm building an AI application."** -- Read [Ch02: RAG, Long Context & Knowledge Graphs](chapters/02-knowledge-layer.md), then [Ch03: Context Engineering](chapters/03-context-engineering.md), then [Ch04: Harness Engineering](chapters/04-harness-engineering.md).
 - **"I want to make my AI tools work better."** -- Read [Ch05: Skill Systems](chapters/05-skill-systems.md), then [Ch06: Agent Memory](chapters/06-agent-memory.md), then [Ch10: Case Study](chapters/10-case-study.md).
 - **"I want my agents to run without me pushing every step."** -- Read [Ch13: Loop Engineering](chapters/13-loop-engineering.md), then [Ch04: Harness Engineering](chapters/04-harness-engineering.md) and [Ch06: Agent Memory](chapters/06-agent-memory.md).
+- **"I'm wiring multiple agents together."** -- Read [Ch14: Graph Engineering](chapters/14-graph-engineering.md), then [Ch13: Loop Engineering](chapters/13-loop-engineering.md) and [Ch04: Harness Engineering](chapters/04-harness-engineering.md).
 - **"I want to see real examples."** -- Jump straight to [Ch10: Case Study](chapters/10-case-study.md).
 - **"I work with Chinese AI tools."** -- Start with [Ch09: The Chinese AI Ecosystem](chapters/09-china-ecosystem.md).
 - **"I want the complete picture."** -- Read front to back, starting with Chapter 1.
@@ -87,16 +94,16 @@ If your scenario doesn't fit cleanly, it's probably a composition of these — s
 ## The Evolution
 
 ```
-2022-2024               2025                    2026                    2026 (mid)?
-PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG (emerging)
-                        (Karpathy)              (Fowler, OpenAI)        (Steinberger, Osmani)
+2022-2024               2025                    2026                    2026 (mid)?             2026 (late)??
+PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG (emerging) --> GRAPH ENG (contested)
+                        (Karpathy)              (Fowler, OpenAI)        (Steinberger, Osmani)   (Steinberger, Perez)
 
-"Craft the              "Construct the          "Orchestrate the        "Design the system
- perfect prompt"        dynamic context         entire system           that prompts
-                        window"                 around the model"       the agent"
+"Craft the              "Construct the          "Orchestrate the        "Design the system      "Wire the org
+ perfect prompt"        dynamic context         entire system           that prompts            of agents that
+                        window"                 around the model"       the agent"              run the loops"
 ```
 
-Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering. Loop engineering, the newest and still-contested layer, wraps all three -- the system that runs the harness on a timer, spawns helpers, and feeds it back to itself.
+Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering. Loop engineering, a still-contested fourth layer, wraps all three -- the system that runs the harness on a timer, spawns helpers, and feeds it back to itself. Graph engineering, the July 2026 claim covered in [Ch14](chapters/14-graph-engineering.md), would wrap even that -- the wiring of multiple loops into a designed organization -- though whether it is a real fifth layer or three-year-old practice with a new name (LangChain's counter) is exactly what its chapter leaves open.
 
 ---
 
@@ -220,6 +227,7 @@ graph LR
 | 11 | [Timeline](/chapters/11-timeline.md) | Key moments in LLM knowledge engineering, 2022-2026 |
 | 12 | [Local Models for Knowledge Engineering](/chapters/12-local-models.md) | Run your knowledge harness locally -- embedding, RAG, compilation, and the fine-tuning endgame |
 | 13 | [Loop Engineering](/chapters/13-loop-engineering.md) | The emerging fourth layer -- designing the system that prompts the agent, and whether it is its own generation |
+| 14 | [Graph Engineering](/chapters/14-graph-engineering.md) | The contested fifth claim -- wiring the organization of agents, and whether it is more than a new name |
 
 ---
 
