@@ -132,6 +132,9 @@ A hosted-runtime model in which the agent harness's substrate -- sandbox, sessio
 **Mechanistic Interpretability**
 A research program that aims to identify human-understandable circuits inside a model's weights -- the specific features, heads, and pathways that implement a given behavior. Named one of MIT Technology Review's 10 Breakthrough Technologies of 2026, it underpins April 2026 results such as emotion vectors, iteration heads, and CoT monitoring.
 
+**Memory Foundation Model**
+A July 2026 claim (MemTensor's Metis, arXiv 2607.26760) that agent memory should live as persistent, dynamically-evolving state inside the transformer backbone itself -- parametric, not external. The prototype trains a "hyper memory block" and "local memory block" (inspired by Fast Weight Programming) on top of a frozen Qwen3.5 backbone at 4B / 9B / 27B scale, updating memory at inference through a gradient-free, EMA-style forward pass rather than a vector-store write or a Titans-style gradient update. Self-reported limitations include long-horizon information loss under fixed-size compression and "information confusion... from the blending of semantics within the latent space" -- a research preview, not yet a validated production pattern. See Chapter 6.
+
 **mHC (Manifold-Constrained Hyper-Connections)**
 DeepSeek's April 2026 architectural proposal that extends residual connections by routing multiple internal information streams along a learned low-dimensional manifold. It generalizes the single residual stream used in Transformer++-style models into several coordinated streams; as of publication the result is flagged as awaiting independent replication.
 
