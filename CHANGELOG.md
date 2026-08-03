@@ -6,6 +6,16 @@ The guide is a living document — chapter and timeline updates ship continuousl
 
 ---
 
+## August 2026
+
+### 2026-08-03 — Memory foundation models (Metis) + timeline entries
+
+- **PR (early-August wave)** — A memory foundation model claim gets its first coverage: MemTensor's **Metis** ("Metis: Memory Foundation Model," arXiv 2607.26760, submitted July 29, 2026), from the same MemTensor lab (with Renmin University / NUS / SJTU / Tongji co-authors) behind the June 23, 2026 agent-native-memory survey (arXiv 2606.24775) already covered in **Ch06**. New Ch06 section "Late-July 2026: A Parametric Native-Memory Claim" (three paragraphs) presents memory foundation models as a research-preview direction — persistent, dynamically-evolving memory living as parametric state inside a frozen transformer backbone (Metis prototypes at 4B/9B/27B on Qwen3.5, training only a Fast-Weight-Programming-inspired hyper memory block and local memory block, updated at inference through a gradient-free EMA-style pass) — explicitly carrying the paper's self-reported limitations (long-horizon information loss under fixed-size compression; "information confusion in some cases, possibly caused by the blending of semantics within the latent space") and framed against the chapter's existing governance benchmarks as a fourth candidate entering an already-contested field, not a resolution to it. New **Ch11** timeline entry (July 29) plus appended source. One glossary addition: **Memory Foundation Model**.
+- Two further July 29, 2026 timeline entries, both fact-checked against their primary sources: **LangChain Deep Agents v0.7** (default base system prompt removed, built-in tool descriptions trimmed 43%, `TodoListMiddleware` / `write_todos` made opt-in after evals across three model families found no measurable gain from the default planning scaffold; ~6K → ~2K, 65%, base input tokens on a default agent turn) integrated into **Ch04 §4.8** as a production instance of the chapter's stress-testing discipline, plus a Ch11 entry and source; and **MinIO AIStor Memory** (object-storage-backed layer for agent memory, workspace state, and credentials, positioned to replace a hand-assembled vector-store / metadata-DB / credential-tooling stack with a durable, customer-owned, full-fidelity record), Ch11 entry only, corroborated by 8+ independent outlets dated July 29-30, 2026.
+- README What's-new block rolled forward to August 2026 (three new-wave bullets; the late-July wave's full bullet list demoted to the trailing "from earlier waves" section; the early-June trailing bullets dropped) and the *Last updated* footer corrected to August 2026. **Caveats:** Metis is a single-version arXiv preprint (no third-party replication or peer review yet) and is framed throughout as emerging/contested, consistent with the paper's own reported failure modes; the MinIO claim that AIStor Memory replaces a "secrets manager" is a paraphrase of its Vault/MinKMS credentials component, not a literal quote from MinIO, and is written as "credential tooling" rather than attributed to MinIO's own wording; no HN/X/social pickup is claimed for Metis. No new diagrams-worthy primitive shipped this wave, so `diagrams/` pending-refresh status is unchanged.
+
+---
+
 ## July 2026
 
 ### 2026-07-30 — Graph Engineering chapter + late-July wave

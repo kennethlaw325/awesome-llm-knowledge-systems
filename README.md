@@ -5,9 +5,15 @@
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
 <details>
-<summary><b>What's new in July 2026</b> (click to expand)</summary>
+<summary><b>What's new in August 2026</b> (click to expand)</summary>
 
-The late-July 2026 wave adds a new Chapter 14 on Graph Engineering and six further timeline entries, on top of the mid-July waves (Chapter 13 plus fourteen timeline entries) and the early-June wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+The early-August 2026 wave adds MemTensor's Metis paper on memory foundation models plus two further timeline entries, on top of the late-July wave (Chapter 14 plus six timeline entries) and the mid-July wave. Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
+
+- **July 29 MemTensor's Metis proposes memory foundation models** — MemTensor (Shanghai), the same lab behind June's agent-native-memory survey, joined by co-authors from Renmin University / NUS / SJTU / Tongji, proposes agent memory as *persistent, parametric state inside the transformer backbone itself* rather than an external store: a frozen Qwen3.5 backbone (4B/9B/27B) with only a Fast-Weight-Programming-inspired "hyper memory block" and "local memory block" trained, updated at inference by a gradient-free EMA-style pass; the paper itself reports long-horizon information loss under fixed-size compression and "information confusion in some cases, possibly caused by the blending of semantics within the latent space" ([Ch06](chapters/06-agent-memory.md), [Ch11](chapters/11-timeline.md), glossary)
+- **July 29 LangChain ships Deep Agents v0.7** — removes the framework's default base system prompt, trims built-in tool descriptions 43%, and makes the todo-list planning scaffold opt-in after evals across three model families found no measurable gain from it, cutting base input tokens on a default agent turn roughly 65% (~6k to ~2k) — a production instance of this guide's stress-testing discipline ([Ch04 §4.8](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
+- **July 29 MinIO ships AIStor Memory** — an object-storage-backed layer for agent memory, workspace state, and credentials, positioned to replace a hand-assembled stack of vector store, metadata database, and credential tooling with a durable, customer-owned, full-fidelity record ([Ch11](chapters/11-timeline.md))
+
+*From earlier waves (full detail in [CHANGELOG.md](CHANGELOG.md)):*
 
 - **July 28 The MCP 2026-07-28 specification ships final** — the largest revision since authorization was added: a *stateless request/response core*, Multi Round-Trip Requests (SEP-2322), RFC 9207 issuer validation, Client ID Metadata Documents replacing Dynamic Client Registration, and a formal extensions framework, with a 12-month deprecation window for Roots / Sampling / Logging / HTTP+SSE ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md), glossary)
 - **July 24 Claude Opus 5** — pricing unchanged from Opus 4.8 at half Fable 5's rate, 1M context / 128K output, a *five-level `effort` dial*, paid Fast mode, and mid-conversation tool changes without prompt-cache invalidation (beta); benchmark figures are Anthropic's own claims ([Ch04 §4.10](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md))
@@ -30,11 +36,6 @@ The late-July 2026 wave adds a new Chapter 14 on Graph Engineering and six furth
 - **June 9 Claude Fable 5 + Mythos 5** — the first public GA of a Mythos-class model, safety-tiered against the Glasswing-gated Mythos 5; ships *refusal-as-`stop_reason`* plus a fallback-billing contract, a new harness primitive in the task-budgets family ([Ch04 §4.10](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
 - **June 8 Apple opens Foundation Models to any LLM provider** — a public `LanguageModel` Swift protocol turns Apple's native inference framework into a *pluggable-provider* API, with local Hugging Face models as an Apple-shipped backend ([Ch12](chapters/12-local-models.md), [Ch11](chapters/11-timeline.md))
 - **June 7 The week "loop engineering" got its name** — Steinberger's viral "design loops that prompt your agents" post, Osmani's same-day naming essay, and Cherny's "my job is to write loops" converge in one week; Anthropic's @ClaudeDevs "Getting started with loops" article (July 6, ~6.0M impressions) institutionalizes it within a month, still calling it "loops" ([Ch01](chapters/01-evolution.md), [Ch11](chapters/11-timeline.md), [Ch13](chapters/13-loop-engineering.md))
-
-*From the early-June wave (full detail in [CHANGELOG.md](CHANGELOG.md)):*
-
-- **June 2 Microsoft Build — MAI-Thinking-1 + MAI-Code-1-Flash** — Microsoft ships its first in-house reasoning model (reported trained without OpenAI data) plus a 5B coding model **trained directly against the production GitHub Copilot harnesses**. The framework beat: harness-native training is the *symmetric inverse* of harness synthesis — instead of evolving the harness for a fixed model, you shape the model to fit a fixed harness ([Ch04 §4.5](chapters/04-harness-engineering.md), [Ch11](chapters/11-timeline.md), glossary)
-- **June 1 IETF MCP security I-D** ([draft-mohiuddin-mcp-security-considerations-00](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/)) — the first standards-track document scoped to MCP security, opening on *"The MCP specification does not define normative security requirements."* Catalogs six vulnerability classes (SSRF, excessive tool permissions, prompt-injection surface, lifecycle bypass, information leakage, auth-enforcement gaps) with mitigations + the open-source `mcp-safeguard` scanner; MCP security maturation moves out of the vendor spec into independent scrutiny ([Ch07](chapters/07-mcp.md), [Ch11](chapters/11-timeline.md))
 
 </details>
 
@@ -263,4 +264,4 @@ Use this however you want. Attribution appreciated but not required.
 
 ---
 
-*Last updated: July 2026*
+*Last updated: August 2026*
