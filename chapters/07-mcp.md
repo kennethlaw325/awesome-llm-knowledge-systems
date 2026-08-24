@@ -159,6 +159,16 @@ Authorization hardened one step beyond the RC. The final spec mandates **RFC 920
 
 For knowledge engineering, the practical consequences are the two the RC promised, now shipping: remote MCP servers can sit behind plain load balancers with no sticky routing, and clients can cache `tools/list` --- the deployment posture of an ordinary stateless web service. The protocol's 2026 arc is complete: the stateful turn (April), the re-statelessing RC (May), independent security scrutiny (June), and a final spec that keeps the core deliberately small while pushing everything stateful, interactive, or enterprise-specific into extensions.
 
+## 2026-08-22: What Comes After Finalization
+
+The July 28 final spec closed the arc this chapter has tracked since the April 2026 stateful turn. On **August 22, 2026**, the MCP core maintainers published a roadmap for the post-finalization period -- an explicit governance and priorities document answering the "what's next" question the spec itself deliberately does not.
+
+**Governance formalizes.** With the core spec now a fixed point rather than a moving target, the roadmap regularizes how the project makes decisions: a **Contributor Ladder** with defined levels, SEP (spec enhancement proposal) triage moving out of a central bottleneck and into domain-specific **Working Groups**, and a formal feature lifecycle and deprecation policy that generalizes the ad-hoc removal window the July 28 spec used for Roots, Sampling, and Logging into a standing process for every future capability.
+
+**Five priorities.** The maintainers name five directions for the next wave of primitives: (1) **agentic messaging** -- server-initiated events (webhooks, channels) and maturing the Tasks extension toward full inclusion back in the core spec; (2) extending the July 28 spec's HTTP-native transport unification to local deployments, closing the stdio/HTTP split that survived finalization; (3) **agent identity and enterprise security** standardization -- specifically DPoP and Workload Identity Federation, pushing EMA's (June 18) IdP-provisioning model toward machine-to-machine identity; (4) improved tool-result handling and progressive discovery over large tool catalogs, a maintainer-level endorsement of the Meta-Tool Pattern covered earlier in this chapter; (5) SDK developer experience and conformance testing across the Tier 1 SDKs. The post drew 241 points and 142 comments on Hacker News the same day -- a large response for a governance document, cited here as a same-day snapshot rather than a durable metric.
+
+For knowledge engineering, priority (1) is the one to watch: Tasks graduating from extension back into the core spec would give durable, resumable retrieval and enrichment pipelines a standing the protocol currently only grants provisionally.
+
 ## Market Context
 
 Industry analysts project the AI tool integration market -- of which MCP is the dominant protocol -- at $1.8 billion for 2025, with significant growth expected as enterprise adoption accelerates. This figure encompasses MCP infrastructure, server development, gateway services, and related tooling.
@@ -194,6 +204,7 @@ Industry analysts project the AI tool integration market -- of which MCP is the 
 20. TechCrunch. "AI's most important protocol is getting a little bit easier to use" (July 20, 2026). [https://techcrunch.com/2026/07/20/ais-most-important-protocol-is-getting-a-little-bit-easier-to-use/](https://techcrunch.com/2026/07/20/ais-most-important-protocol-is-getting-a-little-bit-easier-to-use/) --- pre-finalization secondary coverage of the stateless-core change.
 21. The Register. "Model Context Protocol prepares to break with its stateful past" (July 23, 2026). [https://www.theregister.com/devops/2026/07/23/model-context-protocol-prepares-to-break-with-its-stateful-past/5276722](https://www.theregister.com/devops/2026/07/23/model-context-protocol-prepares-to-break-with-its-stateful-past/5276722)
 22. WorkOS. "MCP 2026 spec: agent authentication" (July 2026). [https://workos.com/blog/mcp-2026-spec-agent-authentication](https://workos.com/blog/mcp-2026-spec-agent-authentication) --- secondary coverage of CIMD and the authorization hardening.
+23. Model Context Protocol blog. "The MCP Roadmap" (August 22, 2026). [https://blog.modelcontextprotocol.io/posts/mcp-roadmap/](https://blog.modelcontextprotocol.io/posts/mcp-roadmap/) --- post-finalization priorities: agentic messaging (webhooks/channels, Tasks toward core), HTTP-native transport for local deployments, agent identity/enterprise security (DPoP, Workload Identity Federation), tool-result handling/progressive discovery, SDK DX/conformance; governance: Contributor Ladder, Working Group SEP triage, formal feature lifecycle policy. Hacker News discussion same day: 241 points / 142 comments (same-day snapshot).
 
 ---
 
