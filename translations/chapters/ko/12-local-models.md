@@ -152,3 +152,5 @@ Model Context Protocol은 Ollama의 OpenAI 호환 엔드포인트를 통해 로�
 ---
 
 *이전 장: [11장 — LLM 지식 엔지니어링의 핵심 순간들](11-timeline.md)*
+
+*다음 장: [13장 — Loop Engineering](13-loop-engineering.md)*

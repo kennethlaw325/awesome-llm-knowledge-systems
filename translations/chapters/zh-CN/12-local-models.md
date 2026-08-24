@@ -152,3 +152,5 @@ Model Context Protocol 透过 Ollama 的兼容 OpenAI 端点与本地模型一�
 ---
 
 *上一章: [第 11 章 —— LLM 知识工程的关键时刻](11-timeline.md)*
+
+*下一章: [第 13 章 —— Loop Engineering](13-loop-engineering.md)*

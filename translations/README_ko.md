@@ -2,7 +2,7 @@
 
 [English](../README.md) | [繁體中文](README-zh.md) | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | **한국어** | [Español](README_es.md)
 
-> 이 문서는 [English README](../README.md)의 한국어 번역입니다. 12개 장 모두 한국어로 번역 완료 (v0 기계 번역 품질; 네이티브 화자의 리파인먼트 PR을 환영합니다. 사실의 기준은 영어판입니다).
+> 이 문서는 [English README](../README.md)의 한국어 번역입니다. 14개 장 모두 한국어로 번역 완료 (v0 기계 번역 품질; 네이티브 화자의 리파인먼트 PR을 환영합니다. 사실의 기준은 영어판입니다).
 
 > 50개 이상의 awesome list, 설문조사, 가이드를 분석했지만, 모든 것을 연결한 것은 하나도 없었습니다. RAG 논문은 하네스 엔지니어링을 언급하지 않습니다. 메모리 프레임워크는 스킬 시스템을 무시합니다. MCP 문서는 점진적 공개를 건너뜁니다. 이 가이드가 완전한 지도를 그립니다.
 
@@ -191,6 +191,8 @@ graph LR
 | 10 | [사례 연구: 실제 세계의 지식 하네스](chapters/ko/10-case-study.md) 🌐 | 한 개발자가 완전한 하네스를 구축하여 65% 토큰 절감을 달성한 방법 |
 | 11 | [타임라인](chapters/ko/11-timeline.md) 🌐 | LLM 지식 공학의 핵심 순간, 2022-2026 |
 | 12 | [로컬 모델과 지식 공학](chapters/ko/12-local-models.md) 🌐 | 자신의 하드웨어에서 지식 하네스를 실행 — Embedding, RAG, 컴파일, 파인튜닝의 엔드게임 |
+| 13 | [Loop Engineering(루프 공학)](chapters/ko/13-loop-engineering.md) 🌐 | 에이전트에게 prompt하는 시스템을 설계하기 — 떠오르는, 논쟁적인 네 번째 계층 |
+| 14 | [Graph Engineering(그래프 공학)](chapters/ko/14-graph-engineering.md) 🌐 | 에이전트 조직을 배선하기 — 루프 위의 다음 계층이라는, 시험받는 2026년 7월의 주장 |
 
 ---
 

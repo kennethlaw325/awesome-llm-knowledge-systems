@@ -2,7 +2,7 @@
 
 [English](../README.md) | **繁體中文** | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | [Español](README_es.md)
 
-> 此為 [English README](../README.md) 的繁體中文翻譯。全部 12 章已翻譯為繁體中文（從簡中基線經 OpenCC `s2twp` 轉換 + 台港用語調整，翻譯品質為 v0；歡迎以英文版為事實基準提交翻譯改進 PR）。
+> 此為 [English README](../README.md) 的繁體中文翻譯。全部 14 章已翻譯為繁體中文（從簡中基線經 OpenCC `s2twp` 轉換 + 台港用語調整，翻譯品質為 v0；歡迎以英文版為事實基準提交翻譯改進 PR）。
 
 > 我分析了超過 50 份 awesome lists、調查報告和指南——沒有一份把所有東西串起來。RAG 論文不提 harness engineering（系統編排工程）。Memory frameworks（記憶框架）忽略 skill systems（技能系統）。MCP 文件跳過 progressive disclosure（漸進式揭露）。這份指南畫出了完整的地圖。
 
@@ -192,6 +192,8 @@ graph LR
 | 10 | [案例研究：真實世界的知識 Harness](chapters/zh/10-case-study.md) 🌐 | 一位開發者如何建構完整的 harness 並實現 65% 的 token 縮減 |
 | 11 | [時間線](chapters/zh/11-timeline.md) 🌐 | LLM 知識工程的關鍵時刻，2022-2026 |
 | 12 | [本地模型與知識工程](chapters/zh/12-local-models.md) 🌐 | 在自己硬體上跑整個知識 harness——Embedding、RAG、編譯流程，以及微調終局 |
+| 13 | [Loop Engineering（迴圈工程）](chapters/zh/13-loop-engineering.md) 🌐 | 正在浮現的第四層——設計提示 agent 的系統，以及它究竟算不算自己的一個世代 |
+| 14 | [Graph Engineering（圖工程）](chapters/zh/14-graph-engineering.md) 🌐 | 有爭議的第五個說法——串連 agent 的組織架構，以及它究竟算不算不只是一個新名字 |
 
 ---
 
