@@ -192,6 +192,8 @@ graph LR
 | 10 | [案例研究：真实世界的知识 Harness](chapters/zh-CN/10-case-study.md) 🌐 | 一位开发者如何构建完整的 harness 并实现 65% 的 token 缩减 |
 | 11 | [时间线](chapters/zh-CN/11-timeline.md) 🌐 | LLM 知识工程的关键时刻，2022-2026 |
 | 12 | [本地模型与知识工程](chapters/zh-CN/12-local-models.md) 🌐 | 在自己硬件上跑整个知识 harness——Embedding、RAG、编译流程，以及微调终局 |
+| 13 | [Loop Engineering（循环工程）](chapters/zh-CN/13-loop-engineering.md) 🌐 | 设计提示 Agent 的系统——从手动驾驶到设计会自己运行、自我检查的 loop |
+| 14 | [Graph Engineering（图工程）](chapters/zh-CN/14-graph-engineering.md) 🌐 | 为 Agent 组织布线——loop 之上的那一层是否成立，仍在检验中 |
 
 ---
 

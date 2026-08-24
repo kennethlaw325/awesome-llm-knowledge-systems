@@ -152,3 +152,5 @@ Model Context Protocol は Ollama の OpenAI 互換エンドポイントを通�
 ---
 
 *前の章: [第 11 章 — LLM ナレッジエンジニアリングの鍵となる瞬間](11-timeline.md)*
+
+*次の章: [第 13 章 — Loop Engineering：エージェントにプロンプトを送るシステムを設計する](13-loop-engineering.md)*
