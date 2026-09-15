@@ -4,11 +4,62 @@
 >
 > **Why it matters:** Context for everything in this guide -- when it happened, who did it, and what changed.
 >
-> **Reading time:** ~98 min (22,490 words / 230 wpm)
+> **Reading time:** ~99 min (22,649 words / 230 wpm)
 
-*Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Left to right is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits. Click the figure to open it at full size.*
+*Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Each period row runs left to right; top to bottom is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits. A horizontal poster version is in [diagrams/timeline.svg](../diagrams/timeline.svg).*
 
-[![LLM Knowledge Engineering Timeline 2022-2026](../diagrams/timeline.svg)](../diagrams/timeline.svg)
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph P1["2022-2023"]
+      direction LR
+      E01["<b>November 30, 2022</b><br/>ChatGPT launches<br/>and prompt<br/>engineering begins"]
+      E02["<b>Q1-Q2 2023</b><br/>RAG frameworks<br/>emerge, LangChain<br/>and LlamaIndex"]
+      E03["<b>November 2023</b><br/>GPT-4 Turbo<br/>ships a 128K<br/>window"]
+      E01 --> E02
+      E02 --> E03
+    end
+    subgraph P2["2024"]
+      direction LR
+      E04["<b>February 2024</b><br/>Gemini 1.5 reaches<br/>1M token context"]
+      E05["<b>November 2024</b><br/>Anthropic releases<br/>the Model Context<br/>Protocol"]
+      E04 --> E05
+    end
+    subgraph P3["2025"]
+      direction LR
+      E06["<b>January 2025</b><br/>DeepSeek R1,<br/>the open-source<br/>inflection"]
+      E07["<b>Mid-2025</b><br/>Context<br/>engineering enters<br/>the lexicon"]
+      E08["<b>October 2025</b><br/>Anthropic<br/>launches Agent<br/>Skills"]
+      E06 --> E07
+      E07 --> E08
+    end
+    subgraph P4["2026 H1"]
+      direction LR
+      E09["<b>April 3, 2026</b><br/>AI Velocity<br/>Paradox report<br/>lands"]
+      E10["<b>April 14, 2026</b><br/>Claude Code<br/>Routines research<br/>preview"]
+      E11["<b>June 7, 2026</b><br/>Loop engineering<br/>gets its name"]
+      E09 --> E10
+      E10 --> E11
+    end
+    subgraph P5["2026 H2"]
+      direction LR
+      E12["<b>July 17-18, 2026</b><br/>Graph engineering<br/>gets its name"]
+      E13["<b>August 6, 2026</b><br/>Paperclip skill<br/>supply-chain<br/>campaign"]
+      E14["<b>September 15, 2026</b><br/>Chapter 14<br/>survival gate<br/>comes due"]
+      E12 --> E13
+      E13 --> E14
+    end
+    P1 --> P2
+    P2 --> P3
+    P3 --> P4
+    P4 --> P5
+    class E01,E02,E03,E04,E05,E06,E07,E08,E09,E10,E11 stable
+    class E12,E13,E14 accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 A chronological map of the events, releases, and ideas that shaped how we build knowledge systems with large language models. Where precise dates are known, they are included. Where only a quarter or month is confirmed, that granularity is used.
 
