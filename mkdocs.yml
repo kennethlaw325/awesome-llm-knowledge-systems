@@ -1,0 +1,91 @@
+site_name: LLM Knowledge Engineering in 2026
+site_description: >-
+  The map everyone's missing: RAG, context engineering, harness engineering,
+  skill systems, agent memory and MCP as one connected ecosystem.
+site_url: https://kennethlaw325.github.io/awesome-llm-knowledge-systems/
+repo_url: https://github.com/kennethlaw325/awesome-llm-knowledge-systems
+repo_name: kennethlaw325/awesome-llm-knowledge-systems
+# The staged paths under build/docs/ are not the source paths, so an edit
+# button would point at files that do not exist on the branch.
+edit_uri: ""
+
+# scripts/stage_docs.py copies the repo's markdown here; mkdocs refuses a
+# docs_dir that contains mkdocs.yml.
+docs_dir: build/docs
+site_dir: build/site
+
+validation:
+  links:
+    # README/chapters link to chapters as /chapters/NN-x.md, which GitHub
+    # resolves against the repo root.
+    absolute_links: relative_to_docs
+    anchors: warn
+    unrecognized_links: warn
+
+# Translations ship with the site for their links to resolve, but the nav
+# stays English-only.
+not_in_nav: |
+  translations/**
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - toc.follow
+    - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - "01 · The Three Generations": chapters/01-evolution.md
+  - "02 · RAG, Long Context & Knowledge Graphs": chapters/02-knowledge-layer.md
+  - "03 · Context Engineering -- The Art of Filling the Window": chapters/03-context-engineering.md
+  - "04 · Harness Engineering -- Building the OS Around the Model": chapters/04-harness-engineering.md
+  - "05 · Skill Systems -- Skills, Skill Graphs, and Progressive Disclosure": chapters/05-skill-systems.md
+  - "06 · Agent Memory -- The Missing Layer": chapters/06-agent-memory.md
+  - "07 · MCP -- The Standard That Won": chapters/07-mcp.md
+  - "08 · Tools Landscape -- AI-Native Knowledge Management": chapters/08-tools-landscape.md
+  - "09 · The Chinese AI Knowledge Engineering Landscape": chapters/09-china-ecosystem.md
+  - "10 · Building a Real-World Knowledge Harness": chapters/10-case-study.md
+  - "11 · Key Moments in LLM Knowledge Engineering": chapters/11-timeline.md
+  - "12 · Local Models for Knowledge Engineering": chapters/12-local-models.md
+  - "13 · Loop Engineering -- Designing the System That Prompts the Agent": chapters/13-loop-engineering.md
+  - "14 · Graph Engineering -- Wiring the Organization of Agents": chapters/14-graph-engineering.md
+  - Glossary: glossary.md
+  - About:
+      - Changelog: CHANGELOG.md
+      - Contributing: CONTRIBUTING.md
