@@ -28,11 +28,11 @@ One accent colour (blue), everything else greyscale. Meaning of the classes:
 
 Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead. Chapter 11 is the exception: its `timeline` is shipped as a rendered image (`diagrams/timeline.svg`, plus `timeline.png` for the translations) because a fourteen-entry timeline compressed to column width is unreadable; the Mermaid source lives in `diagrams/timeline.mmd`.
 
-Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init variant, which maps the section colours onto the same greys and the one blue, is the first line of `diagrams/timeline.mmd` and is not repeated here. Changing the timeline means editing that file and re-rendering both outputs, where the config file holds `{"timeline":{"useMaxWidth":false}}` so the SVG carries an absolute width and height instead of `width="100%"`:
+Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init variant, which maps the section colours onto the same greys and the one blue, is the first line of `diagrams/timeline.mmd` and is not repeated here. Changing the timeline means editing that file and re-rendering both outputs, where `diagrams/timeline.config.json` (committed) holds `{"timeline": {"useMaxWidth": false}}` so the SVG carries an absolute width and height instead of `width="100%"`:
 
 ```
-npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.svg -b white -c timeline.config.json
-npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.png -b white -c timeline.config.json -s 2
+npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.svg -b white -c diagrams/timeline.config.json
+npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.png -b white -c diagrams/timeline.config.json -s 2
 ```
 
 Add `-p` with a puppeteer config naming a local `executablePath` when the mermaid-cli install has no bundled Chrome.
