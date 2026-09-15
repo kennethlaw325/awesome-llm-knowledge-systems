@@ -4,35 +4,11 @@
 >
 > **Why it matters:** Context for everything in this guide -- when it happened, who did it, and what changed.
 >
-> **Reading time:** ~99 min (22,620 words / 230 wpm)
+> **Reading time:** ~98 min (22,490 words / 230 wpm)
 
-*Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Left to right is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits.*
+*Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Left to right is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits. Click the figure to open it at full size.*
 
-```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#f6f8fa','cScale2':'#eef1f4','cScale3':'#f6f8fa','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#1f2328','cScaleLabel2':'#1f2328','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f','cScalePeer0':'#f6f8fa','cScalePeer1':'#eef1f4','cScalePeer2':'#f6f8fa','cScalePeer3':'#eef1f4','cScalePeer4':'#dbeafe','cScaleInv0':'#8c959f','cScaleInv1':'#8c959f','cScaleInv2':'#8c959f','cScaleInv3':'#8c959f','cScaleInv4':'#8c959f'}}}%%
-timeline
-    section 2022-2023
-        November 30, 2022 : ChatGPT launches and prompt engineering begins
-        Q1-Q2 2023 : RAG frameworks emerge, LangChain and LlamaIndex
-        November 2023 : GPT-4 Turbo ships a 128K window
-    section 2024
-        February 2024 : Gemini 1.5 reaches 1M token context
-        November 2024 : Anthropic releases the Model Context Protocol
-    section 2025
-        January 2025 : DeepSeek R1, the open-source inflection
-        Mid-2025 : Context engineering enters the lexicon
-        October 2025 : Anthropic launches Agent Skills
-    section 2026 H1
-        April 3, 2026 : AI Velocity Paradox report lands
-        April 14, 2026 : Claude Code Routines research preview
-        June 7, 2026 : Loop engineering gets its name
-    section 2026 H2
-        July 17-18, 2026 : Graph engineering gets its name
-        August 6, 2026 : Paperclip skill supply-chain campaign
-        September 15, 2026 : Chapter 14 survival gate comes due
-```
-
-![LLM Knowledge Engineering Timeline 2022-2026](../diagrams/timeline.png)
+[![LLM Knowledge Engineering Timeline 2022-2026](../diagrams/timeline.svg)](../diagrams/timeline.svg)
 
 A chronological map of the events, releases, and ideas that shaped how we build knowledge systems with large language models. Where precise dates are known, they are included. Where only a quarter or month is confirmed, that granularity is used.
 

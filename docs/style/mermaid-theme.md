@@ -26,13 +26,16 @@ One accent colour (blue), everything else greyscale. Meaning of the classes:
 - `muted` -- ephemeral, per-job, or contested items.
 - `gate` -- a decision or check point (usually a `{{hexagon}}` node).
 
-Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead. The Chapter 11 `timeline` is exempt: it is horizontal by construction and readers zoom it.
+Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead. Chapter 11 is the exception: its `timeline` is shipped as a rendered image (`diagrams/timeline.svg`, plus `timeline.png` for the translations) because a fourteen-entry timeline compressed to column width is unreadable; the Mermaid source lives in `diagrams/timeline.mmd`.
 
-Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init line is this variant, verbatim, which maps the section colours onto the same greys and the one blue:
+Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init variant, which maps the section colours onto the same greys and the one blue, is the first line of `diagrams/timeline.mmd` and is not repeated here. Changing the timeline means editing that file and re-rendering both outputs, where `diagrams/timeline.config.json` (committed) holds `{"timeline": {"useMaxWidth": false}}` so the SVG carries an absolute width and height instead of `width="100%"`:
 
 ```
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#f6f8fa','cScale2':'#eef1f4','cScale3':'#f6f8fa','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#1f2328','cScaleLabel2':'#1f2328','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f','cScalePeer0':'#f6f8fa','cScalePeer1':'#eef1f4','cScalePeer2':'#f6f8fa','cScalePeer3':'#eef1f4','cScalePeer4':'#dbeafe','cScaleInv0':'#8c959f','cScaleInv1':'#8c959f','cScaleInv2':'#8c959f','cScaleInv3':'#8c959f','cScaleInv4':'#8c959f'}}}%%
+npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.svg -b white -c diagrams/timeline.config.json
+npx -y @mermaid-js/mermaid-cli -i diagrams/timeline.mmd -o diagrams/timeline.png -b white -c diagrams/timeline.config.json -s 2
 ```
+
+Add `-p` with a puppeteer config naming a local `executablePath` when the mermaid-cli install has no bundled Chrome.
 
 ## Placement and format
 
