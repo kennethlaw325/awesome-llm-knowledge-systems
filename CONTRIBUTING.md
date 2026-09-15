@@ -17,7 +17,7 @@ The repo is organized around ten axes the framework treats as load-bearing:
 5. **Skill systems** — discovery, composition, progressive disclosure (Ch05)
 6. **Agent memory** — short-term, long-term, graph, learned (Ch06)
 7. **MCP and interop** — protocols and standards (Ch07)
-8. **Tools landscape** — production frameworks (Ch08)
+8. **Tools landscape** — AI-native knowledge management tools (Ch08)
 9. **China ecosystem** — open-weight inflection, sovereign silicon, Chinese-language frontier (Ch09)
 10. **Local models** — small or local deployment patterns (Ch12)
 
