@@ -4,9 +4,9 @@
 >
 > **Why it matters:** It is the newest and least-settled layer in this guide's evolution story, and the one most likely to shape how autonomous agent work actually gets scheduled, verified, and reviewed over the next year.
 >
-> **Reading time:** ~18 min (3,951 words / 230 wpm)
+> **Reading time:** ~18 min (3,962 words / 230 wpm)
 
-*Figure: One pass of a loop, assembled from the five pieces of section 13.3 plus the external state that section 13.3 keeps separate from them. Two edges carry the argument: the state file is read before the run decides anything (13.2), and the agent that drafts is not the agent that scores (13.4).*
+*Figure: One pass of a loop, assembled from the five pieces of section 13.3 plus the external state that section 13.3 keeps separate from them, ending in the human outer loop and the verdict of 13.7. Two edges carry the argument: the state file is read before the run decides anything (13.2), and the agent that drafts is not the agent that scores (13.4).*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%

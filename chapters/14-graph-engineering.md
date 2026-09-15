@@ -4,7 +4,7 @@
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
 >
-> **Reading time:** ~28 min (6,265 words / 230 wpm)
+> **Reading time:** ~28 min (6,285 words / 230 wpm)
 
 *Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
 
@@ -12,18 +12,18 @@
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
 flowchart TB
     subgraph ORG["ORG GRAPH · stable roster, versioned, reviewed"]
-      LEAD["Lead"] -->|may delegate| RES["Researcher"]
-      LEAD -->|may delegate| BUILD["Builder"]
+      LEAD["Lead agent"] -->|may delegate| RES["Research subagent<br/>own context window"]
+      LEAD -->|may delegate| CITE["CitationAgent<br/>attributes sources"]
     end
     RES --> GATE{{"only permitted edges<br/>may be used"}}
-    BUILD --> GATE
+    CITE --> GATE
     subgraph WORK["WORK GRAPH · spawned per job, then discarded"]
       T0["This job"] -.-> T1["Subtask A"]
       T0 -.-> T2["Subtask B"]
     end
     GATE --> T0
     T2 -->|must touch| ANCH["Anchor<br/>test result, metric, ground truth"]
-    class LEAD,RES,BUILD stable
+    class LEAD,RES,CITE stable
     class T0,T1,T2 muted
     class ANCH accent
     class GATE gate
@@ -215,7 +215,7 @@ The next thing that would change this verdict is narrow and easy to state: a ven
 
 - **The org graph and the work graph are two different objects.** The stable roster of permitted delegation edges outlives the ephemeral graph that any single job spawns inside it.
 - **Without an anchor, mutually reviewing agents converge on agreement rather than correctness.** Perez's fix is that some node must touch an unarguable, externally grounded measurement.
-- **The term survived the circulation test; its status as a layer did not.** Two vendors shipped the governance the label describes without ever using the word, so the guide keeps graph engineering outside the numbered generations.
+- **The term survived the circulation test; its status as a distinct layer remains unproved.** Two vendors shipped related coordination features without ever using the word, and with different enforcement mechanisms -- Codex's delegation setting is prompt-level policy, not enforced authorization -- so the guide keeps graph engineering outside the numbered generations.
 
 ---
 

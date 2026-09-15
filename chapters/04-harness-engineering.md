@@ -4,9 +4,9 @@
 >
 > **Why it matters:** The AI model is like a powerful engine. Without a chassis, steering wheel, and brakes, it's useless. The harness is what turns raw AI into a product.
 >
-> **Reading time:** ~48 min (10,985 words / 230 wpm)
+> **Reading time:** ~48 min (11,003 words / 230 wpm)
 
-*Figure: The anatomy of a harness, drawn from the six IMPACT dimensions of section 4.4 -- Intent, Memory, Planning, Authority, Control flow, Tools -- arranged around the model they surround. Each edge names what that dimension decides or supplies, which is how section 4.4 uses the list: walking the edges one by one is what surfaces the gap. The two accented dimensions carry the argument, because a system with strong Tools and weak Authority is the security problem that section names.*
+*Figure: The anatomy of a harness, drawn from the six IMPACT dimensions of section 4.4 -- Intent, Memory, Planning, Authority, Control flow, Tools -- arranged around the model they surround. The left-to-right spine is the chapter's opening definition: the harness is what turns raw inference into reliable behavior. Each edge names what that dimension decides or supplies, which is how section 4.4 uses the list: walking the edges one by one is what surfaces the gap. The two accented dimensions carry the argument, because a system with strong Tools and weak Authority is the security problem that section names.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%

@@ -4,16 +4,16 @@
 >
 > **Why it matters:** Without memory, every AI conversation starts from zero. Memory is what makes AI feel like a colleague instead of a stranger.
 >
-> **Reading time:** ~30 min (6,679 words / 230 wpm)
+> **Reading time:** ~30 min (6,699 words / 230 wpm)
 
-*Figure: The six levels named in "Feature-Level Memory Research (2026)", arranged by locus -- what the model reads through an interface on the left, what is part of the model on the right -- with the four types of the "Memory Taxonomy" section mapped onto them: Working Memory is the window, while episodic, semantic, and procedural records live in the store. The edges into the context window carry the argument: however an external level is indexed, it has to be retrieved into the window before the model can reason over it, whereas the weight-level and feature-level layers are already inside. Production stacks through 2026 sit mostly in the first three levels.*
+*Figure: The six levels named in "Feature-Level Memory Research (2026)", arranged by locus -- what the model reads through an interface at the top, what is part of the model at the bottom -- with the four types of the "Memory Taxonomy" section mapped onto them: Working Memory is the window, while episodic, semantic, and procedural records live in the store. The per-level retrieval mechanisms come from "Major Frameworks", and the weight-level entry from "Architectural Patterns". The edges into the context window carry the argument: however an external level is indexed, it has to be retrieved into the window before the model can reason over it, whereas the weight-level and feature-level layers are already inside. Production stacks through 2026 sit mostly in the first three levels.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
 flowchart TB
     subgraph EXT["Memory as data the model reads (episodic, semantic, procedural)"]
       direction LR
-      VEC["vector-level<br/>Mem0, A-MEM, ByteRover"]
+      VEC["vector-level<br/>Mem0, A-MEM"]
       GRA["graph-level<br/>Mem0g triples, typed edges"]
       SPA["spatial-level<br/>MemPalace, wings to drawers"]
     end
@@ -187,7 +187,7 @@ The paper is unusually candid about where the approach currently breaks, and the
 
 - **"Where does the memory live" is now six questions, not one.** Token, vector, graph, spatial, weight, and feature levels are all in play, and production stacks through 2026 still sit mostly in the first three.
 - **No memory framework has governance by construction.** GateMem scored utility, access control, and active forgetting together and found no tested method satisfies all three, with retrieval and external-memory approaches leaking across principal boundaries.
-- **The storage format decides whether memory survives a model swap.** Fixed-schema graph memory was near-invariant across a model upgrade while compressed notes swung by up to 13 points, and roughly 80% of that degradation happened when the note was written rather than when it was read.
+- **In one 48-case synthetic study, the storage format decided whether memory survived a model swap.** Fixed-schema graph memory was near-invariant while compressed notes swung by up to 13 points, and the authors attribute roughly 80% of that degradation to information lost when the note was written rather than when it was read.
 
 ---
 

@@ -4,9 +4,9 @@
 >
 > **Why it matters:** Better context means better AI answers. This is why some people get amazing results from AI while others get generic responses.
 >
-> **Reading time:** ~13 min (2,891 words / 230 wpm)
+> **Reading time:** ~13 min (2,900 words / 230 wpm)
 
-*Figure: The six layers of section 3.2, ordered most persistent at the top to most ephemeral at the bottom. The arrow labels are each layer's update frequency -- the reason each needs its own compression strategy. They also compete for the same window: over-stuffing Retrieved Documents is what drowns the Current Task signal.*
+*Figure: The six layers of section 3.2, ordered most persistent at the top to most ephemeral at the bottom, converging on the one-package-per-call context that section 3.1 defines. The arrow labels are each layer's update frequency -- the reason each needs its own compression strategy. They also compete for the same window: over-stuffing Retrieved Documents is what drowns the Current Task signal.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%

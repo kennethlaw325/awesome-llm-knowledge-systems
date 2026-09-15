@@ -4,9 +4,9 @@
 >
 > **Why it matters:** Think of MCP like USB for AI -- before it, every tool needed its own custom connection. Now there's one plug that works everywhere.
 >
-> **Reading time:** ~24 min (5,344 words / 230 wpm)
+> **Reading time:** ~24 min (5,375 words / 230 wpm)
 
-*Figure: The three core concepts of the "Why It Won" section -- client, server, and transport -- with the client drawn inside the host application alongside the model it owns, and the transport and server outside it, plus the surfaces the 2026 spec added around them: Tasks as an extension, MCP Apps as a rendered UI, and IdP-provisioned authorization. The edge back out of the server carries the argument of "The Stateful MCP Transition": a server no longer only answers, it can also elicit structured input and request sampling, and the finalized stateless core delivers those as ordinary retries instead of over a held-open connection.*
+*Figure: The three core concepts of the "Why It Won" section -- client, server, and transport -- with the client drawn inside the host application alongside the model it owns, and the transport and server outside it, plus the surfaces the 2026 spec added around them: Tasks as an extension, MCP Apps as a rendered UI, and IdP-provisioned authorization. Tasks and MCP Apps come from the "2026-05-21: The 2026-07-28 Release Candidate" section, the ID-JAG token exchange from "2026-06-18: Enterprise-Managed Authorization", and the session-free core from "2026-07-28: The Specification Ships Final". The edge back out of the server carries the argument of "The Stateful MCP Transition": a server no longer only answers, it can also elicit structured input and request sampling, and the finalized stateless core delivers those as ordinary retries instead of over a held-open connection.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%

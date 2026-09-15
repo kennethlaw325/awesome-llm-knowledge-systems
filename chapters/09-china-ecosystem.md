@@ -4,9 +4,9 @@
 >
 > **Why it matters:** Half the world's AI researchers are in China. Ignoring this ecosystem means missing half the innovation.
 >
-> **Reading time:** ~26 min (5,879 words / 230 wpm)
+> **Reading time:** ~26 min (5,890 words / 230 wpm)
 
-*Figure: The stack sections A and B describe, read top down as a dependency chain: domestic inference silicon, the open-weight model families, the harness released on top of them, and the visual-first platforms enterprises actually deploy. Licences sit in the node labels because licensing is the strategy section C calls "Open-Source as Strategic Imperative". Two edges carry the argument -- the day-zero Ascend adaptation that makes the claim "serve without NVIDIA" rather than "train without NVIDIA", and the bottom pair, where the column adds up to a production knowledge system built end to end on Chinese open-source infrastructure.*
+*Figure: The stack sections A and B describe, read top down: domestic inference silicon under the Chinese model families, which feed two parallel branches -- the harness released on top of them, and the visual-first platforms enterprises actually deploy. Licences sit in the node labels because licensing is the strategy section C calls "Open-Source as Strategic Imperative". Two edges carry the argument -- the day-zero Ascend adaptation that makes the claim "serve without NVIDIA" rather than "train without NVIDIA", and the bottom pair, where the two branches rejoin in a production knowledge system built end to end on Chinese open-source infrastructure.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
@@ -171,7 +171,7 @@ Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should b
 ## Three things to take away
 
 - **Open weights are strategy, not altruism.** Apache 2.0 on Qwen, MIT on DeepSeek and ByteDance's open-sourcing of Coze Studio all buy ecosystem lock-in, talent and goodwill, and together they let anyone build a production system on Chinese infrastructure end to end.
-- **Sovereign silicon is a serving claim, not a training claim.** V4 trained on a hybrid NVIDIA cluster but was day-zero adapted for Huawei's Ascend 950PR, and the Huawei plus China Mobile live-network validation in June 2026 repeated the result outside DeepSeek.
+- **Sovereign silicon is a serving claim, not a training claim.** V4 trained on a hybrid NVIDIA cluster but was day-zero adapted for Huawei's Ascend 950PR, and a separate June 2026 Huawei plus China Mobile demonstration cut time-to-first-token 51-93% for GLM-5.1 on simulated long-context workloads over a live carrier network.
 - **Provenance is now the contested axis.** Anthropic's September 2026 allegations of illicit distillation establish, whoever turns out to be right, that "the weights are open" and "how the model behind them was trained" are separable questions.
 
 ---

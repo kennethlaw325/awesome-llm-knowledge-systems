@@ -4,7 +4,7 @@
 >
 > **Why it matters:** If you take notes, manage knowledge, or organize information, AI is changing how every tool in this space works.
 >
-> **Reading time:** ~13 min (2,873 words / 230 wpm)
+> **Reading time:** ~13 min (2,878 words / 230 wpm)
 
 *Figure: The spectrum of section "The AI-Assisted vs. AI-Native Gap", carrying only two products -- early Notion AI, which the chapter names at the assisted end, and Mem, whose zero-manual-organization description matches the chapter's AI-native definition -- plus Notion's own release chain read in order from the Notion section. The chain shows the direction of travel: 3.0 turns an autocomplete feature into an autonomous agent, 3.6 makes other vendors' agents assignable teammates, and the August 2026 Agent APIs make Custom Agents embeddable outside the workspace. The edge that carries the argument is the one labelled "the gap is widening", because the gap widens for a structural reason: assisted tools stay bound to data models designed for human-only workflows.*
 
@@ -134,7 +134,7 @@ The practical takeaway for knowledge engineering: the "harness" is no longer jus
 ## Three things to take away
 
 - **The gap is a data-model gap, not a feature gap.** AI-assisted tools stay constrained by data models designed for human-only workflows, so no number of Ask AI buttons closes the distance.
-- **Notion moved from being the agent to being the board.** By 3.6 its job is hosting other vendors' agents -- Claude and Cursor as assignable, watchable teammates -- rather than running its own inside the workspace.
+- **Notion also became the board, not just the agent.** By 3.6 it hosts other vendors' agents -- Claude and Cursor as assignable, watchable teammates -- alongside its own Custom Agents, which the August 2026 Agent APIs made embeddable outside the workspace.
 - **Generation stopped being the bottleneck.** The State of DevOps 2026 finding -- 69% of teams reporting deployment bottlenecks despite 45% faster AI-assisted coding -- means the harness has to scale with generation or throughput silently caps out.
 
 ---

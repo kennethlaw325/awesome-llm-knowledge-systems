@@ -4,7 +4,7 @@
 >
 > **Why it matters:** This proves that one person with the right architecture can build what used to require a team. The concepts in this guide are not theoretical.
 >
-> **Reading time:** ~11 min (2,482 words / 230 wpm)
+> **Reading time:** ~11 min (2,476 words / 230 wpm)
 
 *Figure: The four-agent team of section "Harness Engineering: The Agent Team", with the sprint contract drawn as the one document three of the agents share. The orchestrator writes the contract, the writer produces against it, and the QA evaluator grades against the same criteria before anything can be published. The edge that carries the argument is the return path from evaluator to writer: this is not a single retry, so the four agents are a loop rather than a pipeline.*
 
@@ -20,7 +20,7 @@ flowchart TB
     GUARDS["Content guards<br/>prompt-level, auto-correction, regex strip"] -->|brand voice and formatting| WRITE
     WRITE -->|triggers| QA{{"QA Evaluator<br/>reviews all output before publication"}}
     QA -->|fails, returned with specific feedback| WRITE
-    QA -->|contract satisfied, or a human intervenes| PUB["Published output"]
+    QA -->|contract satisfied| PUB["Published output"]
     class EXT,COLLECT,ORCH,WRITE,GUARDS,PUB stable
     class CONTRACT accent
     class QA gate
@@ -145,7 +145,7 @@ The builder's system is not a template to copy. It is a proof of concept that th
 
 ## Three things to take away
 
-- **The contract, not the retry, is what makes the loop converge.** The orchestrator specifies target platform, word count, required and prohibited elements up front, and the evaluator grades against that same document until it is satisfied or a human intervenes.
+- **The contract gives writer and evaluator a shared target.** The orchestrator specifies target platform, word count, required and prohibited elements up front, and the evaluator grades against that same document until it is satisfied or a human intervenes.
 - **Progressive disclosure caps context overhead at a constant.** Index plus one routing file plus one skill file stays under 4K tokens no matter how many skills exist, a 65% reduction on the flat-file approach it replaced.
 - **The harness is the product.** The individual components are straightforward; the integration -- routing logic, sprint contracts, content guards, review cycle, memory system -- is where the value lives.
 

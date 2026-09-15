@@ -26,12 +26,12 @@ One accent colour (blue), everything else greyscale. Meaning of the classes:
 - `muted` -- ephemeral, per-job, or contested items.
 - `gate` -- a decision or check point (usually a `{{hexagon}}` node).
 
-Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead.
+Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead. The Chapter 11 `timeline` is exempt: it is horizontal by construction and readers zoom it.
 
 Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init line is this variant, verbatim, which maps the section colours onto the same greys and the one blue:
 
 ```
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#dbeafe','cScale2':'#f6f8fa','cScale3':'#eef1f4','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#0b3a8f','cScaleLabel2':'#57606a','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f'}}}%%
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#f6f8fa','cScale2':'#eef1f4','cScale3':'#f6f8fa','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#1f2328','cScaleLabel2':'#1f2328','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f','cScalePeer0':'#f6f8fa','cScalePeer1':'#eef1f4','cScalePeer2':'#f6f8fa','cScalePeer3':'#eef1f4','cScalePeer4':'#dbeafe','cScaleInv0':'#8c959f','cScaleInv1':'#8c959f','cScaleInv2':'#8c959f','cScaleInv3':'#8c959f','cScaleInv4':'#8c959f'}}}%%
 ```
 
 ## Placement and format
@@ -75,7 +75,7 @@ Words are counted on the whole file with `str.split()` before these two lines ar
 
 ## Rules that keep the diff reviewable
 
-- Existing sentences are never edited or moved. Figures, captions, the reading-time lines, and take-away boxes are pure insertions.
+- Existing sentences are never edited or moved: nothing that exists on `master` is deleted or changed. Figures, captions, the reading-time lines, and take-away boxes are pure insertions, and only those inserted elements may be revised.
 - ASCII dashes only (`--`, `---`), matching the chapters. No U+2014 or U+2013 in inserted text.
 - CRLF line endings, matching the repository.
 - Every fence must parse in Mermaid 11 (GitHub's renderer). Render it headless before committing.
