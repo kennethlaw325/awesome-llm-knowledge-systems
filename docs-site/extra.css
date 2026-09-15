@@ -12,7 +12,13 @@
   --md-accent-fg-color--transparent: #1d4ed81a;
 }
 
+/* Material derives the body link colour from the primary colour and only ships
+   a lighter slate variant per NAMED palette, so `primary: custom` leaves links
+   at #2563eb on slate's #1e2129 -- 3.11:1, under the WCAG 4.5:1 minimum for
+   normal text.  The header keeps #2563eb; only the typeset links lighten. */
+
 [data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #60a5fa;
   --md-accent-fg-color: #60a5fa;
   --md-accent-fg-color--transparent: #60a5fa1a;
 }

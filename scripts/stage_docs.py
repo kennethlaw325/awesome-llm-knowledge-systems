@@ -6,6 +6,7 @@ copy.  Source files are never modified -- every rewrite below applies only to
 the staged copy.  stdlib only; runs the same on Windows and Ubuntu.
 """
 
+import os
 import re
 import shutil
 import sys
@@ -84,15 +85,35 @@ def source_exists(rel):
     return (ROOT / source_path(rel)).exists()
 
 
+def classify(rel, from_dir):
+    """Decide what a link target that is not in the staging dir becomes.
+
+    `rel` is the target as a staging-root-relative path, `from_dir` the
+    staging-root-relative directory of the file holding the link.  Returns
+    (action, href, is_error); `href` is None when the link is left untouched.
+
+    Three cases, in order: the target is in the repo but out of the allowlist
+    (GitHub blob URL); it is an untranslated chapter, i.e. a language ships
+    fewer chapters than its footers link to, so the English original is the
+    honest target; or it resolves to nothing anywhere, which is a typo and
+    fails the build rather than quietly losing a hyperlink.
+    """
+    if source_exists(rel):
+        return "GitHub", BLOB + rel.as_posix(), False
+    english = Path("chapters") / rel.name
+    if (ROOT / english).exists():
+        href = Path(os.path.relpath(english, from_dir)).as_posix()
+        return "English chapter " + href, href, False
+    return "no target in the repo", None, True
+
+
 def repoint_unstaged(path):
     """Fix links whose target was never staged.
 
     The Spanish translation ships 2 of its 14 chapters but its chapter footers
-    still link to the siblings.  A target that exists in the repo but not in
-    the staging dir goes to GitHub; one that is missing from the repo as well
-    would only mint a GitHub 404, so the link is dropped to plain text.  The
-    source files are not ours to edit either way.  Returns (target, action)
-    pairs so the caller can report them.
+    still link to the siblings.  `classify` decides each case; the source files
+    are not ours to edit either way.  Returns (target, action, is_error)
+    triples so the caller can report them and fail on the errors.
     """
     moved = []
 
@@ -106,15 +127,15 @@ def repoint_unstaged(path):
             return match.group(0)  # escapes the site; leave it for mkdocs
         if full.exists():
             return match.group(0)
-        if not source_exists(rel):
-            moved.append((target, "plain text (absent from the repo too)"))
-            return match.group(1)
-        moved.append((target, "GitHub"))
-        return "[" + match.group(1) + "](" + BLOB + rel.as_posix() + ")"
+        action, href, is_error = classify(rel, path.parent.relative_to(DOCS))
+        moved.append((target, action, is_error))
+        if href is None:
+            return match.group(0)
+        return "[" + match.group(1) + "](" + href + ")"
 
     text = path.read_text(encoding="utf-8")
     new = MD_LINK.sub(swap, text)
-    if moved:
+    if new != text:
         with open(path, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(new)
     return moved
@@ -146,9 +167,30 @@ def self_check():
         "a.md"
     ]
     assert MD_LINK.findall("![fig](a.md)") == []
-    # a dead link degrades to its own text, nothing else on the line moves
-    assert MD_LINK.sub(lambda m: m.group(1), "*next: [Ch 2 -- x](02.md)*") == "*next: Ch 2 -- x*"
     assert source_exists(Path("index.md")) and not source_exists(Path("chapters/99-no.md"))
+    # (a) in the repo, outside the staging allowlist -> GitHub blob URL
+    assert classify(Path("CITATION.cff"), Path("chapters")) == (
+        "GitHub",
+        BLOB + "CITATION.cff",
+        False,
+    )
+    # (b) a chapter that language has not translated -> the English original,
+    # relative to the file that holds the link
+    assert classify(
+        Path("translations/chapters/es/02-knowledge-layer.md"),
+        Path("translations/chapters/es"),
+    ) == (
+        "English chapter ../../../chapters/02-knowledge-layer.md",
+        "../../../chapters/02-knowledge-layer.md",
+        False,
+    )
+    # (c) a typo resolves to nothing anywhere -> flagged, and main() exits
+    # non-zero on it; asserted here as a flag so the self-check itself survives
+    assert classify(Path("chapters/07-mpc.md"), Path("chapters")) == (
+        "no target in the repo",
+        None,
+        True,
+    )
     print("self-check ok")
 
 
@@ -185,15 +227,25 @@ def main():
                 stage(path, DOCS / dst / path.relative_to(base))
 
     repointed = 0
+    dead = 0
     for path in sorted(DOCS.rglob("*.md")):
         rel = path.relative_to(DOCS)
-        for target, action in repoint_unstaged(path):
+        src = source_path(rel).as_posix()
+        for target, action, is_error in repoint_unstaged(path):
+            # Annotations put each one in the PR's checks UI instead of only in
+            # the log.  Harmless locally.
+            if is_error:
+                print(
+                    "::error file={}::staged link to {} has no target in the repo".format(
+                        src, target
+                    )
+                )
+                dead += 1
+                continue
             print("  -> {}: {} in {}".format(action, target, rel))
-            # Also as a GitHub Actions annotation, so a repoint shows up in the
-            # PR's checks UI instead of only in the log.  Harmless locally.
             print(
                 "::warning file={}::staged link to {} repointed: {}".format(
-                    source_path(rel).as_posix(), target, action
+                    src, target, action
                 )
             )
             repointed += 1
@@ -203,6 +255,11 @@ def main():
             count, DOCS, rewrites, repointed
         )
     )
+    if dead:
+        # Every dead link is reported above before the build stops, so one run
+        # names them all.
+        print("{} link(s) with no target in the repo".format(dead), file=sys.stderr)
+        return 1
     return 0
 
 
