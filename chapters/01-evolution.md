@@ -154,6 +154,27 @@ These three generations are not clean historical periods where one replaces the 
 +--------------------------------------------------+
 ```
 
+*Figure: The same nesting, rendered. Solid boxes are the three generations this chapter numbers; the two outer boxes are the contested layers of Ch13 and Ch14, drawn outside the numbering on purpose.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph G["GRAPH ENGINEERING · late 2026 · contested · Ch14"]
+      subgraph L["LOOP ENGINEERING · mid 2026 · emerging · Ch13"]
+        subgraph H["HARNESS ENGINEERING · 2026 · Ch04"]
+          subgraph C["CONTEXT ENGINEERING · 2025 · Ch03"]
+            P["PROMPT ENGINEERING<br/>2022-2024 · Ch01"]
+          end
+        end
+      end
+    end
+    class P stable
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
+
 A harness engineer still writes prompts. They still do context engineering. But they also build the *system* that decides which prompts to use when, which context to assemble for each situation, and how to recover when things go wrong.
 
 The evolution is not about abandoning earlier techniques. It is about recognizing that they are necessary but insufficient -- and building the layers above them that turn raw LLM capability into reliable, production-grade applications.

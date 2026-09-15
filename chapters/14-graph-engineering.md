@@ -4,6 +4,33 @@
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
 
+*Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph ORG["ORG GRAPH · stable roster, versioned, reviewed"]
+      LEAD["Lead"] -->|may delegate| RES["Researcher"]
+      LEAD -->|may delegate| BUILD["Builder"]
+    end
+    RES --> GATE{{"only permitted edges<br/>may be used"}}
+    BUILD --> GATE
+    subgraph WORK["WORK GRAPH · spawned per job, then discarded"]
+      T0["This job"] -.-> T1["Subtask A"]
+      T0 -.-> T2["Subtask B"]
+    end
+    GATE --> T0
+    T2 -->|must touch| ANCH["Anchor<br/>test result, metric, ground truth"]
+    class LEAD,RES,BUILD stable
+    class T0,T1,T2 muted
+    class ANCH accent
+    class GATE gate
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
+
 This chapter was first written in late July 2026, when the term was about two weeks old and took the title of shortest-lived idea in this guide from Chapter 13. "Graph engineering" crystallized in the days after July 17-18, 2026, lived entirely in practitioner blogs and vendor essays, and had no academic literature behind it. It is still the most contested term this guide covers. The single loudest response to it --- from LangChain, the vendor whose framework is literally named after graphs --- was that the practice is three years old and only the label is new.
 
 That first draft closed on a gate rather than a verdict: four signals, to be checked in September 2026. **The check was run on September 15, 2026, and it splits. The term survived the circulation test the gate actually stated; its status as a distinct engineering layer remains unproved.** Section 14.7 carries the dated scorecard, the evidence behind each signal, and two corrections the check forced on the July draft. The sections between here and there carry the evidence that arrived in the eight weeks in between --- a second vendor shipping the structure without the name, a production account that predates the name by more than a year, an open-source agent company, a paid course, and a second wave of essays arguing about which term died.
