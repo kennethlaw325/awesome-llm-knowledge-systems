@@ -3,6 +3,8 @@
 > **In one sentence:** Context engineering is the art of giving AI exactly the right information at the right time -- not too much, not too little.
 >
 > **Why it matters:** Better context means better AI answers. This is why some people get amazing results from AI while others get generic responses.
+>
+> **Reading time:** ~13 min (2,891 words / 230 wpm)
 
 *Figure: The six layers of section 3.2, ordered most persistent at the top to most ephemeral at the bottom. The arrow labels are each layer's update frequency -- the reason each needs its own compression strategy. They also compete for the same window: over-stuffing Retrieved Documents is what drowns the Current Task signal.*
 
@@ -114,6 +116,14 @@ Several principles emerge from this landscape:
 - **Use progressive disclosure by default.** Start lean. Expand on demand. The cost of including irrelevant information is not just tokens -- it is degraded attention and increased hallucination risk.
 - **Test context composition, not just prompts.** The same prompt in different contexts produces different results. Your test suite should vary the context, not just the final instruction.
 - **Anticipate model improvements.** As models get better at long-context reasoning, some compression and routing strategies become unnecessary overhead. Build with clear abstraction boundaries so layers can be simplified or removed.
+
+---
+
+## Three things to take away
+
+- **A prompt is a string, a context is an assembly.** Each inference call is the product of routing logic, retrieval, compression and tool-availability checks, so the unit of design is the package, not the instruction.
+- **Input tokens are the bill.** At the 100:1 input-to-output ratio Manus measured, KV-cache hit rate is the lever for both latency and cost, which is why the context is built as an append-only log.
+- **Part of what you engineer is accumulated distrust.** Anthropic removed more than 80% of the system prompt for its Claude 5 generation models with no measurable coding-eval loss, so the right move on that share of the context is deletion rather than tuning.
 
 ---
 

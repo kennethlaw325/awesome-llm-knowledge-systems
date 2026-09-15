@@ -3,6 +3,34 @@
 > **In one sentence:** A chronological record of the key moments that shaped LLM knowledge engineering from 2022 to 2026.
 >
 > **Why it matters:** Context for everything in this guide -- when it happened, who did it, and what changed.
+>
+> **Reading time:** ~99 min (22,620 words / 230 wpm)
+
+*Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Left to right is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#dbeafe','cScale2':'#f6f8fa','cScale3':'#eef1f4','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#0b3a8f','cScaleLabel2':'#57606a','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f'}}}%%
+timeline
+    section 2022-2023
+        November 30, 2022 : ChatGPT launches and prompt engineering begins
+        Q1-Q2 2023 : RAG frameworks emerge, LangChain and LlamaIndex
+        November 2023 : GPT-4 Turbo ships a 128K window
+    section 2024
+        February 2024 : Gemini 1.5 reaches 1M token context
+        November 2024 : Anthropic releases the Model Context Protocol
+    section 2025
+        January 2025 : DeepSeek R1, the open-source inflection
+        Mid-2025 : Context engineering enters the lexicon
+        October 2025 : Anthropic launches Agent Skills
+    section 2026 H1
+        April 3, 2026 : AI Velocity Paradox report lands
+        April 14, 2026 : Claude Code Routines research preview
+        June 7, 2026 : Loop engineering gets its name
+    section 2026 H2
+        July 17-18, 2026 : Graph engineering gets its name
+        August 6, 2026 : Paperclip skill supply-chain campaign
+        September 15, 2026 : Chapter 14 survival gate comes due
+```
 
 ![LLM Knowledge Engineering Timeline 2022-2026](../diagrams/timeline.png)
 
@@ -464,6 +492,14 @@ And ARC-AGI-3 sits above all five threads as the benchmark that refuses to grade
 **Mid-2026 adds a sixth thread the April cluster did not anticipate: government enters the distribution loop.** The June 2 Executive Order on frontier AI, the June 12 export-control suspension that pulled an already-GA Fable 5 and Mythos 5 offline worldwide, and the June 26 government-imposed vetted preview of GPT-5.6 mark a shift in kind: distribution of frontier capability is no longer purely a vendor-chosen tier (Glasswing, Trusted Access for Cyber) but a *regulated surface*. And the layer where that regulation gets enforced is the harness's own safety machinery --- Fable 5's refusal-as-`stop_reason` primitive, the CAISI-verified classifier gating Fable 5's July 1 return. For knowledge engineers, compliance stops being a wrapper around the harness and becomes a property the harness itself has to implement.
 
 The trajectory is clear. The next chapter of this story will not be about larger models. It will be about better systems --- and in 2026, "better systems" increasingly means systems the harness can *read*, *steer*, and *allocate compute across*, not just prompt.
+
+---
+
+## Three things to take away
+
+- **The list is curated, not complete.** An event earns a line only when it introduces, validates, or operationalizes a primitive, pattern, or narrative beat the framework tracks.
+- **By 2026 the bottleneck had moved off generation.** The AI Velocity Paradox reframes the frontier so that evaluation and governance, not generation speed, are the limiting factors.
+- **Compliance became a property of the harness itself.** Mid-2026 put the distribution of frontier capability under regulation, so the safety machinery has to live inside the harness rather than wrap around it.
 
 ---
 

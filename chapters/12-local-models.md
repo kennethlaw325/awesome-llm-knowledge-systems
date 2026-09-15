@@ -3,6 +3,42 @@
 > **In one sentence:** Local models let you run your entire knowledge harness on your own hardware -- private, free, and increasingly competitive with cloud APIs.
 >
 > **Why it matters:** If your knowledge base contains sensitive data, or if you want to fine-tune a model on your own notes, local inference is the only path that keeps everything under your control.
+>
+> **Reading time:** ~13 min (2,816 words / 230 wpm)
+
+*Figure: Pattern 1 of the Integration Patterns section -- Ollama sitting between the models you pull and every consumer this chapter names, each reaching it through one OpenAI-compatible endpoint. The framework, plugin and MCP edges are the ordinary direction, a tool changing its base URL. The two desktop-app edges carry the argument: they are the late-2026 inverse the section flags, where the vendors' own apps point at the local runtime, which is what removes the consumer chat client as a reason to route a query off the machine.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart LR
+    subgraph LOCAL["Models on your own hardware"]
+      direction TB
+      EMB["Embedding models<br/>nomic-embed-text, mxbai-embed-large, bge-m3"]
+      GEN["7-14B models<br/>Qwen3-14B, Llama 3.3-8B, Gemma 3-12B"]
+    end
+    EMB -->|ollama pull| OLL
+    GEN -->|ollama pull| OLL
+    OLL["Ollama<br/>one OpenAI-compatible API<br/>localhost:11434/v1"]
+    subgraph CONS["Consumers pointed at the local runtime"]
+      direction TB
+      RAG["RAG frameworks<br/>LangChain, LlamaIndex, Dify"]
+      OBS["Obsidian<br/>Smart Connections plugin"]
+      MCPS["MCP servers<br/>vault, databases, file system"]
+      CD["Claude Desktop"]
+      CG["ChatGPT Desktop"]
+    end
+    OLL -->|base_url swap| RAG
+    OLL -->|base_url swap| OBS
+    OLL -->|local model behind the server| MCPS
+    OLL -->|v0.33.0, the app points here| CD
+    OLL -->|v0.34.0, the app points here| CG
+    class EMB,GEN,RAG,OBS,MCPS,CD,CG stable
+    class OLL accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 The previous chapters describe a knowledge engineering stack that largely assumes cloud API access -- sending your context window to Anthropic, OpenAI, or Google and getting a response back. This works well for most users. But there is a growing segment of practitioners for whom cloud inference is either impractical or undesirable: those working with sensitive corporate data, those in jurisdictions with strict data residency requirements, and those who want to close the loop entirely by fine-tuning models on their own compiled knowledge.
 
@@ -150,6 +186,14 @@ The focus here is on the architectural question: where do local models fit in yo
 4. **Fine-tuning is the endgame, not the starting point.** Build the wiki first. Compile hundreds of quality notes. Then fine-tune. The quality of the training data -- your wiki -- determines the quality of the resulting model.
 
 5. **Privacy is an architecture decision.** If your knowledge contains sensitive information, local inference is not optional. Design for it from the start.
+
+---
+
+## Three things to take away
+
+- **Privacy is an architecture decision, not a policy one.** Data-processing agreements only manage the surface area that local inference removes outright, which is why some sectors treat it as a requirement rather than a preference.
+- **The economics flip on the always-on work.** Embeddings, knowledge compilation and the Lint pass run continuously at zero marginal cost once the model sits on your own hardware.
+- **In late 2026 the vendors' own desktop apps started pointing at Ollama.** Claude Desktop (v0.33.0) and ChatGPT Desktop (v0.34.0) can be repointed at a local model, so the consumer chat client is no longer a reason to route a query off the machine.
 
 ---
 

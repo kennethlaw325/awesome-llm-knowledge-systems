@@ -3,6 +3,28 @@
 > **In one sentence:** A harness is everything around the AI model -- the rules, tools, safety checks, and workflows that make it actually useful.
 >
 > **Why it matters:** The AI model is like a powerful engine. Without a chassis, steering wheel, and brakes, it's useless. The harness is what turns raw AI into a product.
+>
+> **Reading time:** ~48 min (10,985 words / 230 wpm)
+
+*Figure: The anatomy of a harness, drawn from the six IMPACT dimensions of section 4.4 -- Intent, Memory, Planning, Authority, Control flow, Tools -- arranged around the model they surround. Each edge names what that dimension decides or supplies, which is how section 4.4 uses the list: walking the edges one by one is what surfaces the gap. The two accented dimensions carry the argument, because a system with strong Tools and weak Authority is the security problem that section names.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart LR
+    INT["Intent"] -->|what the user actually wants| M
+    MEM["Memory"] -->|what survives turns and sessions| M
+    PLAN["Planning"] -->|how the task breaks into steps| M
+    AUTH["Authority"] -->|what the system is allowed to do| M
+    CF["Control flow"] -->|how execution proceeds| M
+    TOOL["Tools"] -->|which external capabilities it can reach| M
+    M["Model<br/>raw inference"] -->|harness turns it into| OUT["Reliable behavior"]
+    class INT,MEM,PLAN,CF,M,OUT stable
+    class AUTH,TOOL accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 > "Every component in a harness encodes an assumption about what the model can't do on its own, and those assumptions are worth stress testing."
 > -- Anthropic, "Building Effective Agents," 2025
@@ -243,6 +265,14 @@ A second contract change followed the same logic in June 2026. **Claude Fable 5*
 The turn's most recent step is **Claude Opus 5** (July 24, 2026). Priced at $5 / $25 per million input / output tokens --- unchanged from Opus 4.8, half of Fable 5 --- it ships a 1M-token context window with 128K max output, adaptive thinking on by default with a **five-level `effort` setting**, a paid **Fast mode** (2.5x speed at 2x price), and, most relevant here, **mid-conversation tool changes without prompt-cache invalidation** (beta). Effort as a priced five-position dial extends the "how hard to think" axis Opus 4.7 opened, and cache-safe tool swapping removes one of the last fixed costs of a long-running loop: the tool set can now evolve mid-session without paying the cache-invalidation tax. (Anthropic's launch claims --- more than doubling Opus 4.8 on Frontier-Bench v0.1, and landing at max effort within 0.5% of Fable 5's peak CursorBench 3.2 score --- are the vendor's own numbers.)
 
 This is the broader pattern: **the managed-inference turn.** Frontier vendors are increasingly treating inference itself as a product surface, not a parameter surface. The harness layer is moving from "you configure the inference call" to "you describe the work and the inference layer adapts." Whether other labs follow Anthropic's specific decisions (sampling-knob deprecation, advisory budgets) or only the direction is the open question. The direction itself looks settled.
+
+---
+
+## Three things to take away
+
+- **An agent is a model plus a harness.** When a coding agent edits a file it is not the model that edited it -- it is the harness, triggered by a tool call the model returned as text.
+- **The harness is where the leverage is.** The Meta-Harness paper found a 6x performance gap across harness configurations on the same benchmark with the same base model.
+- **Harness components expire.** Every component encodes an assumption about what the model cannot do, so onboarding a new model means stripping components and measuring which ones still earn their place.
 
 ---
 

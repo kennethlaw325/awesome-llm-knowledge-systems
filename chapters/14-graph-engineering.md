@@ -3,6 +3,8 @@
 > **In one sentence:** Graph engineering is the July 2026 claim that the next layer above loop engineering is the graph --- the explicit wiring of which agents exist, who may delegate to whom, and how their loops supervise and correct one another.
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
+>
+> **Reading time:** ~28 min (6,265 words / 230 wpm)
 
 *Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
 
@@ -206,6 +208,14 @@ An interim count was taken on August 24, 2026, 22 days before the gate; both rea
 **Verdict, September 15, 2026: the term survived the circulation test; its status as a distinct engineering layer is unproved.** Both halves carry weight. Survival is not vindication --- Signal 1 is the signal that would distinguish a discipline from a discourse, and after eight weeks it is still empty, while the strongest new evidence in the window cuts against the label rather than for it: two vendors built the governance graph engineering names, one of them starting a month before the term existed, and neither needed the word. Nor is the unproved half a dismissal --- three months of independent essays falsify the reading that this was a two-week naming event, and the practice under the name has a disclosed production case and a course teaching it. The chapter therefore grows, as the gate said it would, without promoting the term into the numbered generations: graph engineering stays a contested name for multi-agent coordination, tracked here as a claim under test rather than a settled layer, and Tony Bai's warning --- that today's frame may be tomorrow's discarded buzzword --- is still the fairest one-line summary of the stakes.
 
 The next thing that would change this verdict is narrow and easy to state: a vendor using the term in its own product vocabulary, or a named conference track. Neither was established by the evidence gathered by September 15, 2026.
+
+---
+
+## Three things to take away
+
+- **The org graph and the work graph are two different objects.** The stable roster of permitted delegation edges outlives the ephemeral graph that any single job spawns inside it.
+- **Without an anchor, mutually reviewing agents converge on agreement rather than correctness.** Perez's fix is that some node must touch an unarguable, externally grounded measurement.
+- **The term survived the circulation test; its status as a layer did not.** Two vendors shipped the governance the label describes without ever using the word, so the guide keeps graph engineering outside the numbered generations.
 
 ---
 

@@ -26,7 +26,13 @@ One accent colour (blue), everything else greyscale. Meaning of the classes:
 - `muted` -- ephemeral, per-job, or contested items.
 - `gate` -- a decision or check point (usually a `{{hexagon}}` node).
 
-Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`; Chapter 11 uses `timeline`, which takes the init line but no `classDef`.
+Assign classes with `class A,B stable` lines placed before the `classDef` block. Use `direction LR` inside a subgraph when it keeps the figure short. Edge labels carry the argument (`-->|read before deciding|`), not decoration. Dotted edges (`-.->`) mean ephemeral or optional. Prefer `flowchart TB` or `flowchart LR`. Keep a figure at or under about 2:1 wide, so its type stays readable in GitHub's roughly 900px column; a wide `LR` layout usually wants `TB` instead.
+
+Chapter 11 uses `timeline`, which takes no `classDef` and no `title` line (a title renders in the default text colour and vanishes in dark mode; the caption already names the figure). Its init line is this variant, verbatim, which maps the section colours onto the same greys and the one blue:
+
+```
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff','cScale0':'#eef1f4','cScale1':'#dbeafe','cScale2':'#f6f8fa','cScale3':'#eef1f4','cScale4':'#dbeafe','cScaleLabel0':'#1f2328','cScaleLabel1':'#0b3a8f','cScaleLabel2':'#57606a','cScaleLabel3':'#1f2328','cScaleLabel4':'#0b3a8f'}}}%%
+```
 
 ## Placement and format
 

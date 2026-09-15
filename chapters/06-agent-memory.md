@@ -3,6 +3,37 @@
 > **In one sentence:** Memory systems let AI agents remember things across conversations -- your preferences, past decisions, and project context.
 >
 > **Why it matters:** Without memory, every AI conversation starts from zero. Memory is what makes AI feel like a colleague instead of a stranger.
+>
+> **Reading time:** ~30 min (6,679 words / 230 wpm)
+
+*Figure: The six levels named in "Feature-Level Memory Research (2026)", arranged by locus -- what the model reads through an interface on the left, what is part of the model on the right -- with the four types of the "Memory Taxonomy" section mapped onto them: Working Memory is the window, while episodic, semantic, and procedural records live in the store. The edges into the context window carry the argument: however an external level is indexed, it has to be retrieved into the window before the model can reason over it, whereas the weight-level and feature-level layers are already inside. Production stacks through 2026 sit mostly in the first three levels.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph EXT["Memory as data the model reads (episodic, semantic, procedural)"]
+      direction LR
+      VEC["vector-level<br/>Mem0, A-MEM, ByteRover"]
+      GRA["graph-level<br/>Mem0g triples, typed edges"]
+      SPA["spatial-level<br/>MemPalace, wings to drawers"]
+    end
+    VEC -->|top-k similarity| WIN
+    GRA -->|navigated by relation type| WIN
+    SPA -->|spatial walk, read verbatim| WIN
+    WIN["token-level: the context window<br/>Working Memory"] -->|all reasoning happens here| LLM
+    subgraph INT["Memory that is part of the model"]
+      direction LR
+      LLM["Model"] -->|rewrites part of itself at inference| WGT["weight-level<br/>Titans / MIRAS"]
+      LLM -->|directions fire as it reasons| FEA["feature-level<br/>emotion vectors, iteration head"]
+    end
+    class VEC,GRA,LLM stable
+    class SPA,WGT,FEA muted
+    class WIN accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 ## Why Memory Matters
 
@@ -149,6 +180,16 @@ The paper is unusually candid about where the approach currently breaks, and the
 - **[Awesome-AI-Memory](https://github.com/IAAR-Shanghai/Awesome-AI-Memory)** (IAAR-Shanghai) -- Comprehensive survey and paper collection covering memory architectures, benchmarks, and applications.
 - **[Agent-Memory-Paper-List](https://github.com/nuster1128/Agent-Memory-Paper-List)** -- Curated list of research papers on agent memory systems, organized by topic and approach.
 - **[Awesome-Memory-for-Agents](https://github.com/TsinghuaC3I/Awesome-Memory-for-Agents)** (TsinghuaC3I) -- Survey from Tsinghua University covering memory taxonomies, architectures, and evaluation methods.
+
+---
+
+## Three things to take away
+
+- **"Where does the memory live" is now six questions, not one.** Token, vector, graph, spatial, weight, and feature levels are all in play, and production stacks through 2026 still sit mostly in the first three.
+- **No memory framework has governance by construction.** GateMem scored utility, access control, and active forgetting together and found no tested method satisfies all three, with retrieval and external-memory approaches leaking across principal boundaries.
+- **The storage format decides whether memory survives a model swap.** Fixed-schema graph memory was near-invariant across a model upgrade while compressed notes swung by up to 13 points, and roughly 80% of that degradation happened when the note was written rather than when it was read.
+
+---
 
 ## Sources
 

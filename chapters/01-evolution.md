@@ -3,6 +3,8 @@
 > **In one sentence:** AI engineering has evolved from writing good prompts to designing entire operating systems around AI models.
 >
 > **Why it matters:** Understanding where the field is heading helps you pick the right tools and avoid outdated approaches.
+>
+> **Reading time:** ~14 min (3,108 words / 230 wpm)
 
 **From prompt engineering to context engineering to harness engineering -- and why the boundaries between them matter less than you think.**
 
@@ -192,6 +194,14 @@ Its proponents define the relation to Generation 3 precisely. Osmani places loop
 Two honesty caveats keep this out of the numbered generations for now. The term is roughly five weeks old at the time of writing, lives entirely in practitioner discourse --- blogs, podcasts, X --- with no academic literature behind it, and its reception is split between readers who call it a genuine shift and readers who call it a premature rebranding of scheduling. This guide therefore tracks loop engineering as *emerging* rather than settled, the same posture it takes toward any claim that has not yet cleared primary-source and time-tested scrutiny. [Chapter 13](13-loop-engineering.md) covers the frame in full, with each load-bearing claim tied to a source and the gaps named rather than filled.
 
 The naming machine has since run again. In mid-July 2026, six weeks after the loop week, a second candidate crystallized on the same playbook: **graph engineering**, the claim that above the loop sits the graph --- the explicit wiring of which agents exist, who may delegate to whom, and how their loops supervise and correct one another. Another Steinberger post (dated July 18, 2026 by the sources that date it; July 17 US time is possible) was the catalyst, an essay wave followed within days, and the pushback arrived just as fast: LangChain's official response lists graph engineering after prompt, context, harness, and loop engineering --- and in the same breath argues that representing agentic systems as graphs is three-year-old practice, a loop being simply a directed cyclic graph, so only the name is new. Chapter 14 set an explicit survival gate on the term and ran it on September 15, 2026. The finding was split: graph engineering stayed in circulation --- three months of essays that are not replies to the catalyst, a paid course teaching the agent-organization sense, a September tutorial --- while no vendor adoption of the term was found in the documentation checked, and two vendors shipped the governance the term names without ever using it, one of them starting a month before the term existed. The verdict recorded there is that the term survived as a contested name for multi-agent coordination and that its status as a distinct layer is unproved, so it stays outside the numbered generations. This chapter's own placement of multi-agent coordination inside the harness box remains the live alternative reading rather than a placeholder. [Chapter 14](14-graph-engineering.md) carries the dated scorecard, with the skeptics given equal weight.
+
+---
+
+## Three things to take away
+
+- **The generations nest, they do not replace.** A harness engineer still writes prompts and still does context engineering, which is why IMPACT carries context engineering inside it as the "C".
+- **Meta paid about $2 billion for a harness.** Meta already had Llama; what it lacked was a production-proven system for context assembly and tool orchestration, so the acquisition read as buying the orchestration layer rather than the model layer.
+- **Naming runs ahead of evidence.** Loop engineering and graph engineering both arrived on an essay wave rather than an academic one, so this chapter keeps them outside the numbered three.
 
 ---
 

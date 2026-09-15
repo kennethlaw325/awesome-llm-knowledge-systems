@@ -3,6 +3,32 @@
 > **In one sentence:** China has built a parallel AI ecosystem with its own open-source platforms, models, and community -- often innovating in different directions than the West.
 >
 > **Why it matters:** Half the world's AI researchers are in China. Ignoring this ecosystem means missing half the innovation.
+>
+> **Reading time:** ~26 min (5,879 words / 230 wpm)
+
+*Figure: The stack sections A and B describe, read top down as a dependency chain: domestic inference silicon, the open-weight model families, the harness released on top of them, and the visual-first platforms enterprises actually deploy. Licences sit in the node labels because licensing is the strategy section C calls "Open-Source as Strategic Imperative". Two edges carry the argument -- the day-zero Ascend adaptation that makes the claim "serve without NVIDIA" rather than "train without NVIDIA", and the bottom pair, where the column adds up to a production knowledge system built end to end on Chinese open-source infrastructure.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    ASCEND["Inference substrate<br/>Huawei Ascend 950PR, A3 SuperPoD<br/>with Unified Cache Manager"]
+    MODELS["B. Chinese LLMs for knowledge management<br/>Qwen3 -- Apache 2.0<br/>DeepSeek R1 and V4 -- MIT<br/>Kimi K3 -- Kimi K3 License<br/>GLM-5.2 -- MIT<br/>Hy3 -- Apache 2.0<br/>Hy4 preview -- open-weight<br/>ERNIE 5.0 -- full-modality"]
+    DSH["Harness layer<br/>DeepSeek Harness, dsh -- MIT,<br/>swappable Cordis plugins"]
+    PLATFORMS["A. Open-source RAG and agent platforms<br/>Dify -- visual canvas, MCP<br/>RAGFlow -- layout-aware parsing<br/>FastGPT -- runs in 2GB of RAM<br/>Coze Studio, ByteDance -- drag-and-drop agents"]
+    OUT["A solo developer builds a production knowledge system<br/>entirely on Chinese open-source infrastructure"]
+    ASCEND -->|day zero for V4: serve without NVIDIA| MODELS
+    MODELS -->|open-first strategy, one layer up| DSH
+    MODELS -->|from model to framework| PLATFORMS
+    DSH -->|and the harness on top| OUT
+    PLATFORMS -->|to deployment tooling| OUT
+    class ASCEND,MODELS,PLATFORMS stable
+    class DSH muted
+    class OUT accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 ![Chinese vs Western AI Knowledge Engineering](../diagrams/china-comparison.png)
 
@@ -139,6 +165,16 @@ One caveat governs how much weight this can carry: every figure above is **Anthr
 ## D. A Note on Bilibili Content
 
 Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should be aware that many are re-uploads or translations of English-language YouTube content. The original value of Bilibili's AI content lies in Chinese-specific tool tutorials: step-by-step Dify deployment guides, Qwen integration walkthroughs, and enterprise deployment case studies that do not exist in English. When researching on Bilibili, always trace content to its original source. If a tutorial is demonstrating LangChain with English narration dubbed into Chinese, the original YouTube version is likely more current.
+
+---
+
+## Three things to take away
+
+- **Open weights are strategy, not altruism.** Apache 2.0 on Qwen, MIT on DeepSeek and ByteDance's open-sourcing of Coze Studio all buy ecosystem lock-in, talent and goodwill, and together they let anyone build a production system on Chinese infrastructure end to end.
+- **Sovereign silicon is a serving claim, not a training claim.** V4 trained on a hybrid NVIDIA cluster but was day-zero adapted for Huawei's Ascend 950PR, and the Huawei plus China Mobile live-network validation in June 2026 repeated the result outside DeepSeek.
+- **Provenance is now the contested axis.** Anthropic's September 2026 allegations of illicit distillation establish, whoever turns out to be right, that "the weights are open" and "how the model behind them was trained" are separable questions.
+
+---
 
 ## Sources
 

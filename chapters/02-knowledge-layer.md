@@ -3,6 +3,31 @@
 > **In one sentence:** There are three main ways to give AI access to knowledge: searching a database (RAG), feeding it long documents, or connecting facts in a graph.
 >
 > **Why it matters:** If you use AI for anything involving your own data, this chapter explains which approach works best for your situation.
+>
+> **Reading time:** ~16 min (3,557 words / 230 wpm)
+
+*Figure: The three-way choice of the "Hybrid Architectures: The Convergence" section, drawn around the query router that section puts at the end of its winning production pattern. Each edge out of the router names the need that sends a query down that branch. The dotted edge is the separate claim of the "KG as Semantic Backbone for Long Context" section -- the graph indexes a window it no longer has to replace -- and the edges converging on the hybrid box carry the chapter's argument that the engineering work is the router, not the choice.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    Q["Incoming query"] --> R{{"Query router<br/>picks the right strategy per query"}}
+    R -->|dynamic, targeted retrieval| RAG["RAG"]
+    R -->|entity relationships,<br/>global understanding| KG["Knowledge graph"]
+    R -->|bounded analysis where the<br/>full document matters| LC["Long context"]
+    KG -.->|indexes the window| LC
+    RAG --> HY["The winning pattern in production<br/>all three in combination"]
+    KG --> HY
+    LC --> HY
+    class KG,RAG,LC stable
+    class Q muted
+    class R gate
+    class HY accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 **The knowledge retrieval layer -- what works, what doesn't, and why the answer is almost always "hybrid."**
 
@@ -198,6 +223,14 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 | LangChain | Framework with extensive RAG tooling | [github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain) |
 | LlamaIndex | Data framework for LLM applications | [github.com/run-llama/llama_index](https://github.com/run-llama/llama_index) |
 | Chroma | Open-source embedding database | [github.com/chroma-core/chroma](https://github.com/chroma-core/chroma) |
+
+---
+
+## Three things to take away
+
+- **RAG keeps coming back.** Gartner's Q4 2025 survey found 71% of the organizations that replaced RAG pipelines with pure context-stuffing added RAG back within 12 months.
+- **No single technique wins on every dimension.** Cost, relationship reasoning and setup complexity each pick a different winner, which is why production stacks run all three at once.
+- **The hard part is the router, not the choice.** The chapter's winning pattern ends with a query router that selects the right strategy per query, and that router is the engineering challenge.
 
 ---
 

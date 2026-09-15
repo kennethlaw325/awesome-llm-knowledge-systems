@@ -3,6 +3,33 @@
 > **In one sentence:** Skills are reusable instruction sets that tell AI how to do specific tasks, and skill graphs connect them into a navigable knowledge network.
 >
 > **Why it matters:** Instead of explaining the same thing to AI every time, skills let you teach it once and reuse that knowledge forever.
+>
+> **Reading time:** ~21 min (4,821 words / 230 wpm)
+
+*Figure: The five disclosure levels of section 5.4, with the skill graph of section 5.5 feeding the level that resolves links and dependencies and the compositional plan of section 5.5 assembling what finally loads. The edge out of Level 0 carries the argument: the routing index eliminates 95% of skills before a single full file is read, which is why Level 4 is reached for only the one or two skills actually invoked.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    REQ["User request<br/>decomposed into sub-tasks"] --> L0
+    subgraph PD["Progressive disclosure"]
+      direction TB
+      L0["Level 0: Routing Index<br/>200-500 tokens, in the system prompt at rest"] -->|eliminates 95% of skills| L1["Level 1: Category Descriptions"]
+      L1 -->|enough to judge relevance, not to execute| L2["Level 2: Skill Links and Dependencies"]
+      L2 -->|prerequisite skills pulled in| L3["Level 3: Sections and Summaries"]
+      L3 -->|only for the skill actually invoked| L4["Level 4: Full Content<br/>the exception, not the rule"]
+    end
+    SG[("Skill graph<br/>wikilinked markdown, YAML frontmatter")] -->|linked skills become co-load candidates| L2
+    L4 -->|one skill per sub-task| CMP["Compose<br/>dependency-aware DAG plan"]
+    CMP --> CTX["Context window"]
+    class REQ,L1,L2,L3,SG,CMP,CTX stable
+    class L4 muted
+    class L0 accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 Skills are pre-packaged instruction sets -- self-contained bundles of prompts, tool configurations, and behavioral rules -- injected into an agent's context window when a specific capability is needed. They are the mechanism by which agent systems scale from a handful of built-in behaviors to hundreds or thousands of specialized capabilities without drowning the model in irrelevant instructions.
 
@@ -163,6 +190,14 @@ A third beat arrived five weeks after that. On **August 6, 2026**, the security 
 The framework lesson is the one MCP security learned a year earlier (Chapter 7's IETF security-considerations draft): progressive disclosure and registry-scale ecosystems make the skill file itself an attack surface, so trust has to move from *publish-time scanning* to *runtime containment*. A skill that fetches or unpacks its real behavior at runtime cannot be certified by inspecting what it looked like at submission --- the defensible position is to watch what it does when it runs.
 
 In the month after the Zenity disclosure, that position acquired a commercial market. On **September 1, 2026**, CrowdStrike launched **Falcon Guardian**, part of a new AI detection and response product line, at its Fal.Con conference: it discovers and inventories known and shadow AI agents running on Windows and macOS endpoints, records who deployed each one, and applies access control, policy enforcement, and runtime detection to what the agent actually does, reconstructing malicious execution chains after the fact. CrowdStrike's description names the exact case static review cannot reach --- a prompt that looked legitimate whose resulting behavior is anomalous --- and the announcement carries no detection-rate or efficacy figures, so this is a market signal that runtime containment has become a product category, not evidence that it works. The same day, AIR --- the firm behind the June 22 disclosure that opens this section --- emerged from stealth with **$50 million** across two seed rounds ($10M led by Sequoia, $40M by Greenoaks) and published ecosystem-scale numbers for the pattern it had previously demonstrated on a single skill: per AIR's own count, more than **17,800 public AI add-ons, representing roughly 6.7 million installations, depend on untrusted external instruction sources**, and it reports finding skills that impersonate Anthropic and OpenAI to get past platform review --- brand impersonation recurring as a technique rather than appearing once in the Paperclip campaign. AIR has not published the methodology behind either figure, so both are a vendor's own measurement of the market it sells into. Taken together the two announcements close the arc's commercial loop: in ten weeks the failure mode went from one disclosure, to a proof that scanners are systematically evadable, to a registry-scale campaign, to a funded vendor selling the measurement and an endpoint vendor selling the enforcement.
+
+---
+
+## Three things to take away
+
+- **Most routing decisions happen before a single full file is read.** The routing index eliminates 95% of skills and the category descriptions eliminate most of the remainder, so Level 4 full content loads only for the one or two skills actually invoked.
+- **A skill without a routing description is invisible.** SkillReducer found 26.4% of 55,315 skills carried full instructional content but no metadata a routing layer could match, leaving them triggerable only by exact name.
+- **At registry scale, trust has to move from publish-time scanning to runtime containment.** A skill that fetches or unpacks its real behavior at runtime cannot be certified from the snapshot it was submitted as, which is the failure mode the AIR, Cloak-and-Detonate, and Paperclip disclosures share.
 
 ---
 
