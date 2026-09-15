@@ -4,7 +4,7 @@
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
 >
-> **Reading time:** ~28 min (6,285 words / 230 wpm)
+> **Reading time:** ~28 min (6,293 words / 230 wpm)
 
 *Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
 
@@ -12,18 +12,18 @@
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
 flowchart TB
     subgraph ORG["ORG GRAPH · stable roster, versioned, reviewed"]
-      LEAD["Lead agent"] -->|may delegate| RES["Research subagent<br/>own context window"]
-      LEAD -->|may delegate| CITE["CitationAgent<br/>attributes sources"]
+      LEAD["Lead agent"] -->|may delegate| RES["Research subagent A<br/>one aspect, own context window"]
+      LEAD -->|may delegate| RES2["Research subagent B<br/>another aspect, own context window"]
     end
     RES --> GATE{{"only permitted edges<br/>may be used"}}
-    CITE --> GATE
+    RES2 --> GATE
     subgraph WORK["WORK GRAPH · spawned per job, then discarded"]
       T0["This job"] -.-> T1["Subtask A"]
       T0 -.-> T2["Subtask B"]
     end
     GATE --> T0
     T2 -->|must touch| ANCH["Anchor<br/>test result, metric, ground truth"]
-    class LEAD,RES,CITE stable
+    class LEAD,RES,RES2 stable
     class T0,T1,T2 muted
     class ANCH accent
     class GATE gate
