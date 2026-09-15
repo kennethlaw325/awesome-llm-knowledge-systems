@@ -1,0 +1,73 @@
+name: Pages
+
+# GitHub Actions does not resolve YAML anchors, so the two path filters are
+# written out twice on purpose -- keep them in step.
+on:
+  push:
+    branches: [master]
+    paths:
+      - README.md
+      - glossary.md
+      - CHANGELOG.md
+      - CONTRIBUTING.md
+      - LICENSE
+      - chapters/**
+      - diagrams/**
+      - translations/**
+      - mkdocs.yml
+      - scripts/stage_docs.py
+      - docs-site/**
+      - .github/workflows/pages.yml
+  pull_request:
+    paths:
+      - README.md
+      - glossary.md
+      - CHANGELOG.md
+      - CONTRIBUTING.md
+      - LICENSE
+      - chapters/**
+      - diagrams/**
+      - translations/**
+      - mkdocs.yml
+      - scripts/stage_docs.py
+      - docs-site/**
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+# One run at a time per ref, queued rather than cancelled so a merge is never
+# lost.  The ref is part of the group on purpose: GitHub keeps one running and
+# one pending run per group and a new pending run replaces the old one, so a
+# shared "pages" group would let a PR build displace a queued master deploy.
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install "mkdocs-material>=9.7,<10"
+      - run: python scripts/stage_docs.py
+      - run: mkdocs build --strict
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: build/site
+
+  deploy:
+    needs: build
+    # Pull requests build the site but never publish it.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

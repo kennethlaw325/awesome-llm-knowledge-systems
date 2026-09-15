@@ -1,0 +1,45 @@
+/* The repo's accent (#2563eb, the one colour in the chapter figures) as the
+   Material primary colour.  theme.palette.primary only accepts Material's
+   named colours, so the custom hex is set through the CSS variables -- and
+   both palette entries in mkdocs.yml say `custom`, because a named palette is
+   stamped on <body> and would shadow these inherited :root values. */
+
+:root {
+  --md-primary-fg-color: #2563eb;
+  --md-primary-fg-color--light: #60a5fa;
+  --md-primary-fg-color--dark: #1d4ed8;
+  --md-accent-fg-color: #1d4ed8;
+  --md-accent-fg-color--transparent: #1d4ed81a;
+}
+
+/* Material derives the body link colour from the primary colour and only ships
+   a lighter slate variant per NAMED palette, so `primary: custom` leaves links
+   at #2563eb on slate's #1e2129 -- 3.11:1, under the WCAG 4.5:1 minimum for
+   normal text.  The header keeps #2563eb; only the typeset links lighten. */
+
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #60a5fa;
+  --md-accent-fg-color: #60a5fa;
+  --md-accent-fg-color--transparent: #60a5fa1a;
+}
+
+/* Every chapter figure carries the fixed light palette in docs/style/
+   mermaid-theme.md -- the figures have no dark variant.  Material renders each
+   fence into a closed shadow root and colours the labels from the active page
+   scheme, so under `slate` the node text came out light on those light fills
+   and was unreadable.  Custom properties inherit across the shadow boundary,
+   so pinning the authored values on the host restores the figure in both
+   schemes without reaching into the shadow root or touching the page. */
+
+.mermaid {
+  background: #ffffff;
+  border-radius: 0.2rem;
+  padding: 0.8rem 0;
+  --md-mermaid-label-fg-color: #1f2328;   /* primaryTextColor */
+  --md-mermaid-label-bg-color: #ffffff;   /* edgeLabelBackground */
+  --md-mermaid-edge-color: #6b7280;       /* lineColor */
+  --md-mermaid-node-bg-color: #eef1f4;    /* primaryColor */
+  --md-mermaid-node-fg-color: #8c959f;    /* primaryBorderColor */
+  --md-default-fg-color--lightest: #f9fafb; /* clusterBkg */
+  --md-default-fg-color--lighter: #8c959f;  /* clusterBorder */
+}
