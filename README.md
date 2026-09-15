@@ -100,6 +100,10 @@ If your scenario doesn't fit cleanly, it's probably a composition of these — s
 
 ## The Evolution
 
+![The five layers of LLM engineering, each nested inside the next](diagrams/evolution-stack.png)
+
+*Figure: Each generation contains the last rather than replacing it. The outer two are drawn dashed because they are claims, not settled layers -- loop engineering is tracked here as emerging, and Chapter 14's September 15, 2026 gate found that graph engineering survived as a circulating term while its status as a distinct layer stayed unproved.*
+
 ```
 2022-2024               2025                    2026                    2026 (mid)?             2026 (late)??
 PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG (emerging) --> GRAPH ENG (contested)

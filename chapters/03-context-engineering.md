@@ -3,6 +3,29 @@
 > **In one sentence:** Context engineering is the art of giving AI exactly the right information at the right time -- not too much, not too little.
 >
 > **Why it matters:** Better context means better AI answers. This is why some people get amazing results from AI while others get generic responses.
+>
+> **Reading time:** ~13 min (2,900 words / 230 wpm)
+
+*Figure: The six layers of section 3.2, ordered most persistent at the top to most ephemeral at the bottom, converging on the one-package-per-call context that section 3.1 defines. The arrow labels are each layer's update frequency -- the reason each needs its own compression strategy. They also compete for the same window: over-stuffing Retrieved Documents is what drowns the Current Task signal.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart LR
+    SR["System Rules"] -->|static per deployment| W
+    MEM["Memory"] -->|cross-session| W
+    RD["Retrieved Documents"] -->|per-turn| W
+    TS["Tool Schemas"] -->|per-session, masked per-turn| W
+    CH["Conversation History"] -->|sliding window| W
+    CT["Current Task"] -->|per-turn| W
+    W["Context Window<br/>one package per call"]
+    class SR,MEM stable
+    class RD,TS,CH,CT muted
+    class W accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 > "Context engineering is the delicate art and science of filling the context window with just the right information for the next step."
 > -- Andrej Karpathy, June 2025
@@ -93,6 +116,14 @@ Several principles emerge from this landscape:
 - **Use progressive disclosure by default.** Start lean. Expand on demand. The cost of including irrelevant information is not just tokens -- it is degraded attention and increased hallucination risk.
 - **Test context composition, not just prompts.** The same prompt in different contexts produces different results. Your test suite should vary the context, not just the final instruction.
 - **Anticipate model improvements.** As models get better at long-context reasoning, some compression and routing strategies become unnecessary overhead. Build with clear abstraction boundaries so layers can be simplified or removed.
+
+---
+
+## Three things to take away
+
+- **A prompt is a string, a context is an assembly.** Each inference call is the product of routing logic, retrieval, compression and tool-availability checks, so the unit of design is the package, not the instruction.
+- **Input tokens are the bill.** At the 100:1 input-to-output ratio Manus measured, KV-cache hit rate is the lever for both latency and cost, which is why the context is built as an append-only log.
+- **Part of what you engineer is accumulated distrust.** Anthropic removed more than 80% of the system prompt for its Claude 5 generation models with no measurable coding-eval loss, so the right move on that share of the context is deletion rather than tuning.
 
 ---
 

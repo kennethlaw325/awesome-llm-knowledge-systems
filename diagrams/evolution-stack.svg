@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 660" width="1600" height="660" role="img" aria-label="Five nested layers of LLM engineering. Prompt engineering sits inside context engineering, which sits inside harness engineering. Two further layers, loop engineering and graph engineering, wrap those three and are drawn dashed because they are claimed rather than settled.">
+  <rect x="0" y="0" width="1600" height="660" fill="#ffffff"/>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+
+    <text x="48" y="58" font-size="27" font-weight="600" fill="#1f2328">Each generation contains the last</text>
+
+    <g transform="translate(1030,40)">
+      <line x1="0" y1="14" x2="34" y2="14" stroke="#8c959f" stroke-width="2.5"/>
+      <text x="44" y="19" font-size="15" fill="#57606a">settled</text>
+      <line x1="150" y1="14" x2="184" y2="14" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="7 5"/>
+      <text x="194" y="19" font-size="15" fill="#57606a">claimed, not settled</text>
+    </g>
+
+    <rect x="48" y="96" width="1504" height="488" rx="14" fill="#f7faff" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="8 6"/>
+    <text x="76" y="136" font-size="25" font-weight="600" fill="#1b4fc4">GRAPH ENGINEERING</text>
+    <text x="76" y="162" font-size="17" fill="#57606a">Wire the org of agents</text>
+    <text x="1524" y="136" font-size="16" font-weight="600" fill="#1b4fc4" text-anchor="end">late 2026 · contested · Ch14</text>
+
+    <rect x="112" y="172" width="1376" height="388" rx="12" fill="#fbfcff" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="8 6"/>
+    <text x="140" y="212" font-size="25" font-weight="600" fill="#1b4fc4">LOOP ENGINEERING</text>
+    <text x="140" y="238" font-size="17" fill="#57606a">Design the system that prompts</text>
+    <text x="1460" y="212" font-size="16" font-weight="600" fill="#1b4fc4" text-anchor="end">mid 2026 · emerging · Ch13</text>
+
+    <rect x="176" y="248" width="1248" height="288" rx="12" fill="#f6f8fa" stroke="#8c959f" stroke-width="2.5"/>
+    <text x="204" y="288" font-size="25" font-weight="600" fill="#1f2328">HARNESS ENGINEERING</text>
+    <text x="204" y="314" font-size="17" fill="#57606a">Orchestrate the entire system</text>
+    <text x="1396" y="288" font-size="16" font-weight="600" fill="#57606a" text-anchor="end">2026 · Ch04</text>
+
+    <rect x="240" y="324" width="1120" height="188" rx="10" fill="#eef1f4" stroke="#8c959f" stroke-width="2.5"/>
+    <text x="268" y="364" font-size="25" font-weight="600" fill="#1f2328">CONTEXT ENGINEERING</text>
+    <text x="268" y="390" font-size="17" fill="#57606a">Construct the dynamic context window</text>
+    <text x="1332" y="364" font-size="16" font-weight="600" fill="#57606a" text-anchor="end">2025 · Ch03</text>
+
+    <rect x="304" y="400" width="992" height="88" rx="8" fill="#e3e8ed" stroke="#8c959f" stroke-width="2.5"/>
+    <text x="332" y="439" font-size="25" font-weight="600" fill="#1f2328">PROMPT ENGINEERING</text>
+    <text x="332" y="465" font-size="17" fill="#57606a">Craft the perfect prompt</text>
+    <text x="1268" y="439" font-size="16" font-weight="600" fill="#57606a" text-anchor="end">2022-2024 · Ch01</text>
+
+    <text x="48" y="628" font-size="16" fill="#57606a">A harness engineer still writes prompts. Nothing here replaces the layer inside it.</text>
+
+  </g>
+</svg>

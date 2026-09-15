@@ -3,6 +3,37 @@
 > **In one sentence:** MCP is a universal standard that lets AI connect to any external tool or data source through one protocol.
 >
 > **Why it matters:** Think of MCP like USB for AI -- before it, every tool needed its own custom connection. Now there's one plug that works everywhere.
+>
+> **Reading time:** ~24 min (5,375 words / 230 wpm)
+
+*Figure: The three core concepts of the "Why It Won" section -- client, server, and transport -- with the client drawn inside the host application alongside the model it owns, and the transport and server outside it, plus the surfaces the 2026 spec added around them: Tasks as an extension, MCP Apps as a rendered UI, and IdP-provisioned authorization. Tasks and MCP Apps come from the "2026-05-21: The 2026-07-28 Release Candidate" section, the ID-JAG token exchange from "2026-06-18: Enterprise-Managed Authorization", and the session-free core from "2026-07-28: The Specification Ships Final". The edge back out of the server carries the argument of "The Stateful MCP Transition": a server no longer only answers, it can also elicit structured input and request sampling, and the finalized stateless core delivers those as ordinary retries instead of over a held-open connection.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph HOST["Host application"]
+      direction LR
+      MODEL["Model<br/>the client's own model, quota, billing"]
+      CLIENT["Client<br/>discovers and invokes tools"]
+    end
+    APPS["MCP App<br/>HTML the host renders in a sandboxed iframe"]
+    CLIENT -->|"sampling: the server's prompt runs here"| MODEL
+    CLIENT -->|"tools/list, tools/call"| TR
+    TR["Transport<br/>stdio or HTTP, no session id"] -->|one stateless request, any server instance| SRV
+    SRV["Server<br/>exposes tools with JSON Schema"] -->|"results; elicitation and sampling as stateless retries"| TR
+    TR --> CLIENT
+    SRV -->|one uniform interface per source| DATA[("Tools and data<br/>wiki, database, vector store, filesystem")]
+    SRV -->|long-running call returns a handle| TASK["Tasks extension<br/>tasks/get, tasks/cancel"]
+    SRV -->|interactive HTML the host renders| APPS
+    IDP["Identity provider<br/>ID-JAG grant"] -->|exchanged for a server-issued token| SRV
+    class MODEL,CLIENT,SRV,DATA,IDP stable
+    class APPS,TASK muted
+    class TR accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 ## What Is MCP?
 
@@ -181,6 +212,16 @@ Industry analysts project the AI tool integration market -- of which MCP is the 
 - **Anthropic MCP Courses** -- Available on [Skilljar](https://anthropic.skilljar.com) and [DeepLearning.AI](https://www.deeplearning.ai/short-courses/), covering protocol fundamentals and server development.
 - **The New Stack** -- Ongoing technical coverage of MCP architecture, adoption, and challenges. Notable articles on the meta-tool pattern and enterprise deployment patterns.
 - **MCP SDK download statistics** -- npm (`@modelcontextprotocol/sdk`, [https://www.npmjs.com/package/@modelcontextprotocol/sdk](https://www.npmjs.com/package/@modelcontextprotocol/sdk)) and PyPI (`mcp`, [https://pypi.org/project/mcp/](https://pypi.org/project/mcp/)) for first-party adoption metrics.
+
+---
+
+## Three things to take away
+
+- **Three concepts plus neutral governance are why MCP won.** Clients, servers, and transports are simple enough that a competent developer ships a server in under an hour, and donating the spec to the Linux Foundation with OpenAI co-governing removed the last credible objection to adopting it.
+- **The 2026 spec put the core back to stateless so deployment could be ordinary.** With the handshake and `Mcp-Session-Id` headers gone, any request can land on any server instance, so remote servers sit behind plain load balancers and clients can cache `tools/list`.
+- **The protocol itself defines no normative security requirements.** The June 2026 IETF draft catalogs six vulnerability classes already reported in shipping servers -- SSRF, excessive tool permissions, prompt injection through tool output, lifecycle bypass, information leakage, and missing authentication -- each left to the implementer to mitigate.
+
+---
 
 ## Sources
 

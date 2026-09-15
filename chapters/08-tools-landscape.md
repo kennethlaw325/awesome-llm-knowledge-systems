@@ -3,6 +3,35 @@
 > **In one sentence:** The tools landscape for AI-powered knowledge management ranges from AI-enhanced note apps to fully AI-native platforms.
 >
 > **Why it matters:** If you take notes, manage knowledge, or organize information, AI is changing how every tool in this space works.
+>
+> **Reading time:** ~13 min (2,878 words / 230 wpm)
+
+*Figure: The spectrum of section "The AI-Assisted vs. AI-Native Gap", carrying only two products -- early Notion AI, which the chapter names at the assisted end, and Mem, whose zero-manual-organization description matches the chapter's AI-native definition -- plus Notion's own release chain read in order from the Notion section. The chain shows the direction of travel: 3.0 turns an autocomplete feature into an autonomous agent, 3.6 makes other vendors' agents assignable teammates, and the August 2026 Agent APIs make Custom Agents embeddable outside the workspace. The edge that carries the argument is the one labelled "the gap is widening", because the gap widens for a structural reason: assisted tools stay bound to data models designed for human-only workflows.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    ASSIST["AI-assisted<br/>Ask AI buttons, summaries and chat<br/>on an unchanged data model"]
+    NATIVE["AI-native<br/>data model optimized for AI retrieval<br/>organization maintained by AI"]
+    subgraph NOTION["Notion, one release chain"]
+      direction LR
+      N30["Notion 3.0, Sept 2025<br/>autocomplete becomes<br/>an autonomous agent"]
+      N36["Notion 3.6, July 2026<br/>Claude and Cursor as<br/>assignable teammates"]
+      API["Agent APIs, Aug 2026<br/>Custom Agents embeddable<br/>outside the workspace"]
+      N30 -->|workspace becomes the shared board| N36
+      N36 -->|public beta| API
+    end
+    ASSIST -->|most incumbents, including early Notion AI| N30
+    ASSIST -->|the gap is widening| NATIVE
+    NATIVE -->|the most radical position in the landscape| MEM["Mem<br/>no folders, no tags,<br/>no manual categorization"]
+    class ASSIST,N30,N36 stable
+    class API muted
+    class NATIVE,MEM accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 ## The Landscape
 
@@ -99,6 +128,16 @@ The practical takeaway for knowledge engineering: the "harness" is no longer jus
 **And the substrate itself is now portable.** On April 27, 2026, Microsoft and OpenAI announced an amended partnership agreement that ended OpenAI's cloud exclusivity to Azure (OpenAI can now serve API access via AWS, Google Cloud, or any provider), capped revenue-share payments asymmetrically, and removed the long-disputed AGI clause that would have let OpenAI exit financial obligations on a unilateral declaration of AGI. For knowledge-engineering teams this matters not as business news but as a substrate change: the largest closed-weight frontier model is no longer locked behind one cloud. "Which cloud do you run on" stops being a constraint on "which models do you have access to" --- for the GPT family, at least, on the same terms the open-weight ecosystem already enjoys. Combined with DeepSeek V4's day-one Ascend-NPU support (Chapter 11, April 24), the second half of 2026 begins with portable substrate as the default expectation rather than the exception.
 
 **And the managed substrate now learns and self-corrects.** On **May 6, 2026**, Anthropic added three primitives to its Managed Agents substrate --- **Dreaming** (scheduled between-session memory curation), **Outcomes** (separate-grader iterate-against-a-rubric loops), and **Multiagent Orchestration** (lead-agent fan-out with shared filesystem) --- and on the same day AWS shipped its **MCP Server** at general availability with the first hyperscaler-blessed **Skills** deployment. Read alongside the Velocity Paradox framing, the implication is direct: the bottleneck the report named --- evaluation and governance, not generation --- is exactly the surface the new managed primitives now compete on. Self-hosted harnesses that scaled generation in 2025 now face managed competitors that scale *learning and grading* in 2026. The Velocity Paradox does not get solved by faster code generation; it gets solved by infrastructure that learns where its own errors recur. That is the substrate Anthropic and AWS just shipped.
+
+---
+
+## Three things to take away
+
+- **The gap is a data-model gap, not a feature gap.** AI-assisted tools stay constrained by data models designed for human-only workflows, so no number of Ask AI buttons closes the distance.
+- **Notion also became the board, not just the agent.** By 3.6 it hosts other vendors' agents -- Claude and Cursor as assignable, watchable teammates -- alongside its own Custom Agents, which the August 2026 Agent APIs made embeddable outside the workspace.
+- **Generation stopped being the bottleneck.** The State of DevOps 2026 finding -- 69% of teams reporting deployment bottlenecks despite 45% faster AI-assisted coding -- means the harness has to scale with generation or throughput silently caps out.
+
+---
 
 ## Sources
 

@@ -3,6 +3,32 @@
 > **In one sentence:** One developer built a complete AI knowledge system with a 4-agent team, progressive disclosure routing, and automated content pipeline.
 >
 > **Why it matters:** This proves that one person with the right architecture can build what used to require a team. The concepts in this guide are not theoretical.
+>
+> **Reading time:** ~11 min (2,476 words / 230 wpm)
+
+*Figure: The four-agent team of section "Harness Engineering: The Agent Team", with the sprint contract drawn as the one document three of the agents share. The orchestrator writes the contract, the writer produces against it, and the QA evaluator grades against the same criteria before anything can be published. The edge that carries the argument is the return path from evaluator to writer: this is not a single retry, so the four agents are a loop rather than a pipeline.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    EXT[("External sources<br/>web searches, API calls,<br/>document parsing")]
+    EXT --> COLLECT["Data Collector<br/>broad permissions, cannot publish"]
+    COLLECT -->|writes output to a defined location, triggers| ORCH["Pipeline Orchestrator<br/>decides which agents to invoke"]
+    ORCH -->|writes| CONTRACT["Sprint contract<br/>target platform, word count, required and<br/>prohibited elements, evaluation criteria"]
+    CONTRACT -->|produce against it| WRITE["Content Writer"]
+    CONTRACT -->|grade against it| QA
+    GUARDS["Content guards<br/>prompt-level, auto-correction, regex strip"] -->|brand voice and formatting| WRITE
+    WRITE -->|triggers| QA{{"QA Evaluator<br/>reviews all output before publication"}}
+    QA -->|fails, returned with specific feedback| WRITE
+    QA -->|contract satisfied| PUB["Published output"]
+    class EXT,COLLECT,ORCH,WRITE,GUARDS,PUB stable
+    class CONTRACT accent
+    class QA gate
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 This chapter presents an anonymized case study of a solo developer --- referred to as "the builder" --- who constructed a complete knowledge harness over several months of iterative development. The system described here is real and in daily production use. It demonstrates how the concepts discussed in earlier chapters --- context engineering, progressive disclosure, skill systems, and agent orchestration --- come together in practice.
 
@@ -114,6 +140,14 @@ The point of this sidebar is not that the builder's system is secretly Claude Co
 This case study illustrates that a single developer, working iteratively over months, can build a knowledge harness that would have required a team of engineers two years ago. The key enablers are: LLMs capable enough to follow complex multi-step instructions, open protocols (MCP) for tool integration, and the emerging discipline of context engineering that provides design patterns for these systems.
 
 The builder's system is not a template to copy. It is a proof of concept that the principles in this guide --- progressive disclosure, context engineering, skill graphs, agent orchestration --- produce measurable results in production. Your harness will look different. The architecture should be the same.
+
+---
+
+## Three things to take away
+
+- **The contract gives writer and evaluator a shared target.** The orchestrator specifies target platform, word count, required and prohibited elements up front, and the evaluator grades against that same document until it is satisfied or a human intervenes.
+- **Progressive disclosure caps context overhead at a constant.** Index plus one routing file plus one skill file stays under 4K tokens no matter how many skills exist, a 65% reduction on the flat-file approach it replaced.
+- **The harness is the product.** The individual components are straightforward; the integration -- routing logic, sprint contracts, content guards, review cycle, memory system -- is where the value lives.
 
 ---
 

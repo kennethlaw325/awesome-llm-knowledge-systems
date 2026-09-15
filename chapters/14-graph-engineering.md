@@ -3,6 +3,35 @@
 > **In one sentence:** Graph engineering is the July 2026 claim that the next layer above loop engineering is the graph --- the explicit wiring of which agents exist, who may delegate to whom, and how their loops supervise and correct one another.
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
+>
+> **Reading time:** ~28 min (6,293 words / 230 wpm)
+
+*Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    subgraph ORG["ORG GRAPH · stable roster, versioned, reviewed"]
+      LEAD["Lead agent"] -->|may delegate| RES["Research subagent A<br/>one aspect, own context window"]
+      LEAD -->|may delegate| RES2["Research subagent B<br/>another aspect, own context window"]
+    end
+    RES --> GATE{{"only permitted edges<br/>may be used"}}
+    RES2 --> GATE
+    subgraph WORK["WORK GRAPH · spawned per job, then discarded"]
+      T0["This job"] -.-> T1["Subtask A"]
+      T0 -.-> T2["Subtask B"]
+    end
+    GATE --> T0
+    T2 -->|must touch| ANCH["Anchor<br/>test result, metric, ground truth"]
+    class LEAD,RES,RES2 stable
+    class T0,T1,T2 muted
+    class ANCH accent
+    class GATE gate
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 This chapter was first written in late July 2026, when the term was about two weeks old and took the title of shortest-lived idea in this guide from Chapter 13. "Graph engineering" crystallized in the days after July 17-18, 2026, lived entirely in practitioner blogs and vendor essays, and had no academic literature behind it. It is still the most contested term this guide covers. The single loudest response to it --- from LangChain, the vendor whose framework is literally named after graphs --- was that the practice is three years old and only the label is new.
 
@@ -179,6 +208,14 @@ An interim count was taken on August 24, 2026, 22 days before the gate; both rea
 **Verdict, September 15, 2026: the term survived the circulation test; its status as a distinct engineering layer is unproved.** Both halves carry weight. Survival is not vindication --- Signal 1 is the signal that would distinguish a discipline from a discourse, and after eight weeks it is still empty, while the strongest new evidence in the window cuts against the label rather than for it: two vendors built the governance graph engineering names, one of them starting a month before the term existed, and neither needed the word. Nor is the unproved half a dismissal --- three months of independent essays falsify the reading that this was a two-week naming event, and the practice under the name has a disclosed production case and a course teaching it. The chapter therefore grows, as the gate said it would, without promoting the term into the numbered generations: graph engineering stays a contested name for multi-agent coordination, tracked here as a claim under test rather than a settled layer, and Tony Bai's warning --- that today's frame may be tomorrow's discarded buzzword --- is still the fairest one-line summary of the stakes.
 
 The next thing that would change this verdict is narrow and easy to state: a vendor using the term in its own product vocabulary, or a named conference track. Neither was established by the evidence gathered by September 15, 2026.
+
+---
+
+## Three things to take away
+
+- **The org graph and the work graph are two different objects.** The stable roster of permitted delegation edges outlives the ephemeral graph that any single job spawns inside it.
+- **Without an anchor, mutually reviewing agents converge on agreement rather than correctness.** Perez's fix is that some node must touch an unarguable, externally grounded measurement.
+- **The term survived the circulation test; its status as a distinct layer remains unproved.** Two vendors shipped related coordination features without ever using the word, and with different enforcement mechanisms -- Codex's delegation setting is prompt-level policy, not enforced authorization -- so the guide keeps graph engineering outside the numbered generations.
 
 ---
 

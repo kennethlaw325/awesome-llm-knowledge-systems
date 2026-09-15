@@ -3,6 +3,34 @@
 > **In one sentence:** Loop engineering is the practice of building the system that prompts the agent for you --- so you stop hand-driving each turn and start designing the loop that runs, checks, and feeds itself.
 >
 > **Why it matters:** It is the newest and least-settled layer in this guide's evolution story, and the one most likely to shape how autonomous agent work actually gets scheduled, verified, and reviewed over the next year.
+>
+> **Reading time:** ~18 min (3,962 words / 230 wpm)
+
+*Figure: One pass of a loop, assembled from the five pieces of section 13.3 plus the external state that section 13.3 keeps separate from them, ending in the human outer loop and the verdict of 13.7. Two edges carry the argument: the state file is read before the run decides anything (13.2), and the agent that drafts is not the agent that scores (13.4).*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    TRIG["Automation<br/>fires on schedule or event"] --> SKILL
+    STATE[("State file<br/>persists between runs")] -->|read what is left over| SKILL
+    SKILL["Triage skill<br/>reads CI, issues, commits"] -->|re-decides each pass| GEN
+    subgraph WT["Isolated worktrees"]
+      direction LR
+      GEN["Generator sub-agent<br/>drafts the change"] -->|diff| EVAL["Evaluator sub-agent<br/>clicks through the running app"]
+      EVAL -->|scored down, retry| GEN
+    end
+    EVAL -->|passes| CONN["Connectors / MCP<br/>open PR, update ticket"]
+    CONN -->|write what is done| STATE
+    CONN --> OUT["Human outer loop<br/>Quality · Verdict · Answerability"]
+    OUT -->|verdict| SHIP["Enters the dependent system"]
+    class TRIG,SKILL,CONN,STATE stable
+    class GEN,EVAL muted
+    class OUT,SHIP accent
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
 
 This is the shortest-lived idea in this guide. (It held that title for six weeks: in late July 2026 the same playbook produced a claim of a next layer above the loop, graph engineering, covered in [Chapter 14](14-graph-engineering.md).) The term "loop engineering" is roughly five weeks old at the time of writing: it was named in early June 2026, spread through practitioner blogs, podcasts, and X within days, and has no academic literature behind it yet. What follows is deliberately hedged. Where a claim rests on a spoken podcast quote transcribed three different ways, or on a viral post that named nothing, this chapter says so. The goal is to describe an emerging frame accurately, not to certify it as a settled generation.
 
@@ -171,6 +199,14 @@ Three markers show the frame spreading past its originators. Each is held to wha
 **Memory and eval.** The sub-problem loops depend on most --- cross-session state that survives between runs --- is now separately benchmarked. Snorkel's **Continual Learning Bench** (arXiv 2606.05661; Snorkel AI / UC Berkeley SkyRL / UW-Madison) factors results into agent, memory system, and task. On it, agent systems using **Fable as the memory backbone outperformed those built on Opus or Sonnet** (Snorkel's Benchtalks interview; a qualitative finding --- the arXiv paper's model roster is Opus 4.7 / Sonnet 4.6 / Gemini 3.1 Pro / Gemini 3 Flash / GPT-5.4, and no numeric score is attached to Fable). At launch, best-in-class systems reached about **25% normalized gain**, with in-context learning leading the leaderboard. The signal is not the number; it is that *which memory backs the loop* is now a measured axis.
 
 Five weeks after it got a name, loop engineering has a definition, a stated relation to the harness, a large production case, a framework vendor's curriculum, a Chinese-mainstream guide, and a vendor's own loops material. It does not have academic literature, settled reception, or agreement that it is a genuine fourth generation rather than harness engineering with a scheduler and a state file. This guide tracks it as emerging, not settled --- and Osmani's own caution, that two people can build the same loop and get opposite results, is the fairest summary of why.
+
+---
+
+## Three things to take away
+
+- **A loop is not a scheduler.** It fires on time, then reads the current state and re-decides what to do this round.
+- **The writer must not be the grader.** An agent asked to score its own work skews positive; a separate skeptical evaluator is the fix.
+- **Stripe's reliability came from boundary placement, not a smarter model.** The loop scaled the writing and relocated the human to review.
 
 ---
 
