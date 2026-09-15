@@ -50,7 +50,10 @@ def rewrite(text, is_index):
     # README.md is staged as index.md, so links pointing at it must follow.
     # This one is repo-wide: glossary.md and the translated READMEs link back
     # to README.md too, not just index.md itself.
-    text, n = re.subn(r"\]\((\.\./)*README\.md\)", r"](\1index.md)", text)
+    # `((?:\.\./)*)` captures the whole prefix.  A repeated capturing group
+    # keeps only its last repetition, which silently ate a level: the old
+    # `(\.\./)*` turned ../../README.md into ../index.md.
+    text, n = re.subn(r"\]\(((?:\.\./)*)README\.md\)", r"](\1index.md)", text)
     if n:
         notes.append("{} link(s) README.md -> index.md".format(n))
     if is_index:
@@ -67,15 +70,18 @@ def rewrite(text, is_index):
     return text, notes
 
 
-def source_exists(rel):
-    """Does a staged path have a source file behind it in the repo?
+def source_path(rel):
+    """The repo file behind a staged path.
 
     Every staged path keeps its repo-relative name except README.md, which is
     staged as index.md.
     """
-    if rel.as_posix() == "index.md":
-        rel = Path("README.md")
-    return (ROOT / rel).exists()
+    return Path("README.md") if rel.as_posix() == "index.md" else rel
+
+
+def source_exists(rel):
+    """Does a staged path have a source file behind it in the repo?"""
+    return (ROOT / source_path(rel)).exists()
 
 
 def repoint_unstaged(path):
@@ -130,6 +136,8 @@ def self_check():
         "[a](../index.md) [b](index.md)\n",
         ["2 link(s) README.md -> index.md"],
     )
+    # every ../ survives; a repeated capturing group would keep only the last
+    assert rewrite("[a](../../../README.md)\n", False)[0] == "[a](../../../index.md)\n"
     assert rewrite("<details>\n", True)[0] == '<details markdown="1">\n'
     assert rewrite("<details>\n", False) == ("<details>\n", [])
     assert rewrite("[p](../../pulls)\n", True)[0] == "[p](" + REPO + "/pulls)\n"
@@ -178,8 +186,16 @@ def main():
 
     repointed = 0
     for path in sorted(DOCS.rglob("*.md")):
+        rel = path.relative_to(DOCS)
         for target, action in repoint_unstaged(path):
-            print("  -> {}: {} in {}".format(action, target, path.relative_to(DOCS)))
+            print("  -> {}: {} in {}".format(action, target, rel))
+            # Also as a GitHub Actions annotation, so a repoint shows up in the
+            # PR's checks UI instead of only in the log.  Harmless locally.
+            print(
+                "::warning file={}::staged link to {} repointed: {}".format(
+                    source_path(rel).as_posix(), target, action
+                )
+            )
             repointed += 1
 
     print(

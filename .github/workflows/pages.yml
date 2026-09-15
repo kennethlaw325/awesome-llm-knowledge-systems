@@ -34,9 +34,12 @@ on:
       - .github/workflows/pages.yml
   workflow_dispatch:
 
-# One deployment at a time; queue rather than cancel so a merge is never lost.
+# One run at a time per ref, queued rather than cancelled so a merge is never
+# lost.  The ref is part of the group on purpose: GitHub keeps one running and
+# one pending run per group and a new pending run replaces the old one, so a
+# shared "pages" group would let a PR build displace a queued master deploy.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

@@ -1,16 +1,20 @@
 /* The repo's accent (#2563eb, the one colour in the chapter figures) as the
    Material primary colour.  theme.palette.primary only accepts Material's
-   named colours, so the custom hex is set through the CSS variables. */
+   named colours, so the custom hex is set through the CSS variables -- and
+   both palette entries in mkdocs.yml say `custom`, because a named palette is
+   stamped on <body> and would shadow these inherited :root values. */
 
 :root {
   --md-primary-fg-color: #2563eb;
   --md-primary-fg-color--light: #60a5fa;
   --md-primary-fg-color--dark: #1d4ed8;
   --md-accent-fg-color: #1d4ed8;
+  --md-accent-fg-color--transparent: #1d4ed81a;
 }
 
 [data-md-color-scheme="slate"] {
   --md-accent-fg-color: #60a5fa;
+  --md-accent-fg-color--transparent: #60a5fa1a;
 }
 
 /* Every chapter figure carries the fixed light palette in docs/style/

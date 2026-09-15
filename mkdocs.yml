@@ -10,7 +10,12 @@ repo_name: kennethlaw325/awesome-llm-knowledge-systems
 edit_uri: ""
 
 # scripts/stage_docs.py copies the repo's markdown here; mkdocs refuses a
-# docs_dir that contains mkdocs.yml.
+# docs_dir that contains mkdocs.yml.  Previewing locally is therefore two
+# commands, not one:
+#     python scripts/stage_docs.py
+#     mkdocs serve            # or: mkdocs build --strict
+# `mkdocs serve` watches build/docs, not chapters/ -- after editing a chapter,
+# a README or a translation, re-run the staging script to see the change.
 docs_dir: build/docs
 site_dir: build/site
 
@@ -30,13 +35,20 @@ not_in_nav: |
 theme:
   name: material
   palette:
+    # `custom` leaves the colour to docs-site/extra.css.  Material stamps the
+    # named palettes onto <body>, which shadows any :root value on <html>, so
+    # the repo's #2563eb only lands once nothing claims the name here.
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
