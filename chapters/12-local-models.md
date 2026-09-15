@@ -99,6 +99,8 @@ model: qwen3:14b
 
 This works with LangChain, LlamaIndex, Dify, and most RAG frameworks. For Obsidian users, plugins like Smart Connections can be configured to use a local Ollama model instead of cloud APIs.
 
+In late 2026 the pattern acquired an inverse. Instead of third-party tools pointing at Ollama, the closed-model vendors' own first-party desktop apps began pointing at it. Ollama **v0.33.0** (August 21, 2026) shipped configuration for Claude Desktop to use Ollama as a third-party gateway provider; **v0.34.0** (September 5, 2026) added ChatGPT Desktop integration, so Ollama models can be selected inside ChatGPT Desktop itself, configured through the Ollama macOS app. The same v0.34.0 release also added OpenAI-compatible client tool search, response compaction, and faster structured output on Apple Silicon. The consequence for a local knowledge harness is narrow but real: the consumer chat client is no longer a reason to route a query off the machine, because the client can be repointed at a model running on it. This is the vendor-application counterpart to the OS-level `LanguageModel` protocol discussed below --- the same first-class-local-backend move, arriving from the closed-model vendors rather than from the platform owner.
+
 ### Pattern 2: Hybrid Cloud-Local
 
 The most practical architecture for most users:
@@ -154,6 +156,8 @@ The focus here is on the architectural question: where do local models fit in yo
 ## Sources
 
 - Ollama: [https://ollama.ai](https://ollama.ai)
+- Ollama. Release v0.33.0 (August 21, 2026). [https://github.com/ollama/ollama/releases/tag/v0.33.0](https://github.com/ollama/ollama/releases/tag/v0.33.0) --- Claude Desktop configurable to use Ollama as a third-party gateway provider.
+- Ollama. Release v0.34.0 (September 5, 2026). [https://github.com/ollama/ollama/releases/tag/v0.34.0](https://github.com/ollama/ollama/releases/tag/v0.34.0) --- ChatGPT Desktop integration via the Ollama macOS app; OpenAI-compatible client tool search, response compaction, and faster structured output on Apple Silicon.
 - llama.cpp: [https://github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 - Unsloth: [https://github.com/unslothai/unsloth](https://github.com/unslothai/unsloth)
 - Karpathy, Andrej. "LLM Wiki" pattern --- Gist defining the raw → wiki → schema layered architecture and the Ingest / Compile / Lint / Query operations referenced throughout this chapter. [https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
