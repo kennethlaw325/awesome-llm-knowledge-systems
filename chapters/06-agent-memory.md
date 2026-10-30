@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Without memory, every AI conversation starts from zero. Memory is what makes AI feel like a colleague instead of a stranger.
 >
-> **Reading time:** ~30 min (6,758 words / 230 wpm)
+> **Reading time:** ~30 min (6,772 words / 230 wpm)
 
 *Figure: The six levels named in "Feature-Level Memory Research (2026)", arranged by locus -- what the model reads through an interface at the top, what is part of the model at the bottom -- with the four types of the "Memory Taxonomy" section mapped onto them: Working Memory is the window, while episodic, semantic, and procedural records live in the store. The per-level retrieval mechanisms come from "Major Frameworks", and the weight-level entry from "Architectural Patterns". The edges into the context window carry the argument: however an external level is indexed, it has to be retrieved into the window before the model can reason over it, whereas the weight-level and feature-level layers are already inside. Production stacks through 2026 sit mostly in the first three levels.*
 
@@ -79,7 +79,7 @@ This approach produces a memory structure that grows organically, forming cluste
 
 ### ByteRover
 
-[ByteRover CLI](https://github.com/campfirein/byterover-cli), formerly Cipher, organizes project knowledge into context trees. Its current repository describes local operation with optional cloud synchronization, curation review, and git-like branching and merging. The code is source-available under Elastic License 2.0. This illustrates filesystem-oriented memory organization; it does not establish general retrieval superiority or eliminate the cost of model calls and maintenance.
+[ByteRover CLI](https://github.com/campfirein/byterover-cli), formerly Cipher, organizes project knowledge into context trees. The repository was archived on September 27, 2026. Documentation inspected October 31 describes local operation with optional cloud synchronization, curation review, and git-like branching and merging. The code is source-available under Elastic License 2.0. This historical example illustrates filesystem-oriented memory organization; it does not establish general retrieval superiority or eliminate model and maintenance costs.
 
 The pattern got its first academic treatment on July 29, 2026. **"Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability"** (arXiv 2607.26637; Sizhe Zhou and ten coauthors across UIUC, UCSD, and Adobe Research) describes itself as the first systematic study of the directory-tree-of-markdown-files approach, memory the agent reads, writes, and reorganizes through generic file tools, studied as a generic pattern rather than as any one vendor's product. The paper formalizes three roles around a single shared memory filesystem: a management agent that organizes incoming content, a search agent that answers queries with cited sources, and an execution agent that distills task trajectories into reusable skills. Its headline finding is the one that matters for anyone choosing this pattern over a vector store: keeping the store organized roughly halves retrieval cost once the store is large. This measures the generic organization pattern, not ByteRover's implementation. Organization erodes for all but the strongest management agent in its growth study, and no agent it measures converts organization into better answers. Cheaper search, not better answers, is what the tidy tree buys. The study is unreplicated, but it moves filesystem memory from a shipped convention to a measured one.
 
@@ -197,7 +197,7 @@ The paper is unusually candid about where the approach currently breaks, and the
 
 1. Mem0 documentation and benchmarks. https://mem0.ai
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
-3. ByteRover CLI. [Repository](https://github.com/campfirein/byterover-cli), checked October 31, 2026. Elastic License 2.0.
+3. ByteRover CLI. [Archived repository](https://github.com/campfirein/byterover-cli), archived September 27, 2026; documentation inspected October 31, 2026. Elastic License 2.0.
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
 5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, July 10, 2025. https://arxiv.org/abs/2507.07957. Companion repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents

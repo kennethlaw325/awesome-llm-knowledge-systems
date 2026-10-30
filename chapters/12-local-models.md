@@ -4,36 +4,22 @@
 >
 > **Why it matters:** Sensitive knowledge and personal fine-tuning make the inference boundary an architectural choice; tools, logs and synchronization still need their own controls.
 >
-> **Reading time:** ~14 min (3,121 words / 230 wpm)
+> **Reading time:** ~14 min (3,052 words / 230 wpm)
 
-*Figure: Pattern 1 of the Integration Patterns section -- Ollama sitting between downloaded models and their consumers through one OpenAI-compatible endpoint. Pattern 3 adds an MCP host/client that connects local knowledge servers to model calls; the inference endpoint does not itself provide MCP orchestration. The framework and plugin edges show a base-URL change, while the desktop-app edges show the late-2026 inverse: vendor apps selecting the local runtime.*
+*Figure: Ollama serves downloaded models to applications through an inference API. An MCP host/client separately executes tools and enforces permissions, passing model calls and tool results to Ollama. Endpoint compatibility alone does not provide MCP orchestration. Specific models and application integrations are described below.*
+
+*On narrow screens, scroll the diagram horizontally to read it at full size.*
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
-flowchart LR
-    subgraph LOCAL["Models on your own hardware"]
-      direction TB
-      EMB["Embedding models<br/>nomic-embed-text, mxbai-embed-large, bge-m3"]
-      GEN["7-14B models<br/>Qwen3-14B, Llama 3.1-8B-Instruct, Gemma 3-12B"]
-    end
-    EMB -->|ollama pull| OLL
-    GEN -->|ollama pull| OLL
-    MCPS["MCP servers<br/>vault, databases, file system"] -->|local tools and resources| HOST
-    OLL["Ollama<br/>one OpenAI-compatible API<br/>localhost:11434/v1"]
-    subgraph CONS["Consumers pointed at the local runtime"]
-      direction TB
-      RAG["RAG frameworks<br/>LangChain, LlamaIndex, Dify"]
-      OBS["Obsidian<br/>Smart Connections plugin"]
-      CD["Claude Desktop"]
-      CG["ChatGPT Desktop"]
-      HOST["MCP host/client<br/>tool execution and permissions"]
-    end
-    OLL -->|base_url swap| RAG
-    OLL -->|base_url swap| OBS
-    OLL -->|v0.33.0, the app points here| CD
-    OLL -->|v0.34.0, the app points here| CG
+%%{init: {'flowchart':{'useMaxWidth':false},'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    MODELS["Downloaded models<br/>embedding or generation"] -->|load| OLL
+    MCPS["MCP servers<br/>local knowledge"] -->|tools and resources| HOST
+    HOST["MCP host/client<br/>execution and permissions"]
+    OLL["Ollama<br/>local inference API"]
     HOST -->|model calls and tool results| OLL
-    class EMB,GEN,RAG,OBS,MCPS,CD,CG,HOST stable
+    OLL -->|OpenAI-compatible endpoint| APPS["Applications<br/>RAG frameworks, plugins,<br/>supported desktop apps"]
+    class MODELS,MCPS,HOST,APPS stable
     class OLL accent
 classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
 classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f

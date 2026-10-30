@@ -20,7 +20,7 @@ Checked October 31, 2026. This is a bounded update of the guide, not an exhausti
 | Source | Treatment |
 |---|---|
 | [Agent Skills specification](https://agentskills.io/specification) | Separate portable fields from host routing/dependencies; discovery metadata is not free context |
-| [ByteRover CLI](https://github.com/campfirein/byterover-cli) | Fix repository identity, source-available license description and context-tree taxonomy |
+| [ByteRover CLI](https://github.com/campfirein/byterover-cli) | Archived September 27; retain as a dated architectural example, fixing identity, license and context-tree taxonomy |
 | [Cognee 1.0 announcement](https://www.cognee.ai/cognee-1-0-announcement) | June 26 backfill; page refresh is not an October launch |
 | [Dify license](https://github.com/langgenius/dify/blob/main/LICENSE) | Modified Apache terms; not an unqualified Apache-2.0 deployment claim |
 | [DeepSeek-V3 report](https://arxiv.org/abs/2412.19437) | Official-run cost estimate belongs to V3, excluding research/ablations; not R1's full cost |

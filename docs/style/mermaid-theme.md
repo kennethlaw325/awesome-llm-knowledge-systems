@@ -39,6 +39,8 @@ Add `-p` with a puppeteer config naming a local `executablePath` when the mermai
 
 ## Placement and format
 
+Chapter 12's integration diagram uses `flowchart: {useMaxWidth: false}` in its init block. Its many consumers made text unreadable when scaled to a phone column. The docs-site `.mermaid` host allows horizontal scrolling instead; the caption tells readers how to view the full diagram. Other chapter figures retain their responsive defaults.
+
 **Figure** goes at the top of the chapter: after the header blockquote (the `In one sentence` / `Why it matters` / `Reading time` block), before the first `##` heading. A one-paragraph italic caption comes first, then a blank line, then the fence:
 
 ````

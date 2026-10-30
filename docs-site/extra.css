@@ -35,6 +35,9 @@
   background: #ffffff;
   border-radius: 0.2rem;
   padding: 0.8rem 0;
+  /* Intrinsic-width figures keep their labels legible on narrow screens.
+     Contain the overflow here rather than widening the reading column. */
+  overflow-x: auto;
   --md-mermaid-label-fg-color: #1f2328;   /* primaryTextColor */
   --md-mermaid-label-bg-color: #ffffff;   /* edgeLabelBackground */
   --md-mermaid-edge-color: #6b7280;       /* lineColor */
