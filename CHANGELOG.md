@@ -4,6 +4,17 @@ All notable changes to this guide are documented here. Dates are in HKT.
 
 The guide is a living document — chapter and timeline updates ship continuously. This file gives returning readers a chronological view of what has shifted since their last visit, organized by month.
 
+## October 2026
+
+### 2026-10-31: Governed context, memory correction and agent boundaries
+
+- Eight timeline entries connect shared on-device context, typed local decisions, evaluation containment, Notion's context/skills workspace, a disclosed outer-harness case, adversarial monitor research, Agent Skills interoperability and durable memory conflict resolution. Each entry links its primary source and states what was not established.
+- Chapter integrations explain the operational consequences. Chapter 14 adds an October circulation check while retaining the distinction between a scheduled conference talk, a named track, procedural-memory graphs and organization topology. A distinct fifth generation remains unproved.
+- Correct ByteRover's repository/taxonomy/license wording, portable skill metadata and routing claims, DeepSeek-V3/R1 training-cost attribution, Dify's modified license and local model IDs. Remove unsupported Gartner 71% and China 23%-to-67% claims in the corrected passages; qualify zero-cost and absolute-privacy language.
+- Backfill Cognee 1.0's lifecycle API and the scope of China's July 15 rules without relabeling either as an October launch. Add glossary definitions for decision models, memory conflict resolution and a shared context layer.
+- Refresh the README, group site navigation, collapse duplicate text diagrams, add a direct website entry, and run the staging self-check in CI. Chapter 12's simplified integration diagram retains readable text with horizontal scrolling on narrow screens. Translation READMEs state actual chapter coverage; selected factual corrections have partial-refresh notices instead of claiming full synchronization.
+- Read the three open resource proposals and record their evidence gates, including the Tree Ring integration lead. No issue comments or closures. See the [source and follow-up record](docs/october-2026/SOURCES.md).
+
 ---
 
 ## September 2026

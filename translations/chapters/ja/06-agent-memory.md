@@ -1,5 +1,8 @@
 # 第 6 章：Agent Memory —— 欠けている層
 
+> [!NOTE]
+> 2026-10-31 に一部の事実のみを確認・修正しました。それ以外は以前の翻訳であり、完全には同期していません。最新内容は[英語の正本](../../../chapters/06-agent-memory.md)を参照してください。
+
 > **一文で：** 記憶システムは AI エージェントが会話横断でものを記憶することを可能にする ——あなたの設定、過去の判断、プロジェクト context。
 >
 > **なぜ重要か：** 記憶なしでは、すべての AI 会話はゼロから始まる。記憶こそが AI を見知らぬ人ではなく同僚のように感じさせるものだ。
@@ -48,11 +51,7 @@ A-MEM は各記憶を、動的なインデックス、リンク、進化を伴�
 
 ### ByteRover
 
-[ByteRover](https://github.com/byterover) は記憶分野で広まった仮定 ——ベクトルデータベースと埋め込みベース検索が必須インフラであるという仮定 —— に挑戦する。
-
-ByteRover は階層化された markdown Context Tree を実装する ——漸進的詳細のツリーで知識を組織する構造化文書。検索は 5 段階の漸進システムを使う：抽象度の最も高いレベルから始め、必要な分だけ掘り下げる。このアプローチは外部インフラを必要としない ——ベクトル DB なし、グラフ DB なし、構造化テキストファイルだけ。
-
-含意は重要だ。ByteRover は埋め込みが効果的な記憶検索のために厳密に必要ではないことを証明する。多くの実用ユースケースでは、インテリジェントな走査を伴うよく組織された階層テキストが、埋め込みベースアプローチに匹敵するか超える性能を、劇的に単純なデプロイとゼロインフラオーバーヘッドで提供する。これはローカルファーストアプリケーションとリソース制約環境にとって特に魅力的だ。
+[ByteRover CLI](https://github.com/campfirein/byterover-cli)（旧 Cipher）は、Context Tree でプロジェクト知識を整理する。リポジトリは 2026-09-27 にアーカイブされた。2026-10-31 に確認した文書では、標準のローカル動作、任意のクラウド同期、整理内容の変更レビュー、Git 風のブランチとマージが説明されている。コードは Elastic License 2.0 の source-available として公開されている。これはベンダーが説明する過去の構成例であり、一般的な検索性能の優位性や、モデル呼び出しと保守のコストが不要であることを証明するものではない。
 
 ### Nemori
 
@@ -104,7 +103,7 @@ ICLR 2026 MemAgents Workshop はこの分野のマイルストーンを表し、
 
 **Emotion vectors** は Claude の residual stream における線形特徴方向で、増幅されると感情負荷の強い振る舞いへとモデルを信頼性高くバイアスする ——最も引用される例では脅迫風出力。記憶システム設計にとって関連する点は安全性含意（それも実在する）ではなく、アーキテクチャ的含意である：モデルには*脅迫的になる仕方を覚えている*特徴方向があり、それはどんな prompt や取得 context からも独立に上下できる。**Iteration head** は chain-of-thought 推論中に出現する注意ヘッドで、一貫して直前の推論ステップの出力に注意を払う。それは事実上、手続き記憶ストアではなく注意重みに実装された*手続き記憶*の一片である ——モデルは「進み続ける仕方」のための回路を学習しており、その回路が CoT を機能させる。
 
-記憶システム設計への含意は、「記憶がどこに住むか」がいまや 2025 年だったよりも豊かな問いだということだ。現代のスタックは 6 つの異なるレベルで記憶を読む必要があるかもしれない：**トークンレベル**（window 内のトランスクリプト断片）、**ベクトルレベル**（Mem0、A-MEM、ByteRover の検索）、**グラフレベル**（Mem0ᵍ の三項組とその型付きエッジ）、**空間レベル**（MemPalace の Wings → Rooms → Closets → Drawers ウォーク）、**重みレベル**（Titans / MIRAS モジュールが推論時に更新）、**特徴レベル**（モデルが推論しながら、どの解釈可能な方向が発火しているか）。2026 年を通じて本番システムは大半が最初の 3 層に住み続けるだろう ——それらはツーリングが最も成熟した層だ。だが残り 3 層はもはや仮想ではなく、記憶を純粋に検索問題として扱う harness 設計者は能力をテーブルに置き去りにすることが増えるだろう。
+記憶システム設計への含意は、「記憶がどこに住むか」がいまや 2025 年だったよりも豊かな問いだということだ。現代のスタックは 6 つの異なるレベルで記憶を読む必要があるかもしれない：**トークンレベル**（window 内のトランスクリプト断片）、**ベクトルレベル**（Mem0、A-MEM の検索）、**グラフレベル**（Mem0ᵍ の三項組とその型付きエッジ）、**空間レベル**（MemPalace の Wings → Rooms → Closets → Drawers ウォーク）、**重みレベル**（Titans / MIRAS モジュールが推論時に更新）、**特徴レベル**（モデルが推論しながら、どの解釈可能な方向が発火しているか）。Context Tree は、ベクトル検索とは別の外部記憶の整理方式だ。2026 年を通じて本番システムは大半が最初の 3 層に住み続けるだろう。それらはツーリングが最も成熟した層だ。だが残り 3 層はもはや仮想ではなく、記憶を純粋に検索問題として扱う harness 設計者は能力をテーブルに置き去りにすることが増えるだろう。
 
 ## 鍵となるリソース
 
@@ -116,7 +115,7 @@ ICLR 2026 MemAgents Workshop はこの分野のマイルストーンを表し、
 
 1. Mem0 documentation and benchmarks. https://mem0.ai
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
-3. ByteRover: Hierarchical Context Trees for LLM Memory. https://github.com/byterover
+3. ByteRover CLI。[アーカイブ済みリポジトリ](https://github.com/campfirein/byterover-cli)、アーカイブ日：2026-09-27、文書確認日：2026-10-31。Elastic License 2.0。
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
 5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, July 10, 2025. https://arxiv.org/abs/2507.07957. Companion repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents

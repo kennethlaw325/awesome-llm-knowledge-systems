@@ -1,5 +1,8 @@
 # 第 2 章：RAG、長上下文與知識圖譜
 
+> [!NOTE]
+> 2026-10-31 僅核對及修正部分事實，其餘內容仍為較早譯文，尚未完整同步。最新內容請參閱[英文正本](../../../chapters/02-knowledge-layer.md)。
+
 > **一句話總結：** 給 AI 取得知識有三種主要方法: 搜資料庫（RAG）、喂長檔案、或在圖裡連結事實。
 >
 > **為什麼重要：** 如果你用 AI 處理任何關於自己資料的事情, 這章解釋哪種做法最適合你的情境。
@@ -10,9 +13,7 @@
 
 ## RAG 沒死
 
-每六個月就有人發表「RAG 死了, 長上下文就夠了」。每六個月企業證明他們錯了。
-
-**Gartner 2025 Q4 企業調查** 發現, 71% 試著用純 context-stuffing（把整個檔案庫喂進大上下文視窗）取代 RAG 管線的組織, 在 12 個月內把 RAG 加回去。理由都一樣: 成本、延遲、規模化時的準確度退化、以及無法處理動態或頻繁更新的知識庫。
+較大的上下文視窗擴大了設計選擇，但不會自動保證模型能可靠運用證據。[Liu 等人](https://arxiv.org/abs/2307.03172)指出，相關資訊在長輸入中的位置會影響答案品質。應以實際問題比較檢索與完整上下文，評估答案品質、Token 用量、延遲，以及最新資料如何送達模型。
 
 RAG 沒死, 它在演化。問題從來不是「RAG 還是不 RAG」——而是「哪種 RAG, 配合什麼其他東西」。
 
@@ -33,7 +34,7 @@ RAG 的經濟論點仍然壓倒性。
 
 這不是四捨五入的誤差。在企業規模——每月數百萬查詢——每月推論成本 $80 與 $100,000 的差異決定專案是否能撐過預算審查。
 
-隨模型價格下降, 差距會縮, 但檢索永遠比把整個知識庫硬塞進每次呼叫便宜。資訊理論的定律保證: 選擇相關資訊比處理全部資訊便宜。
+檢索可以減少輸入 Token 用量，但總成本還包括建立索引、檢索、快取及額外的模型呼叫。應在相同答案品質目標下，比較完整流程與完整上下文基線；哪種設計較便宜，取決於資料庫規模、查詢量及模型價格。
 
 ---
 
@@ -182,7 +183,6 @@ Golden-Retriever RAG 聚焦於檢索質量, 讓 LLM 自己改寫查詢再檢索�
 
 ## 來源
 
-- Gartner. "Enterprise RAG Adoption" 調查評論, 2025 Q4 ——本章頂引用的 71% 反轉數字在多份行業分析中流通; 主要存取需 Gartner 訂閱, 所以這個數字在此被作為廣為引用的行業資料包告, 而非來自可自由抵達的主要 URL。
 - Liu, N. F. 等（2023）. "Lost in the Middle: How Language Models Use Long Contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
 - Microsoft.（2024）. "GraphRAG: Unlocking LLM discovery on narrative private datasets." [microsoft.com/research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-datasets/)
 - Asai, A. 等（2023）. "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection." [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)

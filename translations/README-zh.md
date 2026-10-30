@@ -2,7 +2,7 @@
 
 [English](../README.md) | **繁體中文** | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | [Español](README_es.md)
 
-> 此為 [English README](../README.md) 的繁體中文翻譯。全部 14 章已翻譯為繁體中文（從簡中基線經 OpenCC `s2twp` 轉換 + 台港用語調整，翻譯品質為 v0；歡迎以英文版為事實基準提交翻譯改進 PR）。
+> 此為繁體中文翻譯，已有 14 章譯文，品質為 v0。2026-10-31 僅核對及修正部分事實，章節內容仍落後於目前英文版，並非完整同步。最新內容以 [English README](../README.md) 及 [更新紀錄](../CHANGELOG.md) 為準；歡迎提交翻譯改進 PR。
 
 > 我分析了超過 50 份 awesome lists、調查報告和指南——沒有一份把所有東西串起來。RAG 論文不提 harness engineering（系統編排工程）。Memory frameworks（記憶框架）忽略 skill systems（技能系統）。MCP 文件跳過 progressive disclosure（漸進式揭露）。這份指南畫出了完整的地圖。
 
@@ -11,7 +11,7 @@
 ## TL;DR（重點摘要）
 
 - **Prompt engineering（提示工程）只是起點。** 這個領域經歷了三個世代的演進：Prompt Engineering（2022-2024）、Context Engineering（上下文工程，2025）、Harness Engineering（系統編排工程，2026）。每一層都包含前一層。
-- **RAG（檢索增強生成）並沒有死。** 71% 嘗試過 context-stuffing（上下文填充）的企業在 12 個月內回歸 RAG（Gartner 2025 Q4）。混合架構正在勝出。
+- **RAG（檢索增強生成）仍值得評估。** 較大的上下文視窗不會自動決定最佳架構；應以實際工作負載比較檢索與完整上下文的答案品質、Token 用量、延遲及資料更新方式。
 - **Context engineering 關注的是呼叫周圍的環境，而非呼叫本身。** Andrej Karpathy 在 2025 年中的重新定義，將焦點從精心設計提示詞轉移到動態建構整個 context window（上下文視窗）。
 - **Harness engineering 是作業系統層。** Birgitta Böckeler（於 Martin Fowler 的 *Exploring Generative AI* 系列，2026 年 4 月）和 OpenAI Codex 團隊的 harness 設計框架共同奠定——模型是 CPU，上下文是 RAM，而 harness 就是協調一切的作業系統。
 - **直到現在，沒有任何一份指南把這些全部串起來。** RAG、知識圖譜、長上下文、MCP、技能路由、記憶系統和漸進式揭露都是同一個生態系統的一部分。這就是那張地圖。
@@ -239,4 +239,4 @@ MIT License。詳見 [LICENSE](../LICENSE)。
 
 ---
 
-*最後更新：2026 年 5 月*
+*部分事實修正：2026-10-31；譯文尚未完整同步英文版。*

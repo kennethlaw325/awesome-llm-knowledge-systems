@@ -44,6 +44,9 @@ The practice of reading a model's explicit reasoning tokens to detect misbehavio
 
 ### D
 
+**Decision Model**
+A model that answers bounded, typed questions with a decision and associated probabilities, rather than generating an open-ended response. A harness can use the judgment for routing or triage, while deterministic application code retains authority over permissions. Probabilities require calibration checks; they are not proof the decision is correct. See [Chapter 12](chapters/12-local-models.md).
+
 **Dreaming**
 A scheduled between-session memory-curation job that rewrites an agent's persistent memory based on recent session patterns. First commercialized by Anthropic Managed Agents (May 6, 2026, research preview): the curator reads recent sessions, identifies recurring errors and converged workflows, and rewrites the agent's persistent memory in plaintext. Contrasts with trainable memory (Titans + MIRAS, April 2026) which adapts at inference via gradient updates: Dreaming keeps memory as data the harness reads, Titans makes memory a part of the model itself.
 
@@ -117,6 +120,9 @@ The practice, named in June 2026, of building the system that prompts an agent f
 
 ### M
 
+**Memory Conflict Resolution**
+A recorded choice about competing facts, together with the evidence supporting that choice. A durable memory system must revisit or retire it when the source changes, disappears or is forgotten. This is a lifecycle requirement, not a claim that every memory backend implements database transactions. See [Chapter 6](chapters/06-agent-memory.md).
+
 **MCP (Model Context Protocol)**
 An open standard that lets AI assistants connect to external tools and data sources through a universal plug-and-play interface, like USB for AI applications.
 
@@ -175,6 +181,9 @@ A technique where the AI looks up relevant information from an external source b
 Anthropic's April 2026 cloud-native harness primitive for Claude Code, in which agent workflows run on Anthropic's cloud rather than the user's machine and can be triggered by a schedule, an API call, or a GitHub event. Routines generalize self-hosted cron-plus-daemon patterns into a managed substrate with quota tiers (Pro 5/day, Max 15/day, Team/Enterprise 25/day) and survive the user's laptop being offline.
 
 ### S
+
+**Shared Context Layer**
+Persistent context maintained separately from the agent or model that consumes it. Multiple agents may access a permissioned view of the same underlying information. Keeping the store on-device does not imply that every consuming agent runs locally. See [Chapter 12](chapters/12-local-models.md).
 
 **Safety-Tiered Distribution**
 Shipping one model family as parallel tiers that differ in safeguard level and distribution gate rather than in weights. The reference example is Anthropic's June 2026 pair: **Claude Fable 5** (public GA with dual-use safety measures, including refusal-as-`stop_reason`) and **Claude Mythos 5** (the same underlying weights with safeguards lifted, gated to the vetted Glasswing coalition). It contrasts with vendor-chosen access tiers like GPT-5.5 Trusted Access for Cyber --- and, by mid-2026, with government-imposed ones like GPT-5.6's Executive-Order-gated preview. The trade-off it encodes: capability and safety are unbundled from each other, so who you are (a vetted org versus a public user) determines which safeguard tier you reach, not what the model can do.

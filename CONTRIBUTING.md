@@ -8,7 +8,7 @@ If you want to add an item, read the inclusion criteria below before opening a P
 
 ## What the guide tracks
 
-The repo is organized around ten axes the framework treats as load-bearing:
+The repo tracks ten established subject areas and two contested organizing frames:
 
 1. **Layered evolution** — prompt → context → harness (Ch01)
 2. **Knowledge layer** — RAG, long context, knowledge graphs (Ch02)
@@ -20,6 +20,8 @@ The repo is organized around ten axes the framework treats as load-bearing:
 8. **Tools landscape** — AI-native knowledge management tools (Ch08)
 9. **China ecosystem** — open-weight inflection, sovereign silicon, Chinese-language frontier (Ch09)
 10. **Local models** — small or local deployment patterns (Ch12)
+
+The emerging chapters have a higher burden of proof: **loop engineering** (Ch13) studies systems that schedule, evaluate and repeat agent work; **graph engineering** (Ch14) tests whether designing agent relationships is a distinct layer. A new talk, tool or book can demonstrate circulation of a term without proving that it names a new engineering generation. Keep those claims separate.
 
 Plus **interpretability** and **test-time compute**, treated as cross-cutting concerns that surface in Ch04 (harness) and Ch11 (timeline).
 
@@ -43,7 +45,7 @@ Different kinds of events face different bars. The implicit pattern from existin
 
 ### Model releases
 
-**In:** First-of-a-kind capability (ChatGPT, Gemini 1.0 multimodal), new economic point (DeepSeek R1's $6M training), new context-window class (Gemini 1.5's 1M, Kimi's 2M Chinese), new distribution model (Mythos's Glasswing coalition), new modality-fusion architecture (ERNIE 5.0).
+**In:** First-of-a-kind capability (ChatGPT, Gemini 1.0 multimodal), a demonstrated change in deployment economics, new context-window class (Gemini 1.5's 1M, Kimi's 2M Chinese), new distribution model (Mythos's Glasswing coalition), new modality-fusion architecture (ERNIE 5.0).
 
 **Out:** Version bumps. The repo does not include Claude 3.5 / 3.7 / 4 / 4.5 / 4.6, GPT-5.x base, Gemini 2.x, the Llama series, etc., even when individually impressive — they extend rather than redefine.
 
@@ -112,6 +114,9 @@ Surveys that summarize the field without doing either of (i) or (ii) are decline
 - **Sources:** primary first. Vendor blog → official spec → reputable secondary outlet, in that order. Secondary-only sources are flagged for verification.
 - **Numbers:** cited with source. Performance claims, download counts, valuations all need a verifiable link.
 - **Speculation:** marked clearly. The repo prefers under-claiming over over-claiming.
+- **Freshness:** distinguish an event's publication date from the date its current documentation was checked. A documentation update is not evidence of a new launch.
+- **Corrections:** if a numerical claim cannot be traced to its source, remove the precision or qualify the evidence. A failed fetch alone does not establish that a source or claim is false.
+- **Translations:** record coverage and synchronization limits. A translated chapter can exist while still lagging the English edition; do not label the whole translation current after updating only its README.
 
 ---
 

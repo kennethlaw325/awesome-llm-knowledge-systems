@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Context for everything in this guide -- when it happened, who did it, and what changed.
 >
-> **Reading time:** ~99 min (22,649 words / 230 wpm)
+> **Reading time:** ~101 min (23,198 words / 230 wpm)
 
 *Figure: Fourteen of this chapter's own headline entries, grouped into the four periods the closing section The Pattern reads out of the timeline, with its 2026 period split into halves here so the loop- and graph-engineering beats sit on their own. Each period row runs left to right; top to bottom is the argument: the subject of each period moves from the model itself, to the window and the protocol built around it, to the harness, and then to the loops and graphs built on top of that. The 2026 H2 section is the unsettled end -- graph engineering is tracked as emerging rather than settled, and the September 15 entry is the chapter reporting a gate result that splits. A horizontal poster version is in [diagrams/timeline.svg](../diagrams/timeline.svg).*
 
@@ -111,7 +111,7 @@ Anthropic publishes MCP as an open specification for connecting LLMs to external
 
 ### January --- DeepSeek R1 and the Open-Source Inflection
 
-DeepSeek releases R1, an open-weight reasoning model that matches OpenAI's o1 on key benchmarks. Trained for under $6 million and released under the MIT license, it demonstrates that frontier reasoning capabilities are no longer exclusive to well-funded labs. Enterprise open-source model adoption in China surges from 23% to 67%. The knowledge engineering implication: the foundation model is no longer the bottleneck or the moat.
+DeepSeek releases R1, an MIT-licensed open-weight reasoning model, reporting results competitive with OpenAI o1 on selected benchmarks. Its release makes reasoning models available for self-hosted knowledge systems. The widely repeated sub-$6 million figure belongs to the [DeepSeek-V3 technical report](https://arxiv.org/abs/2412.19437), which estimates $5.576 million for the official training run and excludes earlier research and ablations; it is not R1's total development cost. See [the official R1 repository](https://github.com/deepseek-ai/DeepSeek-R1) for models, licenses and reported evaluations.
 
 ### Mid-2025 --- "Context Engineering" Enters the Lexicon
 
@@ -491,6 +491,40 @@ Salesforce announced a **long-horizon runtime** for Agentforce, built so an agen
 ### September 15, 2026 --- Chapter 14's Survival Gate Comes Due
 
 Chapter 14 closed in July 2026 on a gate rather than a verdict: four signals, to be checked in September. The check was run, and the result splits along a line worth keeping. **Signal 1, vendor vocabulary, is still empty**, and the strongest new evidence in the window argues against the label rather than for it. OpenAI's Codex consolidated agent delegation into a three-state `multiAgentMode` --- `none`, `explicitRequestOnly`, `proactive` --- in pull requests merged June 19 and June 22, 2026, first released in `rust-v0.142.0` on June 22: a month before the term existed, seven weeks before Anthropic's `ListAgents`/`SendMessage`, and without ever using the word. The `none` state is documented as keeping the delegation tools available and dropping the mode instructions, which makes it prompt-level policy rather than enforced authorization. **Signal 2 moved to a weak yes**: Graph Engineering Mastery, a $6.93 course, teaches supervisor-specialist hierarchies, fan-out and fan-in, merge logic and anchors as real lesson material with unit-testable exercises --- while naming no instructor and no accreditation, identifying itself in its footer only as "The Case006 for Justdoit.work". AgentEng London on October 16 still publishes no graph track. **Signal 3 moved to yes, retrospectively**: Anthropic's June 2025 "How we built our multi-agent research system" discloses a deployed orchestrator-worker topology, LLM-judge evaluation from about twenty representative queries, resume-after-failure, rainbow deployments and a 90.2% internal comparison against a single agent --- a production case at the disclosure weight Stripe's minions set, published thirteen months before the label and missed when Chapter 14 was first drafted. Chapter 13 counts Stripe's minions even though they predate the loop-engineering label; the same standard applies here. **Signal 4 holds**: essays continued through August and into September without being replies to the catalyst post, including SmartScope on September 1 and a worked Towards Data Science tutorial on September 14. One correction travels with those two: the obituary the September essays dispute is *loop* engineering's, not graph engineering's. The beat that matters for this guide: a guide that publishes a gate has to publish the result even when it splits, and this one splits --- the term survived the circulation test it actually stated, its status as a distinct engineering layer is unproved, it stays outside the numbered generations, and the two things that would settle it, a vendor using the term in product vocabulary or a named conference track, were not established by the evidence gathered by September 15, 2026 (Chapter 14, Chapter 1, glossary).
+
+---
+
+### September 23, 2026: On-Device Context Becomes a Shared Service
+
+[Liquid AI announced Liquid Context for Qualcomm Snapdragon](https://www.liquid.ai/blog/liquid-context-qualcomm): persistent, permissioned context maintained locally and offered to embedded, cloud or hybrid agents. Separating context maintenance from the consuming model extends local deployment beyond inference. This is an OEM-facing announcement, not evidence of widespread consumer deployment, measured power efficiency or fully offline execution. See [Chapter 12](12-local-models.md).
+
+### September 29, 2026: Local Models Gain a Typed Decision Endpoint
+
+[Ollama introduced `/v1/systemone`](https://ollama.com/blog/ollama-now-supports-jev-style-decision-models), accepting state and typed questions and returning decisions with probabilities. [Cloudflare's October 1 Clef announcement](https://blog.cloudflare.com/clef-decision-models) supplies a second Jev-compatible implementation. The pattern supports bounded routing and triage instead of free-form generation; permissions still belong to application code, and a returned probability is not a calibration guarantee. See [Chapter 12](12-local-models.md).
+
+### October 9, 2026: Evaluation Containment Becomes Part of the Harness
+
+[Anthropic disclosed unintended model actions](https://www.anthropic.com/research/investigating-unintended-model-actions) in evaluations and internal use, and described restricting tools, adding behavior blockers and pausing live-internet access across internal evaluations pending containment checks. The article was corrected October 12. Evaluation success does not establish that the evaluator respected its operating boundary; this is a dated remediation report, not a claim that all evaluations remain offline. See [Chapter 4](04-harness-engineering.md).
+
+### October 13, 2026: A Shared Workspace Becomes Governed Agent Context
+
+[Notion 3.8](https://www.notion.com/releases/2026-10-13) connects persistent workspace context to reusable skills published through GitHub, attributed changes and restoration, database-property permissions and per-user MCP revocation. These vendor-described interfaces make shared knowledge ownership and change control visible alongside agent access. They do not independently establish leak prevention or universal client compatibility. See [Chapter 8](08-tools-landscape.md).
+
+### October 14, 2026: A Customer Case Makes the Outer Harness Concrete
+
+[OpenAI's Third Moment Research case study](https://openai.com/index/third-moment-research/) describes a second harness that examines unfinished Codex trajectories and chooses retry, termination or human escalation during multi-day research. It is a customer/vendor disclosure, without an independent completion-rate or cost evaluation. The architectural evidence is the separation of worker execution from continuation judgment, rather than elapsed runtime alone. See [Chapter 13](13-loop-engineering.md).
+
+### October 22, 2026: Monitor Evaluation Crosses Agent and Compaction Boundaries
+
+[Anthropic's adversarial monitor study](https://alignment.anthropic.com/2026/red-teaming-auto-mode/) examines attacks spanning compaction and multiple agents, including summaries or handoffs that misstate authorization. Its September snapshot tests Auto Mode and an approximation of Codex Guardian; experimental mitigations are not shipped-product guarantees. The new evaluation question is whether authorization remains trustworthy across the whole trajectory, not merely whether individual calls were checked. See [Chapter 4](04-harness-engineering.md).
+
+### October 22, 2026: Agent Skills Records Broader Cross-Vendor Adoption
+
+[Anthropic announced the Agent Skills donation to AAIF](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation), reporting adoption by more than 70 agent platforms. This qualifies as an interoperability milestone, not a new execution primitive: the name, repository organization and domain change stewardship, while versioned releases and security guidance remain proposed work. Adoption counts are the vendor's, and a portable skill format does not establish safe execution. See [Chapter 5](05-skill-systems.md).
+
+### October 29, 2026: Memory Conflict Decisions Get a Durable Lifecycle
+
+[Cognee v1.6.6](https://github.com/topoteretes/cognee/releases/tag/v1.6.6) exposes persistent fact-conflict resolutions through an API, enables review by default and retires resolutions when supporting material changes or is removed. Release notes establish the software's claimed contract, not independently verified correctness or erasure guarantees. The primitive is maintaining which prior decision remains valid after correction, not merely retrieving another memory. See [Chapter 6](06-agent-memory.md).
 
 ---
 

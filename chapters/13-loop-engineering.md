@@ -4,7 +4,7 @@
 >
 > **Why it matters:** It is the newest and least-settled layer in this guide's evolution story, and the one most likely to shape how autonomous agent work actually gets scheduled, verified, and reviewed over the next year.
 >
-> **Reading time:** ~18 min (3,962 words / 230 wpm)
+> **Reading time:** ~18 min (4,035 words / 230 wpm)
 
 *Figure: One pass of a loop, assembled from the five pieces of section 13.3 plus the external state that section 13.3 keeps separate from them, ending in the human outer loop and the verdict of 13.7. Two edges carry the argument: the state file is read before the run decides anything (13.2), and the agent that drafts is not the agent that scores (13.4).*
 
@@ -162,6 +162,8 @@ From there it stacks four rungs. The page's own headings mix "Loop" and "Level" 
 
 One precision note, because secondary coverage overstates it: the page frames the fourth rung as *self-improvement over runs*, not as a system that rewrites its own harness. The stronger claim is not in the source. Runkle also borrows the term **"loopcraft"** --- but attributes it to Swyx, citing his piece on "loopcraft: the art of stacking loops." The coinage is Swyx's, quoted by LangChain, not LangChain's own.
 
+**A disclosed multi-day outer harness.** OpenAI's October 14, 2026 [Third Moment Research case](https://openai.com/index/third-moment-research/) reports 10,000 concurrent agents and 36-48-hour investigations. Codex runs inside another harness that examines unfinished trajectories and chooses retry, termination or human escalation. This operationalizes the stacked-loop pattern above. These are vendor/customer disclosures without independently verified completion rates; running for days is not proof of sustained useful progress.
+
 ---
 
 ## 13.7 The Outer Loop: What the Human Keeps
@@ -212,6 +214,7 @@ Five weeks after it got a name, loop engineering has a definition, a stated rela
 
 ## Sources
 
+- OpenAI. Third Moment Research case study (October 14, 2026): [https://openai.com/index/third-moment-research/](https://openai.com/index/third-moment-research/).
 - Steinberger, Peter (@steipete). Post catalyzing the "loops, not prompts" framing (June 7, 2026): [https://x.com/steipete/status/2063697162748260627](https://x.com/steipete/status/2063697162748260627) --- 8.4M+ impressions as of mid-July 2026; the post itself does not use the phrase "loop engineering."
 - Osmani, Addy. "Loop Engineering" (June 7, 2026): [https://addyosmani.com/blog/loop-engineering/](https://addyosmani.com/blog/loop-engineering/); syndicated on O'Reilly Radar (June 22, 2026): [https://www.oreilly.com/radar/loop-engineering/](https://www.oreilly.com/radar/loop-engineering/) --- the naming essay; definition, "one floor above the harness," the five pieces, morning-triage worked example.
 - Osmani, Addy. "Own the Outer Loop" (announced on X July 8, 2026; Substack byline July 9, 2026): [https://addyo.substack.com/p/own-the-outer-loop](https://addyo.substack.com/p/own-the-outer-loop) --- inner vs outer loop; Quality / Verdict / Answerability; cognitive debt, cognitive surrender, orchestration tax.

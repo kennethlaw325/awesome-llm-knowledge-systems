@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Half the world's AI researchers are in China. Ignoring this ecosystem means missing half the innovation.
 >
-> **Reading time:** ~26 min (5,890 words / 230 wpm)
+> **Reading time:** ~27 min (6,092 words / 230 wpm)
 
 *Figure: The stack sections A and B describe, read top down: domestic inference silicon under the Chinese model families, which feed two parallel branches -- the harness released on top of them, and the visual-first platforms enterprises actually deploy. Licences sit in the node labels because licensing is the strategy section C calls "Open-Source as Strategic Imperative". Two edges carry the argument -- the day-zero Ascend adaptation that makes the claim "serve without NVIDIA" rather than "train without NVIDIA", and the bottom pair, where the two branches rejoin in a production knowledge system built end to end on Chinese open-source infrastructure.*
 
@@ -14,7 +14,7 @@ flowchart TB
     ASCEND["Inference substrate<br/>Huawei Ascend 950PR, A3 SuperPoD<br/>with Unified Cache Manager"]
     MODELS["B. Chinese LLMs for knowledge management<br/>Qwen3 -- Apache 2.0<br/>DeepSeek R1 and V4 -- MIT<br/>Kimi K3 -- Kimi K3 License<br/>GLM-5.2 -- MIT<br/>Hy3 -- Apache 2.0<br/>Hy4 preview -- open-weight<br/>ERNIE 5.0 -- full-modality"]
     DSH["Harness layer<br/>DeepSeek Harness, dsh -- MIT,<br/>swappable Cordis plugins"]
-    PLATFORMS["A. Open-source RAG and agent platforms<br/>Dify -- visual canvas, MCP<br/>RAGFlow -- layout-aware parsing<br/>FastGPT -- runs in 2GB of RAM<br/>Coze Studio, ByteDance -- drag-and-drop agents"]
+    PLATFORMS["A. RAG and agent platforms<br/>Dify -- modified Apache 2.0, MCP<br/>RAGFlow -- layout-aware parsing<br/>FastGPT -- runs in 2GB of RAM<br/>Coze Studio, ByteDance -- drag-and-drop agents"]
     OUT["A solo developer builds a production knowledge system<br/>entirely on Chinese open-source infrastructure"]
     ASCEND -->|day zero for V4: serve without NVIDIA| MODELS
     MODELS -->|open-first strategy, one layer up| DSH
@@ -40,7 +40,9 @@ China's open-source AI ecosystem has produced several platforms that rival or ex
 
 ### Dify (136K+ GitHub Stars)
 
-[Dify](https://github.com/langgenius/dify) is the most-starred agentic AI platform globally. Licensed under Apache 2.0, it provides a visual canvas for building RAG pipelines, agentic workflows, and multi-step reasoning chains. Since version 1.0, Dify has supported the Model Context Protocol (MCP), allowing seamless integration with external tool servers. Its strength lies in bridging the gap between no-code users who design workflows visually and developers who need programmatic control. Enterprise users can self-host the entire stack, which is critical in the Chinese market where data sovereignty requirements often preclude cloud-only solutions.
+[Dify](https://github.com/langgenius/dify) is the most-starred agentic AI platform globally. It provides a visual canvas for building RAG pipelines, agentic workflows, and multi-step reasoning chains. Since version 1.0, Dify has supported the Model Context Protocol (MCP), allowing seamless integration with external tool servers. Its strength lies in bridging the gap between no-code users who design workflows visually and developers who need programmatic control. Enterprise users can self-host the entire stack, which is critical in the Chinese market where data sovereignty requirements often preclude cloud-only solutions.
+
+Dify's license is **modified Apache 2.0**, with additional conditions for multi-tenant operation and frontend logo/copyright changes. Self-hosting availability does not imply unrestricted SaaS redistribution: deployment teams must check the actual license for their use case. This qualifies the chapter's open-infrastructure thesis at the platform layer.
 
 ### RAGFlow (62-75K+ GitHub Stars)
 
@@ -78,7 +80,7 @@ Alibaba's Qwen team extended the same open-release posture from weights to inter
 
 ### DeepSeek R1
 
-DeepSeek R1 matched OpenAI's o1 on mathematical and scientific reasoning benchmarks while being released under the MIT license. The model was reportedly trained for under $6 million, a fraction of comparable Western models. This cost efficiency sent shockwaves through the industry: enterprise adoption of open-source models in China jumped from 23% to 67% in the months following its release. DeepSeek R1 demonstrated that frontier-level reasoning does not require frontier-level budgets, fundamentally shifting the economics of knowledge engineering.
+DeepSeek R1 matched OpenAI's o1 on mathematical and scientific reasoning benchmarks while being released under the MIT license. The often-associated sub-$6 million figure belongs to **DeepSeek-V3**, not R1: its technical report estimates **$5.576 million** for official training at an assumed $2 per H800 GPU-hour, excluding prior research and ablation experiments. It is a vendor estimate, not R1's total development budget. R1's architectural significance is making frontier reasoning available as open weights.
 
 In April 2026, DeepSeek extended its architectural contributions with **manifold-constrained hyper-connections (mHC)**, a generalization of the residual connection used in Transformer++-style models. Where a standard residual stream carries a single channel of information forward across layers, mHC carries **multiple internal streams** that are each constrained to lie on a learned low-dimensional manifold. The construction is designed to give later layers richer access to earlier representations without the dimensional collapse that simple multi-stream residuals suffer from at scale. DeepSeek's blog reports gains on long-horizon reasoning benchmarks at comparable parameter counts, with the largest improvements on tasks where information must be carried across many intervening layers. As of April 2026 the result should be **flagged as awaiting independent replication** --- it is a single-lab disclosure on a single-lab model, and the field has been burned by architectural claims that did not survive third-party reproduction. If the result holds, mHC joins MoE, MLA, and DeepSeek's earlier multi-token prediction work as the third or fourth architectural primitive that originated in the Chinese open-weight ecosystem before crossing into mainstream use.
 
@@ -138,6 +140,8 @@ On-premise deployment dominates in China. This is driven by two reinforcing fact
 
 By December 2025, 748 AI services had been filed with Chinese regulators under the Generative AI Management Measures. Compliance is not optional or aspirational --- it shapes technical architecture from the design phase. Content filtering, audit logging, and user identity verification are built into platforms as core features, not bolted on before launch. This regulatory pressure has, paradoxically, created more standardized architectures: when everyone must implement the same compliance requirements, the platforms that make compliance easy win.
 
+The **Interim Measures for Anthropomorphic AI Interaction Services**, published **April 10, 2026** and effective **July 15**, draw a narrower boundary than generic agent regulation. Article 2 covers continuous emotional interaction simulating human characteristics and expressly excludes knowledge Q&A, work assistants and similar services without that interaction. For covered services, Article 16 requires interaction-data copy/delete options and Article 19 an accessible exit. Persistent companion memory therefore has a different compliance boundary from an ordinary enterprise knowledge assistant; the latter remains subject to other applicable rules.
+
 The regulatory story gained an international layer in July 2026. The **World AI Conference (WAIC) 2026** and the High-Level Meeting on Global AI Governance ran July 17-20 in Shanghai --- 100+ countries participating, UN Secretary-General Guterres attending --- and produced the signing of the agreement establishing the **World Artificial Intelligence Cooperation Organization (WAICO)**, the first intergovernmental international organization dedicated to AI, headquartered in Shanghai. Whatever WAICO becomes operationally, its founding extends the pattern this section describes from domestic filing regime to international institution-building --- with the new institution seated in China.
 
 ### Community and Knowledge Sharing
@@ -146,7 +150,7 @@ The Chinese developer community operates on fundamentally different platforms. W
 
 ### Innovation Through Constraint
 
-US chip export controls have created an unexpected innovation dynamic. Chinese AI labs, unable to simply scale compute, have invested disproportionately in algorithmic efficiency. DeepSeek R1's sub-$6M training cost is the most visible result, but the pattern extends across the ecosystem: smaller models with better inference optimization, more aggressive quantization techniques, and architectures designed to maximize capability per FLOP. The Western ecosystem, with more compute available, tends to innovate through scale. Both approaches produce frontier results, but through different paths.
+US chip export controls have created an unexpected innovation dynamic. Chinese AI labs, unable to simply scale compute, have invested disproportionately in algorithmic efficiency. DeepSeek-V3's reported official-training cost illustrates this pattern, within the accounting limits described above. The pattern extends across the ecosystem: smaller models with better inference optimization, more aggressive quantization techniques, and architectures designed to maximize capability per FLOP. The Western ecosystem, with more compute available, tends to innovate through scale. Both approaches produce frontier results, but through different paths.
 
 ### Open-Source as Strategic Imperative
 
@@ -179,6 +183,9 @@ Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should b
 ## Sources
 
 - Dify GitHub Repository: [https://github.com/langgenius/dify](https://github.com/langgenius/dify)
+- Dify. License (read October 31, 2026). [https://raw.githubusercontent.com/langgenius/dify/main/LICENSE](https://raw.githubusercontent.com/langgenius/dify/main/LICENSE) -- modified Apache 2.0 with additional multi-tenant and frontend conditions.
+- DeepSeek-AI. "DeepSeek-V3 Technical Report" (December 27, 2024; revised February 18, 2025), introduction and Table 1. [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2) -- $5.576M official-training estimate; prior research and ablations excluded. This is not R1's total development cost.
+- Cyberspace Administration of China and four other agencies. "Interim Measures for Anthropomorphic AI Interaction Services" (April 10, 2026; effective July 15, 2026), Articles 2, 16 and 19. [https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm](https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm) -- continuous emotional-interaction scope; exclusions for other services without that interaction.
 - RAGFlow GitHub Repository: [https://github.com/infiniflow/ragflow](https://github.com/infiniflow/ragflow)
 - FastGPT GitHub Repository: [https://github.com/labring/FastGPT](https://github.com/labring/FastGPT)
 - MaxKB GitHub Repository: [https://github.com/1Panel-dev/MaxKB](https://github.com/1Panel-dev/MaxKB)
@@ -190,7 +197,7 @@ Bilibili (B站) hosts a large volume of AI tutorials, but practitioners should b
 - Baidu. ERNIE 5.0 launch (January 2026); 2.4T parameter / native full-modality claims circulated through Baidu official channels and Chinese tech press. No single primary URL is cited here; treat the modality and parameter figures as widely-reported but secondary.
 - Zhipu AI. GLM-4/5 model cards on Hugging Face and the official ZhipuAI blog; "744B MoE GLM-5" + agent-native tool tokens are reported across model card and blog coverage. Primary entry point: [https://www.zhipuai.cn](https://www.zhipuai.cn).
 - Cyberspace Administration of China, "Generative AI Service Filing" disclosures (December 2025) --- the 748-services figure is widely reproduced in Chinese tech press; the underlying registry is published in batches via the CAC official site.
-- "Open Source AI in China" market commentary --- the 23%-to-67% Chinese enterprise open-source adoption shift after R1 is reported across multiple secondary outlets through 2025-2026; treat as widely-cited but no single primary survey is pinned here.
+- Editorial note: no verifiable primary survey is pinned for the previously cited post-R1 enterprise adoption increase, so this chapter does not use a numerical adoption claim.
 - DeepSeek. "DeepSeek mHC: Manifold-Constrained Hyper-Connections" (April 2026). [https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections](https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections) --- flagged as awaiting independent replication.
 - DeepSeek. V4 model release on Hugging Face (April 24, 2026). MIT license; V4-Pro 1.6T (49B active) / V4-Flash 284B (13B active); 1M-token default context.
 - Fortune. "DeepSeek unveils V4 model, with rock-bottom prices and close integration with Huawei's chips" (April 24, 2026). [https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/](https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/)

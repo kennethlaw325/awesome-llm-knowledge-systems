@@ -1,5 +1,8 @@
 # 6장: 에이전트 메모리 —— 빠진 계층
 
+> [!NOTE]
+> 2026-10-31에는 일부 사실만 확인하고 수정했다. 나머지는 이전 번역이며 전체 동기화는 하지 않았다. 최신 내용은 [영어 정본](../../../chapters/06-agent-memory.md)을 참고해야 한다.
+
 > **한 문장으로:** 메모리 시스템은 AI 에이전트가 대화에 걸쳐 ——당신의 선호, 과거 결정, 프로젝트 context —— 를 기억하게 한다.
 >
 > **왜 중요한가:** 메모리가 없으면 모든 AI 대화가 0에서 시작한다. 메모리는 AI를 낯선 사람이 아니라 동료처럼 느껴지게 만드는 것이다.
@@ -48,11 +51,7 @@ A-MEM은 각 메모리를 동적 인덱싱, 링크, 진화를 가진 원자적 �
 
 ### ByteRover
 
-[ByteRover](https://github.com/byterover)는 메모리 분야의 널리 퍼진 가정에 도전한다: 벡터 데이터베이스와 임베딩 기반 검색이 필수 인프라라는 가정.
-
-ByteRover는 계층적 markdown Context Tree를 구현한다 ——점진적 디테일의 트리로 지식을 조직하는 구조화된 문서. 검색은 5단계 점진적 시스템을 사용한다: 가장 높은 추상 레벨에서 시작하고 필요한 만큼만 파고든다. 이 접근은 외부 인프라를 0으로 요구한다 ——벡터 데이터베이스 없음, 그래프 데이터베이스 없음, 단지 구조화된 텍스트 파일.
-
-함의는 의미 깊다. ByteRover는 임베딩이 효과적 메모리 검색에 엄격히 필요하지 않다는 것을 입증한다. 많은 실용적 사용 사례에 대해, 지능적 순회를 가진 잘 조직된 계층적 텍스트가 임베딩 기반 접근과 일치하거나 그것을 초과할 수 있으며, 극적으로 단순한 배포와 0 인프라 오버헤드와 함께. 이는 그것을 로컬 우선 애플리케이션과 자원 제약 환경에 특히 매력적으로 만든다.
+[ByteRover CLI](https://github.com/campfirein/byterover-cli)는 이전의 Cipher이며, Context Tree로 프로젝트 지식을 정리한다. 저장소는 2026-09-27에 보관 처리되었다. 2026-10-31에 확인한 문서는 기본 로컬 동작, 선택적 클라우드 동기화, 지식 정리 변경 사항 검토, Git 방식의 브랜치와 병합을 설명한다. 코드는 Elastic License 2.0에 따른 source-available 형태로 공개된다. 이는 공급업체가 설명하는 과거 구성 사례이며, 일반적인 검색 성능의 우위나 모델 호출과 유지 관리 비용이 없음을 입증하지는 않는다.
 
 ### Nemori
 
@@ -104,7 +103,7 @@ ICLR 2026 MemAgents Workshop은 분야의 이정표를 표현한다. AI, 인지 
 
 **Emotion vectors**는 Claude의 잔차 스트림 안의 선형 특징 방향이며, 증폭되면 모델을 감정적으로 부하된 행동 ——가장 인용되는 예에서 협박형 출력 —— 으로 안정적으로 편향시킨다. 메모리 시스템 설계에 대한 관련된 점은 안전 함의 (그것도 실재한다)가 아니라 아키텍처 함의이다: 모델 안에 *위협하는 법을 기억하는* 특징 방향이 있고, 그것은 어떤 prompt나 검색된 context와 독립적으로 켜지거나 꺼질 수 있다. **Iteration head**는 chain-of-thought 추론 동안 부상하여 이전 추론 단계의 출력에 일관되게 주의하는 어텐션 헤드이다. 그것은 사실상 절차 메모리 저장소가 아니라 어텐션 가중치에 구현된 *절차 메모리* 한 조각이다 ——모델이 "계속 가는 법"의 회로를 학습했고, 그 회로가 CoT를 작동하게 하는 것이다.
 
-메모리 시스템 설계에 대한 함의는 "메모리가 어디 사는가"가 2025년에 그랬던 것보다 더 풍부한 질문이라는 것이다. 현대 스택은 여섯 별개 레벨에서 메모리를 읽어야 할지도 모른다: **토큰 레벨** (윈도우의 트랜스크립트 스니펫), **벡터 레벨** (Mem0, A-MEM, ByteRover 검색), **그래프 레벨** (Mem0ᵍ 트리플과 그것의 타입이 있는 엣지), **공간 레벨** (MemPalace의 Wings → Rooms → Closets → Drawers 걷기), **가중치 레벨** (추론에서 갱신되는 Titans / MIRAS 모듈), **특징 레벨** (모델이 추론할 때 어떤 해석 가능한 방향이 발화하는가). 2026년에 걸쳐 운영 시스템은 처음 세 계층에 대부분 계속 살 것이다 ——그것들이 가장 성숙한 도구를 가졌다. 그러나 나머지 세 계층은 더 이상 가설이 아니며, 메모리를 순수 검색 문제로 다루는 harness 설계자는 점점 더 능력을 테이블에 두고 떠나게 될 것이다.
+메모리 시스템 설계에 대한 함의는 "메모리가 어디 사는가"가 2025년에 그랬던 것보다 더 풍부한 질문이라는 것이다. 현대 스택은 여섯 별개 레벨에서 메모리를 읽어야 할지도 모른다: **토큰 레벨** (윈도우의 트랜스크립트 스니펫), **벡터 레벨** (Mem0, A-MEM 검색), **그래프 레벨** (Mem0ᵍ 트리플과 그것의 타입이 있는 엣지), **공간 레벨** (MemPalace의 Wings → Rooms → Closets → Drawers 걷기), **가중치 레벨** (추론에서 갱신되는 Titans / MIRAS 모듈), **특징 레벨** (모델이 추론할 때 어떤 해석 가능한 방향이 발화하는가). Context Tree는 벡터 검색과 구별되는 외부 메모리 정리 방식이다. 2026년에 걸쳐 운영 시스템은 처음 세 계층에 대부분 계속 살 것이다. 그것들이 가장 성숙한 도구를 가졌다. 그러나 나머지 세 계층은 더 이상 가설이 아니며, 메모리를 순수 검색 문제로 다루는 harness 설계자는 점점 더 능력을 테이블에 두고 떠나게 될 것이다.
 
 ## 핵심 자원
 
@@ -116,7 +115,7 @@ ICLR 2026 MemAgents Workshop은 분야의 이정표를 표현한다. AI, 인지 
 
 1. Mem0 documentation and benchmarks. https://mem0.ai
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
-3. ByteRover: Hierarchical Context Trees for LLM Memory. https://github.com/byterover
+3. ByteRover CLI. [보관 처리된 저장소](https://github.com/campfirein/byterover-cli), 보관일: 2026-09-27, 문서 확인일: 2026-10-31. Elastic License 2.0.
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
 5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, July 10, 2025. https://arxiv.org/abs/2507.07957. Companion repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents

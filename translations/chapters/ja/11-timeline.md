@@ -1,5 +1,7 @@
 # 第 11 章：LLM ナレッジエンジニアリングの鍵となる瞬間
 
+> 2026-10-31 に一部の事実を訂正・確認しました。その他は旧英語版に基づく内容です。最新の英語版：[English](../../../chapters/11-timeline.md)。
+
 > **一文で：** 2022 年から 2026 年にかけて LLM ナレッジエンジニアリングを形作った、鍵となる瞬間の年代記。
 >
 > **なぜ重要か：** 本書のあらゆる事項の文脈 ——いつ起きたのか、誰がやったのか、何が変わったのか。
@@ -56,7 +58,7 @@ Anthropic が、LLM を外部ツールやデータソースに接続するため
 
 ### 1 月 —— DeepSeek R1 とオープンソースの転換点
 
-DeepSeek が R1 をリリース。OpenAI の o1 と主要ベンチマークで肩を並べるオープンウェイトの推論モデルである。600 万ドル未満で訓練され MIT ライセンスで公開され、フロンティア級の推論能力がもはや潤沢な資金を持つラボの占有物ではないことを示した。中国の企業によるオープンソースモデル採用率は 23% から 67% に急上昇。ナレッジエンジニアリングへの含意：基盤モデルはもはやボトルネックでも堀でもない。
+DeepSeek が R1 をリリース。主要ベンチマークで OpenAI の o1 に並ぶ推論モデルを MIT ライセンスのオープンウェイトとして提供し、フロンティア級推論へのアクセスを広げた。$5.576M は DeepSeek-V3 報告が GPU レンタル単価から推計した正式訓練費用で、先行研究やアブレーション実験を含まず、R1 の総開発費ではない。一次調査を確認できない企業採用率の上昇は因果的証拠として扱わない。
 
 ### 2025 年中頃 —— 「context engineering」が語彙に入る
 
@@ -264,6 +266,8 @@ Anthropic の 4 月 8 日 Managed Agents（最初のフロンティアベンダ�
 ---
 
 ## Sources
+
+- DeepSeek-V3 Technical Report, Table 1: [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2)
 
 - OpenAI, "Introducing ChatGPT" (November 30, 2022)
 - LangChain GitHub Repository: [https://github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain)

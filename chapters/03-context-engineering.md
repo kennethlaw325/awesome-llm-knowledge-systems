@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Better context means better AI answers. This is why some people get amazing results from AI while others get generic responses.
 >
-> **Reading time:** ~13 min (2,900 words / 230 wpm)
+> **Reading time:** ~13 min (2,908 words / 230 wpm)
 
 *Figure: The six layers of section 3.2, ordered most persistent at the top to most ephemeral at the bottom, converging on the one-package-per-call context that section 3.1 defines. The arrow labels are each layer's update frequency -- the reason each needs its own compression strategy. They also compete for the same window: over-stuffing Retrieved Documents is what drowns the Current Task signal.*
 
@@ -94,6 +94,8 @@ Aurimas Griciūnas synthesized the emerging practice into five recurring pattern
 **A frontier lab revises its own rules (July 2026).** The five patterns above were synthesized from practice observed across many systems. On July 24, 2026, Anthropic published a first-party revision of its own guidance, "The new rules of context engineering for Claude 5 generation models," by Thariq Shihipar --- and the headline is a subtraction. The Claude Code team removed more than 80% of the system prompt for its Claude 5 generation models with no measurable loss on coding evaluations. Anthropic reports that figure from its own coding evaluations; it is not independently benchmarked. The reasoning behind it is the part that travels. The post argues for moving from rules to judgment, giving a capable agent principles and trust rather than exhaustive instructions; for progressive, just-in-time context loading instead of stuffing the window upfront; and for briefing an agent the way you would brief a person, with a role, constraints, and examples only where they earn their place. The second restates Progressive Disclosure above, now with a lab's production evidence behind it. The first cuts against the instinct the discipline was built on: it says that as models improve, a growing share of context-engineering work is not optimization but accumulated distrust, and the right move on that share is deletion rather than tuning.
 
 **Compaction is not one policy (August 2026).** The KV-cache work above and Context Compression in this section both treat the window as a budget of interchangeable tokens. A nine-author study (arXiv 2608.31057, August 31, 2026) argues that is the wrong unit of account. Analyzing 55 archived coding-agent trajectories, it sorts working-memory contents into four categories --- instructions, artifacts, tool outputs, and agent-generated state --- with different size, retention, and representation profiles, and proposes a four-level evaluation framework separating stored state, delivered context, management work, and task or process outcome. In the authors' words, "equal token budgets do not imply equal delivered context or management cost." They test two semantically-informed strategies, object-aware compression and retrieval-based policies, and caution that calibration gains tuned on one task set "may not transfer to held-out tasks." At 55 trajectories this is an open empirical finding rather than a settled pattern. The practical consequence is narrow but sharp: a single compaction rule applied uniformly across the window is already making a policy choice about four different kinds of object, and it is making that choice blind.
+
+For compaction's monitoring boundary, see [Chapter 4](04-harness-engineering.md#48-harness-maintenance-the-stress-testing-imperative).
 
 ## 3.5 The Academic Landscape
 

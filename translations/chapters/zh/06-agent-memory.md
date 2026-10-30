@@ -1,5 +1,8 @@
 # 第 6 章：Agent Memory —— 缺失的層
 
+> [!NOTE]
+> 2026-10-31 僅核對及修正部分事實，其餘內容仍為較早譯文，尚未完整同步。最新內容請參閱[英文正本](../../../chapters/06-agent-memory.md)。
+
 > **一句話總結：** 記憶系統讓 AI agent 跨對話記住事情——你的偏好、過去決策、專案 context。
 >
 > **為什麼重要：** 沒有記憶, 每次 AI 對話都從零開始。記憶讓 AI 感覺像同事而非陌生人。
@@ -48,11 +51,7 @@ A-MEM 把每個記憶視為有動態索引、連結、演化的原子筆記。�
 
 ### ByteRover
 
-[ByteRover](https://github.com/byterover) 挑戰記憶領域的一個廣泛假設: 向量資料庫與基於 embedding 的檢索是必要基礎設施。
-
-ByteRover 實現階層 markdown Context Tree——以漸進細節樹組織知識的結構化檔案。檢索用 5 層漸進系統: 從最高抽象層開始, 僅在需要時往下鑽。這個做法不需任何外部基礎設施——沒有向量資料庫、沒有圖資料庫, 只有結構化文字檔。
-
-含義重大。ByteRover 證明 embedding 對有效記憶檢索不嚴格必要。對許多實務用例, 良好組織的階層文字配智慧遍歷能匹敵或超越基於 embedding 的做法, 部署戲劇性更簡單, 基礎設施開銷零。這讓它特別吸引本地優先應用與資源受限環境。
+[ByteRover CLI](https://github.com/campfirein/byterover-cli) 前身為 Cipher，以 Context Tree 組織專案知識。儲存庫於 2026-09-27 封存；2026-10-31 查閱的文件描述預設本地運作、可選雲端同步、知識整理變更審核，以及類似 Git 的分支與合併。程式碼以 Elastic License 2.0 提供原始碼，屬於 source-available。這是廠商描述的歷史架構例子，並不證明其檢索普遍優於其他方法，也不代表模型呼叫與維護沒有成本。
 
 ### Nemori
 
@@ -104,7 +103,7 @@ ICLR 2026 MemAgents Workshop 代表領域的里程碑, 把來自 AI、認知科�
 
 **情緒向量** 是 Claude 殘差流中的線性特徵方向, 當被放大時, 能穩定使模型偏向情緒化行為——包括最廣引用的例子, 勒索式輸出。對記憶系統設計的相關重點不是安全含義（雖然那是真的）而是架構含義: 模型中有一個特徵方向*記得如何威脅*, 而它能獨立於任何 prompt 或檢索 context 被開大或關小。**迭代頭** 是在思維鏈推理中浮現的注意力頭, 持續關注前一推理步驟的輸出。它實際上是在 attention 權重而非程式記憶儲存中實現的*程式記憶*——模型已學到「如何繼續」的電路, 而該電路是讓 CoT 運作的東西。
 
-對記憶系統設計的含義是「記憶住哪裡」現在比 2025 年更豐富的問題。一個現代堆疊可能需要在六個獨立級別讀記憶: **token 級**（視窗中的 transcript 片段）、**向量級**（Mem0、A-MEM、ByteRover 檢索）、**圖級**（Mem0ᵍ 三元組與它們的型別化邊）、**空間級**（MemPalace 的 Wings → Rooms → Closets → Drawers 走讀）、**權重級**（Titans / MIRAS 模組在推論時更新）、**特徵級**（哪些可解釋方向在模型推理時發火）。整個 2026 年生產系統大部分仍住在前三層——它們是工具最成熟的。但其餘三層不再是假設的, 把記憶純粹當檢索問題處理的 harness 設計者會越來越把能力留在桌上。
+對記憶系統設計的含義是「記憶住哪裡」現在比 2025 年更豐富的問題。一個現代堆疊可能需要在六個獨立級別讀記憶: **token 級**（視窗中的 transcript 片段）、**向量級**（Mem0、A-MEM 檢索）、**圖級**（Mem0ᵍ 三元組與它們的型別化邊）、**空間級**（MemPalace 的 Wings → Rooms → Closets → Drawers 走讀）、**權重級**（Titans / MIRAS 模組在推論時更新）、**特徵級**（哪些可解釋方向在模型推理時發火）。Context Tree 是有別於向量檢索的外部記憶組織方式。整個 2026 年生產系統大部分仍住在前三層，它們是工具最成熟的。但其餘三層不再是假設的，把記憶純粹當檢索問題處理的 harness 設計者會越來越把能力留在桌上。
 
 ## 關鍵資源
 
@@ -116,7 +115,7 @@ ICLR 2026 MemAgents Workshop 代表領域的里程碑, 把來自 AI、認知科�
 
 1. Mem0 文件與基準。https://mem0.ai
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
-3. ByteRover: Hierarchical Context Trees for LLM Memory. https://github.com/byterover
+3. ByteRover CLI。[已封存儲存庫](https://github.com/campfirein/byterover-cli)，封存日期：2026-09-27；文件查閱日期：2026-10-31。Elastic License 2.0。
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
 5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, 2025 年 7 月 10 日。https://arxiv.org/abs/2507.07957。配套 repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents
