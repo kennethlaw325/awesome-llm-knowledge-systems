@@ -1,5 +1,7 @@
 # 11장: LLM 지식 엔지니어링의 핵심 순간들
 
+> 2026-10-31에 일부 사실을 확인하고 수정했습니다. 나머지 내용은 이전 영어판을 따릅니다. 최신 영어판: [English](../../../chapters/11-timeline.md).
+
 > **한 문장으로:** 2022년부터 2026년까지 LLM 지식 엔지니어링을 형성한 핵심 순간들의 연대기.
 >
 > **왜 중요한가:** 본 가이드의 모든 것에 대한 맥락 ——언제 일어났는지, 누가 했는지, 무엇이 변했는지.
@@ -56,7 +58,7 @@ Anthropic이 LLM을 외부 도구·데이터 소스에 연결하기 위한 오�
 
 ### 1월 —— DeepSeek R1과 오픈소스 변곡점
 
-DeepSeek이 R1을 공개한다. OpenAI의 o1과 핵심 벤치마크에서 어깨를 나란히 하는 오픈웨이트 추론 모델. 600만 달러 미만으로 훈련되어 MIT 라이선스로 공개되었으며, 프런티어급 추론 능력이 더 이상 자금이 풍부한 연구실의 전유물이 아님을 입증한다. 중국 기업의 오픈소스 모델 채택은 23%에서 67%로 급증한다. 지식 엔지니어링 측면 함의: 기반 모델은 더 이상 병목도 해자도 아니다.
+DeepSeek이 R1을 공개한다. 주요 벤치마크에서 OpenAI의 o1과 비슷한 추론 모델을 MIT 라이선스의 오픈웨이트로 제공하여 프런티어 추론에 대한 접근을 넓혔다. $5.576M은 DeepSeek-V3 보고서가 GPU 임대 단가로 추정한 공식 훈련 비용이며, 선행 연구와 절제 실험은 제외되고 R1의 총개발비가 아니다. 원조사를 검증할 수 없는 기업 채택률 상승은 이 사건의 인과적 증거로 취급하지 않는다.
 
 ### 2025년 중반 —— "Context Engineering"이 어휘에 진입
 
@@ -264,6 +266,8 @@ Anthropic의 4월 8일 Managed Agents(첫 프런티어 벤더 관리 에이전�
 ---
 
 ## Sources
+
+- DeepSeek-V3 Technical Report, Table 1: [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2)
 
 - OpenAI, "Introducing ChatGPT" (November 30, 2022)
 - LangChain GitHub Repository: [https://github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain)

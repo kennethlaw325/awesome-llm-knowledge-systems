@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Think of MCP like USB for AI -- before it, every tool needed its own custom connection. Now there's one plug that works everywhere.
 >
-> **Reading time:** ~24 min (5,375 words / 230 wpm)
+> **Reading time:** ~24 min (5,386 words / 230 wpm)
 
 *Figure: The three core concepts of the "Why It Won" section -- client, server, and transport -- with the client drawn inside the host application alongside the model it owns, and the transport and server outside it, plus the surfaces the 2026 spec added around them: Tasks as an extension, MCP Apps as a rendered UI, and IdP-provisioned authorization. Tasks and MCP Apps come from the "2026-05-21: The 2026-07-28 Release Candidate" section, the ID-JAG token exchange from "2026-06-18: Enterprise-Managed Authorization", and the session-free core from "2026-07-28: The Specification Ships Final". The edge back out of the server carries the argument of "The Stateful MCP Transition": a server no longer only answers, it can also elicit structured input and request sampling, and the finalized stateless core delivers those as ordinary retries instead of over a held-open connection.*
 
@@ -52,6 +52,8 @@ Think of MCP as USB for AI. Before USB, every peripheral needed its own connecto
 **2026.** MCP SDK downloads exceeded 97 million per month as of Q1 2026, across all package registries. The ecosystem includes 75+ official connectors maintained by the foundation, with thousands more community-built servers. The protocol has become the default integration layer for AI applications, much as REST became the default for web APIs.
 
 The protocol's consolidation moment arrived on **May 6, 2026** when AWS shipped the **AWS MCP Server** at general availability --- the first hyperscaler-managed remote MCP endpoint, exposing 15,000+ AWS API operations through one authenticated server, with IAM context keys for fine-grained access and a sandboxed `run_script` tool for server-side Python. The Linux Foundation donation (Dec 2025) and 97M downloads (Q1 2026) established MCP as the standard; AWS GA marks the moment the standard becomes infrastructure. The pattern echoes S3's consolidation of object storage: many self-hosted servers do not disappear, but the centre of gravity shifts to "one managed endpoint at the cloud boundary."
+
+Skills followed MCP into AAIF; see [Chapter 5's October update](05-skill-systems.md#52-the-anthropic-skills-ecosystem).
 
 ## Why It Won
 

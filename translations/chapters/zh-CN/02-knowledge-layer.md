@@ -1,5 +1,8 @@
 # 第 2 章：RAG、长上下文与知识图谱
 
+> [!NOTE]
+> 2026-10-31 仅核对并修正部分事实，其余内容仍为较早译文，尚未完整同步。最新内容请参阅[英文正本](../../../chapters/02-knowledge-layer.md)。
+
 > **一句话总结：** 给 AI 取得知识有三种主要方法: 搜数据库（RAG）、喂长文件、或在图里连结事实。
 >
 > **为什么重要：** 如果你用 AI 处理任何关于自己数据的事情, 这章解释哪种做法最适合你的情境。
@@ -10,9 +13,7 @@
 
 ## RAG 没死
 
-每六个月就有人发表「RAG 死了, 长上下文就够了」。每六个月企业证明他们错了。
-
-**Gartner 2025 Q4 企业调查** 发现, 71% 试着用纯 context-stuffing（把整个文件库喂进大上下文窗口）取代 RAG 管线的组织, 在 12 个月内把 RAG 加回去。理由都一样: 成本、延迟、规模化时的准确度退化、以及无法处理动态或频繁更新的知识库。
+更大的上下文窗口扩大了设计选择，但不会自动保证模型能可靠运用证据。[Liu 等人](https://arxiv.org/abs/2307.03172)指出，相关信息在长输入中的位置会影响答案质量。应以实际问题比较检索与完整上下文，评估答案质量、Token 用量、延迟，以及最新数据如何送达模型。
 
 RAG 没死, 它在演化。问题从来不是「RAG 还是不 RAG」——而是「哪种 RAG, 配合什么其他东西」。
 
@@ -182,7 +183,6 @@ Golden-Retriever RAG 聚焦于检索质量, 让 LLM 自己改写查询再检索�
 
 ## 来源
 
-- Gartner. "Enterprise RAG Adoption" 调查评论, 2025 Q4 ——本章顶引用的 71% 反转数字在多份行业分析中流通; 主要存取需 Gartner 订阅, 所以这个数字在此被作为广为引用的行业数据报告, 而非来自可自由抵达的主要 URL。
 - Liu, N. F. 等（2023）. "Lost in the Middle: How Language Models Use Long Contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
 - Microsoft.（2024）. "GraphRAG: Unlocking LLM discovery on narrative private datasets." [microsoft.com/research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-datasets/)
 - Asai, A. 等（2023）. "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection." [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)

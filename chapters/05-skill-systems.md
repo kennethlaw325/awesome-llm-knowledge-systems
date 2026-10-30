@@ -4,7 +4,7 @@
 >
 > **Why it matters:** Instead of explaining the same thing to AI every time, skills let you teach it once and reuse that knowledge forever.
 >
-> **Reading time:** ~21 min (4,821 words / 230 wpm)
+> **Reading time:** ~22 min (4,929 words / 230 wpm)
 
 *Figure: The five disclosure levels of section 5.4, with the skill graph of section 5.5 feeding the level that resolves links and dependencies and the compositional plan of section 5.5 assembling what finally loads. The edge out of Level 0 carries the argument: the routing index eliminates 95% of skills before a single full file is read, which is why Level 4 is reached for only the one or two skills actually invoked.*
 
@@ -39,7 +39,7 @@ This chapter covers the architecture of skill systems, the combinatorial problem
 
 ## 5.1 The Skill Concept
 
-A skill, in its simplest form, is a markdown file (or structured text block) containing instructions for a specific task. When a user request matches the skill's trigger conditions, the skill's content is loaded into the context window. When no match occurs, the skill contributes zero tokens.
+A skill, in its simplest form, is a markdown file (or structured text block) containing instructions for a specific task. When a user request matches the skill's trigger conditions, the skill's content is loaded into the context window. Its advertised metadata still costs tokens while the body remains unloaded.
 
 This is fundamentally different from a monolithic system prompt that tries to cover every capability. A system prompt that describes 90 tools and 50 behavioral modes might consume 50,000 or more tokens before the user even types a message. A skill-based system loads only what is relevant, keeping the baseline context lean and reserving window capacity for the actual task.
 
@@ -49,12 +49,9 @@ The design pattern is borrowed from software engineering: skills are to agents w
 
 Anthropic launched skills for Claude Code in October 2025, initially as a project-specific feature -- markdown files in a `.claude/` directory that Claude could invoke when relevant. The format was intentionally simple: a markdown file with a description, trigger conditions, and instructions.
 
-By December 2025, Anthropic published skills as an open standard through agentskills.io, defining a portable format that any agent system could adopt. The specification covered:
+By December 2025, Anthropic published skills as an open standard through agentskills.io, defining a portable format that any agent system could adopt.
 
-- Skill metadata (name, description, version, author)
-- Trigger definitions (keyword matches, intent classifiers, regex patterns)
-- Content structure (instructions, examples, tool configurations)
-- Dependency declarations (other skills this skill builds on)
+The current [specification](https://agentskills.io/specification) requires `name` and `description`; optional fields cover licensing, compatibility, arbitrary metadata and experimental tool permissions. Regex triggers and dependency declarations are host conventions, not standardized fields. This describes documentation checked October 31, 2026, not a dated specification change.
 
 The ecosystem response was rapid. By early 2026, the official repository had accumulated over 87,000 GitHub stars, and community-contributed skills exceeded 700,000. Collections like awesome-llm-skills, awesome-agent-skills (featuring 1,000+ skills from official platform teams), and awesome-claude-code became primary discovery channels.
 
@@ -65,6 +62,8 @@ Registry scale got a formal footing in mid-2026. On **June 5, 2026**, Vercel too
 The skill primitive completed its move to production infrastructure in August 2026, roughly ten months after the Claude Code launch this section opens with. Anthropic took the **Skills API out of beta on August 19**, with a companion blog post dated a day later on August 20 -- a discrepancy across Anthropic's own surfaces that reads as publish lag rather than two separate events. `/v1/skills` is now a stable endpoint; the `skills-2025-10-02` beta header is no longer required, though still accepted. The move shipped as part of a wider production-agent GA wave alongside computer use, browser use, and the Files API, and the API is available through the Claude Platform and Microsoft Foundry.
 
 A second change landed twelve days earlier, on **August 7**: GitHub-hosted skills for Managed Agents. A mounted repository's root `.claude/skills` directory is auto-discovered at session start -- no separate publish or install step. Anthropic's own documentation is explicit that the mounted repo becomes part of the agent's trust boundary with no review step in between, which folds a live GitHub repository into the same class of problem §5.10 traces through the AIR, Cloak-and-Detonate, and Paperclip incidents: whoever can write to that repo can add or edit what the agent treats as production instructions.
+
+**The portable format gains a neutral home.** On October 22, 2026, [Anthropic donated Agent Skills to AAIF](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation), including the name, logo, GitHub organization and domain. Anthropic reported integration by more than 70 agent platforms. This strengthens the cross-vendor convergence story, not a claim of secure execution: versioned releases, a proposal process and author/installer security guidance were proposed roadmap work, not completed standards features.
 
 ## 5.3 The Scaling Problem
 
@@ -78,7 +77,7 @@ The solution is progressive disclosure.
 
 ## 5.4 Progressive Disclosure Architecture
 
-Progressive disclosure is a multi-level information architecture where each level provides just enough detail for the next routing decision:
+Progressive disclosure is a multi-level information architecture where each level provides just enough detail for the next routing decision. The five levels below are this guide's architectural synthesis, not the standard's required loading sequence:
 
 **Level 0: Routing Index.** A compact table mapping categories to skill groups. Might consume 200-500 tokens total for an entire skill library. This is what sits in the system prompt at rest.
 
@@ -150,7 +149,7 @@ Drawing from the SkillReducer findings and production experience, a set of skill
 - **Lead with the routing description.** The YAML frontmatter description is the most important line in the file. It determines whether the skill is ever invoked. Write it for a classifier, not a human reader.
 - **Front-load actionable instructions.** The first 200 tokens of the skill body should contain the core behavioral instructions. Background and context follow.
 - **Use structured sections.** Headers, lists, and clear delineation enable partial loading and section-level retrieval.
-- **Declare dependencies explicitly.** If the skill assumes another skill or tool is available, state it in metadata.
+- **Declare host-specific dependencies explicitly.** Document required skills or tools where the consuming host can resolve them.
 - **Include trigger examples.** Provide 3-5 example user messages that should activate the skill. These serve as both documentation and test cases for the routing layer.
 - **Measure token cost.** Track the token count of each skill and set a budget. If a skill exceeds 2,000 tokens, consider whether it can be split or compressed.
 
@@ -203,6 +202,8 @@ In the month after the Zenity disclosure, that position acquired a commercial ma
 
 ## Sources
 
+- **Agent Skills.** Format specification (current documentation checked October 31, 2026): [https://agentskills.io/specification](https://agentskills.io/specification).
+- **Anthropic.** Agent Skills donation announcement (October 22, 2026): [https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation).
 - **Anthropic.** "Claude Code Skills." Documentation and open standard specification, October 2025 (launch), December 2025 (open standard via agentskills.io). 87K+ GitHub stars by early 2026.
 - **OpenAI.** "Agent Design Best Practices." OpenAI documentation, 2025. Recommendation of fewer than 20 tools per agent, accuracy degradation past 10.
 - **Heinrich (@arscontexta).** Skill Graphs concept and implementation. X posts (2026): [https://x.com/arscontexta/status/2023957499183829467](https://x.com/arscontexta/status/2023957499183829467) (Skill Graphs > SKILL.md). GitHub: [https://github.com/agenticnotetaking/arscontexta](https://github.com/agenticnotetaking/arscontexta) --- Claude Code plugin generating individualized markdown-graph knowledge systems with wikilinks and YAML frontmatter scanning. Secondary analysis: Linas Substack, "Skill Graphs: The Architecture That Solves the AI Agent Context Window Problem." [https://linas.substack.com/p/skill-graphs](https://linas.substack.com/p/skill-graphs)

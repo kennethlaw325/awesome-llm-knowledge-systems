@@ -1,5 +1,7 @@
 # 9장: 중국 AI 지식 엔지니어링 풍경
 
+> 2026-10-31에 일부 사실을 확인하고 수정했습니다. 나머지 내용은 이전 영어판을 따릅니다. 최신 영어판: [English](../../../chapters/09-china-ecosystem.md).
+
 > **한 문장으로:** 중국은 자체 오픈소스 플랫폼, 모델, 커뮤니티를 가진 평행 AI 생태계를 만들었다 ——종종 서양과 다른 방향으로 혁신한다.
 >
 > **왜 중요한가:** 세계 AI 연구자의 절반이 중국에 있다. 이 생태계를 무시하는 것은 혁신의 절반을 놓치는 것을 의미한다.
@@ -14,7 +16,7 @@ LLM 지식 엔지니어링에 관한 글로벌 대화는 중국 생태계를 살
 
 ### Dify (136K+ GitHub 스타)
 
-[Dify](https://github.com/langgenius/dify)는 글로벌하게 가장 많이 별 받은 에이전트형 AI 플랫폼이다. Apache 2.0 라이선스로, RAG 파이프라인, 에이전트 워크플로우, 다단계 추론 사슬을 만들기 위한 시각 캔버스를 제공한다. 버전 1.0 이래 Dify는 Model Context Protocol (MCP)를 지원하여 외부 도구 서버와의 매끄러운 통합을 허용한다. 그것의 강점은 워크플로우를 시각적으로 설계하는 노코드 사용자와 프로그램적 통제가 필요한 개발자 사이의 격차를 메우는 데 있다. 엔터프라이즈 사용자는 전체 스택을 셀프 호스팅할 수 있는데, 이는 데이터 주권 요구사항이 종종 클라우드 전용 해법을 막는 중국 시장에서 중요하다.
+[Dify](https://github.com/langgenius/dify)는 글로벌하게 가장 많이 별 받은 에이전트형 AI 플랫폼이다. 수정된 Apache 2.0 라이선스를 사용하며, 다중 테넌트 운영과 프런트엔드 로고·저작권 표시 변경에는 추가 조건이 있다. RAG 파이프라인, 에이전트 워크플로우, 다단계 추론 사슬을 만들기 위한 시각 캔버스를 제공한다. 버전 1.0 이래 Dify는 Model Context Protocol (MCP)를 지원하여 외부 도구 서버와의 매끄러운 통합을 허용한다. 그것의 강점은 워크플로우를 시각적으로 설계하는 노코드 사용자와 프로그램적 통제가 필요한 개발자 사이의 격차를 메우는 데 있다. 엔터프라이즈 사용자는 전체 스택을 셀프 호스팅할 수 있는데, 이는 데이터 주권 요구사항이 종종 클라우드 전용 해법을 막는 중국 시장에서 중요하다.
 
 ### RAGFlow (62-75K+ GitHub 스타)
 
@@ -46,7 +48,7 @@ Qwen3는 Alibaba의 플래그십 모델 패밀리이다. 가장 큰 변종은 Ap
 
 ### DeepSeek R1
 
-DeepSeek R1은 MIT 라이선스로 공개되면서 수학과 과학 추론 벤치마크에서 OpenAI의 o1과 일치했다. 모델은 보고된 바로는 600만 달러 미만으로 훈련되었으며, 이는 비교 가능한 서양 모델의 일부이다. 이 비용 효율성은 산업 전반에 충격파를 보냈다: 중국에서 오픈소스 모델의 엔터프라이즈 채택은 그것의 출시 후 몇 달 안에 23%에서 67%로 뛰었다. DeepSeek R1은 프런티어 레벨 추론이 프런티어 레벨 예산을 요구하지 않음을 입증하여, 지식 엔지니어링의 경제학을 근본적으로 옮겼다.
+DeepSeek R1은 수학·과학 추론 벤치마크에서 OpenAI의 o1과 비슷한 성능을 보이며 MIT 라이선스로 공개되었다. 낮은 훈련 비용으로 알려진 숫자는 R1이 아니라 DeepSeek-V3 보고서의 수치다. H800 GPU 시간당 $2를 가정한 공식 훈련 추정치는 $5.576M이며, 선행 연구와 절제 실험은 제외되고 R1의 총개발비도 아니다. R1의 의미는 프런티어 추론을 오픈웨이트로 제공한 데 있다. 원조사를 검증할 수 없는 채택률은 인과관계의 근거로 쓰지 않는다.
 
 2026년 4월에, DeepSeek은 자사의 아키텍처 기여를 **manifold-constrained hyper-connections (mHC)**, Transformer++ 스타일 모델에서 사용되는 잔차 연결의 일반화로 확장했다. 표준 잔차 스트림이 계층 전반에 정보의 단일 채널을 앞으로 운반하는 곳에서, mHC는 학습된 저차원 매니폴드에 놓이도록 각각 제약된 **여러 내부 스트림**을 운반한다. 구성은 단순 다중 스트림 잔차가 스케일에서 겪는 차원 붕괴 없이 후기 계층이 초기 표현에 더 풍부한 접근을 갖도록 설계되었다. DeepSeek의 블로그는 비슷한 파라미터 수에서 장기간 추론 벤치마크에서의 이득을 보고하며, 정보가 많은 중간 계층에 걸쳐 운반되어야 하는 작업에서 가장 큰 개선을 보고한다. 2026년 4월 기준 결과는 **독립 복제 대기 중으로 표시되어야 한다** ——그것은 단일 연구실 모델에 대한 단일 연구실 공개이며, 이 분야는 제3자 재현에서 살아남지 못한 아키텍처 주장으로 데인 적이 있다. 결과가 유지된다면, mHC는 MoE, MLA, DeepSeek의 이전 다중 토큰 예측 작업과 함께, 주류 사용으로 넘어오기 전에 중국 오픈웨이트 생태계에서 발원한 세 번째 또는 네 번째 아키텍처 primitive로 합류한다.
 
@@ -90,7 +92,7 @@ ERNIE 5.0은 네이티브 풀 모달리티 지원 ——단일 모델에서 텍�
 
 ### 제약을 통한 혁신
 
-미국 칩 수출 통제는 예상치 못한 혁신 동력을 만들었다. 단순히 컴퓨트를 스케일할 수 없는 중국 AI 연구실들은 알고리즘 효율성에 불균형하게 투자했다. DeepSeek R1의 600만 달러 미만 훈련 비용이 가장 가시적인 결과이지만, 패턴은 생태계 전반에 걸쳐 확장된다: 더 나은 추론 최적화를 가진 더 작은 모델, 더 공격적인 양자화 기법, FLOP당 능력을 최대화하도록 설계된 아키텍처. 더 많은 컴퓨트가 가용한 서양 생태계는 스케일을 통해 혁신하는 경향이 있다. 둘 다 프런티어 결과를 산출하지만, 다른 경로를 통해서이다.
+미국 칩 수출 통제는 예상치 못한 혁신 동력을 만들었다. 단순히 컴퓨트를 스케일할 수 없는 중국 AI 연구실들은 알고리즘 효율성에 불균형하게 투자했다. DeepSeek-V3가 보고한 공식 훈련 비용은 앞서 설명한 집계 범위 안에서 이 방향을 보여 준다. 패턴은 생태계 전반에 걸쳐 확장된다: 더 나은 추론 최적화를 가진 더 작은 모델, 더 공격적인 양자화 기법, FLOP당 능력을 최대화하도록 설계된 아키텍처. 더 많은 컴퓨트가 가용한 서양 생태계는 스케일을 통해 혁신하는 경향이 있다. 둘 다 프런티어 결과를 산출하지만, 다른 경로를 통해서이다.
 
 ### 전략적 책무로서의 오픈소스
 
@@ -101,6 +103,9 @@ ERNIE 5.0은 네이티브 풀 모달리티 지원 ——단일 모델에서 텍�
 Bilibili (B站)는 큰 양의 AI 튜토리얼을 호스팅하지만, 실무자들은 많은 것이 영어 YouTube 콘텐츠의 재업로드나 번역임을 알아야 한다. Bilibili의 AI 콘텐츠의 원래 가치는 중국 특정 도구 튜토리얼에 있다: 단계별 Dify 배포 가이드, Qwen 통합 워크스루, 영어로 존재하지 않는 엔터프라이즈 배포 사례 연구. Bilibili에서 연구할 때, 항상 콘텐츠를 그것의 원래 출처로 추적하라. 튜토리얼이 중국어로 더빙된 영어 내레이션을 가진 LangChain을 시연한다면, 원본 YouTube 버전이 더 최신일 가능성이 높다.
 
 ## Sources
+
+- Dify LICENSE: [https://raw.githubusercontent.com/langgenius/dify/main/LICENSE](https://raw.githubusercontent.com/langgenius/dify/main/LICENSE)
+- DeepSeek-V3 Technical Report, Table 1: [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2)
 
 - Dify GitHub Repository: [https://github.com/langgenius/dify](https://github.com/langgenius/dify)
 - RAGFlow GitHub Repository: [https://github.com/infiniflow/ragflow](https://github.com/infiniflow/ragflow)
@@ -114,7 +119,7 @@ Bilibili (B站)는 큰 양의 AI 튜토리얼을 호스팅하지만, 실무자�
 - Baidu. ERNIE 5.0 launch (January 2026); 2.4T parameter / native full-modality claims circulated through Baidu official channels and Chinese tech press. No single primary URL is cited here; treat the modality and parameter figures as widely-reported but secondary.
 - Zhipu AI. GLM-4/5 model cards on Hugging Face and the official ZhipuAI blog; "744B MoE GLM-5" + agent-native tool tokens are reported across model card and blog coverage. Primary entry point: [https://www.zhipuai.cn](https://www.zhipuai.cn).
 - Cyberspace Administration of China, "Generative AI Service Filing" disclosures (December 2025) --- the 748-services figure is widely reproduced in Chinese tech press; the underlying registry is published in batches via the CAC official site.
-- "Open Source AI in China" market commentary --- the 23%-to-67% Chinese enterprise open-source adoption shift after R1 is reported across multiple secondary outlets through 2025-2026; treat as widely-cited but no single primary survey is pinned here.
+- 편집 주: 검증 가능한 원조사를 확보하지 못했으므로 R1 이후 기업 오픈소스 채택률의 수치는 인용하지 않는다.
 - DeepSeek. "DeepSeek mHC: Manifold-Constrained Hyper-Connections" (April 2026). [https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections](https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections) --- flagged as awaiting independent replication.
 - DeepSeek. V4 model release on Hugging Face (April 24, 2026). MIT license; V4-Pro 1.6T (49B active) / V4-Flash 284B (13B active); 1M-token default context.
 - Fortune. "DeepSeek unveils V4 model, with rock-bottom prices and close integration with Huawei's chips" (April 24, 2026). [https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/](https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/)

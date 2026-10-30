@@ -1,5 +1,7 @@
 # 第 11 章：LLM 知识工程的关键时刻
 
+> 部分事实更正已于 2026-10-31 核对；其余沿用较早英文版本。最新英文版：[English](../../../chapters/11-timeline.md)。
+
 > **一句话总结：** 一份从 2022 到 2026 年塑造 LLM 知识工程的关键时刻按时间排序的记录。
 >
 > **为什么重要：** 本指南内一切的背景脉络——何时发生、谁做的、改变了什么。
@@ -56,7 +58,7 @@ Anthropic 把 MCP 公开为开放规格, 用于把 LLM 连接到外部工具与�
 
 ### 1 月 —— DeepSeek R1 与开源拐点
 
-DeepSeek 发布 R1, 一个开放权重的推理模型, 在关键基准上和 OpenAI o1 持平。训练成本不到 600 万美元, MIT 授权发布, 它证明前沿推理能力不再是资金充裕实验室的专利。中国企业开源模型采用率从 23% 飙升到 67%。对知识工程的含义: 基础模型不再是瓶颈或护城河。
+DeepSeek 发布 R1，以 MIT 授权提供在关键基准上与 OpenAI o1 持平的开放权重推理模型，扩大前沿推理能力的获取途径。$5.576M 是 DeepSeek-V3 报告按 GPU 租用价估算的正式训练成本，不包括先前研究与消融实验，并非 R1 的总开发成本。缺乏可核查原始调查的企业采用率升幅不作为此事件的因果证据。
 
 ### 2025 年中 —— 「Context Engineering」进入词汇
 
@@ -264,6 +266,8 @@ AWS 与 OpenAI 公布扩张合作, 把 OpenAI agent 堆叠落到 Amazon Bedrock 
 ---
 
 ## 来源
+
+- DeepSeek-V3 Technical Report, Table 1: [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2)
 
 - OpenAI, "Introducing ChatGPT"（2022 年 11 月 30 日）
 - LangChain GitHub Repository: [https://github.com/langchain-ai/langchain](https://github.com/langchain-ai/langchain)

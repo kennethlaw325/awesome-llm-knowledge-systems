@@ -54,6 +54,7 @@ theme:
         name: Switch to light mode
   features:
     - navigation.instant
+    - navigation.sections
     - navigation.tracking
     - navigation.top
     - navigation.footer
@@ -83,20 +84,24 @@ plugins:
 
 nav:
   - Home: index.md
-  - "01 · The Three Generations": chapters/01-evolution.md
-  - "02 · RAG, Long Context & Knowledge Graphs": chapters/02-knowledge-layer.md
-  - "03 · Context Engineering -- The Art of Filling the Window": chapters/03-context-engineering.md
-  - "04 · Harness Engineering -- Building the OS Around the Model": chapters/04-harness-engineering.md
-  - "05 · Skill Systems -- Skills, Skill Graphs, and Progressive Disclosure": chapters/05-skill-systems.md
-  - "06 · Agent Memory -- The Missing Layer": chapters/06-agent-memory.md
-  - "07 · MCP -- The Standard That Won": chapters/07-mcp.md
-  - "08 · Tools Landscape -- AI-Native Knowledge Management": chapters/08-tools-landscape.md
-  - "09 · The Chinese AI Knowledge Engineering Landscape": chapters/09-china-ecosystem.md
-  - "10 · Building a Real-World Knowledge Harness": chapters/10-case-study.md
-  - "11 · Key Moments in LLM Knowledge Engineering": chapters/11-timeline.md
-  - "12 · Local Models for Knowledge Engineering": chapters/12-local-models.md
-  - "13 · Loop Engineering -- Designing the System That Prompts the Agent": chapters/13-loop-engineering.md
-  - "14 · Graph Engineering -- Wiring the Organization of Agents": chapters/14-graph-engineering.md
+  - Foundations:
+      - "01 · The Three Generations": chapters/01-evolution.md
+      - "02 · RAG & Knowledge Graphs": chapters/02-knowledge-layer.md
+      - "03 · Context Engineering": chapters/03-context-engineering.md
+  - Building the System:
+      - "04 · Harness Engineering": chapters/04-harness-engineering.md
+      - "05 · Skills & Skill Graphs": chapters/05-skill-systems.md
+      - "06 · Agent Memory": chapters/06-agent-memory.md
+      - "07 · MCP & Interoperability": chapters/07-mcp.md
+  - In Practice:
+      - "08 · Knowledge Management Tools": chapters/08-tools-landscape.md
+      - "09 · The Chinese AI Ecosystem": chapters/09-china-ecosystem.md
+      - "10 · A Real-World Harness": chapters/10-case-study.md
+      - "11 · Timeline": chapters/11-timeline.md
+      - "12 · Local Models": chapters/12-local-models.md
+  - Emerging Patterns:
+      - "13 · Loop Engineering": chapters/13-loop-engineering.md
+      - "14 · Graph Engineering": chapters/14-graph-engineering.md
   - Glossary: glossary.md
   - About:
       - Changelog: CHANGELOG.md

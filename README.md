@@ -2,10 +2,23 @@
 
 **English** | [繁體中文](translations/README-zh.md) | [简体中文](translations/README_zh-CN.md) | [日本語](translations/README_ja.md) | [한국어](translations/README_ko.md) | [Español](translations/README_es.md)
 
+[Read the guide online](https://kennethlaw325.github.io/awesome-llm-knowledge-systems/) · [Choose a reading path](#which-path-should-you-take) · [Timeline](chapters/11-timeline.md) · [Changelog](CHANGELOG.md)
+
 > I analyzed 50+ awesome lists, surveys, and guides -- none of them connected the dots. RAG papers don't mention harness engineering. Memory frameworks ignore skill systems. MCP docs skip progressive disclosure. This guide draws the complete map.
 
+## October 2026 update
+
+This edition follows the boundaries between systems: who owns persistent context, who resolves conflicting memories, and what an agent's monitor can actually see.
+
+- **Memory needs correction and ownership.** Notion's October 13 release connects a shared workspace to skills and access controls; Cognee's October 29 release makes conflict resolutions persistent and invalidates them when supporting data changes. See [Ch06](chapters/06-agent-memory.md) and [Ch08](chapters/08-tools-landscape.md).
+- **Local inference has more than one job.** Liquid AI's September 23 announcement separates on-device context from the agents using it. Ollama's September 29 decision endpoint returns typed decisions and probabilities for bounded judgments. See [Ch12](chapters/12-local-models.md).
+- **Long-running agents need boundaries that survive handoffs.** An October 14 customer case describes an outer harness for multi-day work; October research examines evaluation containment and monitoring across compaction and multiple agents. See [Ch04](chapters/04-harness-engineering.md) and [Ch13](chapters/13-loop-engineering.md).
+- **Interoperability is not a safety guarantee.** Agent Skills' October 22 announcement records broader platform adoption. The portable spec standardizes skill metadata and instructions, while hosts still own routing and enforcement. [Ch05](chapters/05-skill-systems.md) separates these responsibilities; [Ch14](chapters/14-graph-engineering.md) updates the evidence for a still-contested term.
+
+The [changelog](CHANGELOG.md) records factual corrections and maintenance work. Translated editions retain their earlier chapter content plus selected corrections; **the English edition is the current reference**, not a claim that every language has been synchronized.
+
 <details>
-<summary><b>What's new in September 2026</b> (click to expand)</summary>
+<summary><b>Previous update: September 2026</b> (expand)</summary>
 
 The mid-September 2026 wave adds ten timeline entries — nine external plus this guide's own survival-gate result — and integrations across ten chapters and the glossary. The through-line is the security layer catching up with the primitives it has been trailing: the first shipped runtime-detection product for AI agents (CrowdStrike's Falcon Guardian) lands the same day AIR leaves stealth with $50M and a measurement of the exposed surface, OpenAI ships the first model it designates *Critical* for cybersecurity and writes a refusal contract into a broadly available release, and Anthropic's September threat report alleges industrial-scale distillation by named Chinese labs. In the same window Chapter 14's own September survival gate came due, and the verdict splits: the term survived the circulation test the gate stated, its status as a distinct engineering layer is unproved. It builds on the late-August wave (the harness layer going open-source on both sides of the Pacific inside a week) and the early-August wave (Metis). Most recent first (full chronological log: [CHANGELOG.md](CHANGELOG.md)):
 
@@ -50,7 +63,7 @@ The mid-September 2026 wave adds ten timeline entries — nine external plus thi
 ## TL;DR
 
 - **Prompt engineering was just the beginning.** The field has evolved through three generations: Prompt Engineering (2022-2024), Context Engineering (2025), and Harness Engineering (2026). Each layer subsumes the last -- and a contested fourth layer, *loop engineering*, emerged in mid-2026 ([Ch13](chapters/13-loop-engineering.md)). Six weeks later came a fifth claim, *graph engineering*, put under a survival gate that was checked on September 15, 2026: it remained in circulation as a contested name for multi-agent coordination, and a distinct fifth layer is unproved ([Ch14](chapters/14-graph-engineering.md)).
-- **RAG is not dead.** 71% of enterprises that tried context-stuffing came back to RAG within 12 months (Gartner Q4 2025). Hybrid architectures are winning.
+- **RAG and long context solve different constraints.** Choose and combine them by testing retrieval quality, source freshness, latency and cost on your own workload ([Ch02](chapters/02-knowledge-layer.md)).
 - **Context engineering is about what surrounds the call, not the call itself.** Andrej Karpathy's mid-2025 reframe shifted focus from crafting prompts to constructing the entire context window dynamically.
 - **Harness engineering is the operating system layer.** Birgitta Böckeler (writing in Martin Fowler's *Exploring Generative AI* memo series, April 2026) and the OpenAI Codex team's harness-design framing formalized this -- the model is the CPU, context is RAM, and the harness is the OS that orchestrates everything.
 - **No single guide connected all of this until now.** RAG, knowledge graphs, long context, MCP, skill routing, memory systems, and progressive disclosure are all part of one ecosystem. This is the map.
@@ -104,6 +117,9 @@ If your scenario doesn't fit cleanly, it's probably a composition of these — s
 
 *Figure: Each generation contains the last rather than replacing it. The outer two are drawn dashed because they are claims, not settled layers -- loop engineering is tracked here as emerging, and Chapter 14's September 15, 2026 gate found that graph engineering survived as a circulating term while its status as a distinct layer stayed unproved.*
 
+<details>
+<summary>Text version of the evolution map</summary>
+
 ```
 2022-2024               2025                    2026                    2026 (mid)?             2026 (late)??
 PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG (emerging) --> GRAPH ENG (contested)
@@ -114,6 +130,8 @@ PROMPT ENG        -->   CONTEXT ENG       -->   HARNESS ENG       -->   LOOP ENG
                         window"                 around the model"       the agent"              run the loops"
 ```
 
+</details>
+
 Each generation does not replace the last -- it contains it. Harness engineering includes context engineering, which includes prompt engineering. Loop engineering, a still-contested fourth layer, wraps all three -- the system that runs the harness on a timer, spawns helpers, and feeds it back to itself. Graph engineering, the July 2026 claim covered in [Ch14](chapters/14-graph-engineering.md), would wrap even that -- the wiring of multiple loops into a designed organization -- and the September 15, 2026 check of that chapter's own survival gate left the question open on purpose: the term circulates, but no vendor adoption was found in the documentation checked, two vendors shipped the governance it names without it, and its status as a real fifth layer rather than three-year-old practice with a new name (LangChain's counter) is unproved.
 
 ---
@@ -121,6 +139,9 @@ Each generation does not replace the last -- it contains it. Harness engineering
 ## The Lifecycle
 
 The Ecosystem Map shows **what** the pieces are. The Lifecycle shows **how data moves through them**:
+
+<details>
+<summary>Text version of the lifecycle</summary>
 
 ```
                     ┌───── feedback ──────────────┐
@@ -134,6 +155,8 @@ The Ecosystem Map shows **what** the pieces are. The Lifecycle shows **how data 
     │             │            │          │           │
    Ch02       Ch02 · Ch03    Ch02-08    Ch02-07     Ch06
 ```
+
+</details>
 
 ```mermaid
 flowchart LR
@@ -153,6 +176,9 @@ Every production system moves data through all five stages — even if some are 
 ![LLM Knowledge Engineering Ecosystem Map](diagrams/ecosystem-map.png)
 
 *[View interactive HTML version](diagrams/ecosystem-map.html)*
+
+<details>
+<summary>Text version of the ecosystem map</summary>
 
 ```
 +---------------------------+     +---------------------------+     +---------------------------+
@@ -189,33 +215,7 @@ Every production system moves data through all five stages — even if some are 
                                                                     +---------------------------+
 ```
 
-```mermaid
-graph LR
-    subgraph Sources["Knowledge Sources"]
-        RAG[RAG Pipelines]
-        KG[Knowledge Graphs]
-        LC[Long Context Windows]
-    end
-
-    subgraph Context["Context Engineering"]
-        DCA[Dynamic Context Assembly]
-        KVC[KV-Cache Optimization]
-        SP[System Prompts + Instructions]
-        TD[Tool Definitions + Schemas]
-        FSE[Few-shot Examples]
-        CH[Conversation History]
-    end
-
-    subgraph Harness["Harness Engineering"]
-        SK[Skill Systems + Routing]
-        MEM[Memory Frameworks]
-        MCP[MCP / Tool Layer]
-        AR[Agent Runtime + Planning]
-        PD[Progressive Disclosure]
-    end
-
-    Sources --> Context --> Harness
-```
+</details>
 
 ---
 
@@ -254,7 +254,7 @@ This guide is that missing layer. It connects RAG to context engineering, contex
 
 ## Contributing
 
-Contributions are welcome! This list is community-maintained.
+Contributions are welcome. This is a curated guide: proposed additions should strengthen the map.
 
 - **Add a resource:** [Submit a Pull Request](../../pulls) -- see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 - **Suggest a resource:** [Open an Issue](../../issues/new?template=suggest-resource.md)
@@ -274,4 +274,4 @@ Use this however you want. Attribution appreciated but not required.
 
 ---
 
-*Last updated: September 2026*
+*English edition updated: October 31, 2026. Source dates and evidence limits are recorded in the chapters.*

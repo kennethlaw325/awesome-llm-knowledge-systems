@@ -1,5 +1,8 @@
 # 2장: RAG, Long Context와 지식 그래프
 
+> [!NOTE]
+> 2026-10-31에는 일부 사실만 확인하고 수정했다. 나머지는 이전 번역이며 전체 동기화는 하지 않았다. 최신 내용은 [영어 정본](../../../chapters/02-knowledge-layer.md)을 참고해야 한다.
+
 > **한 문장으로:** AI에게 지식 접근을 부여하는 세 가지 주된 방법: 데이터베이스를 검색하기 (RAG), 긴 문서를 먹이기, 또는 사실을 그래프로 연결하기.
 >
 > **왜 중요한가:** 자기 데이터를 다루는 어떤 일에든 AI를 쓰고 있다면, 본 장은 당신의 상황에 어떤 접근이 가장 잘 맞는지 설명한다.
@@ -10,9 +13,7 @@
 
 ## RAG는 죽지 않았다
 
-여섯 달마다 누군가 "RAG는 죽었다, Long Context면 충분하다"를 발표한다. 여섯 달마다 기업들은 그들이 틀렸음을 입증한다.
-
-**Gartner의 2025년 4분기 엔터프라이즈 설문조사**에서, RAG 파이프라인을 순수 context-stuffing (전체 문서 코퍼스를 큰 context window에 먹이기)로 대체하려 한 조직 중 71%가 12개월 안에 RAG를 다시 추가했다. 이유는 일관됐다: 비용, 지연, 스케일에서의 정확도 저하, 그리고 동적이거나 자주 갱신되는 지식 베이스를 다루지 못하는 한계.
+큰 컨텍스트 윈도우는 설계 선택지를 넓히지만 증거를 안정적으로 활용하도록 보장하지는 않는다. [Liu 등](https://arxiv.org/abs/2307.03172)은 긴 입력에서 관련 정보의 위치가 답변 품질에 영향을 줄 수 있음을 보였다. 실제 질문으로 검색 방식과 전체 문서 입력 방식을 비교하고, 답변 품질, 토큰 사용량, 지연, 최신 정보를 모델에 전달하는 방법을 평가해야 한다.
 
 RAG는 죽지 않았다. 진화하고 있다. 질문은 결코 "RAG냐 아니냐"가 아니었다 ——"어떤 종류의 RAG, 무엇과 결합하느냐"였다.
 
@@ -182,7 +183,6 @@ Golden-Retriever RAG는 검색 전 LLM 자신을 사용해 쿼리를 다시 쓰�
 
 ## Sources
 
-- Gartner. "Enterprise RAG Adoption" survey commentary, Q4 2025 --- the 71%-revert figure cited at the top of this chapter circulates across multiple industry analyses; primary access requires a Gartner subscription, so the figure is reported here as widely-cited industry stat rather than from a freely-reachable primary URL.
 - Liu, N. F. et al. (2023). "Lost in the Middle: How Language Models Use Long Contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
 - Microsoft. (2024). "GraphRAG: Unlocking LLM discovery on narrative private datasets." [microsoft.com/research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-datasets/)
 - Asai, A. et al. (2023). "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection." [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)

@@ -4,9 +4,9 @@
 >
 > **Why it matters:** If you take notes, manage knowledge, or organize information, AI is changing how every tool in this space works.
 >
-> **Reading time:** ~13 min (2,878 words / 230 wpm)
+> **Reading time:** ~13 min (2,912 words / 230 wpm)
 
-*Figure: The spectrum of section "The AI-Assisted vs. AI-Native Gap", carrying only two products -- early Notion AI, which the chapter names at the assisted end, and Mem, whose zero-manual-organization description matches the chapter's AI-native definition -- plus Notion's own release chain read in order from the Notion section. The chain shows the direction of travel: 3.0 turns an autocomplete feature into an autonomous agent, 3.6 makes other vendors' agents assignable teammates, and the August 2026 Agent APIs make Custom Agents embeddable outside the workspace. The edge that carries the argument is the one labelled "the gap is widening", because the gap widens for a structural reason: assisted tools stay bound to data models designed for human-only workflows.*
+*Figure: The spectrum from "The AI-Assisted vs. AI-Native Gap", with early Notion AI at the assisted end and Mem's zero-manual-organization design at the native end. Notion's release chain follows the chapter: 3.0 introduces an agent, 3.6 hosts external teammates, August's Agent APIs enable embedding, and October's 3.8 adds governed shared context and skills. The gap widens when tools remain bound to data models designed for human-only workflows; the shared-library edge shows how procedural knowledge joins the workspace.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
@@ -18,14 +18,16 @@ flowchart TB
       N30["Notion 3.0, Sept 2025<br/>autocomplete becomes<br/>an autonomous agent"]
       N36["Notion 3.6, July 2026<br/>Claude and Cursor as<br/>assignable teammates"]
       API["Agent APIs, Aug 2026<br/>Custom Agents embeddable<br/>outside the workspace"]
+      N38["Notion 3.8, Oct 2026<br/>governed context and skills"]
       N30 -->|workspace becomes the shared board| N36
       N36 -->|public beta| API
+      API -->|shared library and access controls| N38
     end
     ASSIST -->|most incumbents, including early Notion AI| N30
     ASSIST -->|the gap is widening| NATIVE
     NATIVE -->|the most radical position in the landscape| MEM["Mem<br/>no folders, no tags,<br/>no manual categorization"]
     class ASSIST,N30,N36 stable
-    class API muted
+    class API,N38 muted
     class NATIVE,MEM accent
 classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
 classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
@@ -50,6 +52,8 @@ Notion's strength is its combination of structured data (databases, relations, r
 **Notion 3.6** (July 1, 2026) turned the workspace into a coordination substrate for *other vendors'* agents. Its **External Agents** feature makes **Claude** and **Cursor** the first two external agents that operate as visible, assignable teammates on shared Notion task boards --- @-mentionable, watchable, and accountable in the same surfaces human collaborators use. (This is distinct from the earlier **3.5 Developer Platform** launch of May 13, 2026, which named Codex and Decagon as External Agents API partners.) The same release added **Notion Workers** (custom code now buildable and deployable, including on Windows), five new MCP connectors (Mercury, Mixpanel, Miro, Box, ClickHouse), native PPTX / XLSX / DOCX read-write, and an audit log for Custom Agent actions; Notion reports its MCP "usage has 10×'d in the past month." The beat is the inversion: where earlier Notion AI was the agent acting *inside* Notion, Notion is now the shared board that *other* agent products plug into as teammates.
 
 On **August 20, 2026**, Notion moved session-based **Agent APIs** -- start a chat with a Custom Agent, stream its reply, submit an action, page through session event history -- from private alpha to public beta. The purpose is embedding: a Custom Agent can now sit inside a Slack bot, an internal tool, or a mobile app rather than only inside the Notion workspace itself. Alpha-route integrations must migrate to the new sessions/events model by September 30, 2026. Read against 3.5 (May 13, External Agents API partners) and 3.6 (July 1, Claude/Cursor as assignable board teammates), this is the third step of the same arc: open the workspace to other vendors' agents, make Notion's own Custom Agents assignable teammates, then make those agents embeddable anywhere through a public API surface.
+
+**Notion 3.8** ([October 13, 2026](https://www.notion.com/releases/2026-10-13)) extends this progression to governed shared context. Its Skills API publishes a Notion-managed library through GitHub. The release adds per-user MCP revocation, attributed revision history with restoration, and database-property permissions. These are vendor-described controls, without independent evidence that every agent preserves them correctly.
 
 ## Obsidian
 
@@ -157,6 +161,8 @@ The practical takeaway for knowledge engineering: the "harness" is no longer jus
 14. AWS. "The AWS MCP Server is now generally available." May 6, 2026. [https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/](https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/)
 15. Notion. "Release notes" (July 1, 2026): [https://www.notion.com/releases/2026-07-01](https://www.notion.com/releases/2026-07-01) and (May 13, 2026): [https://www.notion.com/releases/2026-05-13](https://www.notion.com/releases/2026-05-13) --- 3.6 External Agents (Claude, Cursor); 3.5 Developer Platform (Codex, Decagon as API partners); Notion Workers; five new MCP connectors; native PPTX/XLSX/DOCX; Custom Agent audit log; MCP "usage has 10×'d in the past month."
 16. Notion Developers. "Changelog" (August 20, 2026 entry): [https://developers.notion.com/page/changelog](https://developers.notion.com/page/changelog) --- session-based Agent APIs (start chat with a Custom Agent, stream reply, submit action, page session event history) move private alpha to public beta; alpha-route integrations must migrate to the sessions/events model by September 30, 2026.
+
+17. Notion. "Notion 3.8: Context for your agents" (October 13, 2026). [Release notes](https://www.notion.com/releases/2026-10-13).
 
 ---
 

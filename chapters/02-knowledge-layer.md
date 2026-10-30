@@ -4,7 +4,7 @@
 >
 > **Why it matters:** If you use AI for anything involving your own data, this chapter explains which approach works best for your situation.
 >
-> **Reading time:** ~16 min (3,557 words / 230 wpm)
+> **Reading time:** ~16 min (3,453 words / 230 wpm)
 
 *Figure: The three-way choice of the "Hybrid Architectures: The Convergence" section, drawn around the query router that section puts at the end of its winning production pattern. Each edge out of the router names the need that sends a query down that branch. The dotted edge is the separate claim of the "KG as Semantic Backbone for Long Context" section -- the graph indexes a window it no longer has to replace -- and the edges converging on the hybrid box carry the chapter's argument that the engineering work is the router, not the choice.*
 
@@ -35,9 +35,7 @@ classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
 
 ## RAG Is Not Dead
 
-Every six months, someone publishes "RAG Is Dead, Long Context Is All You Need." Every six months, enterprises prove them wrong.
-
-**Gartner's Q4 2025 enterprise survey** found that 71% of organizations that attempted to replace RAG pipelines with pure context-stuffing (feeding entire document corpora into large context windows) added RAG back within 12 months. The reasons were consistent: cost, latency, accuracy degradation at scale, and the inability to handle dynamic or frequently updated knowledge bases.
+Larger context windows expand the design space, but window size alone does not decide how reliably a system uses evidence. [Liu et al.](https://arxiv.org/abs/2307.03172) showed that answer quality can depend on where relevant information appears in a long input. Evaluate retrieval and full-context approaches on your own questions, including answer quality, token use, latency, and how current evidence reaches the model.
 
 RAG is not dead. It is evolving. The question was never "RAG or not RAG" -- it was "what kind of RAG, combined with what else."
 
@@ -58,7 +56,7 @@ A typical RAG pipeline retrieves 5-20 relevant chunks (roughly 2,000-8,000 token
 
 This is not a rounding error. At enterprise scale -- millions of queries per month -- the difference between $80 and $100,000 in monthly inference costs determines whether a project survives budget review.
 
-The cost gap narrows as model pricing drops, but retrieval will always be cheaper than brute-forcing the entire knowledge base into every call. The laws of information theory guarantee this: selecting relevant information is cheaper than processing all information.
+Retrieval can reduce input-token use, but total cost also includes indexing, retrieval, caching, and any extra model calls. Compare the complete pipeline against a full-context baseline at the same answer-quality target; the cheaper design depends on corpus size, query volume, and model pricing.
 
 ---
 
@@ -131,7 +129,7 @@ A mid-2026 check of the graph-tooling landscape (GitHub figures verified via the
 
 **The frameworks have a new leader.** [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) (EMNLP 2025 paper; MIT license), the lightweight graph+vector dual-level framework, has overtaken Microsoft's original as the most-starred graph-RAG framework at ~38k stars versus ~35k (July 2026) --- on steady feature growth rather than any single landmark. Microsoft's GraphRAG itself is on a v3.x line ([v3.1.1 released July 18, 2026](https://github.com/microsoft/graphrag/releases)) and remains actively developed.
 
-**Graph-based agent memory splits off as its own category.** Distinct from GraphRAG's document-retrieval lineage, a cluster of projects now uses graphs as the *memory substrate for agents*: [getzep/graphiti](https://github.com/getzep/graphiti) (~29k stars, July 2026; real-time bi-temporal knowledge graphs for agent memory), [topoteretes/cognee](https://github.com/topoteretes/cognee) (~29k stars, July 2026; the Berlin startup behind it closed a [Pebblebed-led seed round](https://www.eu-startups.com/2026/02/german-ai-infrastructure-startup-cognee-lands-e7-5-million-to-scale-enterprise-grade-memory-technology/) of EUR 7.5M in February 2026 to build an enterprise graph memory layer), and Neo4j Labs' [agent-memory](https://github.com/neo4j-labs/agent-memory) (["Lenny's Memory,"](https://neo4j.com/blog/developer/meet-lennys-memory-building-context-graphs-for-ai-agents/) launched January 2026), which signals graph-database vendors moving from KG construction to agent memory directly. Chapter 6 covers agent memory in depth; the graph substrate is now one of its main branches.
+**Graph-based agent memory splits off as its own category.** Distinct from GraphRAG's document-retrieval lineage, a cluster of projects now uses graphs as the *memory substrate for agents*: [getzep/graphiti](https://github.com/getzep/graphiti) (~29k stars, July 2026; real-time bi-temporal knowledge graphs for agent memory), [Cognee](https://github.com/topoteretes/cognee) (whose [June 26, 2026 release](https://www.cognee.ai/cognee-1-0-announcement) exposes memory lifecycle operations), and Neo4j Labs' [agent-memory](https://github.com/neo4j-labs/agent-memory) (["Lenny's Memory,"](https://neo4j.com/blog/developer/meet-lennys-memory-building-context-graphs-for-ai-agents/) launched January 2026), which signals graph-database vendors moving from KG construction to agent memory directly. [Chapter 6](06-agent-memory.md) covers the lifecycle and governance questions beyond graph storage.
 
 **The evidence base matures --- and one flagship stalls.** [GraphRAG-Bench](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark) ("When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation"), accepted at ICLR 2026, is the first widely cited neutral analysis of when graph-based RAG actually outperforms vanilla RAG --- a direct empirical answer to this section's "when GraphRAG matters / when it is overkill" question. Meanwhile Ant Group's [OpenSPG/KAG](https://github.com/OpenSPG/KAG), the marquee Chinese-ecosystem entry, has gone quiet: no repository pushes since January 28, 2026 and no release since June 2025 --- coasting rather than accelerating.
 
@@ -228,7 +226,7 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 
 ## Three things to take away
 
-- **RAG keeps coming back.** Gartner's Q4 2025 survey found 71% of the organizations that replaced RAG pipelines with pure context-stuffing added RAG back within 12 months.
+- **A larger window does not settle the retrieval choice.** Compare answer quality, token use, latency, and evidence freshness on the questions your system actually serves.
 - **No single technique wins on every dimension.** Cost, relationship reasoning and setup complexity each pick a different winner, which is why production stacks run all three at once.
 - **The hard part is the router, not the choice.** The chapter's winning pattern ends with a query router that selects the right strategy per query, and that router is the engineering challenge.
 
@@ -236,7 +234,6 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 
 ## Sources
 
-- Gartner. "Enterprise RAG Adoption" survey commentary, Q4 2025 --- the 71%-revert figure cited at the top of this chapter circulates across multiple industry analyses; primary access requires a Gartner subscription, so the figure is reported here as widely-cited industry stat rather than from a freely-reachable primary URL.
 - Liu, N. F. et al. (2023). "Lost in the Middle: How Language Models Use Long Contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172)
 - Microsoft. (2024). "GraphRAG: Unlocking LLM discovery on narrative private datasets." [microsoft.com/research](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-datasets/)
 - Asai, A. et al. (2023). "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection." [arXiv:2310.11511](https://arxiv.org/abs/2310.11511)
@@ -251,7 +248,7 @@ This is not theoretical. Production systems at scale (enterprise search, coding 
 - HKUDS. "LightRAG: Simple and Fast Retrieval-Augmented Generation" (EMNLP 2025). [github.com/HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) --- ~38k stars vs microsoft/graphrag's ~35k as of July 2026 (GitHub API).
 - Microsoft. GraphRAG releases. [github.com/microsoft/graphrag/releases](https://github.com/microsoft/graphrag/releases) --- v3.1.1 (July 18, 2026); the project's 2026 v3.x line.
 - GraphRAG-Bench. "When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation" (ICLR 2026). [github.com/GraphRAG-Bench/GraphRAG-Benchmark](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark)
-- EU-Startups. "German AI infrastructure startup Cognee lands EUR 7.5 million to scale enterprise-grade memory technology" (February 2026). [eu-startups.com](https://www.eu-startups.com/2026/02/german-ai-infrastructure-startup-cognee-lands-e7-5-million-to-scale-enterprise-grade-memory-technology/) --- Pebblebed-led seed for an enterprise graph memory layer.
+- Cognee. "cognee 1.0" (June 26, 2026). [Announcement](https://www.cognee.ai/cognee-1-0-announcement).
 - Neo4j. "Meet Lenny's Memory: Building Context Graphs for AI Agents" (January 2026). [neo4j.com/blog/developer](https://neo4j.com/blog/developer/meet-lennys-memory-building-context-graphs-for-ai-agents/) --- graph-native agent memory library (neo4j-labs/agent-memory).
 - OpenSPG/KAG releases. [github.com/OpenSPG/KAG/releases](https://github.com/OpenSPG/KAG/releases) --- last repository push January 28, 2026; last release v0.8.0 (June 2025), verified via GitHub API.
 - Goyal, Ankit and Ray, Jaideep. "Does Your Agent's Memory Survive a Model Upgrade? A Controlled Study of Memory Portability." arXiv 2609.05339 (September 4, 2026). [https://arxiv.org/abs/2609.05339](https://arxiv.org/abs/2609.05339) --- 48 synthetic cases across raw history, RAG, compressed notes, and structured knowledge graphs; graph memory near-invariant to model swaps (+0.0004 ± 0.0020) while compressed notes swing +9.91 / -13.28 points. Small synthetic sample, two authors, unreplicated. Covered in full in Chapter 6.

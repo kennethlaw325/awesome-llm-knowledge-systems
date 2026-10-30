@@ -1,5 +1,7 @@
 # 第 9 章：中国 AI 知识工程地景
 
+> 部分事实更正已于 2026-10-31 核对；其余沿用较早英文版本。最新英文版：[English](../../../chapters/09-china-ecosystem.md)。
+
 > **一句话总结：** 中国建出一套平行 AI 生态系, 配自己的开源平台、模型、社群——常常朝与西方不同的方向创新。
 >
 > **为什么重要：** 全球一半的 AI 研究者在中国。忽略这个生态系意味错过一半的创新。
@@ -14,7 +16,7 @@
 
 ### Dify（136K+ GitHub Stars）
 
-[Dify](https://github.com/langgenius/dify) 是全球最多 star 的 agentic AI 平台。Apache 2.0 授权, 它提供视觉画布建构 RAG 管线、agentic 工作流、多步推理链。从 1.0 版起 Dify 支援 Model Context Protocol（MCP）, 让外部工具服务器能无缝整合。它的强项在于桥接视觉设计工作流的无代码用户与需要程式化控制的开发者之间的差距。企业用户能自架整个堆叠, 这在数据主权要求常排除仅云端解法的中国市场关键。
+[Dify](https://github.com/langgenius/dify) 是全球最多 star 的 agentic AI 平台。它采用修改版 Apache 2.0 授权，多租户运营与前端标志／版权变更另有条件。它提供视觉画布建构 RAG 管线、agentic 工作流、多步推理链。从 1.0 版起 Dify 支援 Model Context Protocol（MCP）, 让外部工具服务器能无缝整合。它的强项在于桥接视觉设计工作流的无代码用户与需要程式化控制的开发者之间的差距。企业用户能自架整个堆叠, 这在数据主权要求常排除仅云端解法的中国市场关键。
 
 ### RAGFlow（62-75K+ GitHub Stars）
 
@@ -46,7 +48,7 @@ Qwen3 是阿里的旗舰模型家族。最大变体是 2,350 亿参数 Mixture o
 
 ### DeepSeek R1
 
-DeepSeek R1 在数学与科学推理基准上与 OpenAI 的 o1 持平, 同时 MIT 授权发布。该模型据报训练成本不到 600 万美元, 是可比西方模型的小部分。这个成本效率在行业引发震荡: R1 发布后数月, 中国企业开源模型采纳率从 23% 跳到 67%。DeepSeek R1 证明前沿级推理不需前沿级预算, 根本上转移知识工程的经济学。
+DeepSeek R1 在数学与科学推理基准上与 OpenAI 的 o1 持平，并以 MIT 授权发布。低训练成本数字来自 DeepSeek-V3 技术报告：按每 H800 GPU 小时 $2 估算，正式训练成本为 $5.576M，不包括先前研究与消融实验，也不是 R1 的总开发成本。R1 的意义在于以前沿推理开放权重供开发者使用；此处不以缺乏原始调查的采用率数字证明因果关系。
 
 2026 年 4 月, DeepSeek 用 **流形受限超连接（mHC）** 延伸它的架构贡献, 这是 Transformer++ 风格模型用的残差连接的泛化。当标准残差流跨层向前携带单一通道信息, mHC 携带 **多个内部流**, 每个被约束在一个学到的低维流形上。这个构造被设计来给后期层更丰富存取早期表示, 而不受简单多流残差在规模上承受的维度崩塌。DeepSeek 的博客在参数量相当下报告长程推理基准上的增益, 在信息必须跨许多中间层携带的任务上有最大改进。截至 2026 年 4 月, 该结果应被 **标记为等独立复制**——这是单一实验室对单一实验室模型的披露, 而该领域在没经过第三方再现的架构主张上吃过亏。如果结果成立, mHC 加入 MoE、MLA、DeepSeek 早期 multi-token prediction 工作, 成为在中国开源权重生态系起源后跨入主流使用的第三或第四个架构 primitive。
 
@@ -90,7 +92,7 @@ On-premise 部署在中国主导。这由两个相互加强因素驱动: 数据�
 
 ### 透过约束创新
 
-美国晶片出口管制创造了意外创新动态。中国 AI 实验室无法简单扩展运算, 不成比例地投资在算法效率。DeepSeek R1 不到 600 万美元训练成本是最可见结果, 但该 pattern 跨整个生态系延伸: 较小模型配更好推论优化、更激进量化技术、为最大化每 FLOP 能力设计的架构。西方生态系运算更多, 倾向透过规模创新。两个做法都产生前沿结果, 但透过不同路径。
+美国晶片出口管制创造了意外创新动态。中国 AI 实验室无法简单扩展运算, 不成比例地投资在算法效率。DeepSeek-V3 披露的正式训练成本，在上述核算范围内，体现这个方向；该 pattern 跨整个生态系延伸: 较小模型配更好推论优化、更激进量化技术、为最大化每 FLOP 能力设计的架构。西方生态系运算更多, 倾向透过规模创新。两个做法都产生前沿结果, 但透过不同路径。
 
 ### 开源作为策略性必要
 
@@ -101,6 +103,9 @@ On-premise 部署在中国主导。这由两个相互加强因素驱动: 数据�
 Bilibili（B 站）托管大量 AI 教程, 但从业者应注意许多是英文 YouTube 内容的重新上传或翻译。Bilibili AI 内容的原创价值在于中文专属工具教程: Dify 步步部署指南、Qwen 整合走读、英文不存在的企业部署案例研究。在 Bilibili 上研究时, 永远把内容追溯到原始来源。如果一个教程示范英文叙述配中文配音的 LangChain, 原始 YouTube 版本可能更新。
 
 ## 来源
+
+- Dify LICENSE: [https://raw.githubusercontent.com/langgenius/dify/main/LICENSE](https://raw.githubusercontent.com/langgenius/dify/main/LICENSE)
+- DeepSeek-V3 Technical Report, Table 1: [https://arxiv.org/html/2412.19437v2](https://arxiv.org/html/2412.19437v2)
 
 - Dify GitHub Repository: [https://github.com/langgenius/dify](https://github.com/langgenius/dify)
 - RAGFlow GitHub Repository: [https://github.com/infiniflow/ragflow](https://github.com/infiniflow/ragflow)
@@ -114,7 +119,7 @@ Bilibili（B 站）托管大量 AI 教程, 但从业者应注意许多是英文 
 - 百度. ERNIE 5.0 推出（2026 年 1 月）; 2.4T 参数 / 原生全模态主张透过百度官方频道与中国科技媒体流通。这里没引用单一主要 URL; 把模态与参数数字当作广为报告但次级。
 - Zhipu AI. GLM-4/5 模型卡在 Hugging Face 与官方 ZhipuAI 博客;「744B MoE GLM-5」+ agent 原生工具 token 跨模型卡与博客报道报告。主要入口: [https://www.zhipuai.cn](https://www.zhipuai.cn)。
 - Cyberspace Administration of China,「生成式 AI 服务申报」披露（2025 年 12 月）——748 服务数字在中国科技媒体广为复制; 底层 registry 透过 CAC 官方网站分批发布。
--「中国开源 AI」市场评论——R1 后中国企业开源采纳从 23% 到 67% 的转变跨多个次级出口在 2025-2026 报告; 视为广为引用但这里没钉单一主要调查。
+- 编辑注：未取得可核查原始调查，因此不引用 R1 后企业开源采用率的量化升幅。
 - DeepSeek. "DeepSeek mHC: Manifold-Constrained Hyper-Connections"（2026 年 4 月）。[https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections](https://deepseek.ai/blog/deepseek-mhc-manifold-constrained-hyper-connections) ——标记为等独立复制。
 - DeepSeek. V4 模型在 Hugging Face 发布（2026 年 4 月 24 日）。MIT 授权; V4-Pro 1.6T（49B 活跃）/ V4-Flash 284B（13B 活跃）; 1M token 默认 context。
 - Fortune. "DeepSeek unveils V4 model, with rock-bottom prices and close integration with Huawei's chips"（2026 年 4 月 24 日）。[https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/](https://fortune.com/2026/04/24/deepseek-v4-ai-model-price-performance-china-open-source/)

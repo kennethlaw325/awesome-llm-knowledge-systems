@@ -2,7 +2,7 @@
 
 [English](../README.md) | [繁體中文](README-zh.md) | [简体中文](README_zh-CN.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | **Español**
 
-> Esta es una traduccion al espanol del [English README](../README.md). 2 de 12 capitulos traducidos al espanol (Cap. 1 y Cap. 10; el resto en ingles por ahora). Calidad de traduccion v0 maquinal; PRs de refinamiento por hablantes nativos son bienvenidos. El ingles es la fuente de verdad.
+> Hay 2 de 14 capítulos traducidos al español (capítulos 1 y 10), con calidad v0. El 2026-10-31 solo se comprobaron y corrigieron algunos datos. Los capítulos traducidos conservan contenido anterior y no están totalmente sincronizados. Consulta el [English README](../README.md) y el [registro de cambios](../CHANGELOG.md) para la versión vigente. Se agradecen mejoras de traducción.
 
 > Analice mas de 50 awesome lists, encuestas y guias -- ninguna de ellas conectaba los puntos. Los papers de RAG no mencionan la ingenieria de harness. Los frameworks de memoria ignoran los sistemas de habilidades. La documentacion de MCP omite la divulgacion progresiva. Esta guia dibuja el mapa completo.
 
@@ -11,7 +11,7 @@
 ## TL;DR (Resumen Ejecutivo)
 
 - **La ingenieria de prompts fue solo el comienzo.** El campo ha evolucionado a traves de tres generaciones: Prompt Engineering (2022-2024), Context Engineering (ingenieria de contexto, 2025) y Harness Engineering (ingenieria de orquestacion, 2026). Cada capa subsume la anterior.
-- **RAG (Generacion Aumentada por Recuperacion) no esta muerto.** El 71% de las empresas que probaron context-stuffing (relleno de contexto) volvieron a RAG en 12 meses (Gartner Q4 2025). Las arquitecturas hibridas estan ganando.
+- **RAG (generación aumentada por recuperación) sigue mereciendo una evaluación.** Una ventana de contexto mayor no determina por sí sola la mejor arquitectura. Compara la recuperación y el contexto completo con tareas reales: calidad de respuesta, uso de tokens, latencia y actualización de la información.
 - **Context engineering se trata de lo que rodea la llamada, no de la llamada en si.** La redefinicion de Andrej Karpathy a mediados de 2025 cambio el enfoque de disenar prompts a construir dinamicamente toda la ventana de contexto.
 - **Harness engineering es la capa del sistema operativo.** Birgitta Böckeler (en la serie *Exploring Generative AI* de Martin Fowler, abril de 2026) y el enfoque de diseno de harness del equipo Codex de OpenAI formalizaron esto -- el modelo es la CPU, el contexto es la RAM, y el harness es el SO que orquesta todo.
 - **Hasta ahora, ninguna guia habia conectado todo esto.** RAG, grafos de conocimiento, contexto largo, MCP, enrutamiento de habilidades, sistemas de memoria y divulgacion progresiva son todos parte de un mismo ecosistema. Este es el mapa.
@@ -246,4 +246,4 @@ Usa esto como quieras. La atribucion se agradece pero no es obligatoria.
 
 ---
 
-*Ultima actualizacion: mayo 2026*
+*Correcciones de datos seleccionados: 2026-10-31. La traducción no está totalmente sincronizada con el inglés.*

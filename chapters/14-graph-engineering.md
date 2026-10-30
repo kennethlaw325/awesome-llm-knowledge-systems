@@ -4,7 +4,7 @@
 >
 > **Why it matters:** If the claim survives, it names the layer where multi-agent systems stop being ad hoc collections of loops and become designed organizations; if it does not, it is the clearest live case study of how these generational labels get made --- and unmade.
 >
-> **Reading time:** ~28 min (6,293 words / 230 wpm)
+> **Reading time:** ~29 min (6,600 words / 230 wpm)
 
 *Figure: The two objects section 14.2 separates -- a stable org graph of permitted delegation edges, and the ephemeral work graph a single job spawns inside it -- plus Perez's anchor, the externally grounded check that keeps mutually reviewing agents from converging on confident agreement. The term graph engineering is contested (14.3); these structures are not.*
 
@@ -100,6 +100,8 @@ Read the `none` state closely, because it decides what kind of control this is. 
 **A production account that predates the name by thirteen months.** The most detailed public description of a running agent organization was published before the term existed and was overlooked when this chapter was first drafted. Anthropic's ["How we built our multi-agent research system"](https://www.anthropic.com/engineering/multi-agent-research-system) (June 13, 2025) describes the orchestrator-worker topology behind Claude's Research feature: a lead agent "analyzes it, develops a strategy, and spawns subagents to explore different aspects simultaneously," each subagent holding its own context window, with a separate CitationAgent attributing sources. The disclosure goes past architecture into the parts that only matter in production --- evaluation started from "a set of about 20 queries representing real usage patterns" scored by an LLM judge on factual accuracy, citation accuracy, completeness, source quality and tool efficiency; failures are handled by systems "that can resume from where the agent was when the errors occurred"; releases use "rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously." The headline comparison is Anthropic's own internal one: a multi-agent system with Opus 4 leading Sonnet 4 subagents "outperformed single-agent Claude Opus 4 by 90.2%," at roughly 15 times the tokens of a chat interaction. The phrase "graph engineering" appears nowhere in it. What this is, precisely, is evidence that the *practice* had a disclosed production case a year before the *label* --- which is LangChain's argument, made from Anthropic's side of the fence.
 
 **And one built by nobody in particular.** The pattern is not confined to vendors. [`headcount`](https://github.com/cbrock84/headcount) (GitHub user cbrock84, repository created August 28, 2026, MIT-licensed) packages an entire agent organization for Claude Code: its README describes "a chief executive over 16 departments, 172 skills in total," each department an independently installable plugin. Its two governance ideas are the interesting part. Security and Legal & Risk are marked **reviewer-class** --- departments that stop work rather than add an opinion, reporting outside the function they audit. And agents are split by "exclusive write surface, not by topic," on the stated ground that "a topic split has no checkable boundary." That is an org graph with an explicit authority model, built entirely from existing subagent and plugin primitives by an independent developer. It is also, on the maturity axis, thin: the repository publishes no task volume, no reliability numbers and no cost data, its own GitHub description field still advertises a stale "15+ departments, 125+ skills," and the README never uses the phrase "graph engineering" either.
+
+For organization-wide monitoring boundaries, see [Chapter 4](04-harness-engineering.md#48-harness-maintenance-the-stress-testing-imperative).
 
 ---
 
@@ -209,6 +211,19 @@ An interim count was taken on August 24, 2026, 22 days before the gate; both rea
 
 The next thing that would change this verdict is narrow and easy to state: a vendor using the term in its own product vocabulary, or a named conference track. Neither was established by the evidence gathered by September 15, 2026.
 
+### October 31, 2026 update: circulation broadens, meanings diverge
+
+The September scorecard remains a historical check. October adds institutional circulation, with a qualification the name now needs more rather than less:
+
+| Signal | October evidence | What it establishes |
+|---|---|---|
+| Vendor vocabulary | Neo4j's [October 6 webinar](https://neo4j.com/events/on-demand/) uses graph engineering for procedural memory and typed AIP skill graphs. | Vendor educational use, not verified adoption of the org-graph meaning in product documentation. |
+| Conference talks and teaching | The [archived AI Engineer NYC schedule](https://ai.engineer/nyc/2026/schedule) lists Zachary Blumenfeld's "Graph Engineering 101: Predictability, Governance, Portability" for October 14. O'Reilly's [catalog](https://www.oreilly.com/library/view/graph-engineering/9781808812477/) lists Volodymyr Pavlyshyn's *Graph Engineering: The Loop Memory Model*, published by Packt, October 2026. | A named scheduled talk and a book, strengthening the teaching signal. A schedule does not verify delivery, the talk's precise meaning or a dedicated conference track. |
+| Production evidence | The September production account remains evidence for coordinated agents. | No new claim here that production topology establishes a separate engineering layer. |
+| Continued circulation | October's vendor event, conference listing and book extend the record beyond September. | The term continues circulating; institutional visibility does not settle its definition. |
+
+Neo4j's [webinar description](https://go.neo4j.com/WBR-EDU-261006-Procedural-knowledge_Registration.html?utm_campaign=dev&utm_medium=event-hub&utm_source=website) concerns procedures, dependencies and provenance. That belongs beside skill graphs and memory, rather than automatically beside permitted delegation edges. The book's catalog spans loops, swarms, DAGs and knowledge graphs; metadata and contents alone do not establish technical consensus. The October verdict therefore keeps both distinctions: circulation is stronger, while the org-graph meaning and a distinct fifth generation remain unproved.
+
 ---
 
 ## Three things to take away
@@ -221,6 +236,9 @@ The next thing that would change this verdict is narrow and easy to state: a ven
 
 ## Sources
 
+- AI Engineer NYC. Archived schedule, saved October 17, 2026; October 14 session listing: [https://ai.engineer/nyc/2026/schedule](https://ai.engineer/nyc/2026/schedule).
+- Neo4j. October 6, 2026 event listing: [https://neo4j.com/events/on-demand/](https://neo4j.com/events/on-demand/). Webinar description: [Neo4j registration page](https://go.neo4j.com/WBR-EDU-261006-Procedural-knowledge_Registration.html?utm_campaign=dev&utm_medium=event-hub&utm_source=website).
+- O'Reilly Learning. Packt book catalog, October 2026: [https://www.oreilly.com/library/view/graph-engineering/9781808812477/](https://www.oreilly.com/library/view/graph-engineering/9781808812477/).
 - Steinberger, Peter. X post, "Are we still talking loops or did we shift to graphs yet?" (July 18, 2026, per every source below that dates it) --- not directly fetched, and cited only through those sources: quoted verbatim by Perez and Thakker (explainx), linked without quotation by LangChain and Perez, rendered in Chinese translation by 36kr and Tony Bai, and paraphrased by Eigent. Reported view counts conflict across them.
 - Runkle, Sydney and Harrison Chase (LangChain). "3 Years of Graph Engineering with LangGraph" (July 22, 2026): [https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) --- lists graph engineering after prompt/context/harness/loop; "a loop is just a directed, cyclic graph"; the three-years-old-practice pushback.
 - Perez, Carlos E. (Intuition Machine). "From Loop Engineering to Graph Engineering?" (July 19, 2026): [https://medium.com/intuitionmachine/from-loop-engineering-to-graph-engineering-d3ebeb08511c](https://medium.com/intuitionmachine/from-loop-engineering-to-graph-engineering-d3ebeb08511c) --- first theoretical expansion; loops supervising loops; anchors as unarguable measurements against echo chambers.

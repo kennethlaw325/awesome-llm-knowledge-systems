@@ -1,12 +1,12 @@
 # Chapter 12: Local Models for Knowledge Engineering
 
-> **In one sentence:** Local models let you run your entire knowledge harness on your own hardware -- private, free, and increasingly competitive with cloud APIs.
+> **In one sentence:** Local models move inference onto your own hardware, reducing provider exposure and per-token API bills while adding local operating costs.
 >
-> **Why it matters:** If your knowledge base contains sensitive data, or if you want to fine-tune a model on your own notes, local inference is the only path that keeps everything under your control.
+> **Why it matters:** Sensitive knowledge and personal fine-tuning make the inference boundary an architectural choice; tools, logs and synchronization still need their own controls.
 >
-> **Reading time:** ~13 min (2,844 words / 230 wpm)
+> **Reading time:** ~14 min (3,121 words / 230 wpm)
 
-*Figure: Pattern 1 of the Integration Patterns section -- Ollama sitting between the models you pull and every consumer this chapter names, each reaching it through one OpenAI-compatible endpoint. The model names come from "Architecture: Where Local Models Fit", and the MCP servers feeding knowledge in from the other side are Pattern 3. The framework and plugin edges are the ordinary direction, a tool changing its base URL. The two desktop-app edges carry the argument: they are the late-2026 inverse the section flags, where the vendors' own apps point at the local runtime, which is what removes the consumer chat client as a reason to route a query off the machine.*
+*Figure: Pattern 1 of the Integration Patterns section -- Ollama sitting between downloaded models and their consumers through one OpenAI-compatible endpoint. Pattern 3 adds an MCP host/client that connects local knowledge servers to model calls; the inference endpoint does not itself provide MCP orchestration. The framework and plugin edges show a base-URL change, while the desktop-app edges show the late-2026 inverse: vendor apps selecting the local runtime.*
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
@@ -14,11 +14,11 @@ flowchart LR
     subgraph LOCAL["Models on your own hardware"]
       direction TB
       EMB["Embedding models<br/>nomic-embed-text, mxbai-embed-large, bge-m3"]
-      GEN["7-14B models<br/>Qwen3-14B, Llama 3.3-8B, Gemma 3-12B"]
+      GEN["7-14B models<br/>Qwen3-14B, Llama 3.1-8B-Instruct, Gemma 3-12B"]
     end
     EMB -->|ollama pull| OLL
     GEN -->|ollama pull| OLL
-    MCPS["MCP servers<br/>vault, databases, file system"] -->|serve local knowledge sources to the model| OLL
+    MCPS["MCP servers<br/>vault, databases, file system"] -->|local tools and resources| HOST
     OLL["Ollama<br/>one OpenAI-compatible API<br/>localhost:11434/v1"]
     subgraph CONS["Consumers pointed at the local runtime"]
       direction TB
@@ -26,12 +26,14 @@ flowchart LR
       OBS["Obsidian<br/>Smart Connections plugin"]
       CD["Claude Desktop"]
       CG["ChatGPT Desktop"]
+      HOST["MCP host/client<br/>tool execution and permissions"]
     end
     OLL -->|base_url swap| RAG
     OLL -->|base_url swap| OBS
     OLL -->|v0.33.0, the app points here| CD
     OLL -->|v0.34.0, the app points here| CG
-    class EMB,GEN,RAG,OBS,MCPS,CD,CG stable
+    HOST -->|model calls and tool results| OLL
+    class EMB,GEN,RAG,OBS,MCPS,CD,CG,HOST stable
     class OLL accent
 classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
 classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
@@ -49,9 +51,9 @@ This chapter covers the intersection of local models and knowledge engineering. 
 
 Three forces are driving the adoption of local models in knowledge systems:
 
-**Privacy as architecture, not policy.** When you run RAG over internal company documents, every query sends document chunks to a cloud provider. Data processing agreements help, but they do not eliminate the surface area. With local inference, the data never leaves the machine. For legal firms, healthcare organizations, and government agencies, this is not a preference -- it is a requirement.
+**Privacy as architecture, not policy.** Cloud-backed RAG can send retrieved document chunks to a provider. Local inference removes that model-provider transfer when the full path stays local. Tool calls, telemetry, logs and synchronization still need review. Some legal, healthcare and government workloads require such a boundary; the requirement depends on the deployment.
 
-**Cost at scale.** A knowledge system that runs continuous background processes -- vault linting, automatic note compilation, periodic re-indexing -- generates thousands of API calls per day. At cloud pricing, this adds up quickly. A local model running on consumer hardware has zero marginal cost per query after the initial setup. For always-on knowledge maintenance (the Lint operation from Karpathy's architecture), local inference changes the economics entirely.
+**Cost at scale.** A knowledge system that runs continuous background processes -- vault linting, automatic note compilation, periodic re-indexing -- can generate thousands of API calls per day. Local execution removes the per-token provider bill, but electricity, hardware capacity and maintenance still cost money. For always-on knowledge maintenance (the Lint operation from Karpathy's architecture), compare those costs with API usage rather than assuming free inference.
 
 **The fine-tuning endgame.** This is perhaps the most compelling reason. Once your knowledge base reaches sufficient quality -- hundreds of well-structured, cross-linked notes compiled through the Ingest operation -- it becomes a pristine synthetic dataset. You can fine-tune a small local model on this dataset, producing a model that inherently "knows" your domain without needing retrieval at runtime. The knowledge is in the weights, not the context window.
 
@@ -83,8 +85,8 @@ Using a local model to answer questions about your vault -- the Query operation 
 
 Practical options:
 - **Qwen3-14B**: Strong multilingual performance, Apache 2.0 license
-- **Llama 3.3-8B**: Fast inference, good at following structured instructions
-- **DeepSeek-R1-Distill-7B**: Reasoning capabilities distilled from the full R1, MIT license
+- **Llama 3.1-8B-Instruct**: An 8B instruction-tuned option; Llama 3.3 is a separate 70B model
+- **DeepSeek-R1-Distill-Qwen-7B**: Reasoning capabilities distilled from the full R1, MIT license
 - **Gemma 3-12B**: Google's efficient architecture, good at structured output
 
 The pattern that works best is a **tiered approach**: use a local model for routine queries and vault maintenance, escalate to a cloud API for complex synthesis and creative tasks. This mirrors how the harness engineering principle of progressive disclosure applies to model selection -- use the minimum capable model for each task.
@@ -93,11 +95,11 @@ The pattern that works best is a **tiered approach**: use a local model for rout
 
 The Ingest operation -- reading raw sources and compiling them into structured wiki pages -- is surprisingly well-suited to local models. The task is well-defined: read an article, extract key points, generate a structured note with wikilinks. A 14B model with good instruction-following can handle this reliably, especially when the output format is specified precisely in the system prompt.
 
-This is where the economics argument is strongest. If your Web Clipper captures 5-10 articles per day, and each compilation takes 2-3 minutes of inference, running this locally means your knowledge base grows continuously at zero marginal cost.
+This is where the economics argument is strongest. If your Web Clipper captures 5-10 articles per day, local compilation can keep the knowledge base growing without a per-token API bill, subject to available compute and operating costs.
 
 ### Vault Maintenance (High Value)
 
-The Lint operation -- scanning for contradictions, staleness, and orphaned notes -- is a batch process that benefits enormously from local inference. You can run it hourly, daily, or continuously in the background without worrying about API costs. A local model scans your vault, flags issues, and generates a health report -- all without any data leaving your machine.
+The Lint operation -- scanning for contradictions, staleness, and orphaned notes -- is a batch process that benefits from local inference. It can run hourly, daily, or continuously within the machine's compute budget. A local model scans the vault and generates a health report; keeping that workflow private also requires local tools and storage.
 
 ---
 
@@ -146,7 +148,7 @@ This gives you the privacy and cost benefits of local inference for high-volume 
 
 ### Pattern 3: MCP with Local Models
 
-The Model Context Protocol works with local models through Ollama's OpenAI-compatible endpoint. This means you can build MCP servers that connect to local knowledge sources -- your vault, your databases, your file system -- and serve them to a locally-running model. The entire knowledge harness runs on your machine.
+The integration needs an **MCP host/client**, as [Chapter 7](07-mcp.md) illustrates. The host discovers server tools, passes tool definitions and results through the model API, executes authorized calls, and enforces permissions. Ollama supplies inference; an OpenAI-compatible endpoint alone is not an MCP host. The harness can remain local when the host, servers, model and storage all run locally.
 
 ---
 
@@ -159,6 +161,16 @@ Three 2026 releases changed the local-inference picture this chapter describes.
 **Gemma 4 QAT (June 5).** Google published **quantization-aware training checkpoints** for all five Gemma 4 sizes (E2B, E4B, 12B, 26B-A4B, and 31B), simulating 4-bit precision *during* training so the quantized weights recover most of the BF16 quality rather than losing it at post-hoc compression. The release shipped **day-one artifacts across llama.cpp (GGUF), Ollama, LM Studio, and MLX**, with vLLM support day-one for E2B, E4B, 12B, and 31B --- the 26B-A4B MoE was excluded from the vLLM w4a16-ct QAT format because its 704-wide expert dimension loses too much quality at 4-bit. On memory: Google's own blog publishes no percentage figure; a third-party analysis estimates roughly **72% VRAM reduction versus BF16**, while Google's own stated figure is only that E2B drops under 1GB via a mobile format. The beat worth noting is the *release pattern itself*: vendor-native QAT plus simultaneous multi-runtime day-one distribution is becoming the default shape of a serious open-weight launch, which lowers the friction of the "run it locally" decision this chapter argues for.
 
 **Meta ships an open-weight model built for local agents (Muse Glimmer, August 10).** Meta Superintelligence Labs released **Muse Glimmer**, a 30B dense model distilled from the closed Muse Spark, under Apache 2.0 --- positioned explicitly as an open agentic model for on-device use rather than a scaled-down research artifact. At 4-bit quantization it comes in under 20GB, sized deliberately for the 24-32GB memory budget of a single consumer GPU, Mac or PC. Meta's own benchmarks report **DFlash** speculative-decoding speedups of **3.1x on an RTX 5090**, **1.8x on M5-Max**, and **1.5x on M4-Max**, plus benchmark superiority over Gemma4-31B and Qwen3.6-27B --- these are Meta's own figures, not independently reproduced. What distinguishes the release from a typical weights drop is distribution: near-day-zero runtime support across Hugging Face, Ollama, llama.cpp, MLX, ExecuTorch, LM Studio, Unsloth, vLLM, SGLang, Together AI, Fireworks AI, and OpenRouter. Every open-weight model this book has covered so far in the local-deployment context has been server-class only (Chapter 9's Kimi K3, explicitly excluded from the local story at 2.8T parameters); Muse Glimmer is the first US-frontier-lab model designed and benchmarked, from the outset, for single-consumer-GPU local agent use, shipped with the same vendor-native-QAT-plus-multi-runtime-day-one pattern the Gemma 4 QAT release modeled above. The pattern this chapter flagged as Google's is no longer Google-specific. (Meta separately said a later release of Muse Spark 1.2 weights is coming; that is a distinct, undated event and is not covered here.)
+
+---
+
+## Local Context and Decision Services
+
+**Shared context on the device (September 23, 2026).** Liquid AI announced **Liquid Context** optimized for Qualcomm's Hexagon NPU: a locally maintained, permissioned context layer that embedded, cloud and hybrid agents can consume. Context maintenance and the agent using it become separate components, extending [Chapter 6's memory architecture](06-agent-memory.md) beyond per-agent stores. The announcement is OEM-facing; its examples are illustrative, not evidence of broadly shipped consumer devices. A local memory layer also does not make connected cloud agents local.
+
+**Typed local decisions (September 29, 2026).** Ollama 0.35 introduced **`/v1/systemone`**, accepting state and named typed questions and returning bounded decisions with probabilities. Nimble 9B and experimental Tev1 models make routing, triage and moderation possible through a local decision interface rather than a generated prose answer. The architectural change is the interface, not a benchmark ranking. Probabilities still need workload-specific validation; deterministic host code should enforce permissions and escalation rules.
+
+Cross-vendor convergence followed on **October 1**, when Cloudflare announced Apache 2.0 **Clef/Clef-flash** with Jev-compatible typed outputs; Ollama announced local and cloud Clef support on **October 19**. This extends the same decision contract across deployment locations. These are vendor release announcements, not independent evidence of calibrated decisions or safe autonomous execution.
 
 ---
 
@@ -176,29 +188,36 @@ The focus here is on the architectural question: where do local models fit in yo
 
 ## Key Takeaways
 
-1. **Local embedding is a no-brainer.** The quality gap has closed, the cost is zero, and the privacy benefit is absolute. If you run RAG, run your embeddings locally.
+1. **Local embedding is a strong default to evaluate.** It reduces model-provider exposure and per-token bills, with hardware and operating costs still to budget.
 
 2. **Tiered inference is the pragmatic choice.** Local for routine operations, cloud for complex reasoning. Do not force a 7B model to do what a frontier model does better.
 
-3. **The compilation use case is underappreciated.** Running Ingest locally means your knowledge base can grow continuously at zero cost. This changes the economics of knowledge maintenance.
+3. **The compilation use case is underappreciated.** Running Ingest locally moves recurring work from a provider bill to your own compute budget.
 
 4. **Fine-tuning is the endgame, not the starting point.** Build the wiki first. Compile hundreds of quality notes. Then fine-tune. The quality of the training data -- your wiki -- determines the quality of the resulting model.
 
-5. **Privacy is an architecture decision.** If your knowledge contains sensitive information, local inference is not optional. Design for it from the start.
+5. **Privacy is an architecture decision.** Sensitive knowledge calls for explicit inference, tool, storage and synchronization boundaries; local inference controls one part of that path.
 
 ---
 
 ## Three things to take away
 
-- **Privacy is an architecture decision, not a policy one.** Data-processing agreements only manage the surface area that local inference removes outright, which is why some sectors treat it as a requirement rather than a preference.
-- **The economics flip on the always-on work.** Embeddings, knowledge compilation and the Lint pass run continuously at zero marginal cost once the model sits on your own hardware.
-- **In late 2026 the vendors' own desktop apps started pointing at Ollama.** Ollama v0.33.0 shipped Claude Desktop configuration and v0.34.0 added ChatGPT Desktop integration, configured through the Ollama macOS app, so the consumer chat client is no longer a reason to route a query off the machine.
+- **Local inference controls a data boundary.** It reduces provider exposure only when tools, logs and synchronization respect the intended boundary too.
+- **The economics change on always-on work.** Embeddings, knowledge compilation and the Lint pass trade per-token API bills for local hardware and operating costs.
+- **Local services now include context and decisions.** Liquid Context's announced shared memory layer and Ollama's typed decision endpoint separate recurring context maintenance and bounded judgments from general text generation.
 
 ---
 
 ## Sources
 
 - Ollama: [https://ollama.ai](https://ollama.ai)
+- Ollama. FAQ (read October 31, 2026). [https://docs.ollama.com/faq](https://docs.ollama.com/faq) -- local versus cloud processing; `OLLAMA_NO_CLOUD=1` disables cloud models and web search.
+- Liquid AI. "Liquid AI, in Collaboration with Qualcomm Technologies, Brings Personal AI Context to Devices Powered by Snapdragon" (September 23, 2026). [https://www.liquid.ai/blog/liquid-context-qualcomm](https://www.liquid.ai/blog/liquid-context-qualcomm) -- vendor announcement of an OEM-facing, permissioned local context layer; illustrative experiences, not a consumer deployment census.
+- Ollama. "Ollama now supports Jev-style decision models" (September 29, 2026). [https://ollama.com/blog/ollama-now-supports-jev-style-decision-models](https://ollama.com/blog/ollama-now-supports-jev-style-decision-models) -- Ollama 0.35 `/v1/systemone` interface and local launch models.
+- Cloudflare. "Introducing Clef: our open-source decision models, and new RL fine-tuning platform" (October 1, 2026). [https://blog.cloudflare.com/clef-decision-models](https://blog.cloudflare.com/clef-decision-models) -- Apache 2.0 weights and Jev-compatible decision API; benchmark claims are the vendor's.
+- Ollama. "Clef is available on Ollama's cloud" (October 19, 2026). [https://registry.ollama.com/blog/clef](https://registry.ollama.com/blog/clef) -- vendor-hosted article also documents local execution support.
+- Meta. Llama model cards: [https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) (July 23, 2024) and [https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) (December 6, 2024) -- distinguish the 8B instruction-tuned example from Llama 3.3's 70B release.
+- DeepSeek. DeepSeek-R1 repository and distilled-model list (January 2025). [https://github.com/deepseek-ai/DeepSeek-R1](https://github.com/deepseek-ai/DeepSeek-R1) -- exact `DeepSeek-R1-Distill-Qwen-7B` model identifier.
 - Ollama. Release v0.33.0 (August 21, 2026). [https://github.com/ollama/ollama/releases/tag/v0.33.0](https://github.com/ollama/ollama/releases/tag/v0.33.0) --- Claude Desktop configurable to use Ollama as a third-party gateway provider.
 - Ollama. Release v0.34.0 (September 5, 2026). [https://github.com/ollama/ollama/releases/tag/v0.34.0](https://github.com/ollama/ollama/releases/tag/v0.34.0) --- ChatGPT Desktop integration via the Ollama macOS app; OpenAI-compatible client tool search, response compaction, and faster structured output on Apple Silicon.
 - llama.cpp: [https://github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
