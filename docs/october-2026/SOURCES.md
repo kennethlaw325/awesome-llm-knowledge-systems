@@ -43,7 +43,7 @@ Issues were read, not commented on or closed. Selection remains pattern first, p
 
 ## Remaining work
 
-- Fully synchronize translated chapters in a separate translation pass; current changes correct selected facts and state the lag.
+- Full translation synchronization was completed in the November 1 follow-up: [scope and source snapshot](../../translations/SYNC.md).
 - Validate the Tree Ring integration and any independent adoption evidence before revisiting product inclusion.
-- A README animation remains a presentation follow-up; no video was produced in this content/reading update.
+- The November 1 follow-up adds the [30-second README animation](../../diagrams/knowledge-map.mp4), [GIF](../../diagrams/knowledge-map.gif) and [editable source](../../diagrams/readme-animation/README.md). No video was produced in the earlier October content wave itself.
 - Continue auditing older undated prices, market-share figures and vendor superlatives when the affected sections are next maintained.

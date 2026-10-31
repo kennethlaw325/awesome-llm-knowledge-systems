@@ -27,8 +27,8 @@ validation:
     anchors: warn
     unrecognized_links: warn
 
-# Translations ship with the site for their links to resolve, but the nav
-# stays English-only.
+# English chapter navigation stays compact; language entry points below lead
+# to complete translated reading paths. Other translated pages stay off-nav.
 not_in_nav: |
   translations/**
 
@@ -103,6 +103,12 @@ nav:
       - "13 · Loop Engineering": chapters/13-loop-engineering.md
       - "14 · Graph Engineering": chapters/14-graph-engineering.md
   - Glossary: glossary.md
+  - Translations:
+      - 繁體中文: translations/README-zh.md
+      - 简体中文: translations/README_zh-CN.md
+      - 日本語: translations/README_ja.md
+      - 한국어: translations/README_ko.md
+      - Español: translations/README_es.md
   - About:
       - Changelog: CHANGELOG.md
       - Contributing: CONTRIBUTING.md

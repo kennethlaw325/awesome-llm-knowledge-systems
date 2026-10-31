@@ -1,0 +1,92 @@
+<template>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f8fa;color:#1f2328;font-family:Montserrat,sans-serif}
+#root{position:relative;width:100%;height:100%;overflow:hidden;background:#f6f8fa}
+.clip{position:absolute;inset:0}.eyebrow{position:absolute;left:92px;top:54px;font:20px 'IBM Plex Mono',monospace;letter-spacing:1px;color:#57606a}
+.headline{position:absolute;left:92px;top:111px;width:1100px;margin:0;font-size:52px;line-height:1.2;letter-spacing:-1.5px;font-weight:700}
+.accent{color:#2563eb}.hidden{opacity:0}.node{position:absolute;border:2px solid #8c959f;border-radius:10px;padding:23px;background:#eef1f4}
+.node{display:flex;align-items:center;justify-content:center}.node h2{font-size:38px;margin:0;line-height:1.1;font-weight:700}
+#sources{left:92px;top:344px;width:280px;height:152px}
+#context{left:442px;top:344px;width:342px;height:152px;background:#dbeafe;border-color:#2563eb}
+#model{left:884px;top:344px;width:280px;height:152px;background:#f6f8fa}
+#prompt{left:448px;top:344px;width:330px;height:152px;background:#eef1f4}
+#harness{position:absolute;left:396px;top:270px;width:814px;height:294px;border:3px solid #2563eb;border-radius:16px;background:transparent}
+#harness-label{position:absolute;left:423px;top:289px;font-size:32px;font-weight:700;color:#0b3a8f}
+.control{position:absolute;top:511px;font-size:30px;color:#0b3a8f}
+#tools{left:447px}#permissions{left:667px}#checks{left:986px}
+#edges{position:absolute;inset:0;width:1280px;height:720px;pointer-events:none}
+.wire{fill:none;stroke:#2563eb;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.feedback{stroke:#57606a}
+.edge-label{position:absolute;font-size:30px;background:#f6f8fa;padding:4px 12px;color:#57606a}
+#feedback-label{left:472px;top:590px}
+#final{position:absolute;inset:0}
+.route{position:absolute;left:96px;width:1090px;display:flex;align-items:baseline;border-bottom:1px solid #c5ccd5;padding:0 0 20px;font-size:44px;line-height:1.3}
+.route strong{width:320px;font-weight:700}.route span{color:#2563eb;font-family:'IBM Plex Mono',monospace;font-size:40px}
+#route1{top:292px}#route2{top:385px}#route3{top:478px}
+#closing{position:absolute;left:96px;top:596px;margin:0;font-size:36px;color:#46515e}
+#footer{position:absolute;right:90px;top:660px;font:20px 'IBM Plex Mono',monospace;color:#57606a}
+</style>
+<div data-hf-id="hf-tgfg" id="root" data-composition-id="map-scene" data-width="1280" data-height="720" data-duration="30" data-fps="30">
+ <section data-hf-id="hf-esn8" id="scene" class="clip">
+  <div data-hf-id="hf-mzto" class="eyebrow">LLM KNOWLEDGE ENGINEERING · 2026</div>
+  <h1 data-hf-id="hf-j8mb" id="title1" class="headline" data-hold>Your agent needs more than <span data-hf-id="hf-7xd2" class="accent">a prompt.</span></h1>
+  <h1 data-hf-id="hf-jfgd" id="title2" class="headline hidden">Start with the right <span data-hf-id="hf-rwpg" class="accent">evidence.</span></h1>
+  <h1 data-hf-id="hf-7dtz" id="title3" class="headline hidden">Build the <span data-hf-id="hf-7jyu" class="accent">system</span> around the model.</h1>
+  <div data-hf-id="hf-qd3x" id="map">
+   <div data-hf-id="hf-p5up" id="harness" class="hidden" data-layout-ignore></div>
+   <div data-hf-id="hf-qyb1" id="harness-label" class="hidden">HARNESS</div>
+   <svg data-hf-id="hf-w8na" id="edges" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" data-layout-ignore>
+    <path data-hf-id="hf-mjmx" id="prompt-wire" class="wire" d="M784 423 H872 M862 415 L872 423 L862 431"/>
+    <path data-hf-id="hf-7x2o" id="source-wire" class="wire" d="M372 422 H430 M420 414 L430 422 L420 430"/>
+    <path data-hf-id="hf-3zg0" id="context-wire" class="wire" d="M784 422 H872 M862 414 L872 422 L862 430"/>
+    <path data-hf-id="hf-szi4" id="feedback-wire" class="wire feedback" d="M1024 564 V614 H220 V500 M212 510 L220 500 L228 510"/>
+   </svg>
+   <div data-hf-id="hf-n6l0" id="prompt" class="node"><h2 data-hf-id="hf-w8lx">Prompt</h2></div>
+   <div data-hf-id="hf-gjj8" id="sources" class="node hidden"><h2 data-hf-id="hf-1not">Knowledge</h2></div>
+   <div data-hf-id="hf-vx33" id="context" class="node hidden" data-hold><h2 data-hf-id="hf-f72e">Context</h2></div>
+   <div data-hf-id="hf-umdl" id="model" class="node"><h2 data-hf-id="hf-2tbw">Model</h2></div>
+   <div data-hf-id="hf-1fbr" id="tools" class="control hidden">Tools</div>
+   <div data-hf-id="hf-tb47" id="permissions" class="control hidden">Permissions</div>
+   <div data-hf-id="hf-68x9" id="checks" class="control hidden">Checks</div>
+   <div data-hf-id="hf-buv5" id="feedback-label" class="edge-label hidden">Evaluate → improve</div>
+  </div>
+  <div data-hf-id="hf-zd7i" id="final" class="hidden">
+   <h1 data-hf-id="hf-yju9" id="final-title" class="headline">Find your <span data-hf-id="hf-cowf" class="accent">next chapter.</span></h1>
+   <div data-hf-id="hf-f9xt" id="route1" class="route"><strong data-hf-id="hf-9p30">Understand</strong><span data-hf-id="hf-ckg9">01 → 02 → 03</span></div>
+   <div data-hf-id="hf-j81u" id="route2" class="route"><strong data-hf-id="hf-y9n6">Build</strong><span data-hf-id="hf-edfd">04 → 05 → 06 → 07</span></div>
+   <div data-hf-id="hf-n65v" id="route3" class="route"><strong data-hf-id="hf-tpxm">Operate</strong><span data-hf-id="hf-j1xp">10 → 13 → 14</span></div>
+   <p data-hf-id="hf-1lta" id="closing">One connected map. 14 chapters to explore.</p>
+  </div>
+  <div data-hf-id="hf-yjgh" id="footer">kennethlaw325 / awesome-llm-knowledge-systems</div>
+ </section>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+for(const id of ['source-wire','context-wire','feedback-wire']){
+ const p=document.getElementById(id),len=p.getTotalLength();
+ p.style.strokeDasharray=String(len);p.style.strokeDashoffset=String(len);
+}
+tl.to('#title1',{opacity:0,duration:0.28,ease:'power2.in'},4.5);
+tl.to('#prompt',{opacity:0,x:18,duration:0.35,ease:'power3.in'},4.5);
+tl.to('#prompt-wire',{opacity:0,duration:0.2},4.5);
+tl.fromTo('#title2',{opacity:0},{opacity:1,duration:0.35,ease:'power1.out'},4.85);
+tl.fromTo('#sources',{opacity:0,x:-35},{opacity:1,x:0,duration:0.7,ease:'power4.out'},5.3);
+tl.to('#source-wire',{strokeDashoffset:0,duration:0.7,ease:'power2.out'},7.6);
+tl.fromTo('#context',{opacity:0,scale:0.96},{opacity:1,scale:1,duration:0.65,ease:'power4.out'},8.1);
+tl.to('#context-wire',{strokeDashoffset:0,duration:0.7,ease:'power2.out'},10.4);
+tl.to('#title2',{opacity:0,duration:0.25,ease:'power2.in'},12.1);
+tl.fromTo('#title3',{opacity:0},{opacity:1,duration:0.35,ease:'power1.out'},12.5);
+tl.fromTo('#harness',{opacity:0,scale:0.94},{opacity:1,scale:1,duration:0.8,ease:'power4.out'},13.1);
+tl.fromTo('#harness-label',{opacity:0},{opacity:1,duration:0.35},13.55);
+tl.fromTo('#tools,#permissions,#checks',{opacity:0,y:14},{opacity:1,y:0,duration:0.55,stagger:0.14,ease:'power4.out'},14.9);
+tl.to('#feedback-wire',{strokeDashoffset:0,duration:1.25,ease:'power2.inOut'},18.5);
+tl.fromTo('#feedback-label',{opacity:0},{opacity:1,duration:0.4},19.4);
+tl.to('#map,#title3',{opacity:0,duration:0.35,ease:'power2.in'},22.35);
+tl.fromTo('#final',{opacity:0},{opacity:1,duration:0.35},22.8);
+tl.fromTo('#route1,#route2,#route3',{x:30,opacity:0},{x:0,opacity:1,duration:0.7,stagger:0.16,ease:'power4.out'},23.2);
+tl.fromTo('#closing',{opacity:0},{opacity:1,duration:0.4},24.4);
+tl.to('#final',{opacity:0,duration:0.3,ease:'power2.in'},29.65);
+window.__timelines=window.__timelines||{};
+window.__timelines['map-scene']=tl;
+</script>
+</template>

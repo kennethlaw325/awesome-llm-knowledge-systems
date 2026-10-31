@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "english_edition": "2026-10-31",
+  "synchronized_on": "2026-11-01",
+  "hash_encoding": "SHA-256 of UTF-8 text with LF line endings",
+  "scope": "README, fourteen chapters and glossary per language",
+  "languages": [
+    "zh-CN",
+    "zh",
+    "ja",
+    "ko",
+    "es"
+  ],
+  "document_count": 80,
+  "aligned_source_lines": 21200,
+  "documents": [
+    {
+      "source": "README.md",
+      "source_sha256": "c50b5b94275c6072424355fea511d12978b0506b91c38a3541eea893b2514c6a",
+      "translation": "translations/README_zh-CN.md",
+      "translation_sha256": "42c0285137c27bc13aead334b85ebbcdcf3211f8246c3c6f8944f44e6db81d99",
+      "language": "zh-CN",
+      "source_lines": 288,
+      "translated_body_lines": 288
+    },
+    {
+      "source": "glossary.md",
+      "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
+      "translation": "translations/glossary_zh-CN.md",
+      "translation_sha256": "af526a23350217b3dacfeaf806a756649135ee291af2132fa7f727d8d5e57bf8",
+      "language": "zh-CN",
+      "source_lines": 255,
+      "translated_body_lines": 255
+    },
+    {
+      "source": "chapters/01-evolution.md",
+      "source_sha256": "dff31e88625a57a7471b26f3ff07ec91d40f8d671d873cc87f4c126e91b25503",
+      "translation": "translations/chapters/zh-CN/01-evolution.md",
+      "translation_sha256": "3be1d98284499d48eee7a357d3bc1e84214ac9e49593a8cf22b47f850ba97f11",
+      "language": "zh-CN",
+      "source_lines": 231,
+      "translated_body_lines": 231
+    },
+    {
+      "source": "chapters/02-knowledge-layer.md",
+      "source_sha256": "593bcc1501e5fae773c858b380d1f0c9234860d3ad1283f305e1092437e826e2",
+      "translation": "translations/chapters/zh-CN/02-knowledge-layer.md",
+      "translation_sha256": "4b921ee0d2c8c953b022f0bbf7bd02a06f1c0e894c53917a4fc5818b44ac3ada",
+      "language": "zh-CN",
+      "source_lines": 260,
+      "translated_body_lines": 260
+    },
+    {
+      "source": "chapters/03-context-engineering.md",
+      "source_sha256": "29a6f934b1c2f82e6c02a78cc3a71321f99d45997f537b0dc730c926d1082a99",
+      "translation": "translations/chapters/zh-CN/03-context-engineering.md",
+      "translation_sha256": "05bbfa0edcc0afd684465e6152978dae7009700f5bc94beade8a5148f7775f60",
+      "language": "zh-CN",
+      "source_lines": 147,
+      "translated_body_lines": 147
+    },
+    {
+      "source": "chapters/04-harness-engineering.md",
+      "source_sha256": "2b4aa4b502eb4c288abf368e71eee5e73fdabe78b649aa4c11eadca0e971a700",
+      "translation": "translations/chapters/zh-CN/04-harness-engineering.md",
+      "translation_sha256": "0e72ce1e4d032b2b3b8eaba808afe0517d543271e0bee026554d17a265242db9",
+      "language": "zh-CN",
+      "source_lines": 339,
+      "translated_body_lines": 339
+    },
+    {
+      "source": "chapters/05-skill-systems.md",
+      "source_sha256": "3aa050b33fd2d74c119f8febc65b9bd56deb635528612dc3e0d98349d4a71c94",
+      "translation": "translations/chapters/zh-CN/05-skill-systems.md",
+      "translation_sha256": "d4f3d46f57481ab632b0b8b00ceba1c876311be4a3d8f063c315b6d0431b9d66",
+      "language": "zh-CN",
+      "source_lines": 229,
+      "translated_body_lines": 229
+    },
+    {
+      "source": "chapters/06-agent-memory.md",
+      "source_sha256": "6ab3439a66feff1e8e8682b9278179c3946de3b0782d084a9906782a665e3276",
+      "translation": "translations/chapters/zh-CN/06-agent-memory.md",
+      "translation_sha256": "75354155de4d4acb5696510da4425779b85ceab1dc9f6c0ccb15f3ead6e23bbf",
+      "language": "zh-CN",
+      "source_lines": 233,
+      "translated_body_lines": 233
+    },
+    {
+      "source": "chapters/07-mcp.md",
+      "source_sha256": "467da757a9dc81d57e0d65722feabf68413f9e777825c847752764343ba4169f",
+      "translation": "translations/chapters/zh-CN/07-mcp.md",
+      "translation_sha256": "266ef09884dc3c235838294c0eb797bc5d0e13d642713aa48682260cac29411f",
+      "language": "zh-CN",
+      "source_lines": 257,
+      "translated_body_lines": 257
+    },
+    {
+      "source": "chapters/08-tools-landscape.md",
+      "source_sha256": "ef5b8dc3c5e89fc5ed83cd242aebf668d445b2715758d84df2dfa24d12563a16",
+      "translation": "translations/chapters/zh-CN/08-tools-landscape.md",
+      "translation_sha256": "1f0829549794a88664ee19214627e3b3eb50eb0b87689ae07dc1e5c67c0fafe1",
+      "language": "zh-CN",
+      "source_lines": 169,
+      "translated_body_lines": 169
+    },
+    {
+      "source": "chapters/09-china-ecosystem.md",
+      "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
+      "translation": "translations/chapters/zh-CN/09-china-ecosystem.md",
+      "translation_sha256": "6d49957e73b6dcf5067a899dfd797c7a56173ecc0072e99567cc161c34f33ecc",
+      "language": "zh-CN",
+      "source_lines": 227,
+      "translated_body_lines": 227
+    },
+    {
+      "source": "chapters/10-case-study.md",
+      "source_sha256": "18020aa72b3e41f0b6e075cb506731de9470a461290736bf04ddd8b068f9854c",
+      "translation": "translations/chapters/zh-CN/10-case-study.md",
+      "translation_sha256": "0613985055393e2ebbee35e3eb17dbb3c02de3b12ab1db81a15787b865a12ac6",
+      "language": "zh-CN",
+      "source_lines": 154,
+      "translated_body_lines": 154
+    },
+    {
+      "source": "chapters/11-timeline.md",
+      "source_sha256": "145c54e755055fb5b8f5df0146f9cfe2baf4c5cf6a24eed85f2204652a611f9c",
+      "translation": "translations/chapters/zh-CN/11-timeline.md",
+      "translation_sha256": "b3e69b8f1887a4a3590f3cfa14478140e90c5646eedda733e7b3e38e2959245c",
+      "language": "zh-CN",
+      "source_lines": 730,
+      "translated_body_lines": 730
+    },
+    {
+      "source": "chapters/12-local-models.md",
+      "source_sha256": "9f9215d5a341c8e5de261e947ef4eb0330c4778abba949f2d451b94591a2177b",
+      "translation": "translations/chapters/zh-CN/12-local-models.md",
+      "translation_sha256": "3eeb7a6b80f00acca069366004ca4b5bfb51b71dfa046a96ef4fd7386bd5e0df",
+      "language": "zh-CN",
+      "source_lines": 223,
+      "translated_body_lines": 223
+    },
+    {
+      "source": "chapters/13-loop-engineering.md",
+      "source_sha256": "12a90f153f019b5f0756f0043f63de66dc4427e5b69b7baaa748684bdff3bf84",
+      "translation": "translations/chapters/zh-CN/13-loop-engineering.md",
+      "translation_sha256": "0e3994cf284d5e2484a32b527eb23207d56efd892866b920d3228ba5bbb0684a",
+      "language": "zh-CN",
+      "source_lines": 235,
+      "translated_body_lines": 235
+    },
+    {
+      "source": "chapters/14-graph-engineering.md",
+      "source_sha256": "537bb8a3a077bb15f593907f20aa77fe4386182a09fe54d480c424784ef9df90",
+      "translation": "translations/chapters/zh-CN/14-graph-engineering.md",
+      "translation_sha256": "b824a270fcd5dfe88b519a97229e5f7c017a69d6b4ce7dd15e4c57dd8c97ce4d",
+      "language": "zh-CN",
+      "source_lines": 263,
+      "translated_body_lines": 263
+    },
+    {
+      "source": "README.md",
+      "source_sha256": "c50b5b94275c6072424355fea511d12978b0506b91c38a3541eea893b2514c6a",
+      "translation": "translations/README-zh.md",
+      "translation_sha256": "df4f356fc22d04a9abb28d87c58e9e6278e849af565aaecf50f834eb43bfd078",
+      "language": "zh",
+      "source_lines": 288,
+      "translated_body_lines": 288
+    },
+    {
+      "source": "glossary.md",
+      "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
+      "translation": "translations/glossary_zh.md",
+      "translation_sha256": "e8ce99daaa63f04b04d494c3622996fe931c339e432535c57421b319171e6b3d",
+      "language": "zh",
+      "source_lines": 255,
+      "translated_body_lines": 255
+    },
+    {
+      "source": "chapters/01-evolution.md",
+      "source_sha256": "dff31e88625a57a7471b26f3ff07ec91d40f8d671d873cc87f4c126e91b25503",
+      "translation": "translations/chapters/zh/01-evolution.md",
+      "translation_sha256": "537ab593da523806f7f2087433f10bcd2f384e7e1c1d424195429b5869eb0b15",
+      "language": "zh",
+      "source_lines": 231,
+      "translated_body_lines": 231
+    },
+    {
+      "source": "chapters/02-knowledge-layer.md",
+      "source_sha256": "593bcc1501e5fae773c858b380d1f0c9234860d3ad1283f305e1092437e826e2",
+      "translation": "translations/chapters/zh/02-knowledge-layer.md",
+      "translation_sha256": "664880ec6d4770a364e7034ffe53e57f3f170fc06b90f04e97defc3dd546f27a",
+      "language": "zh",
+      "source_lines": 260,
+      "translated_body_lines": 260
+    },
+    {
+      "source": "chapters/03-context-engineering.md",
+      "source_sha256": "29a6f934b1c2f82e6c02a78cc3a71321f99d45997f537b0dc730c926d1082a99",
+      "translation": "translations/chapters/zh/03-context-engineering.md",
+      "translation_sha256": "2edeb19732811804b5f3c6e5212a99a0c4ca1d1b6068c2e613ac396016a3e914",
+      "language": "zh",
+      "source_lines": 147,
+      "translated_body_lines": 147
+    },
+    {
+      "source": "chapters/04-harness-engineering.md",
+      "source_sha256": "2b4aa4b502eb4c288abf368e71eee5e73fdabe78b649aa4c11eadca0e971a700",
+      "translation": "translations/chapters/zh/04-harness-engineering.md",
+      "translation_sha256": "51b45e91f452cbe774591ea48ab0b75ad89e3a08efa91b51825b99415932f1be",
+      "language": "zh",
+      "source_lines": 339,
+      "translated_body_lines": 339
+    },
+    {
+      "source": "chapters/05-skill-systems.md",
+      "source_sha256": "3aa050b33fd2d74c119f8febc65b9bd56deb635528612dc3e0d98349d4a71c94",
+      "translation": "translations/chapters/zh/05-skill-systems.md",
+      "translation_sha256": "8e182474057957639db8d02af1d14df08299ef5192445521a0d90d95655241d9",
+      "language": "zh",
+      "source_lines": 229,
+      "translated_body_lines": 229
+    },
+    {
+      "source": "chapters/06-agent-memory.md",
+      "source_sha256": "6ab3439a66feff1e8e8682b9278179c3946de3b0782d084a9906782a665e3276",
+      "translation": "translations/chapters/zh/06-agent-memory.md",
+      "translation_sha256": "542cc0a9cbea152f4470a28789a9f0ba0ea5ec42b3a551e805c1b8924d4456c8",
+      "language": "zh",
+      "source_lines": 233,
+      "translated_body_lines": 233
+    },
+    {
+      "source": "chapters/07-mcp.md",
+      "source_sha256": "467da757a9dc81d57e0d65722feabf68413f9e777825c847752764343ba4169f",
+      "translation": "translations/chapters/zh/07-mcp.md",
+      "translation_sha256": "722c976f6e26c30212617d15941baae327b718ad10b741d44d01e5e326eec5b2",
+      "language": "zh",
+      "source_lines": 257,
+      "translated_body_lines": 257
+    },
+    {
+      "source": "chapters/08-tools-landscape.md",
+      "source_sha256": "ef5b8dc3c5e89fc5ed83cd242aebf668d445b2715758d84df2dfa24d12563a16",
+      "translation": "translations/chapters/zh/08-tools-landscape.md",
+      "translation_sha256": "fbfb4a2f74a5fab84393f191a944524476c0dd4ca3d4b1bfc281061d4dc6ff7c",
+      "language": "zh",
+      "source_lines": 169,
+      "translated_body_lines": 169
+    },
+    {
+      "source": "chapters/09-china-ecosystem.md",
+      "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
+      "translation": "translations/chapters/zh/09-china-ecosystem.md",
+      "translation_sha256": "de688e9743aeebf663f5492225c554fa889259417489cdcc847b9b2b9e08cb3f",
+      "language": "zh",
+      "source_lines": 227,
+      "translated_body_lines": 227
+    },
+    {
+      "source": "chapters/10-case-study.md",
+      "source_sha256": "18020aa72b3e41f0b6e075cb506731de9470a461290736bf04ddd8b068f9854c",
+      "translation": "translations/chapters/zh/10-case-study.md",
+      "translation_sha256": "48dd654f14b0c4b6cbc53938b7885a45a3e50dc147b23b4823b67db474fabe56",
+      "language": "zh",
+      "source_lines": 154,
+      "translated_body_lines": 154
+    },
+    {
+      "source": "chapters/11-timeline.md",
+      "source_sha256": "145c54e755055fb5b8f5df0146f9cfe2baf4c5cf6a24eed85f2204652a611f9c",
+      "translation": "translations/chapters/zh/11-timeline.md",
+      "translation_sha256": "d33521457ffaefbd1e95d830c9e7629b2b8e9d315e0dd2b6393ea87980411bc3",
+      "language": "zh",
+      "source_lines": 730,
+      "translated_body_lines": 730
+    },
+    {
+      "source": "chapters/12-local-models.md",
+      "source_sha256": "9f9215d5a341c8e5de261e947ef4eb0330c4778abba949f2d451b94591a2177b",
+      "translation": "translations/chapters/zh/12-local-models.md",
+      "translation_sha256": "749c261851f5f2c4b0d44e09536957ef61fbe80df85e4e3d67da1b876b9e0611",
+      "language": "zh",
+      "source_lines": 223,
+      "translated_body_lines": 223
+    },
+    {
+      "source": "chapters/13-loop-engineering.md",
+      "source_sha256": "12a90f153f019b5f0756f0043f63de66dc4427e5b69b7baaa748684bdff3bf84",
+      "translation": "translations/chapters/zh/13-loop-engineering.md",
+      "translation_sha256": "0819e66f92cd39384f130c5bbc60fe98134f92463df06b559453822f4473c242",
+      "language": "zh",
+      "source_lines": 235,
+      "translated_body_lines": 235
+    },
+    {
+      "source": "chapters/14-graph-engineering.md",
+      "source_sha256": "537bb8a3a077bb15f593907f20aa77fe4386182a09fe54d480c424784ef9df90",
+      "translation": "translations/chapters/zh/14-graph-engineering.md",
+      "translation_sha256": "83dc54f461410c5cb12fe278c04ab454f790b945546df4ee48452c0e40de4ad3",
+      "language": "zh",
+      "source_lines": 263,
+      "translated_body_lines": 263
+    },
+    {
+      "source": "README.md",
+      "source_sha256": "c50b5b94275c6072424355fea511d12978b0506b91c38a3541eea893b2514c6a",
+      "translation": "translations/README_ja.md",
+      "translation_sha256": "29c95960fb626a4de36aebdaabf8663ee0182fa4b0fa0abe6376783595a1faa5",
+      "language": "ja",
+      "source_lines": 288,
+      "translated_body_lines": 288
+    },
+    {
+      "source": "glossary.md",
+      "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
+      "translation": "translations/glossary_ja.md",
+      "translation_sha256": "5481ae3c01c1f3f0679c714dc45cddf23ea068b54eeaa3b8866eee957f21ac65",
+      "language": "ja",
+      "source_lines": 255,
+      "translated_body_lines": 255
+    },
+    {
+      "source": "chapters/01-evolution.md",
+      "source_sha256": "dff31e88625a57a7471b26f3ff07ec91d40f8d671d873cc87f4c126e91b25503",
+      "translation": "translations/chapters/ja/01-evolution.md",
+      "translation_sha256": "0fc96adff915ecdf8f0ae43f20bba5111eaf90e6a35c9347a1bf50da03685f2a",
+      "language": "ja",
+      "source_lines": 231,
+      "translated_body_lines": 231
+    },
+    {
+      "source": "chapters/02-knowledge-layer.md",
+      "source_sha256": "593bcc1501e5fae773c858b380d1f0c9234860d3ad1283f305e1092437e826e2",
+      "translation": "translations/chapters/ja/02-knowledge-layer.md",
+      "translation_sha256": "73b8dec81f31d12cc46096d10f7cdc469ecbb377eb95a080707a9a678c37de46",
+      "language": "ja",
+      "source_lines": 260,
+      "translated_body_lines": 260
+    },
+    {
+      "source": "chapters/03-context-engineering.md",
+      "source_sha256": "29a6f934b1c2f82e6c02a78cc3a71321f99d45997f537b0dc730c926d1082a99",
+      "translation": "translations/chapters/ja/03-context-engineering.md",
+      "translation_sha256": "ee266f8f5389d32acca06dfbc821bae598cda5b927f69dbdaaab0a504740e3bf",
+      "language": "ja",
+      "source_lines": 147,
+      "translated_body_lines": 147
+    },
+    {
+      "source": "chapters/04-harness-engineering.md",
+      "source_sha256": "2b4aa4b502eb4c288abf368e71eee5e73fdabe78b649aa4c11eadca0e971a700",
+      "translation": "translations/chapters/ja/04-harness-engineering.md",
+      "translation_sha256": "b2bd68f02019dc75aea229cacc7987706d1c4396573b1cf531cd8dc48b2d3437",
+      "language": "ja",
+      "source_lines": 339,
+      "translated_body_lines": 339
+    },
+    {
+      "source": "chapters/05-skill-systems.md",
+      "source_sha256": "3aa050b33fd2d74c119f8febc65b9bd56deb635528612dc3e0d98349d4a71c94",
+      "translation": "translations/chapters/ja/05-skill-systems.md",
+      "translation_sha256": "140e1a8a8db6f8bb232095ed8d9bc767ac45cf1206fc0e635d6cbf6df4e3e70f",
+      "language": "ja",
+      "source_lines": 229,
+      "translated_body_lines": 229
+    },
+    {
+      "source": "chapters/06-agent-memory.md",
+      "source_sha256": "6ab3439a66feff1e8e8682b9278179c3946de3b0782d084a9906782a665e3276",
+      "translation": "translations/chapters/ja/06-agent-memory.md",
+      "translation_sha256": "8aecf8354ffcd23766f1e1c0d8f028caa81de0b37958613ef7bcb24f41789703",
+      "language": "ja",
+      "source_lines": 233,
+      "translated_body_lines": 233
+    },
+    {
+      "source": "chapters/07-mcp.md",
+      "source_sha256": "467da757a9dc81d57e0d65722feabf68413f9e777825c847752764343ba4169f",
+      "translation": "translations/chapters/ja/07-mcp.md",
+      "translation_sha256": "04cddaf0ff22edb48e7cad275f9de096d109e3ae55dffa92e9f60e060ad9196c",
+      "language": "ja",
+      "source_lines": 257,
+      "translated_body_lines": 257
+    },
+    {
+      "source": "chapters/08-tools-landscape.md",
+      "source_sha256": "ef5b8dc3c5e89fc5ed83cd242aebf668d445b2715758d84df2dfa24d12563a16",
+      "translation": "translations/chapters/ja/08-tools-landscape.md",
+      "translation_sha256": "e06baef9e9bd8fc586d3c137b598c03aace6b84ab9ce93db06781188becc864c",
+      "language": "ja",
+      "source_lines": 169,
+      "translated_body_lines": 169
+    },
+    {
+      "source": "chapters/09-china-ecosystem.md",
+      "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
+      "translation": "translations/chapters/ja/09-china-ecosystem.md",
+      "translation_sha256": "52f918d9b0a57ac87881ec17f46d6122e1925fa9492ab659894aa2d1dbd66cc3",
+      "language": "ja",
+      "source_lines": 227,
+      "translated_body_lines": 227
+    },
+    {
+      "source": "chapters/10-case-study.md",
+      "source_sha256": "18020aa72b3e41f0b6e075cb506731de9470a461290736bf04ddd8b068f9854c",
+      "translation": "translations/chapters/ja/10-case-study.md",
+      "translation_sha256": "70c5517af2d3c2225eba7b0905b5680aad02eb172f7692b8afcd53ee0c42b393",
+      "language": "ja",
+      "source_lines": 154,
+      "translated_body_lines": 154
+    },
+    {
+      "source": "chapters/11-timeline.md",
+      "source_sha256": "145c54e755055fb5b8f5df0146f9cfe2baf4c5cf6a24eed85f2204652a611f9c",
+      "translation": "translations/chapters/ja/11-timeline.md",
+      "translation_sha256": "1ac9dc195426b9824635e5dbff74415ae68c02ea22883a68e0dfd12fe9d5f5f9",
+      "language": "ja",
+      "source_lines": 730,
+      "translated_body_lines": 730
+    },
+    {
+      "source": "chapters/12-local-models.md",
+      "source_sha256": "9f9215d5a341c8e5de261e947ef4eb0330c4778abba949f2d451b94591a2177b",
+      "translation": "translations/chapters/ja/12-local-models.md",
+      "translation_sha256": "17af78ce17f2e84256a14ae0ad9a9653ba06f8151ff15ec087ee67cff99d2e60",
+      "language": "ja",
+      "source_lines": 223,
+      "translated_body_lines": 223
+    },
+    {
+      "source": "chapters/13-loop-engineering.md",
+      "source_sha256": "12a90f153f019b5f0756f0043f63de66dc4427e5b69b7baaa748684bdff3bf84",
+      "translation": "translations/chapters/ja/13-loop-engineering.md",
+      "translation_sha256": "580304dc6a34489bc5de6b7758792373786f5764859bd33e7d3afb9587fbccdd",
+      "language": "ja",
+      "source_lines": 235,
+      "translated_body_lines": 235
+    },
+    {
+      "source": "chapters/14-graph-engineering.md",
+      "source_sha256": "537bb8a3a077bb15f593907f20aa77fe4386182a09fe54d480c424784ef9df90",
+      "translation": "translations/chapters/ja/14-graph-engineering.md",
+      "translation_sha256": "1321fa77605c97417da1b55325a43c7d1961e3e291c8b0f5a386b967eb5b0556",
+      "language": "ja",
+      "source_lines": 263,
+      "translated_body_lines": 263
+    },
+    {
+      "source": "README.md",
+      "source_sha256": "c50b5b94275c6072424355fea511d12978b0506b91c38a3541eea893b2514c6a",
+      "translation": "translations/README_ko.md",
+      "translation_sha256": "fdf8be0ccaa04d61a5fb4960aeecc19b9f359bfd7f1cbab4ee3e31f5e7c3bd07",
+      "language": "ko",
+      "source_lines": 288,
+      "translated_body_lines": 288
+    },
+    {
+      "source": "glossary.md",
+      "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
+      "translation": "translations/glossary_ko.md",
+      "translation_sha256": "e2b036709769ac14b781218450d2f4a4abeadb1e7deafb35abbd7ee1eb030a78",
+      "language": "ko",
+      "source_lines": 255,
+      "translated_body_lines": 255
+    },
+    {
+      "source": "chapters/01-evolution.md",
+      "source_sha256": "dff31e88625a57a7471b26f3ff07ec91d40f8d671d873cc87f4c126e91b25503",
+      "translation": "translations/chapters/ko/01-evolution.md",
+      "translation_sha256": "d595d9324043f87cbbb7d6f45ee3d6a077f473909292c06783f978d1009cafc9",
+      "language": "ko",
+      "source_lines": 231,
+      "translated_body_lines": 231
+    },
+    {
+      "source": "chapters/02-knowledge-layer.md",
+      "source_sha256": "593bcc1501e5fae773c858b380d1f0c9234860d3ad1283f305e1092437e826e2",
+      "translation": "translations/chapters/ko/02-knowledge-layer.md",
+      "translation_sha256": "6cbf8723e551fa1b42d6012aec3c9b867f3c391e1ac737a3a55e1feaceadf550",
+      "language": "ko",
+      "source_lines": 260,
+      "translated_body_lines": 260
+    },
+    {
+      "source": "chapters/03-context-engineering.md",
+      "source_sha256": "29a6f934b1c2f82e6c02a78cc3a71321f99d45997f537b0dc730c926d1082a99",
+      "translation": "translations/chapters/ko/03-context-engineering.md",
+      "translation_sha256": "4b215d844e81ce1710f20d440ac158e9472b2419212ea198ca3fb1d55e2950e0",
+      "language": "ko",
+      "source_lines": 147,
+      "translated_body_lines": 147
+    },
+    {
+      "source": "chapters/04-harness-engineering.md",
+      "source_sha256": "2b4aa4b502eb4c288abf368e71eee5e73fdabe78b649aa4c11eadca0e971a700",
+      "translation": "translations/chapters/ko/04-harness-engineering.md",
+      "translation_sha256": "04b9a5f5ad0bcc81c521c42001aa15579742dffa484599b090592cc2d34b7e76",
+      "language": "ko",
+      "source_lines": 339,
+      "translated_body_lines": 339
+    },
+    {
+      "source": "chapters/05-skill-systems.md",
+      "source_sha256": "3aa050b33fd2d74c119f8febc65b9bd56deb635528612dc3e0d98349d4a71c94",
+      "translation": "translations/chapters/ko/05-skill-systems.md",
+      "translation_sha256": "bdccb7fec5db569491adf44ae8b7a7577de5e070392ea472dbac2d02e705bcb3",
+      "language": "ko",
+      "source_lines": 229,
+      "translated_body_lines": 229
+    },
+    {
+      "source": "chapters/06-agent-memory.md",
+      "source_sha256": "6ab3439a66feff1e8e8682b9278179c3946de3b0782d084a9906782a665e3276",
+      "translation": "translations/chapters/ko/06-agent-memory.md",
+      "translation_sha256": "517c3c3d0e8e546dadfabd3965cbc4c5aad19716846037747d9e317cf84c957c",
+      "language": "ko",
+      "source_lines": 233,
+      "translated_body_lines": 233
+    },
+    {
+      "source": "chapters/07-mcp.md",
+      "source_sha256": "467da757a9dc81d57e0d65722feabf68413f9e777825c847752764343ba4169f",
+      "translation": "translations/chapters/ko/07-mcp.md",
+      "translation_sha256": "df173d37dee307ffcf89a2ebbb1a666c35bf3d5f0855abd06985f6d4a57c8d4d",
+      "language": "ko",
+      "source_lines": 257,
+      "translated_body_lines": 257
+    },
+    {
+      "source": "chapters/08-tools-landscape.md",
+      "source_sha256": "ef5b8dc3c5e89fc5ed83cd242aebf668d445b2715758d84df2dfa24d12563a16",
+      "translation": "translations/chapters/ko/08-tools-landscape.md",
+      "translation_sha256": "2ae97b863737e04875343de959dc1b383a84b702b958a08a011305f08e28dec9",
+      "language": "ko",
+      "source_lines": 169,
+      "translated_body_lines": 169
+    },
+    {
+      "source": "chapters/09-china-ecosystem.md",
+      "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
+      "translation": "translations/chapters/ko/09-china-ecosystem.md",
+      "translation_sha256": "8e80f4417bf4bb0c235b2cdbdf7fe4561172fe390cbea2199a94b054c2980b01",
+      "language": "ko",
+      "source_lines": 227,
+      "translated_body_lines": 227
+    },
+    {
+      "source": "chapters/10-case-study.md",
+      "source_sha256": "18020aa72b3e41f0b6e075cb506731de9470a461290736bf04ddd8b068f9854c",
+      "translation": "translations/chapters/ko/10-case-study.md",
+      "translation_sha256": "6c3720922c7544459e9e92b42401b8f90b6e650e276608074416b2682bd9457f",
+      "language": "ko",
+      "source_lines": 154,
+      "translated_body_lines": 154
+    },
+    {
+      "source": "chapters/11-timeline.md",
+      "source_sha256": "145c54e755055fb5b8f5df0146f9cfe2baf4c5cf6a24eed85f2204652a611f9c",
+      "translation": "translations/chapters/ko/11-timeline.md",
+      "translation_sha256": "caa321d3c919736e90c929302467c9cf46539f01c24b5a89e15168c7fd3d4a02",
+      "language": "ko",
+      "source_lines": 730,
+      "translated_body_lines": 730
+    },
+    {
+      "source": "chapters/12-local-models.md",
+      "source_sha256": "9f9215d5a341c8e5de261e947ef4eb0330c4778abba949f2d451b94591a2177b",
+      "translation": "translations/chapters/ko/12-local-models.md",
+      "translation_sha256": "a817cde1d4177b5d379052b36d2b7a98ea9ad7c1bff71b4417822136ee145c80",
+      "language": "ko",
+      "source_lines": 223,
+      "translated_body_lines": 223
+    },
+    {
+      "source": "chapters/13-loop-engineering.md",
+      "source_sha256": "12a90f153f019b5f0756f0043f63de66dc4427e5b69b7baaa748684bdff3bf84",
+      "translation": "translations/chapters/ko/13-loop-engineering.md",
+      "translation_sha256": "9426f4ee5afd68fdcfdfb80820cb8cf713465f17220135a8fd8462b04e62f8ce",
+      "language": "ko",
+      "source_lines": 235,
+      "translated_body_lines": 235
+    },
+    {
+      "source": "chapters/14-graph-engineering.md",
+      "source_sha256": "537bb8a3a077bb15f593907f20aa77fe4386182a09fe54d480c424784ef9df90",
+      "translation": "translations/chapters/ko/14-graph-engineering.md",
+      "translation_sha256": "848c148680c6d813805dc86e80125997ed8607f237efb55be2e104dd5f4d6dda",
+      "language": "ko",
+      "source_lines": 263,
+      "translated_body_lines": 263
+    },
+    {
+      "source": "README.md",
+      "source_sha256": "c50b5b94275c6072424355fea511d12978b0506b91c38a3541eea893b2514c6a",
+      "translation": "translations/README_es.md",
+      "translation_sha256": "c50822afb094e0f89692bb3c88e60cbc848b7c53ecaf2185c1fd8eb512a5d6e0",
+      "language": "es",
+      "source_lines": 288,
+      "translated_body_lines": 288
+    },
+    {
+      "source": "glossary.md",
+      "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
+      "translation": "translations/glossary_es.md",
+      "translation_sha256": "7b5c0c059f2de933670364db0691a0d4846cca47b8ce173bf081995d01ecee6a",
+      "language": "es",
+      "source_lines": 255,
+      "translated_body_lines": 255
+    },
+    {
+      "source": "chapters/01-evolution.md",
+      "source_sha256": "dff31e88625a57a7471b26f3ff07ec91d40f8d671d873cc87f4c126e91b25503",
+      "translation": "translations/chapters/es/01-evolution.md",
+      "translation_sha256": "86d707c62e6c8450b31608f2589f525a523a2ae53473fb3861d500ec34a908fe",
+      "language": "es",
+      "source_lines": 231,
+      "translated_body_lines": 231
+    },
+    {
+      "source": "chapters/02-knowledge-layer.md",
+      "source_sha256": "593bcc1501e5fae773c858b380d1f0c9234860d3ad1283f305e1092437e826e2",
+      "translation": "translations/chapters/es/02-knowledge-layer.md",
+      "translation_sha256": "5a3a4a0b1a8299294d1a32595dfb6b9332c2e047733b852b79ef3c98ec74b4b8",
+      "language": "es",
+      "source_lines": 260,
+      "translated_body_lines": 260
+    },
+    {
+      "source": "chapters/03-context-engineering.md",
+      "source_sha256": "29a6f934b1c2f82e6c02a78cc3a71321f99d45997f537b0dc730c926d1082a99",
+      "translation": "translations/chapters/es/03-context-engineering.md",
+      "translation_sha256": "d6767146930b926aa20306b0162f3749887560730827a14b2107e3f52757d308",
+      "language": "es",
+      "source_lines": 147,
+      "translated_body_lines": 147
+    },
+    {
+      "source": "chapters/04-harness-engineering.md",
+      "source_sha256": "2b4aa4b502eb4c288abf368e71eee5e73fdabe78b649aa4c11eadca0e971a700",
+      "translation": "translations/chapters/es/04-harness-engineering.md",
+      "translation_sha256": "1fb67921243ff9d3e35b5684a6615cca21c3617d43f36eb848128c6b97b0932a",
+      "language": "es",
+      "source_lines": 339,
+      "translated_body_lines": 339
+    },
+    {
+      "source": "chapters/05-skill-systems.md",
+      "source_sha256": "3aa050b33fd2d74c119f8febc65b9bd56deb635528612dc3e0d98349d4a71c94",
+      "translation": "translations/chapters/es/05-skill-systems.md",
+      "translation_sha256": "f73cd76a78f3fec20c16b9ba7be859e5fe777688ebbe5e0ce725bf11d94725e9",
+      "language": "es",
+      "source_lines": 229,
+      "translated_body_lines": 229
+    },
+    {
+      "source": "chapters/06-agent-memory.md",
+      "source_sha256": "6ab3439a66feff1e8e8682b9278179c3946de3b0782d084a9906782a665e3276",
+      "translation": "translations/chapters/es/06-agent-memory.md",
+      "translation_sha256": "cf9f70ea8a2bbc17070d7f7d4b05819cacfbb483659a457f03dc07a74c80c8ac",
+      "language": "es",
+      "source_lines": 233,
+      "translated_body_lines": 233
+    },
+    {
+      "source": "chapters/07-mcp.md",
+      "source_sha256": "467da757a9dc81d57e0d65722feabf68413f9e777825c847752764343ba4169f",
+      "translation": "translations/chapters/es/07-mcp.md",
+      "translation_sha256": "66c8f3b3a1735db48c561b57e632e27f79dc05f0cf0a034694954c3ae15eac4b",
+      "language": "es",
+      "source_lines": 257,
+      "translated_body_lines": 257
+    },
+    {
+      "source": "chapters/08-tools-landscape.md",
+      "source_sha256": "ef5b8dc3c5e89fc5ed83cd242aebf668d445b2715758d84df2dfa24d12563a16",
+      "translation": "translations/chapters/es/08-tools-landscape.md",
+      "translation_sha256": "85869d71e296b4337be5f747d5d70386b784df8500f060a4b8cf95934dd49cd5",
+      "language": "es",
+      "source_lines": 169,
+      "translated_body_lines": 169
+    },
+    {
+      "source": "chapters/09-china-ecosystem.md",
+      "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
+      "translation": "translations/chapters/es/09-china-ecosystem.md",
+      "translation_sha256": "10ad065237458b85c262293df610f4d54c1dcf82fc2b7fe23fc60c57c6499d06",
+      "language": "es",
+      "source_lines": 227,
+      "translated_body_lines": 227
+    },
+    {
+      "source": "chapters/10-case-study.md",
+      "source_sha256": "18020aa72b3e41f0b6e075cb506731de9470a461290736bf04ddd8b068f9854c",
+      "translation": "translations/chapters/es/10-case-study.md",
+      "translation_sha256": "0e7270cae544e17858152ea0b71c610d2256324075d239ebcfe74a01b8a8ab91",
+      "language": "es",
+      "source_lines": 154,
+      "translated_body_lines": 154
+    },
+    {
+      "source": "chapters/11-timeline.md",
+      "source_sha256": "145c54e755055fb5b8f5df0146f9cfe2baf4c5cf6a24eed85f2204652a611f9c",
+      "translation": "translations/chapters/es/11-timeline.md",
+      "translation_sha256": "0495a4bed5c6e5b25de184b5ddfcd4beb0c92ce51d3b6df08ca3bd068e223c31",
+      "language": "es",
+      "source_lines": 730,
+      "translated_body_lines": 730
+    },
+    {
+      "source": "chapters/12-local-models.md",
+      "source_sha256": "9f9215d5a341c8e5de261e947ef4eb0330c4778abba949f2d451b94591a2177b",
+      "translation": "translations/chapters/es/12-local-models.md",
+      "translation_sha256": "9aab1282bd8c13c40c2ac3722a6241d11352007c837136aed0d77528ac9b5e85",
+      "language": "es",
+      "source_lines": 223,
+      "translated_body_lines": 223
+    },
+    {
+      "source": "chapters/13-loop-engineering.md",
+      "source_sha256": "12a90f153f019b5f0756f0043f63de66dc4427e5b69b7baaa748684bdff3bf84",
+      "translation": "translations/chapters/es/13-loop-engineering.md",
+      "translation_sha256": "e6d2c831e6c9cc85b990940025a588f8ecd1dc37b9d4f7d000b428a4e7a3ace7",
+      "language": "es",
+      "source_lines": 235,
+      "translated_body_lines": 235
+    },
+    {
+      "source": "chapters/14-graph-engineering.md",
+      "source_sha256": "537bb8a3a077bb15f593907f20aa77fe4386182a09fe54d480c424784ef9df90",
+      "translation": "translations/chapters/es/14-graph-engineering.md",
+      "translation_sha256": "8d37f0336717b4f2824329ad4b70509c3c3120217ffe910e3665f46a05a7fd1d",
+      "language": "es",
+      "source_lines": 263,
+      "translated_body_lines": 263
+    }
+  ]
+}

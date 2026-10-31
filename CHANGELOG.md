@@ -4,6 +4,15 @@ All notable changes to this guide are documented here. Dates are in HKT.
 
 The guide is a living document — chapter and timeline updates ship continuously. This file gives returning readers a chronological view of what has shifted since their last visit, organized by month.
 
+## November 2026
+
+### 2026-11-01: Complete translation synchronization and README animation
+
+- Synchronize all five translated READMEs, 70 chapters and five glossaries with the October 31 English snapshot. Spanish expands from two chapters to all fourteen. Preserve every source section, caveat, table, number, code block and citation; original attributed quotations and diagram labels retain their source form.
+- Add language entry points, localize cross-chapter/glossary links and preserve original English heading anchors. Record source and translation hashes in `translations/sync-manifest.json`, with a verifier that distinguishes file changes from later English-source drift. See [synchronization details](translations/SYNC.md).
+- Add a silent 30-second README animation as GIF and MP4, with editable HyperFrames source and a static alternative. The diagram connects knowledge, context and the harness, then offers reading paths without promoting contested engineering generations.
+- Fix staging of expandable Markdown sections in translated READMEs. The regression assertion failed before the fix and passes afterward; the untranslated-language fallback test now uses a synthetic missing locale instead of assuming Spanish Chapter 2 is absent.
+
 ## October 2026
 
 ### 2026-10-31: Governed context, memory correction and agent boundaries
