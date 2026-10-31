@@ -28,7 +28,8 @@ FILES = {
     "docs-site/extra.css": "stylesheets/extra.css",
 }
 
-# whole trees, copied file for file
+# Whole content trees. The editable HyperFrames source is the exception:
+# its README/index.html pair is for GitHub/HyperFrames, not a docs route.
 TREES = {
     "chapters": "chapters",
     "diagrams": "diagrams",
@@ -57,12 +58,12 @@ def rewrite(text, is_index):
     text, n = re.subn(r"\]\(((?:\.\./)*)README\.md\)", r"](\1index.md)", text)
     if n:
         notes.append("{} link(s) README.md -> index.md".format(n))
+    # Every language's README may contain expandable Markdown. This applies
+    # to all staged Markdown, independently of the root-only GitHub links.
+    text, n = re.subn("<details>", '<details markdown="1">', text)
+    if n:
+        notes.append('{} <details> -> <details markdown="1">'.format(n))
     if is_index:
-        # Python-Markdown leaves markdown inside a raw HTML block unparsed
-        # unless the tag opts in via md_in_html.
-        text, n = re.subn("<details>", '<details markdown="1">', text)
-        if n:
-            notes.append('{} <details> -> <details markdown="1">'.format(n))
         # GitHub reads `../../x` in a repo-root file as the repo's own URL;
         # on the site that would resolve against the Pages domain instead.
         text, n = re.subn(r"\]\(\.\./\.\./", "](" + REPO + "/", text)
@@ -110,10 +111,10 @@ def classify(rel, from_dir):
 def repoint_unstaged(path):
     """Fix links whose target was never staged.
 
-    The Spanish translation ships 2 of its 14 chapters but its chapter footers
-    still link to the siblings.  `classify` decides each case; the source files
-    are not ours to edit either way.  Returns (target, action, is_error)
-    triples so the caller can report them and fail on the errors.
+    Partial or future language editions may link to chapters not yet staged.
+    `classify` selects an existing English fallback or a GitHub source link;
+    source files remain unchanged. Returns (target, action, is_error) triples
+    so the caller can report them and fail on genuine missing targets.
     """
     moved = []
 
@@ -160,7 +161,9 @@ def self_check():
     # every ../ survives; a repeated capturing group would keep only the last
     assert rewrite("[a](../../../README.md)\n", False)[0] == "[a](../../../index.md)\n"
     assert rewrite("<details>\n", True)[0] == '<details markdown="1">\n'
-    assert rewrite("<details>\n", False) == ("<details>\n", [])
+    # Translated READMEs carry the same expandable animation/news sections.
+    assert rewrite("<details>\n", False)[0] == '<details markdown="1">\n'
+    assert rewrite('<details markdown="1">\n', False)[0] == '<details markdown="1">\n'
     assert rewrite("[p](../../pulls)\n", True)[0] == "[p](" + REPO + "/pulls)\n"
     assert rewrite("[d](../../diagrams/x.png)\n", False)[0] == "[d](../../diagrams/x.png)\n"
     assert [m[1] for m in MD_LINK.findall("[a](a.md) [x](https://e.com/b.md) [y](c.md#h)")] == [
@@ -177,8 +180,8 @@ def self_check():
     # (b) a chapter that language has not translated -> the English original,
     # relative to the file that holds the link
     assert classify(
-        Path("translations/chapters/es/02-knowledge-layer.md"),
-        Path("translations/chapters/es"),
+        Path("translations/chapters/__test_missing_locale__/02-knowledge-layer.md"),
+        Path("translations/chapters/__test_missing_locale__"),
     ) == (
         "English chapter ../../../chapters/02-knowledge-layer.md",
         "../../../chapters/02-knowledge-layer.md",
@@ -224,6 +227,8 @@ def main():
         base = ROOT / src
         for path in sorted(base.rglob("*")):
             if path.is_file():
+                if path.relative_to(ROOT).parts[:2] == ("diagrams", "readme-animation"):
+                    continue
                 stage(path, DOCS / dst / path.relative_to(base))
 
     repointed = 0

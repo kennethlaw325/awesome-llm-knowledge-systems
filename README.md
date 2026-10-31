@@ -15,7 +15,18 @@ This edition follows the boundaries between systems: who owns persistent context
 - **Long-running agents need boundaries that survive handoffs.** An October 14 customer case describes an outer harness for multi-day work; October research examines evaluation containment and monitoring across compaction and multiple agents. See [Ch04](chapters/04-harness-engineering.md) and [Ch13](chapters/13-loop-engineering.md).
 - **Interoperability is not a safety guarantee.** Agent Skills' October 22 announcement records broader platform adoption. The portable spec standardizes skill metadata and instructions, while hosts still own routing and enforcement. [Ch05](chapters/05-skill-systems.md) separates these responsibilities; [Ch14](chapters/14-graph-engineering.md) updates the evidence for a still-contested term.
 
-The [changelog](CHANGELOG.md) records factual corrections and maintenance work. Translated editions retain their earlier chapter content plus selected corrections; **the English edition is the current reference**, not a claim that every language has been synchronized.
+The [changelog](CHANGELOG.md) records factual corrections and maintenance work. The five translated editions cover this English edition's README, all 14 chapters and glossary. The English source remains the reference for resolving translation questions; source dates and evidence limits carry through to every edition.
+
+<details>
+<summary>Watch the connected map in 30 seconds (animated)</summary>
+
+![Animated map connecting knowledge, context and the agent harness](diagrams/knowledge-map.gif)
+
+[Watch or download the MP4](diagrams/knowledge-map.mp4) · [Static map](diagrams/evolution-stack.png)
+
+The silent animation introduces the stable layers and reading paths. Loop and graph engineering remain emerging or contested topics, not settled extra generations.
+
+</details>
 
 <details>
 <summary><b>Previous update: September 2026</b> (expand)</summary>

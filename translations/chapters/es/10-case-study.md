@@ -1,120 +1,181 @@
-# Capítulo 10: Construyendo un Knowledge Harness del mundo real
+<!-- translation-sync:start -->
+> Traducción asistida por máquina sincronizada con la edición inglesa de 2026-10-31, con revisión de estructura y contenido. El código y las etiquetas de los diagramas conservan el original; los tiempos de lectura se estiman a partir del inglés.
+> [English source](../../../chapters/10-case-study.md) · [Sync record](../../SYNC.md)
+<!-- translation-sync:end -->
 
-> **En una frase:** un desarrollador construyó un sistema de conocimiento de IA completo con un equipo de 4 agentes, enrutamiento por progressive disclosure y un pipeline de contenido automatizado.
+<a id="chapter-10-building-a-real-world-knowledge-harness"></a><!-- i18n-anchor -->
+
+# Capítulo 10: Construir un harness de conocimiento real
+
+> **En una frase:** Un desarrollador construyó un sistema completo de conocimiento con IA utilizando un equipo de 4 agentes, enrutamiento mediante divulgación progresiva y un pipeline automatizado de contenido.
 >
-> **Por qué importa:** esto prueba que una persona con la arquitectura adecuada puede construir lo que antes requería un equipo. Los conceptos de esta guía no son teóricos.
+> **Por qué importa:** Esto demuestra que una persona con la arquitectura adecuada puede construir lo que antes requería un equipo. Los conceptos de esta guía no son teóricos.
+>
+> **Tiempo de lectura:** ~11 min (estimación del original en inglés: 2,476 palabras / 230 palabras por minuto)
 
-Este capítulo presenta un caso de estudio anonimizado de un desarrollador en solitario ——al que se llama "el builder" —— que construyó un knowledge harness completo a lo largo de varios meses de desarrollo iterativo. El sistema descrito aquí es real y se usa diariamente en producción. Demuestra cómo los conceptos discutidos en los capítulos anteriores ——context engineering, progressive disclosure, sistemas de skills y orquestación de agents —— se combinan en la práctica.
+*Figura: El equipo de cuatro agentes de la sección "Harness Engineering: The Agent Team", con el contrato de sprint representado como el documento que comparten tres de los agentes. El orquestador escribe el contrato, el redactor produce según él y el evaluador de calidad aplica los mismos criterios antes de que se pueda publicar nada. La conexión que sostiene el argumento es el camino de retorno del evaluador al redactor: no se trata de un único reintento, por lo que los cuatro agentes forman un bucle y no un pipeline.*
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eef1f4','primaryTextColor':'#1f2328','primaryBorderColor':'#8c959f','lineColor':'#6b7280','tertiaryColor':'#f6f8fa','clusterBkg':'#f9fafb','clusterBorder':'#8c959f','edgeLabelBackground':'#ffffff'}}}%%
+flowchart TB
+    EXT[("External sources<br/>web searches, API calls,<br/>document parsing")]
+    EXT --> COLLECT["Data Collector<br/>broad permissions, cannot publish"]
+    COLLECT -->|writes output to a defined location, triggers| ORCH["Pipeline Orchestrator<br/>decides which agents to invoke"]
+    ORCH -->|writes| CONTRACT["Sprint contract<br/>target platform, word count, required and<br/>prohibited elements, evaluation criteria"]
+    CONTRACT -->|produce against it| WRITE["Content Writer"]
+    CONTRACT -->|grade against it| QA
+    GUARDS["Content guards<br/>prompt-level, auto-correction, regex strip"] -->|brand voice and formatting| WRITE
+    WRITE -->|triggers| QA{{"QA Evaluator<br/>reviews all output before publication"}}
+    QA -->|fails, returned with specific feedback| WRITE
+    QA -->|contract satisfied| PUB["Published output"]
+    class EXT,COLLECT,ORCH,WRITE,GUARDS,PUB stable
+    class CONTRACT accent
+    class QA gate
+classDef stable fill:#eef1f4,stroke:#8c959f,stroke-width:1.5px,color:#1f2328
+classDef accent fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+classDef muted fill:#f6f8fa,stroke:#adb5bd,stroke-width:1.5px,color:#57606a
+classDef gate fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0b3a8f
+```
+
+Este capítulo presenta un caso anonimizado de un desarrollador individual —denominado "the builder"— que construyó un harness completo de conocimiento durante varios meses de desarrollo iterativo. El sistema descrito es real y se utiliza a diario en producción. Demuestra cómo se combinan en la práctica los conceptos de capítulos anteriores: ingeniería de contexto, divulgación progresiva, sistemas de habilidades y orquestación de agentes.
+
+<a id="the-starting-point"></a><!-- i18n-anchor -->
 
 ## El punto de partida
 
-El builder comenzó con un problema simple: demasiado conocimiento, poca estructura. Un vault de conocimiento personal había crecido hasta más de 300 notas que abarcaban proyectos activos, referencias técnicas, registros de reuniones e ideas fugaces. El enfoque estándar ——buscar cuando necesitas algo —— se rompía a medida que el vault crecía. Las notas se olvidaban, las intuiciones se redescubrían en vez de recuperarse y el contexto se perdía entre sesiones de trabajo.
+El desarrollador comenzó con un problema sencillo: demasiado conocimiento y poca estructura. Una bóveda personal de conocimiento había crecido hasta superar las 300 notas sobre proyectos activos, referencias técnicas, registros de reuniones e ideas pasajeras. El enfoque habitual —buscar cuando se necesita algo— dejó de funcionar a medida que crecía la bóveda. Las notas se olvidaban, las ideas se redescubrían en lugar de recuperarse y se perdía contexto entre sesiones de trabajo.
 
-La solución inicial fue modesta: usar un asistente LLM con acceso al vault. Pero el acceso directo a más de 300 notas significaba inundar el context window. El verdadero reto de ingeniería no era "¿puede el LLM leer mis notas?" sino "¿cómo le doy al LLM las notas correctas en el momento correcto?".
+La solución inicial era modesta: utilizar un asistente LLM con acceso a la bóveda. Pero el acceso directo a 300+ notas inundaba la ventana de contexto. El verdadero reto de ingeniería no era "can the LLM read my notes", sino "how do I give the LLM the right notes at the right time."
 
-## Capa de conocimiento: el vault como grafo de conocimiento implícito
+<a id="knowledge-layer-the-vault-as-implicit-knowledge-graph"></a><!-- i18n-anchor -->
 
-El cimiento del sistema es un vault de Obsidian organizado en una jerarquía de carpetas deliberada:
+## Capa de conocimiento: la bóveda como grafo de conocimiento implícito
 
-- **Inbox** para captura (todas las notas nuevas aterrizan aquí)
-- **Active** para notas de uso diario (mantenidas entre 5–10 items)
-- **Projects** para trabajo acotado en el tiempo con deadlines
-- **Areas** para responsabilidades continuas sin deadlines
-- **Notes** para conocimiento atómico (una idea por nota, títulos como afirmaciones)
+La base del sistema es una bóveda de Obsidian organizada mediante una jerarquía de carpetas deliberada:
+
+- **Inbox** para capturar información (todas las notas nuevas llegan aquí)
+- **Active** para notas de uso diario (limitadas a 5-10 elementos)
+- **Projects** para trabajo acotado en el tiempo y con fechas límite
+- **Areas** para responsabilidades continuas sin fecha límite
+- **Notes** para conocimiento atómico (una idea por nota y títulos formulados como afirmaciones)
 - **Daily** para diarios e informes de revisión
 - **Archive** para material completado o desactualizado
 
-Cada nota usa wikilinks para conectarse a notas relacionadas, creando un grafo de conocimiento implícito sin requerir una base de datos de grafos formal. La convención de enlace es simple pero estricta: si la nota A referencia un concepto que la nota B desarrolla, A debe enlazar a B. Con el tiempo, esto produce una red navegable de conocimiento donde cualquier punto de entrada conduce al contexto relacionado.
+Cada nota utiliza wikilinks para conectar con notas relacionadas, creando un grafo de conocimiento implícito sin necesidad de una base de datos formal de grafos. La convención de enlaces es sencilla pero estricta: si la nota A menciona un concepto que la nota B desarrolla, A debe enlazar a B. Con el tiempo, esto produce una red navegable en la que cualquier punto de entrada conduce al contexto relacionado.
 
-El vault se mantiene mediante un ciclo de revisión: las revisiones diarias procesan el inbox y clasifican las notas nuevas; las revisiones semanales analizan tendencias de acumulación de conocimiento y resurgen notas antiguas valiosas; las revisiones mensuales verifican contradicciones, fusionan notas que se solapan y archivan proyectos completados. Este mantenimiento no es opcional. Sin él, la capa de conocimiento se degrada en semanas a medida que las notas se vuelven obsoletas, redundantes o huérfanas.
+La bóveda se mantiene mediante un ciclo de revisión: las revisiones diarias procesan la bandeja de entrada y clasifican las notas nuevas; las semanales analizan las tendencias de acumulación de conocimiento y recuperan notas antiguas valiosas; las mensuales comprueban contradicciones, fusionan notas solapadas y archivan proyectos terminados. Este mantenimiento no es opcional. Sin él, la capa de conocimiento se degrada en semanas porque las notas quedan obsoletas, redundantes o huérfanas.
 
-## Context Engineering: el system prompt como índice
+<a id="context-engineering-the-system-prompt-as-index"></a><!-- i18n-anchor -->
 
-El enfoque de context engineering del builder trata el system prompt no como un conjunto monolítico de instrucciones sino como un índice hacia recursos más profundos. Un fichero de configuración central (análogo a un README para la IA) contiene:
+## Ingeniería de contexto: el prompt de sistema como índice
 
-- **Detalles del entorno**: OS, shell, peculiaridades conocidas que evitar
-- **Preferencias de idioma**: el idioma de trabajo del builder y las convenciones de formato
-- **Una routing table**: una lista priorizada de categorías de skills con palabras clave disparadoras y punteros a ficheros de enrutamiento
+El enfoque de ingeniería de contexto del desarrollador trata el prompt de sistema como un índice de recursos más profundos, en lugar de un conjunto monolítico de instrucciones. Un archivo central de configuración, análogo a un README para la IA, contiene:
 
-Este fichero de configuración siempre se carga. Es compacto ——por debajo de 2.000 tokens —— porque contiene punteros, no payloads. Cuando el LLM encuentra una petición de usuario, la coteja con la routing table y carga únicamente el fichero de enrutamiento relevante, que a su vez apunta al skill específico necesario.
+- **Detalles del entorno**: sistema operativo, shell y particularidades conocidas que conviene evitar
+- **Preferencias de idioma**: idioma de trabajo del desarrollador y convenciones de formato
+- **Una tabla de enrutamiento**: lista priorizada de categorías de habilidades, con palabras clave de activación y referencias a archivos de enrutamiento
+
+Este archivo de configuración se carga siempre. Es compacto —menos de 2,000 tokens— porque contiene referencias, no el contenido completo. Cuando el LLM recibe una solicitud del usuario, la compara con la tabla de enrutamiento y carga únicamente el archivo pertinente, que a su vez apunta a la habilidad concreta necesaria.
 
 Un sistema de memoria separado gestiona la persistencia entre sesiones. Almacena:
 
 - Ubicaciones y estructuras de proyectos activos
-- Preferencias de usuario aprendidas del feedback
-- Patrones técnicos y convenciones específicas de cada proyecto
-- Referencias a subficheros detallados para temas complejos
+- Preferencias del usuario aprendidas de sus comentarios
+- Patrones técnicos y convenciones específicos de cada proyecto
+- Referencias a archivos secundarios detallados sobre temas complejos
 
-El fichero de memoria crece orgánicamente. Cuando el builder corrige el comportamiento del asistente, esa corrección se registra como una preferencia. Cuando se establece la estructura de un proyecto, se documenta una vez y se referencia desde entonces. Esto elimina el repetitivo problema de "déjame volver a explicarte mi proyecto" que afecta a las interacciones LLM sin estado.
+El archivo de memoria crece de forma orgánica. Cuando el desarrollador corrige el comportamiento del asistente, esa corrección se registra como preferencia. Cuando se establece la estructura de un proyecto, se documenta una vez y se referencia a partir de entonces. Esto elimina el problema repetitivo de "let me re-explain my project" que afecta a las interacciones sin estado con LLM.
 
-## Harness Engineering: el equipo de agents
+<a id="harness-engineering-the-agent-team"></a><!-- i18n-anchor -->
 
-El sistema emplea un equipo de cuatro agents, cada uno con un rol definido:
+## Ingeniería de harness: el equipo de agentes
 
-1. **Data Collector**: reúne información de fuentes externas (búsquedas web, llamadas a APIs, parseo de documentos). Opera con permisos amplios pero sin capacidad de publicar.
-2. **Pipeline Orchestrator**: coordina los flujos de trabajo, decide qué agents invocar y gestiona la secuencia. Escribe "sprint contracts" ——documentos que especifican los criterios de salida esperados para cada tarea.
-3. **Content Writer**: produce la salida (informes, publicaciones en redes sociales, documentos técnicos). Opera bajo content guards que imponen el brand voice y los estándares de formato.
-4. **QA Evaluator**: revisa toda la salida contra el sprint contract antes de que pueda publicarse. Verifica la precisión factual, el cumplimiento del formato y la alineación con la marca.
+El sistema utiliza un equipo de cuatro agentes, cada uno con una función definida:
 
-El mecanismo del sprint contract merece elaboración. Cuando el orchestrator inicia una tarea de contenido, no se limita a decir "escribe una publicación sobre X". Produce un contrato que especifica: la plataforma objetivo, el rango de palabras, los elementos requeridos (por ejemplo, debe incluir una estadística, debe terminar con una call to action), los elementos prohibidos (por ejemplo, sin superlativos, sin afirmaciones no verificadas) y los criterios de evaluación. El content writer produce contra este contrato. El QA evaluator califica contra él. Si la salida falla la evaluación, se devuelve al writer con feedback específico que referencia los criterios del contrato. Esto no es un reintento único ——el bucle continúa hasta que el contrato se satisface o un humano interviene.
+1. **Data Collector**: Reúne información de fuentes externas (búsquedas web, llamadas a API y análisis de documentos). Tiene permisos amplios, pero no puede publicar.
+2. **Pipeline Orchestrator**: Coordina los flujos de trabajo, decide qué agentes invocar y gestiona el orden de ejecución. Escribe "sprint contracts", documentos que especifican los criterios esperados para el resultado de cada tarea.
+3. **Content Writer**: Produce los resultados (informes, publicaciones en redes sociales y documentos técnicos). Opera bajo controles de contenido que hacen cumplir la voz de marca y los estándares de formato.
+4. **QA Evaluator**: Revisa todos los resultados según el contrato de sprint antes de que puedan publicarse. Comprueba la exactitud factual, el cumplimiento del formato y la coherencia con la marca.
 
-Los content guards operan en tres capas:
+El mecanismo del contrato de sprint merece una explicación. Cuando el orquestador inicia una tarea de contenido, no se limita a decir "write a post about X." Produce un contrato que especifica la plataforma de destino, el intervalo de palabras, los elementos obligatorios (por ejemplo, incluir una estadística y terminar con una llamada a la acción), los elementos prohibidos (como superlativos o afirmaciones no verificadas) y los criterios de evaluación. El redactor produce según ese contrato y el evaluador de calidad lo aplica. Si el resultado no supera la evaluación, vuelve al redactor con comentarios concretos vinculados a los criterios del contrato. No es un único reintento: el bucle continúa hasta que se cumple el contrato o interviene una persona.
 
-- **Guards a nivel de prompt**: instrucciones embebidas en el system prompt que definen qué debe y qué no debe hacer el agent
-- **Auto-correction**: procesamiento posterior a la generación que detecta y corrige problemas comunes (por ejemplo, eliminar patrones de formato no deseados, imponer terminología consistente)
-- **Regex strip**: una pasada final que elimina patrones específicos que nunca deberían aparecer en la salida (por ejemplo, ciertos caracteres que rompen sistemas aguas abajo, tokens de metadatos que se filtran del modelo)
+Los controles de contenido operan en tres capas:
 
-La comunicación entre agents se basa en triggers. Los agents no se sondean unos a otros. Cuando el data collector termina de reunir información, escribe la salida en una ubicación definida y dispara al orchestrator. Cuando el writer produce contenido, dispara al evaluator. Esta arquitectura orientada a eventos mantiene el sistema responsivo sin cómputo innecesario.
+- **Controles en el prompt**: Instrucciones incorporadas al prompt de sistema que definen lo que el agente debe y no debe hacer
+- **Corrección automática**: Procesamiento posterior a la generación que detecta y corrige problemas frecuentes, como formatos no deseados o terminología inconsistente
+- **Eliminación mediante expresiones regulares**: Una pasada final que elimina patrones que nunca deben aparecer en la salida, como caracteres que rompen sistemas posteriores o tokens de metadatos filtrados por el modelo
 
-## Evolución del sistema de skills
+La comunicación entre agentes se basa en activaciones. Los agentes no se consultan periódicamente entre sí. Cuando el recolector termina de reunir información, escribe el resultado en una ubicación definida y activa al orquestador. Cuando el redactor produce contenido, activa al evaluador. Esta arquitectura dirigida por eventos mantiene la capacidad de respuesta sin cómputo innecesario.
 
-El sistema de skills atravesó cuatro etapas evolutivas distintas, cada una impulsada por limitaciones prácticas descubiertas en producción.
+<a id="skill-system-evolution"></a><!-- i18n-anchor -->
 
-**Etapa 1: ficheros de skill planos.** Cada skill era un fichero markdown independiente que contenía instrucciones. El LLM cargaba todos los ficheros de skill al inicio de la sesión. Esto funcionaba con 5–10 skills pero se volvió insostenible a medida que la colección crecía. Los context windows se llenaban con definiciones de skill, dejando poco espacio para el trabajo real.
+## Evolución del sistema de habilidades
 
-**Etapa 2: YAML frontmatter enriquecido.** Los skills ganaron metadatos estructurados: condiciones de trigger, contexto requerido, dependencias y números de versión. Esto permitió al sistema filtrar los skills por relevancia, pero la lógica de filtrado en sí misma consumía tokens y añadía latencia.
+El sistema de habilidades atravesó cuatro etapas distintas, cada una impulsada por limitaciones prácticas descubiertas en producción.
 
-**Etapa 3: wikilinks entre skills.** Los skills empezaron a enlazarse entre sí, creando un skill graph. Un skill para "deploy" enlazaría a "run tests" como prerrequisito. Esto permitió al sistema cargar cadenas de skills en vez de skills individuales, pero la navegación del grafo seguía requiriendo cargar el índice del grafo.
+**Etapa 1: Archivos planos de habilidades.** Cada habilidad era un archivo Markdown independiente con instrucciones. El LLM cargaba todos los archivos de habilidades al comenzar la sesión. Funcionaba con 5-10 habilidades, pero se volvió insostenible al crecer la colección. Las definiciones llenaban las ventanas de contexto y dejaban poco espacio para el trabajo real.
 
-**Etapa 4: progressive disclosure con ficheros de enrutamiento.** La arquitectura final usa un índice compacto (la routing table en el system prompt) que apunta a siete ficheros de enrutamiento específicos por categoría. Cada fichero de enrutamiento lista los skills de esa categoría con sus condiciones de trigger. El LLM carga solo el fichero de enrutamiento de la categoría coincidente y luego carga solo el skill específico necesario. En cualquier momento dado, el sistema tiene cargados: el índice del system prompt (~2K tokens) + un fichero de enrutamiento (~500 tokens) + un fichero de skill (~1–2K tokens). Sobrecarga total: por debajo de 4K tokens independientemente de cuántos skills existan en el sistema.
+**Etapa 2: Metadatos YAML enriquecidos.** Las habilidades incorporaron metadatos estructurados: condiciones de activación, contexto necesario, dependencias y números de versión. Esto permitió filtrarlas por relevancia, pero la propia lógica de filtrado consumía tokens y añadía latencia.
 
-El builder probó esta arquitectura de enrutamiento con 85 consultas de prueba que cubrían todas las categorías y logró 85/85 enrutamientos correctos ——100% de precisión. Los casos límite (consultas ambiguas que podrían coincidir con varias categorías) se manejan mediante reglas explícitas de desambiguación en la routing table.
+**Etapa 3: Wikilinks entre habilidades.** Las habilidades empezaron a enlazarse entre sí, creando un grafo de habilidades. Una habilidad de "deploy" enlazaría a "run tests" como requisito previo. Esto permitió cargar cadenas de habilidades en lugar de habilidades aisladas, pero navegar por el grafo seguía exigiendo cargar su índice.
+
+**Etapa 4: Divulgación progresiva con archivos de enrutamiento.** La arquitectura final utiliza un índice compacto —la tabla de enrutamiento del prompt de sistema— que apunta a siete archivos de enrutamiento, uno por categoría. Cada archivo enumera las habilidades de esa categoría y sus condiciones de activación. El LLM carga solo el archivo de la categoría que coincide y, después, únicamente la habilidad concreta que necesita. En cualquier momento, el sistema tiene cargados el índice del prompt de sistema (~2K tokens) + un archivo de enrutamiento (~500 tokens) + un archivo de habilidad (~1-2K tokens). La sobrecarga total permanece por debajo de 4K tokens, con independencia del número de habilidades del sistema.
+
+El desarrollador probó esta arquitectura con 85 consultas que cubrían todas las categorías y consiguió 85/85 enrutamientos correctos: un 100% de precisión. Los casos límite —consultas ambiguas que podrían coincidir con varias categorías— se resuelven con reglas explícitas de desambiguación en la tabla de enrutamiento.
+
+<a id="results"></a><!-- i18n-anchor -->
 
 ## Resultados
 
 Los resultados medibles de esta arquitectura:
 
-- **Reducción del 65% en tokens** por progressive disclosure comparado con el enfoque de ficheros planos. Las mismas tareas que antes consumían 8–12K tokens de contexto de skills ahora requieren menos de 4K.
-- **Pipeline de contenido automatizado** que produce salida diaria a través de múltiples plataformas con calidad consistente, gestionado por una sola persona.
-- **Mantenimiento del conocimiento** mediante un linting automatizado del vault que detecta contradicciones, notas huérfanas e información obsoleta ——problemas que antes requerían sesiones de revisión manual.
-- **Continuidad entre sesiones** que elimina el problema del "arranque en frío". El sistema de memoria significa que el asistente retoma donde lo dejó, cada vez.
+- **Reducción del 65% de tokens** mediante divulgación progresiva frente al enfoque de archivos planos. Las mismas tareas que antes consumían 8-12K tokens de contexto de habilidades ahora requieren menos de 4K.
+- **Pipeline automatizado de contenido** que produce resultados diarios para varias plataformas con calidad uniforme, gestionado por una sola persona.
+- **Mantenimiento del conocimiento** mediante comprobaciones automatizadas de la bóveda que detectan contradicciones, notas huérfanas e información obsoleta, problemas que antes exigían sesiones de revisión manual.
+- **Continuidad entre sesiones** que elimina el problema de "cold start". Gracias al sistema de memoria, el asistente retoma siempre el trabajo donde lo dejó.
+
+<a id="lessons-learned"></a><!-- i18n-anchor -->
 
 ## Lecciones aprendidas
 
-**Empieza simple, luego apila complejidad.** El builder no diseñó el sistema de cuatro agents con sprint-contract el primer día. Empezó como un solo agent con un fichero de texto de instrucciones. Cada capa de complejidad se añadió en respuesta a un modo de fallo específico: los agents alucinaban (añadir QA evaluator), la salida era inconsistente (añadir content guards), los context windows desbordaban (añadir progressive disclosure). Una arquitectura prematura habría producido un sistema optimizado para problemas imaginados en lugar de reales.
+**Empezar con sencillez y añadir complejidad por capas.** El desarrollador no diseñó el sistema de cuatro agentes con contratos de sprint el primer día. Empezó con un solo agente y un archivo de texto con instrucciones. Cada capa de complejidad respondió a un fallo concreto: los agentes alucinaban (añadir un evaluador de calidad), los resultados eran inconsistentes (añadir controles de contenido) y las ventanas de contexto se desbordaban (añadir divulgación progresiva). Una arquitectura prematura habría optimizado el sistema para problemas imaginados en lugar de reales.
 
-**Progressive disclosure compensa el coste de configuración.** Construir y mantener la routing table, los siete ficheros de enrutamiento y los ficheros de skill individuales requiere esfuerzo continuo. Pero la reducción del 65% en tokens se paga sola en cada interacción. Más importante, el sistema escala: añadir un nuevo skill significa añadir una entrada a un fichero de enrutamiento, no reestructurar el prompt entero.
+**La divulgación progresiva compensa su coste de preparación.** Construir y mantener la tabla de enrutamiento, los siete archivos de enrutamiento y los archivos de habilidades exige esfuerzo continuo. Pero la reducción del 65% de tokens compensa en cada interacción. Además, el sistema escala: añadir una habilidad significa añadir una entrada a un archivo de enrutamiento, no reestructurar todo el prompt.
 
-**Menos es más.** Las definiciones de skill comprimidas y precisas superan a las verbosas. Un fichero de skill que dice "busca en el vault notas que coincidan con la consulta, devuelve rutas de fichero y extractos relevantes, sugiere conexiones" funciona mejor que una elaboración de 500 palabras de las mismas instrucciones. El LLM no necesita que se le lleve de la mano; necesita intención clara.
+**Menos es más.** Las definiciones de habilidades precisas y comprimidas superan a las verbosas. Un archivo que dice "search the vault for notes matching the query, return file paths and relevant excerpts, suggest connections" funciona mejor que una explicación de 500 palabras de las mismas instrucciones. El LLM no necesita que lo lleven de la mano; necesita una intención clara.
 
-**El harness ES el producto.** La ventaja competitiva del builder no es ningún skill o agent individual. Es el harness ——la lógica de enrutamiento, los sprint contracts, los content guards, el ciclo de revisión, el sistema de memoria. Los componentes individuales son sencillos. Donde vive el valor es en la integración. Esto refleja una verdad más amplia sobre la ingeniería del conocimiento: los modelos se están commoditizando, pero los sistemas que los orquestan no.
+**El harness ES el producto.** La ventaja competitiva del desarrollador no es una habilidad o un agente aislado. Es el harness: la lógica de enrutamiento, los contratos de sprint, los controles de contenido, el ciclo de revisión y el sistema de memoria. Los componentes individuales son sencillos; el valor está en la integración. Esto refleja una realidad más amplia de la ingeniería del conocimiento: los modelos se convierten en productos intercambiables, pero los sistemas que los orquestan no.
+
+<a id="sidebar-claude-code-as-reference-implementation"></a><!-- i18n-anchor -->
 
 ## Recuadro: Claude Code como implementación de referencia
 
-Durante la mayor parte del periodo en que el sistema del builder evolucionaba, el tooling interno de Anthropic era una caja negra. Los practicantes podían inferir cómo funcionaba Claude Code a partir de su comportamiento, pero nadie fuera de Anthropic había visto el código. Eso cambió el **31 de marzo de 2026**, cuando Anthropic envió accidentalmente un source map de 59.8MB dentro del paquete npm `@anthropic-ai/claude-code` v2.1.88 ——aproximadamente 513.000 líneas de TypeScript sin ofuscar repartidas en 1.906 ficheros (véase el Capítulo 4 para la historia completa). La filtración dio a la comunidad su primera mirada empírica a un harness de producción de un frontier lab, y varios de sus patrones riman estrechamente con lo que el builder llegó a alcanzar de forma independiente:
+Durante gran parte de la evolución del sistema del desarrollador, las herramientas internas de Anthropic eran una caja negra. Los profesionales podían inferir el funcionamiento de Claude Code por su comportamiento, pero nadie fuera de Anthropic había visto su código. Esto cambió el **31 de marzo de 2026**, cuando Anthropic distribuyó accidentalmente un mapa de código fuente de 59.8MB en el paquete npm `@anthropic-ai/claude-code` v2.1.88: unas 513,000 líneas de TypeScript sin ofuscar repartidas en 1,906 archivos (el capítulo 4 relata el caso completo). La filtración ofreció a la comunidad su primera observación empírica de un harness de producción de un laboratorio de frontera, y varios de sus patrones se parecen a los que el desarrollador alcanzó de forma independiente:
 
-- **Self-Healing Memory, no un único fichero grande.** La arquitectura filtrada de Claude Code está organizada alrededor de un sistema "Self-Healing Memory" de tres capas con lógica de reparación explícita entre capas. El bucle vault + fichero de memoria + sprint-contract del builder es un pariente más pobre de la misma idea: un estado de trabajo a corto plazo (la sesión actual), un estado compactado a medio plazo (el fichero de memoria) y conocimiento duradero a largo plazo (el vault). En ambos sistemas, la "memoria" no es un lugar; es un conjunto de capas con transiciones entre ellas.
-- **MEMORY.md como índice, no como almacén.** Dentro de Claude Code, `MEMORY.md` es un índice ligero al estilo de punteros hacia notas más detalladas ——no una transcripción monolítica. El fichero de configuración del builder cumple exactamente el mismo rol: contiene routing table y punteros, no payloads, y es la razón por la que el contexto base se mantiene por debajo de 2K tokens.
-- **`KAIROS` y el modo daemon autónomo.** El código fuente de Claude Code referencia un feature flag `KAIROS` más de 150 veces. Habilita un modo daemon autónomo ——un bucle de ejecución no supervisado y de larga duración que va mucho más allá del REPL interactivo. La comunicación entre agents del builder, basada en triggers y orientada a eventos, es una versión hecha a mano de la misma idea: agents que despiertan ante eventos, hacen trabajo y se pasan el testigo, sin un humano en el bucle en cada paso.
+- **Self-Healing Memory, no un único archivo enorme.** La arquitectura filtrada de Claude Code se organiza en torno a un sistema de tres capas de "Self-Healing Memory", con lógica explícita de reparación entre ellas. El bucle de bóveda + archivo de memoria + contrato de sprint del desarrollador es una versión más modesta de la misma idea: estado de trabajo a corto plazo (la sesión actual), estado compactado a medio plazo (el archivo de memoria) y conocimiento duradero a largo plazo (la bóveda). En ambos sistemas, "memory" no es un lugar, sino un conjunto de capas y transiciones entre ellas.
+- **MEMORY.md como índice, no como almacén.** Dentro de Claude Code, `MEMORY.md` es un índice ligero de referencias a notas más detalladas, no una transcripción monolítica. El archivo de configuración del desarrollador desempeña exactamente esa función: contiene la tabla de enrutamiento y referencias, no el contenido completo, lo que mantiene el contexto básico por debajo de 2K tokens.
+- **`KAIROS` y el modo de demonio autónomo.** El código de Claude Code menciona una bandera de función `KAIROS` más de 150 veces. Controla un modo de demonio autónomo: un bucle de ejecución desatendido y de larga duración que va mucho más allá del REPL interactivo. La comunicación entre agentes del desarrollador, basada en activaciones y eventos, es una versión artesanal de la misma idea: agentes que despiertan ante eventos, trabajan y traspasan el resultado, sin una persona en cada paso.
 
-El punto de este recuadro no es que el sistema del builder sea secretamente Claude Code. Los dos sistemas están separados por órdenes de magnitud en esfuerzo de ingeniería, y la versión del builder hace en cientos de ficheros markdown lo que Anthropic hace en medio millón de líneas de TypeScript. El punto es que **ambos sistemas convergieron de forma independiente hacia la misma forma** ——memoria por capas con un índice, enrutamiento sobre payloads y orquestación orientada a eventos —— lo que sugiere que estos patrones no son elecciones estilísticas. Es a lo que se parecen los harnesses de producción cuando sobreviven al contacto con cargas de trabajo reales.
+Este recuadro no implica que el sistema del desarrollador sea secretamente Claude Code. Los separan órdenes de magnitud de esfuerzo de ingeniería: la versión del desarrollador hace en cientos de archivos Markdown lo que Anthropic hace en medio millón de líneas de TypeScript. La idea es que **ambos sistemas convergieron de forma independiente en la misma estructura**: memoria por capas con un índice, enrutamiento en lugar de cargar todo el contenido y orquestación por eventos. Esto sugiere que no son elecciones estilísticas, sino la forma que adoptan los harnesses de producción cuando sobreviven al contacto con cargas de trabajo reales.
 
-## Implicaciones para los practicantes
+<a id="implications-for-practitioners"></a><!-- i18n-anchor -->
 
-Este caso de estudio ilustra que un solo desarrollador, trabajando iterativamente durante meses, puede construir un knowledge harness que hace dos años habría requerido un equipo de ingenieros. Los habilitadores clave son: LLMs lo bastante capaces como para seguir instrucciones complejas de múltiples pasos, protocolos abiertos (MCP) para la integración de herramientas, y la disciplina emergente del context engineering que aporta patrones de diseño para estos sistemas.
+## Implicaciones para los profesionales
 
-El sistema del builder no es una plantilla para copiar. Es una prueba de concepto de que los principios de esta guía ——progressive disclosure, context engineering, skill graphs, orquestación de agents —— producen resultados medibles en producción. Tu harness se verá distinto. La arquitectura debería ser la misma.
+Este caso muestra que un desarrollador individual, trabajando iterativamente durante meses, puede construir un harness de conocimiento que dos años antes habría requerido un equipo de ingenieros. Los factores que lo permiten son LLM con capacidad para seguir instrucciones complejas de varios pasos, protocolos abiertos (MCP) para integrar herramientas y la disciplina emergente de ingeniería de contexto que aporta patrones de diseño para estos sistemas.
+
+El sistema del desarrollador no es una plantilla que deba copiarse. Es una prueba de concepto de que los principios de esta guía —divulgación progresiva, ingeniería de contexto, grafos de habilidades y orquestación de agentes— producen resultados medibles en producción. Su harness será distinto. La arquitectura debería ser la misma.
 
 ---
 
-*Capítulo siguiente: [Capítulo 11 — Momentos clave en la ingeniería del conocimiento con LLMs](11-timeline.md)*
+<a id="three-things-to-take-away"></a><!-- i18n-anchor -->
+
+## Tres ideas para recordar
+
+- **El contrato da al redactor y al evaluador un objetivo común.** El orquestador especifica de antemano la plataforma de destino, el número de palabras y los elementos obligatorios y prohibidos; el evaluador aplica ese mismo documento hasta que se cumpla o intervenga una persona.
+- **La divulgación progresiva mantiene constante la sobrecarga de contexto.** Un índice, un archivo de enrutamiento y un archivo de habilidad permanecen por debajo de 4K tokens sin importar cuántas habilidades existan: una reducción del 65% frente al enfoque de archivos planos al que sustituyeron.
+- **El harness es el producto.** Los componentes individuales son sencillos; el valor reside en integrarlos: lógica de enrutamiento, contratos de sprint, controles de contenido, ciclo de revisión y sistema de memoria.
+
+---
+
+*Siguiente: [Capítulo 11 - Hitos de la ingeniería del conocimiento para LLM](11-timeline.md)*

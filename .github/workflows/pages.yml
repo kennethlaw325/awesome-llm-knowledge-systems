@@ -16,6 +16,7 @@ on:
       - translations/**
       - mkdocs.yml
       - scripts/stage_docs.py
+      - scripts/check_translation_sync.py
       - docs-site/**
       - .github/workflows/pages.yml
   pull_request:
@@ -30,6 +31,7 @@ on:
       - translations/**
       - mkdocs.yml
       - scripts/stage_docs.py
+      - scripts/check_translation_sync.py
       - docs-site/**
       - .github/workflows/pages.yml
   workflow_dispatch:
@@ -52,6 +54,7 @@ jobs:
           python-version: "3.12"
       - run: pip install "mkdocs-material>=9.7,<10"
       - run: python scripts/stage_docs.py --self-check
+      - run: python scripts/check_translation_sync.py
       - run: python scripts/stage_docs.py
       - run: mkdocs build --strict
       - uses: actions/upload-pages-artifact@v5
