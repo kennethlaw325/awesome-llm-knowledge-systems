@@ -110,11 +110,11 @@ A-MEM 把每個記憶視為有動態索引、連結、演化的原子筆記。�
 
 ### MemPalace
 
-[MemPalace](https://github.com/MemPalace/mempalace) 迴歸比向量檢索或知識圖古老得多的想法: **memory of loci**, 古代與中世紀學者用來記得大量目錄的空間-記憶術技巧, 透過心理走過熟悉建築物。2026 年 四 月 5 日 MIT 授權釋出, MemPalace 把記憶庫組織為四層空間階層——**Wings → Rooms → Closets → Drawers**——每個葉節點"drawer"存一個原文文字片段, 而透過階層導航本身擔任索引。
+[MemPalace](https://github.com/MemPalace/mempalace) 回到了一種比向量檢索或知識圖譜古老得多的思路：**位置記憶法（method of loci）**。古代和中世紀學者藉助這種空間記憶技巧，在腦海中走過熟悉的建築，以記住大量條目。MemPalace 於 2026 年四月 5 日以 MIT 許可釋出，將記憶庫組織為四層空間結構：**Wings → Rooms → Closets → Drawers**。每個葉節點 "drawer" 儲存一段原文，而沿層級導航的過程本身就是索引。
 
 因此檢索 primitive 不是 embedding 相似度也不是圖遍歷, 而是 **空間走讀**: agent 推理哪個 wing 可能含相關記憶, 下到 rooms 與 closets, 原文讀 drawers 而非從壓縮 embedding 復原。"verbatim-first"儲存哲學是把 MemPalace 與在儲存前總結或切塊的系統區別開來的設計選擇——它主張對許多工（法律、科學、對話）, 儲存時有失真壓縮的成本超過檢索時稍慢空間走讀的成本。
 
-基準數字是這個做法突破的原因。MemPalace 報告 **96.6% Recall@5 on LongMemEval**, agent 記憶已發表的最長 context 召回基準——在同一評估中領先僅向量與僅圖做法。社群反響一樣驚人: 專案在前三週累積約 **49,000 GitHub stars**, 是 2026 年成長最快的記憶專案, 領先一個數量級。月底前已有學術評論（arXiv 2604.21284, *"Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture"*）在流通——本身就是專案多快進入領域中心對話的訊號。
+基準成績是這一方法獲得關注的原因。MemPalace 報告，在 LongMemEval 這一面向智慧體記憶、已發表的最長上下文召回基準上，**Recall@5 達到 96.6%**，領先同一評估中僅用向量或僅用圖的方法。社群反響同樣顯著：專案在最初三週積累了約 **49,000 個 GitHub 星標**，成為 2026 年增長最快的記憶專案，且明顯領先其他專案。釋出當月結束前，學術評論（arXiv 2604.21284，*"Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture"*）已開始流傳，這本身就說明它很快進入了該領域的核心討論。
 
 <a id="architectural-patterns"></a><!-- i18n-anchor -->
 
@@ -124,7 +124,7 @@ A-MEM 把每個記憶視為有動態索引、連結、演化的原子筆記。�
 
 **多型別階層。** MIRIX 框架（Wang and Chen, "MIRIX: Multi-Agent Memory System for LLM-Based Agents,", arXiv 2507.07957, 2025 年 七 月 10 日）以 **六種獨立記憶型別** 例示這個 pattern——Core Memory、Episodic Memory、Semantic Memory、Procedural Memory、Resource Memory、Knowledge Vault——由含六個每類 Memory Manager 與一個處理任務路由的 Meta Memory Manager 的多 agent 框架協調。每種型別有不同更新頻率、保留政策、檢索機制。這種分離防止災難性遺忘同時允許快速適應。參考應用即時監控螢幕活動以建個人化記憶庫; 在 ScreenshotVQA 多模態基準上, MIRIX 報告比 RAG 基線 35% 更高準確度, 儲存需求 99.9% 較低; 在 LOCOMO 長篇對話基準上 85.4%。
 
-**Git 式版本控制。** 幾個系統現在像版本控制程式碼那樣版本化記憶, 維護歷史, 支援分支（用於推測推理）, 並啟用記憶更新被證明錯誤時的 rollback。這在多 agent 系統特別重要, 不同 agent 可能併發更新共享記憶。
+**借鑑 Git 的版本控制。** 一些系統如今像管理程式碼版本一樣管理記憶：保留歷史，支援分支以進行推測性推理，並在記憶更新被證實有誤時允許回退。這對多智慧體系統尤其重要，因為不同智慧體可能同時更新共享記憶。
 
 版本控制模式獲得了一個事務邊界（2026 年七月）。Git風格的歷史記錄是一種慣例；**MemTxn**（"MemTxn: A Transaction Boundary for Source-Supported Updates and Complete-State Recovery in Agent Memory," arXiv 2607.27834, 2026 年七月 30 日；Hanshuai Cui 和五位合著者）將其作為保證提出。該層位於回答模型之外，包含三個部分：*Ordered PatchTest* 檢查所提議的更新是否確實得到其引用來源的支援，*Temporal Resolver* 決定在事實衝突時哪個版本是可見的，而持久快照日誌可以在發生故障後恢復應用程式可見狀態，而無需知道物理寫入集。在作者自己的驗證集上，它接受所有 60 來源支援的更新，並拒絕所有 179 構造的硬負樣本，並且在 LongMemEval-S 和 LoCoMo 派生狀態上注入持久多鍵故障時，它能夠完全恢復宣告的活動記憶體對映。該驗證集較小，結果未被複制，因此這只是一個提議，而不是經過生產驗證的保證。它對本章的貢獻是一個契約：它將 Mem0ᵍ 非正式指定的衝突檢測器和更新解析器轉化為一個可以失敗的接受/拒絕測試，並新增了一個恢復故事，而上述框架均未提供。另一組團隊在三天前就達成了相同的框架，並且根據作者列表，是獨立完成的 --- **MemTX**（"MemTX: Transactional Belief Commit for Stateful Agent Memory," arXiv 2607.23929, 2026 年七月 27 日）在快照隔離事務中安排寫入，透過尚未提交的信念狀態對不可逆的工具呼叫進行門控，並在信念被撤回時透過派生記錄和工具副作用進行修復。兩個不相關的團隊在同一周內都試圖採用資料庫事務語義本身就是一個訊號：記憶體寫入已經變得足夠重要，需要提交紀律。
 
@@ -228,7 +228,7 @@ ICLR 2026 MemAgents Workshop 代表領域的里程碑, 把來自 AI、認知科�
 
 1. Mem0 文件與基準。https://mem0.ai
 2. A-MEM: Agentic Memory with Zettelkasten-Inspired Organization. https://github.com/agiresearch/A-mem
-3. ByteRover CLI。[已歸檔倉庫](https://github.com/campfirein/byterover-cli)，September 27, 2026 歸檔；October 31, 2026 檢查文件。Elastic License 2.0。
+3. ByteRover CLI。[已歸檔倉庫](https://github.com/campfirein/byterover-cli)，2026 年九月 27 日 歸檔；2026 年十月 31 日 檢查文件。Elastic License 2.0。
 4. Nemori: Semantic Episode Segmentation for Agent Memory. https://github.com/nemori-ai/nemori
 5. Wang, Yu and Chen, Xi. "MIRIX: Multi-Agent Memory System for LLM-Based Agents." arXiv 2507.07957, 2025 年 七 月 10 日。https://arxiv.org/abs/2507.07957.。配套 repo: https://github.com/Mirix-AI/MIRIX
 6. ICLR 2026 MemAgents Workshop. https://iclr.cc/virtual/2026/workshop/MemAgents
@@ -240,24 +240,24 @@ ICLR 2026 MemAgents Workshop 代表領域的里程碑, 把來自 AI、認知科�
 12. MIT Technology Review. "10 Breakthrough Technologies of 2026: Mechanistic Interpretability"（2026 年 一 月 12 日）。https://www.technologyreview.com/2026/01/12/1130003/mechanistic-interpretability-ai-research-models-2026-breakthrough-technologies/
 13. MemPalace GitHub Repository. https://github.com/MemPalace/mempalace ——MIT 授權空間隱喻記憶系統, 首次 commit 2026 年 四 月 5 日。
 14. "Spatial Metaphors for LLM Memory: A Critical Analysis of the MemPalace Architecture," arXiv 2604.21284（2026 年 四 月）。https://arxiv.org/abs/2604.21284
-15. Anthropic。"New in Claude Managed Agents: dreaming, outcomes, and multiagent orchestration"（May 6, 2026）。https://claude.com/blog/new-in-claude-managed-agents ：Dreaming 是可訓練記憶 Titans 的整理式記憶對應物。
-16. Simon Willison。Code w/ Claude 2026 SF 現場部落格（May 6, 2026）。https://simonwillison.net/2026/May/6/code-w-claude-2026/
-17. "GateMem: Benchmarking Memory Governance in Multi-Principal Shared-Memory Agents." arXiv 2606.18829（June 17, 2026）。https://arxiv.org/abs/2606.18829 ：聯合評價效用／訪問控制／主動遺忘；沒有受測方法滿足全部三項。
-18. "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory." arXiv 2607.01071（July 1, 2026）。https://arxiv.org/abs/2607.01071 ：記憶引發迎合，DeepSeek-V4-Flash 全對話為 18.67%→32.67%，Qwen3-8B 為 27.4%→44.7%；事實準確率下降 11-23 個點；評估包括 Mem0、A-MEM 與 LightMem。
-19. "Decision-Aware Memory Cards: Counterfactual-Inspired Context Selection and Compression for Tool-Using LLM Agents." arXiv 2606.08151（June 6, 2026）。https://arxiv.org/abs/2606.08151 ：面向決策排序、帶型別且可審計的卡片；SWE-bench 檔案檢索 Hit@1 0.58→0.78、MRR@10 0.634→0.790，每查詢約 ~45 token。
-20. "Are We Ready For An Agent-Native Memory System?" arXiv 2606.24775（June 23, 2026；SJTU／清華／MemTensor）。https://arxiv.org/abs/2606.24775 ：四模組分解；沒有單一架構領先，Zep 的 LongMemEval 為 48.0，MemOS 的 LoCoMo EM 為 8.9，長上下文的 DB-Bench EM 為 48.20。
-21. arXiv 2606.15903（June 14, 2026）：單作者研究，討論意圖感知刪除的控制平面位置；修改時鉤子在目標類別恢復 78-85%，總體覆蓋率 91.7-93.2%。https://arxiv.org/abs/2606.15903
-22. "Metis: Memory Foundation Model." arXiv 2607.26760（July 29, 2026 提交；MemTensor／中國人民大學／NUS／SJTU／同濟大學，共 17 位作者）。https://arxiv.org/abs/2607.26760 ：凍結 transformer 主幹內的引數化原生記憶，基於 Qwen3.5 的 4B/9B/27B；受 FWP 啟發的 hyper memory block + local memory block；推理時透過無梯度 EMA 式過程更新；自報侷限包括固定大小壓縮下的長期資訊丟失，以及潛在空間中的語義混合。
-23. TencentCloud。TencentDB-Agent-Memory。https://github.com/TencentCloud/TencentDB-Agent-Memory ：MIT 許可、自託管；倉庫建立於 April 7, 2026；v2.0.0 於 August 3, 2026 釋出（GitHub releases API）；約 ~24K stars（August 24, 2026 檢查）。MarkTechPost，"Tencent Cloud Open-Sources TencentDB Agent Memory v2.0"（August 7, 2026），https://www.marktechpost.com/2026/08/07/tencent-cloud-open-sources-tencentdb-agent-memory-v2-0/; ；PRNewswire 團隊協作公告（August 13, 2026），https://www.prnewswire.com/apac/news-releases/tencentdb-agent-memory-tops-20-000-github-stars-in-90-days-launches-team-memory-for-multi-agent-collaboration-302850576.html ：Team Memory 治理層，在 Chat Memory、Skill、Wiki、CodeGraph 之上提供私有／團隊／受限／智慧體可見性層級；治理機制主張均來自 Tencent，尚無獨立基準。
-24. "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability." arXiv 2607.26637（July 29, 2026；Sizhe Zhou 與十位合作者，UIUC／UCSD／Adobe Research）。https://arxiv.org/abs/2607.26637 ：首個系統研究 Markdown 目錄樹記憶模式的工作；在一個共享記憶檔案系統上，區分管理／搜尋／執行三類智慧體；儲存規模擴大後，有序組織讓檢索成本大致減半，但除最強管理智慧體外，組織都會退化，所有受測智慧體也都未能把組織有序轉化為更好的答案。尚未復現。
-25. "MemTxn: A Transaction Boundary for Source-Supported Updates and Complete-State Recovery in Agent Memory." arXiv 2607.27834（July 30, 2026；Hanshuai Cui 與五位合作者）。https://arxiv.org/abs/2607.27834 ：Ordered PatchTest、Temporal Resolver 與持久快照日誌；在作者自建的小型驗證集上接受 60/60 個有來源支援的更新，拒絕 179/179 個困難負例；在 LongMemEval-S 和 LoCoMo 派生狀態上注入多鍵故障後可恢復狀態。獨立並行提案："MemTX: Transactional Belief Commit for Stateful Agent Memory,"，arXiv 2607.23929（July 27, 2026），https://arxiv.org/abs/2607.23929 ：快照隔離寫入、按尚未提交的信念狀態限制動作，以及撤回時的級聯修復；與 MemTxn 沒有作者重合。
-26. "Memory Decoder at Scale: A Pretrained, Parametric Long-Term Memory." arXiv 2607.27919（July 30, 2026；Rubin Wei 等）。https://arxiv.org/abs/2607.27919 ：在 300B token 上預訓練的 6.9B 記憶模組；分散式 Faiss 流水線，按批次稀疏載入 kNN；17 項基準上，410M Pythia 基礎模型的平均成績由 29.86 提升至 37.34，相比 Pythia-12B 的 37.24，總引數減少 39%。結果為自報；這是較早 Memory Decoder 的規模化版本，arXiv 2508.09874，https://arxiv.org/abs/2508.09874
-27. Goyal, Ankit 與 Ray, Jaideep。"Does Your Agent's Memory Survive a Model Upgrade? A Controlled Study of Memory Portability." arXiv 2609.05339（September 4, 2026）。https://arxiv.org/abs/2609.05339 ：48 個合成案例、四種儲存方法；圖記憶幾乎不變（+0.0004 ± 0.0020），壓縮筆記波動 +9.91 / -13.28 個點；部分重新嵌入恢復 4.96 個點，完整重嵌入恢復 11.90；筆記退化的 ~80% 歸因於構建時資訊丟失；只修復儲存始終無法達到 90% 恢復率，保留原始來源則在兩個受測遷移方向之一修復 34/48 個案例。合成樣本量小、兩位作者、尚未復現。
-28. "Can Agent Memory Systems Track Evolving State?"（StateMemBench／StateMem）。arXiv 2608.19652（August 20, 2026；UIUC）。https://arxiv.org/abs/2608.19652 ：234 場景的跨會話基準，以封閉候選池評分衡量時效／替代關係，並提出狀態優先包裝方法 StateMem；報告 DeepSeek-V4-Flash 當前狀態準確率相對同主幹最強基線達 1.8x（0.205 至 0.363），Qwen-3.5-9B 相對最強記憶系統達 1.6x（0.149 至 0.233）；作為六個後端的包裝層，提升 +32 至 +67 個點，控制上下文 token 後保留 +15 至 +32 個點。均為論文自報，尚未復現。
-29. Google Cloud。Gemini Enterprise Agent Platform 正式釋出公告（July 30, 2026）。https://cloud.google.com/blog/products/ai-machine-learning/whats-new-in-gemini-enterprise-agent-platform ：Agent Memory Bank 正式釋出，按模式定義從對話上下文提取結構化內容；Agent Runtime 支援智慧體連續執行最長 7 天；Agent Identity 是原生 IAM 型別；另有 Agent Gateway、Agent Registry，共五項能力。不同於七月 2025 的 Vertex AI Memory Bank 公開預覽。所有能力主張均為 Google 自報，未找到獨立基準。產品文件：https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/memory-bank
+15. Anthropic。"New in Claude Managed Agents: dreaming, outcomes, and multiagent orchestration"（2026 年五月 6 日）。https://claude.com/blog/new-in-claude-managed-agents ：Dreaming 是可訓練記憶 Titans 的整理式記憶對應物。
+16. Simon Willison。Code w/ Claude 2026 SF 現場部落格（2026 年五月 6 日）。https://simonwillison.net/2026/May/6/code-w-claude-2026/
+17. "GateMem: Benchmarking Memory Governance in Multi-Principal Shared-Memory Agents." arXiv 2606.18829（2026 年六月 17 日）。https://arxiv.org/abs/2606.18829 ：聯合評價效用／訪問控制／主動遺忘；沒有受測方法滿足全部三項。
+18. "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory." arXiv 2607.01071（2026 年七月 1 日）。https://arxiv.org/abs/2607.01071 ：記憶引發迎合，DeepSeek-V4-Flash 全對話為 18.67%→32.67%，Qwen3-8B 為 27.4%→44.7%；事實準確率下降 11-23 個點；評估包括 Mem0、A-MEM 與 LightMem。
+19. "Decision-Aware Memory Cards: Counterfactual-Inspired Context Selection and Compression for Tool-Using LLM Agents." arXiv 2606.08151（2026 年六月 6 日）。https://arxiv.org/abs/2606.08151 ：面向決策排序、帶型別且可審計的卡片；SWE-bench 檔案檢索 Hit@1 0.58→0.78、MRR@10 0.634→0.790，每查詢約 ~45 token。
+20. "Are We Ready For An Agent-Native Memory System?" arXiv 2606.24775（2026 年六月 23 日；SJTU／清華／MemTensor）。https://arxiv.org/abs/2606.24775 ：四模組分解；沒有單一架構領先，Zep 的 LongMemEval 為 48.0，MemOS 的 LoCoMo EM 為 8.9，長上下文的 DB-Bench EM 為 48.20。
+21. arXiv 2606.15903（2026 年六月 14 日）：單作者研究，討論意圖感知刪除的控制平面位置；修改時鉤子在目標類別恢復 78-85%，總體覆蓋率 91.7-93.2%。https://arxiv.org/abs/2606.15903
+22. "Metis: Memory Foundation Model." arXiv 2607.26760（2026 年七月 29 日 提交；MemTensor／中國人民大學／NUS／SJTU／同濟大學，共 17 位作者）。https://arxiv.org/abs/2607.26760 ：凍結 transformer 主幹內的引數化原生記憶，基於 Qwen3.5 的 4B/9B/27B；受 FWP 啟發的 hyper memory block + local memory block；推理時透過無梯度 EMA 式過程更新；自報侷限包括固定大小壓縮下的長期資訊丟失，以及潛在空間中的語義混合。
+23. TencentCloud。TencentDB-Agent-Memory。https://github.com/TencentCloud/TencentDB-Agent-Memory ：MIT 許可、自託管；倉庫建立於 2026 年四月 7 日；v2.0.0 於 2026 年八月 3 日 釋出（GitHub releases API）；約 ~24K stars（2026 年八月 24 日 檢查）。MarkTechPost，"Tencent Cloud Open-Sources TencentDB Agent Memory v2.0"（2026 年八月 7 日），https://www.marktechpost.com/2026/08/07/tencent-cloud-open-sources-tencentdb-agent-memory-v2-0/; ；PRNewswire 團隊協作公告（2026 年八月 13 日），https://www.prnewswire.com/apac/news-releases/tencentdb-agent-memory-tops-20-000-github-stars-in-90-days-launches-team-memory-for-multi-agent-collaboration-302850576.html ：Team Memory 治理層，在 Chat Memory、Skill、Wiki、CodeGraph 之上提供私有／團隊／受限／智慧體可見性層級；治理機制主張均來自 Tencent，尚無獨立基準。
+24. "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability." arXiv 2607.26637（2026 年七月 29 日；Sizhe Zhou 與十位合作者，UIUC／UCSD／Adobe Research）。https://arxiv.org/abs/2607.26637 ：首個系統研究 Markdown 目錄樹記憶模式的工作；在一個共享記憶檔案系統上，區分管理／搜尋／執行三類智慧體；儲存規模擴大後，有序組織讓檢索成本大致減半，但除最強管理智慧體外，組織都會退化，所有受測智慧體也都未能把組織有序轉化為更好的答案。尚未復現。
+25. "MemTxn: A Transaction Boundary for Source-Supported Updates and Complete-State Recovery in Agent Memory." arXiv 2607.27834（2026 年七月 30 日；Hanshuai Cui 與五位合作者）。https://arxiv.org/abs/2607.27834 ：Ordered PatchTest、Temporal Resolver 與持久快照日誌；在作者自建的小型驗證集上接受 60/60 個有來源支援的更新，拒絕 179/179 個困難負例；在 LongMemEval-S 和 LoCoMo 派生狀態上注入多鍵故障後可恢復狀態。獨立並行提案："MemTX: Transactional Belief Commit for Stateful Agent Memory,"，arXiv 2607.23929（2026 年七月 27 日），https://arxiv.org/abs/2607.23929 ：快照隔離寫入、按尚未提交的信念狀態限制動作，以及撤回時的級聯修復；與 MemTxn 沒有作者重合。
+26. "Memory Decoder at Scale: A Pretrained, Parametric Long-Term Memory." arXiv 2607.27919（2026 年七月 30 日；Rubin Wei 等）。https://arxiv.org/abs/2607.27919 ：在 300B token 上預訓練的 6.9B 記憶模組；分散式 Faiss 流水線，按批次稀疏載入 kNN；17 項基準上，410M Pythia 基礎模型的平均成績由 29.86 提升至 37.34，相比 Pythia-12B 的 37.24，總引數減少 39%。結果為自報；這是較早 Memory Decoder 的規模化版本，arXiv 2508.09874，https://arxiv.org/abs/2508.09874
+27. Goyal, Ankit 與 Ray, Jaideep。"Does Your Agent's Memory Survive a Model Upgrade? A Controlled Study of Memory Portability." arXiv 2609.05339（2026 年九月 4 日）。https://arxiv.org/abs/2609.05339 ：48 個合成案例、四種儲存方法；圖記憶幾乎不變（+0.0004 ± 0.0020），壓縮筆記波動 +9.91 / -13.28 個點；部分重新嵌入恢復 4.96 個點，完整重嵌入恢復 11.90；筆記退化的 ~80% 歸因於構建時資訊丟失；只修復儲存始終無法達到 90% 恢復率，保留原始來源則在兩個受測遷移方向之一修復 34/48 個案例。合成樣本量小、兩位作者、尚未復現。
+28. "Can Agent Memory Systems Track Evolving State?"（StateMemBench／StateMem）。arXiv 2608.19652（2026 年八月 20 日；UIUC）。https://arxiv.org/abs/2608.19652 ：234 場景的跨會話基準，以封閉候選池評分衡量時效／替代關係，並提出狀態優先包裝方法 StateMem；報告 DeepSeek-V4-Flash 當前狀態準確率相對同主幹最強基線達 1.8x（0.205 至 0.363），Qwen-3.5-9B 相對最強記憶系統達 1.6x（0.149 至 0.233）；作為六個後端的包裝層，提升 +32 至 +67 個點，控制上下文 token 後保留 +15 至 +32 個點。均為論文自報，尚未復現。
+29. Google Cloud。Gemini Enterprise Agent Platform 正式釋出公告（2026 年七月 30 日）。https://cloud.google.com/blog/products/ai-machine-learning/whats-new-in-gemini-enterprise-agent-platform ：Agent Memory Bank 正式釋出，按模式定義從對話上下文提取結構化內容；Agent Runtime 支援智慧體連續執行最長 7 天；Agent Identity 是原生 IAM 型別；另有 Agent Gateway、Agent Registry，共五項能力。不同於七月 2025 的 Vertex AI Memory Bank 公開預覽。所有能力主張均為 Google 自報，未找到獨立基準。產品文件：https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/memory-bank
 
-30. Cognee。"cognee 1.0"（June 26, 2026）。[公告](https://www.cognee.ai/cognee-1-0-announcement)。
-31. Cognee。"v1.6.6"（October 29, 2026）。[釋出說明](https://github.com/topoteretes/cognee/releases/tag/v1.6.6)。
+30. Cognee。"cognee 1.0"（2026 年六月 26 日）。[公告](https://www.cognee.ai/cognee-1-0-announcement)。
+31. Cognee。"v1.6.6"（2026 年十月 29 日）。[釋出說明](https://github.com/topoteretes/cognee/releases/tag/v1.6.6)。
 
 ---
 

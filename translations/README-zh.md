@@ -108,14 +108,14 @@ AI 工具每年都在變得更聰明，但只有在正確的時間接收到正�
 
 不知道從哪裡開始？選擇最符合你的描述：
 
-- **"I just want to understand what all these AI buzzwords mean."**：先看[術語表](glossary_zh.md)，再讀[第 1 章：三個世代](chapters/zh/01-evolution.md)。
-- **"I'm building an AI application."**：依次閱讀[第 02 章：RAG、長上下文與知識圖譜](chapters/zh/02-knowledge-layer.md)、[第 03 章：上下文工程](chapters/zh/03-context-engineering.md)、[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)。
-- **"I want to make my AI tools work better."**：依次閱讀[第 05 章：技能系統](chapters/zh/05-skill-systems.md)、[第 06 章：智慧體記憶](chapters/zh/06-agent-memory.md)、[第 10 章：案例研究](chapters/zh/10-case-study.md)。
-- **"I want my agents to run without me pushing every step."**：閱讀[第 13 章：迴圈工程](chapters/zh/13-loop-engineering.md)，再讀[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)與[第 06 章：智慧體記憶](chapters/zh/06-agent-memory.md)。
-- **"I'm wiring multiple agents together."**：閱讀[第 14 章：圖工程](chapters/zh/14-graph-engineering.md)，再讀[第 13 章：迴圈工程](chapters/zh/13-loop-engineering.md)與[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)。
-- **"I want to see real examples."**：直接閱讀[第 10 章：案例研究](chapters/zh/10-case-study.md)。
-- **"I work with Chinese AI tools."**：從[第 09 章：中國 AI 生態系統](chapters/zh/09-china-ecosystem.md)開始。
-- **"I want the complete picture."**：從第 1 章開始，從頭讀到尾。
+- **“我只想弄懂這些 AI 熱詞是什麼意思。”**：先看[術語表](glossary_zh.md)，再讀[第 1 章：三個世代](chapters/zh/01-evolution.md)。
+- **“我正在開發 AI 應用。”**：依次閱讀[第 02 章：RAG、長上下文與知識圖譜](chapters/zh/02-knowledge-layer.md)、[第 03 章：上下文工程](chapters/zh/03-context-engineering.md)、[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)。
+- **“我想讓自己的 AI 工具更好用。”**：依次閱讀[第 05 章：技能系統](chapters/zh/05-skill-systems.md)、[第 06 章：智慧體記憶](chapters/zh/06-agent-memory.md)、[第 10 章：案例研究](chapters/zh/10-case-study.md)。
+- **“我希望智慧體自主執行，不用我一步步推動。”**：閱讀[第 13 章：迴圈工程](chapters/zh/13-loop-engineering.md)，再讀[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)與[第 06 章：智慧體記憶](chapters/zh/06-agent-memory.md)。
+- **“我正在把多個智慧體連線起來協同工作。”**：閱讀[第 14 章：圖工程](chapters/zh/14-graph-engineering.md)，再讀[第 13 章：迴圈工程](chapters/zh/13-loop-engineering.md)與[第 04 章：系統編排工程](chapters/zh/04-harness-engineering.md)。
+- **“我想看看實際案例。”**：直接閱讀[第 10 章：案例研究](chapters/zh/10-case-study.md)。
+- **“我使用中國的 AI 工具工作。”**：從[第 09 章：中國 AI 生態系統](chapters/zh/09-china-ecosystem.md)開始。
+- **“我想全面瞭解。”**：從第 1 章開始，從頭讀到尾。
 
 ---
 

@@ -150,7 +150,7 @@ Agent 间通讯是触发式的。Agent 不互相轮询。Data collector 完成�
 
 ## 边栏: Claude Code 作为参考实现
 
-在构建者系统演化的大部分时期，Anthropic 自己的内部工具一直是黑盒。从业者可以从 Claude Code 的行为推断其运作方式，但 Anthropic 之外没人见过源代码。**March 31, 2026**，情况发生了变化：Anthropic 意外在 npm 包 `@anthropic-ai/claude-code` v2.1.88 中发布了一份 59.8MB 的源映射文件，约含 513,000 行未经混淆的 TypeScript，分布在 1,906 个文件中（完整经过见第 4 章）。这次泄露让社区首次得以实证观察前沿实验室的生产级系统编排层，其中数种模式与构建者独立摸索出的模式十分相似：
+在构建者系统演化的大部分时期，Anthropic 自己的内部工具一直是黑盒。从业者可以从 Claude Code 的行为推断其运作方式，但 Anthropic 之外没人见过源代码。**2026 年三月 31 日**，情况发生了变化：Anthropic 意外在 npm 包 `@anthropic-ai/claude-code` v2.1.88 中发布了一份 59.8MB 的源映射文件，约含 513,000 行未经混淆的 TypeScript，分布在 1,906 个文件中（完整经过见第 4 章）。这次泄露让社区首次得以实证观察前沿实验室的生产级系统编排层，其中数种模式与构建者独立摸索出的模式十分相似：
 
 - **Self-Healing Memory, 不是一个大档。** Claude Code 外泄出来的架构组织成三层"Self-Healing Memory"系统, 层之间有明确的修复逻辑。构建者的 vault + 记忆档 + sprint 合约回路是同一概念的较粗版本: 短期工作状态（当前 session）、中期压缩状态（记忆档）、长期持久知识（vault）。两个系统中,"memory"都不是一个地点; 它是一组层加上层之间的转换。
 - **MEMORY.md 是索引, 不是仓库。** Claude Code 内部的 `MEMORY.md` 是轻量级的指针式索引, 指向更详细的笔记——不是单一的 transcript。构建者的配置档扮演完全相同角色: 它装路由表与指针, 不装载荷, 这正是基线 context 保持在 2K token 以下的原因。

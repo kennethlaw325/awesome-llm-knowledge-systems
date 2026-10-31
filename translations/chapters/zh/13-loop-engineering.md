@@ -241,9 +241,9 @@ loop 的好壞, 取決於圍著它的那個 outer loop 有多好。這就是整�
 
 ## 來源
 
-- OpenAI。Third Moment Research 案例研究（October 14, 2026）：[https://openai.com/index/third-moment-research/](https://openai.com/index/third-moment-research/)。
+- OpenAI。Third Moment Research 案例研究（2026 年十月 14 日）：[https://openai.com/index/third-moment-research/](https://openai.com/index/third-moment-research/)。
 - **Steinberger, Peter（@steipete）。** 催化"loops, not prompts"這個框定的貼文（2026 年 六月 7 日）：[https://x.com/steipete/status/2063697162748260627](https://x.com/steipete/status/2063697162748260627) ——截至 2026 年 七月中已有 8.4M+ 曝光次數; 貼文字身並沒有用"loop engineering."這個說法。
-- Osmani, Addy。"Loop Engineering"（June 7, 2026）：[https://addyosmani.com/blog/loop-engineering/](https://addyosmani.com/blog/loop-engineering/)；O'Reilly Radar 轉載版（June 22, 2026）：[https://www.oreilly.com/radar/loop-engineering/](https://www.oreilly.com/radar/loop-engineering/)。為實踐命名的文章；定義、"one floor above the harness,"、五個元件，以及晨間分流的完整示例。
+- Osmani, Addy。"Loop Engineering"（2026 年六月 7 日）：[https://addyosmani.com/blog/loop-engineering/](https://addyosmani.com/blog/loop-engineering/)；O'Reilly Radar 轉載版（2026 年六月 22 日）：[https://www.oreilly.com/radar/loop-engineering/](https://www.oreilly.com/radar/loop-engineering/)。為實踐命名的文章；定義、"one floor above the harness,"、五個元件，以及晨間分流的完整示例。
 - **Osmani, Addy.**"Own the Outer Loop"（2026 年 七月 8 日於 X 公佈; Substack 落款日期 2026 年 七月 9 日）：[https://addyo.substack.com/p/own-the-outer-loop](https://addyo.substack.com/p/own-the-outer-loop) ——內層 loop 與 outer loop 之分; Quality / Verdict / Answerability; cognitive debt、cognitive surrender、orchestration tax。
 - **Cherny, Boris.**"Head of Claude Code: what happens next"訪談, Lenny's Podcast / Lenny's Newsletter（2026 年中）：[https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens) ——"I don't prompt Claude anymore ... my job is to write loops"這句話; 一句在各媒體轉錄不一致的口述引言, 在此附上這個但書引用。
 - **Rajasekaran, Prithvi.**"Harness design for long-running application development,", Anthropic Engineering（2026 年 三月 24 日）：[https://www.anthropic.com/engineering/harness-design-long-running-apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) ——generator/evaluator（受 GAN 啟發）的拆分; 保持懷疑的獨立 evaluator; Playwright-MCP 行為驗證。

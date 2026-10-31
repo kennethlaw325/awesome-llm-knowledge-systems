@@ -173,7 +173,7 @@ Obsidian 的本地優先架構讓它對隱私意識使用者、對知識庫本�
 5. Smart Connections. https://github.com/brianpetro/obsidian-smart-connections
 6. Claudian. https://github.com/claudian-ai/claudian
 7. Mem. https://mem.ai
-8. Heptabase。https://heptabase.com ：更新日誌（v1.98.0，June 2, 2026）：https://wiki.heptabase.com/changelog （AI Agent 獲得可透過快照撤銷的標籤資料庫編輯訪問）。
+8. Heptabase。https://heptabase.com ：更新日誌（v1.98.0，2026 年六月 2 日）：https://wiki.heptabase.com/changelog （AI Agent 獲得可透過快照撤銷的標籤資料庫編輯訪問）。
 9. Capacities。https://capacities.io ："What's new: release 66"（2026 年六月）：https://capacities.io/whats-new/release-66 （AI Chat Connectors 2.0，MCP 客戶端對帶型別物件圖執行 CRUD）。
 10. Tana Outliner。https://outliner.tana.inc ：supertag 大綱工具；"Tana as it is now"（2026 年三月）：https://outliner.tana.inc/articles/tana-current-march-2026 ，以及 Tana Inc. 更新日誌 https://tana.inc/changelog/2026-06-26-transcription-language （`tana.inc` 品牌在 2026 年三月被重新分配給一款新的智慧體會議產品）。
 11. Microsoft. "The next phase of the Microsoft-OpenAI partnership."（2026 年 四 月 27 日）。[https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/](https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/)
@@ -181,9 +181,9 @@ Obsidian 的本地優先架構讓它對隱私意識使用者、對知識庫本�
 13. Anthropic. "New in Claude Managed Agents: dreaming, outcomes, and multiagent orchestration." 2026 年五月 6 日. [https://claude.com/blog/new-in-claude-managed-agents](https://claude.com/blog/new-in-claude-managed-agents)
 14. AWS. "The AWS MCP Server is now generally available." 2026 年五月 6 日. [https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/](https://aws.amazon.com/blogs/aws/the-aws-mcp-server-is-now-generally-available/)
 15. Notion. "Release notes"（2026 年七月 1 日)：[https://www.notion.com/releases/2026-07-01](https://www.notion.com/releases/2026-07-01) 和（2026 年五月 13 日)：[https://www.notion.com/releases/2026-05-13](https://www.notion.com/releases/2026-05-13)--- 3.6 外部智慧體（Claude、Cursor）；3.5 開發者平臺（Codex、Decagon 作為 API 合作伙伴）；Notion 工作者；五個新的 MCP 聯結器；原生 PPTX/XLSX/DOCX；自定義智慧體審計日誌；MCP "usage has 10×'d in the past month."
-16. Notion Developers。"Changelog"（August 20, 2026 條目）：[https://developers.notion.com/page/changelog](https://developers.notion.com/page/changelog)。基於會話的 Agent APIs，包括與 Custom Agent 開始聊天、流式接收回復、提交操作、分頁瀏覽會話事件歷史，從私有 alpha 轉為公開 beta；alpha 路由整合須於 September 30, 2026 前遷移至 sessions/events 模型。
+16. Notion Developers。"Changelog"（2026 年八月 20 日 條目）：[https://developers.notion.com/page/changelog](https://developers.notion.com/page/changelog)。基於會話的 Agent APIs，包括與 Custom Agent 開始聊天、流式接收回復、提交操作、分頁瀏覽會話事件歷史，從私有 alpha 轉為公開 beta；alpha 路由整合須於 2026 年九月 30 日 前遷移至 sessions/events 模型。
 
-17. Notion。"Notion 3.8: Context for your agents"（October 13, 2026）。[釋出說明](https://www.notion.com/releases/2026-10-13)。
+17. Notion。"Notion 3.8: Context for your agents"（2026 年十月 13 日）。[釋出說明](https://www.notion.com/releases/2026-10-13)。
 
 ---
 

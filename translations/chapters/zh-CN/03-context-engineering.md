@@ -88,7 +88,7 @@ Manus 在他们 agent 系统中观察到稳定的 100:1 输入对输出 token �
 
 **缓存原则有了研究工具包（2026 年中）。** Manus 的规则原本是运行经验；2026 年六月的两篇论文将同一原则转化为可测机制。**Still**（arXiv 2606.07878，June 5, 2026）以针对冻结基础模型训练的逐层 Perceiver，实现摊销式、单遍 KV-cache 压缩，报告在 **8k-128k 上下文中压缩 8x-200x**，并在 **RULER 上比最强基线高 8-22 个点**。**TokenPilot**（arXiv 2606.17016，June 15, 2026）采用双粒度设计：*摄取感知压缩*阶段在全局稳定前缀，*生命周期感知驱逐*阶段在局部追踪各片段的效用；在 PinchBench 和 Claw-Eval 上，独立会话设置成本减少 **61% / 56%**，连续会话设置则减少 **61% / 87%**。TokenPilot 的意义在于，以实际数字落实了本节定性描述的"append-only, don't bust the cache"原则：驱逐阶段让长期会话既保留有利于缓存的前缀，又不会无限增长。
 
-**何时压缩，怎样压缩（2026 年八月）。** 后续实证研究 "Practical Online KV Cache Compaction for LLM Agents"（arXiv 2608.00902，August 2, 2026），专门研究智能体轨迹的压缩，进一步收窄建议：立即压缩会损害准确率；等智能体自身未来查询可充当代理查询信号时再压缩，能恢复大部分损失。代理不理想时，按代理查询诱发的注意力质量评分、驱逐 token 的方法（TE），比注意力匹配重建（AM）更稳健。在 BrowseComp-Plus、WideSearch 上，TE 将 KV 缓存减少 80%，吞吐量还高于完全不压缩，为本节定性描述的仅追加原则提供具体规则：等待信号，然后驱逐，而非重建。
+**何时压缩，怎样压缩（2026 年八月）。** 后续实证研究 "Practical Online KV Cache Compaction for LLM Agents"（arXiv 2608.00902，2026 年八月 2 日）专门研究智能体轨迹中的压缩，进一步明确了建议：立即压缩会损害准确率；等智能体自身后续查询可充当代理查询信号时再压缩，能恢复大部分损失。代理信号不理想时，依据代理查询诱发的注意力权重总量，为待驱逐 token 评分的方法（token 驱逐，TE），比注意力匹配重建（AM）更稳健。在 BrowseComp-Plus、WideSearch 上，TE 将 KV 缓存减少 80%，吞吐量还高于完全不压缩，为本节定性描述的仅追加原则提供了具体规则：等待信号，然后驱逐，而非重建。
 
 <a id="34-five-dominant-patterns"></a><!-- i18n-anchor -->
 
@@ -106,7 +106,7 @@ Aurimas Griciūnas 把浮现实务综合为在生产系统中观察到的五个�
 
 **工具与能力管理。** 当工具库变大, 加载所有 schema 变得不可行。系统用 meta-tool pattern（按需返回相关工具 schema 的发现工具）或技能图架构来保持工具层精简。
 
-**前沿实验室修改了自己的规则（2026 年 七月）。** 上述五种模式是根据在许多系统中观察到的实践综合得出的。 2026年七月24日，Anthropic发布了Thariq Shihipar对其自身指南的第一方修订版"The new rules of context engineering for Claude 5 generation models,"——标题是减法。 Claude Code 团队为其 Claude 5 代型号删除了超过 80% 的系统提示，编码评估没有明显损失。 Anthropic 从其自己的编码评估中报告了该数字；它没有独立进行基准测试。其背后的原因是旅行的部分。这篇文章主张从规则转向判断，给予有能力的智能体原则和信任，而不是详尽的指示；用于渐进式、即时上下文加载，而不是预先填充窗口；向智能体介绍情况的方式与向个人介绍情况的方式相同，仅在他们赢得职位的情况下提供角色、限制和示例。第二个重申了上面的渐进式披露，现在有实验室的生产证据支持。第一个削减违背了该学科建立的本能：它说，随着模型的改进，上下文工程工作中越来越多的份额不是优化，而是积累的不信任，而针对该份额的正确举措是删除而不是调整。
+**前沿实验室修改了自己的规则（2026 年七月）。** 上述五种模式综合了在许多系统中观察到的实践。2026 年七月 24 日，Anthropic 发布了 Thariq Shihipar 撰写的第一方指南修订文章 "The new rules of context engineering for Claude 5 generation models,"，核心变化是做减法。Claude Code 团队为 Claude 5 代模型删去了超过 80% 的系统提示词，编码评估却没有可测量的退步。该数字来自 Anthropic 自己的编码评估，未经独立基准验证。可迁移到其他系统的是背后的理由。文章主张从规则转向判断，给予有能力的智能体原则和信任，而非事无巨细的指令；渐进地、在需要时加载上下文，而非预先塞满窗口；像向人交代任务一样向智能体说明角色、约束和示例，并且只在这些内容确有价值时才加入。第二点重申了上文的渐进式披露，如今又有实验室的生产实践证据支持。第一点则挑战了这门学科赖以建立的直觉：随着模型进步，上下文工程中越来越多的工作其实是在累积不信任，而非优化；对于这一部分，合适的做法是删除，而非微调。
 
 **压缩不是一项策略（2026 年八月）。** 上面的 KV-cache 工作和本节中的上下文压缩都将窗口视为可互换token的预算。一项九位作者的研究（arXiv 2608.31057，2026 年八月 31 日）认为这是错误的记账单位。通过分析 55 个存档的编码智能体轨迹，它将工作记忆内容分为四类——指令、工件、工具输出和智能体生成的状态——具有不同的大小、保留和表示配置文件，并提出了一个四级评估框架，将存储状态、交付上下文、管理工作和任务或流程结果分开。用作者的话说，"equal token budgets do not imply equal delivered context or management cost." 他们测试了两种语义信息策略，即对象感知压缩和基于检索的策略，并警告校准增益在一个任务集上调整 "may not transfer to held-out tasks." 在 55 个轨迹上，这是一个开放的经验发现，而不是一个固定的模式。实际后果是狭窄但尖锐的：跨窗口统一应用的单一压缩规则已经对四种不同类型的对象做出了策略选择，并且使该选择变得盲目。
 
@@ -146,7 +146,7 @@ ACE 系统典型在 context 内维持一个结构化 scratchpad——一个指�
 
 ## 需要带走的三件事
 
-- **提示是字符串，上下文是程序集。** 每个推理调用都是路由逻辑、检索、压缩和工具可用性检查的产物，因此设计单元是包，而不是指令。
+- **提示词是字符串，上下文是组装后的信息集合。** 每次推理调用都由路由逻辑、检索、压缩和工具可用性检查共同构成，因此设计对象是整个信息包，而非单条指令。
 - **输入token就是账单。** 在 Manus 测量的 100:1 输入输出比下，KV-cache 命中率是延迟和成本的杠杆，这就是上下文构建为仅附加日志的原因。
 - **您设计的部分内容是积累的不信任。** Anthropic 为其 Claude 5 代模型删除了超过 80% 的系统提示，没有可测量的编码评估损失，因此针对该部分上下文的正确做法是删除而不是调整。
 
@@ -167,6 +167,6 @@ ACE 系统典型在 context 内维持一个结构化 scratchpad——一个指�
 - **Willison, Simon.** [simonwillison.net](https://simonwillison.net) 上持续的 AI engineering 报道——把生态系串连的可亲实务介绍。
 - **仍然。** 摊销单通 KV-cache 压缩。 arXiv 2606.07878, 六月 5, 2026。 [https://arxiv.org/abs/2606.07878](https://arxiv.org/abs/2606.07878) --- 针对冻结基础模型训练的每层感知器； 8k-128k 上下文下的 8x-200x 压缩；比 RULER 上最强基线高出 8-22 点。
 - **TokenPilot.** 双粒度 KV-cache 管理。 arXiv 2606.17016, 六月 15, 2026. [https://arxiv.org/abs/2606.17016](https://arxiv.org/abs/2606.17016) --- Ingestion-Aware Compaction（全局前缀稳定）+ Lifecycle-Aware Eviction（本地段实用程序跟踪）；在 PinchBench 和 Claw-Eval 上，独立会话成本降低 61% / 56%，连续会话成本降低 61% / 87%。
-- **"Practical Online KV Cache Compaction for LLM Agents."** arXiv 2608.00902，August 2, 2026。[https://arxiv.org/abs/2608.00902](https://arxiv.org/abs/2608.00902)：智能体轨迹压缩的系统研究；延迟至代理查询信号可用，恢复立即压缩损失的大部分准确率；代理不理想时，token 驱逐 TE 比注意力匹配重建 AM 更稳健；TE 将 KV 缓存减少 80%，同时在 BrowseComp-Plus、WideSearch 上提高相对不压缩的吞吐量。
+- **"Practical Online KV Cache Compaction for LLM Agents."** arXiv 2608.00902，2026 年八月 2 日。[https://arxiv.org/abs/2608.00902](https://arxiv.org/abs/2608.00902)：智能体轨迹压缩的系统研究；延迟至代理查询信号可用，恢复立即压缩损失的大部分准确率；代理不理想时，token 驱逐 TE 比注意力匹配重建 AM 更稳健；TE 将 KV 缓存减少 80%，同时在 BrowseComp-Plus、WideSearch 上提高相对不压缩的吞吐量。
 - **Shihipar，塔里克** (Anthropic)。 "The new rules of context engineering for Claude 5 generation models." Anthropic 博客，2026 年 七月 24 日。[https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models) --- 报告 Claude 5 代模型的系统提示减少了 80% 以上，没有测量编码评估损失（Anthropic 自己的编码评估，未进行独立基准测试）；判断规则，及时加载上下文，向智能体提供简报，就像对待一个人一样。
 - **Chen, Le 等人** "Measure Before You Manage: Evaluating Agent Working Memory in Coding Agents"（九位作者）。 arXiv 2608.31057，2026年八月31日。[https://arxiv.org/abs/2608.31057](https://arxiv.org/abs/2608.31057) --- 55个存档的编码智能体轨迹；工作记忆对象的四类分类（指令、工件、工具输出、智能体生成的状态）；四级评估框架（存储状态、交付上下文、管理工作、任务或流程结果）；测试了基于对象感知的压缩和检索策略；作者指出，"equal token budgets do not imply equal delivered context or management cost" 和校准增益 "may not transfer to held-out tasks." 小样本，未重复。

@@ -60,7 +60,7 @@ MCP は AI の USB と考えてください。 USB が登場する前は、す�
 
 **後期 2025.** MCP は、Linux 財団の下にある新しい組織である Agentic AI Foundation に寄付され、Anthropic、Block、および OpenAI が創設ガバナンスを担当します。この動きにより、"Anthropic controls the standard" の懸念が解消され、MCP がベンダー固有のプロトコルではなく真の業界標準として確立されます。
 
-**2026.** MCP SDK のダウンロード数は、Q1 2026 の時点で、すべてのパッケージ レジストリ全体で月間 97 百 万件を超えました。エコシステムには、75+ 財団によって保守されている公式コネクタと、さらに数千のコミュニティ構築サーバーが含まれています。 REST が Web API のデフォルトになったのと同じように、このプロトコルは AI アプリケーションのデフォルトの統合レイヤーになりました。
+**2026.** MCP SDKのダウンロード数は、2026年第1四半期の時点で、全パッケージレジストリの合計で月間97百万件を超えました。エコシステムには、財団が保守する75以上の公式コネクタに加え、コミュニティが構築した数千のサーバーがあります。RESTがWeb APIの標準となったように、このプロトコルはAIアプリケーションの標準的な統合層になっています。
 
 プロトコルの統合の瞬間は、AWS が **AWS MCP サーバー** を一般提供開始した **2026年五月6日** に到来しました。これは、ハイパースケーラーが管理する最初のリモート MCP エンドポイントであり、IAM を使用して 一つの認証されたサーバーを介して 15,000 + AWS API 操作を公開しました。きめ細かいアクセスのためのコンテキスト キーと、サーバー側の Python のためのサンドボックス化された `run_script` ツール。 Linux 財団の寄付 (十二月 2025) と 97M ダウンロード (Q1 2026) により、MCP が標準として確立されました。 AWS GA は、標準がインフラストラクチャになる瞬間を示します。このパターンは、S3 によるオブジェクト ストレージの統合を反映しています。多くのセルフホスト サーバーは消滅しませんが、重心は "one managed endpoint at the cloud boundary." に移動します。
 
@@ -178,7 +178,7 @@ SEP-1686 は、2026年四月 MCP 仕様で実験版として出荷されます�
 
 **タスクは実験的なコアから拡張機能に移動します。** SEP-1686 のタスク プリミティブ --- 長時間実行呼び出しを再開可能なステート マシンに変える call-now / fetch-later パターン --- 再設計されたステートレス ライフサイクルにより、プロトコル コアから拡張機能フレームワークに移行します。 `tools/call` はタスク ハンドルを返します。クライアントは、`tasks/get`、`tasks/update`、および `tasks/cancel` を介して進行を推進します。これらはそれぞれ通常のステートレス リクエストです。能力は変わりません。形状はステートレス コアと一致するようになりました。
 
-**基盤の強化。** 同じ波により、**拡張フレームワーク** (リバース DNS ID によって識別され、正式な標準トラックで交渉される機能 -- この仕様は、コアから独立してバージョン管理する方法が得られます)、**OAuth 2.0 / OIDC 認証の強化** (必須の `iss` パラメータ検証、クライアント登録時のアプリケーション タイプ宣言、および現行とのより緊密な連携をカバーする 六つの SEP が適用されます) OAuth ベスト プラクティス)、および仕様の最初の **正式な非推奨ポリシー** (ルート、サンプリング、およびロギングは、重大な変更がリリースされる前に最小 12 か月の削除期間を設けて非推奨になりました)。 十八か月にわたる機能拡張の後、この仕様はリリース サイクルを費やして基盤を強化します。
+**基盤の強化。** 同じ更新では、**拡張フレームワーク**（逆順DNS形式のIDで機能を識別し、正式なStandards Trackで交渉することで、仕様のコアとは独立したバージョン管理を可能にする）、**OAuth 2.0 / OIDCの認可強化**（必須の `iss` パラメータ検証、クライアント登録時のアプリケーション種別宣言、現在のOAuthベストプラクティスとの整合性強化を扱う六つのSEP）、そして仕様初の**正式な非推奨化ポリシー**も導入されます。Roots、Sampling、Loggingを非推奨とし、互換性を壊す変更をリリースするまでに最低12か月の廃止猶予期間を設けます。十八か月にわたる機能拡張の後、この仕様は一回のリリースサイクルを基盤の強化に充てています。
 
 **知識エンジニアリングへの影響** RC は構造的に *縮小* (より小さなコア、より多くの拡張) であり、同時に *機能拡張* (UI サーフェスの追加) です。ナレッジ harness 設計者にとって、二つの効果が即座に現れます。まず、**水平スケーリングは展開パターンの問題ではなくなり、展開構成の問題になります** --- プロトコルはロード バランサーと競合しなくなりました。次に、**"tool" と "interface" の間の境界線がぼやけ始めます**。ナレッジ サーバーは、ツール呼び出しとしてクエリに応答し、タスクとして結果ハンドルを返し、MCP アプリとしてフォローアップの曖昧さ回避の質問をすべて同じ会話内で提示できます。このプロトコルはもはやステートレス RPC のための単なる配管ではありません。これは、**ステートフルなマルチサーフェス エージェント インタラクションの基盤**になりつつあります。その上にステートフルな作業を実行しながらも、自身のコアをステートレスに保つ規律が備わっています。
 
@@ -213,7 +213,7 @@ IETF 草案では、認証と施行のギャップとエンタープライズ SS
 
 注目に値する部分は、実際の標準と提案を分ける初日の幅です。IdP として **Okta** (Cross App Access 拡張機能経由)、クライアントとして **Anthropic** (Claude、Claude Code、Cowork) および **VS Code**、七つのサーバー --- Asana、Atlassian、Canva、Figma、Granola、Linear、 Supabase --- Slack によるサポートを積極的に追加します。 harness については、EMA が *"SSO-integrated authentication remains friction-heavy"* ギャップを埋める、この章独自の 2026 課題セクション名: エンタープライズ SSO はサーバーごとの接着剤であることをやめ、IdP で一度行われるプロビジョニングの決定になります。
 
-ただし、プロビジョニング時の承認は呼び出しごとの承認ではなく、**2026年九月10日**に、Anthropic が管理対象エージェントの `auto` 権限ポリシーで後半に応答しました。クライアントではなくサーバーが個々のツール呼び出しを評価して実行し、クライアントがオーバーライドできないエラーで拒否するか、承認のために一時停止します。適用されるポリシーは、 Anthropic のドキュメントを MCP ツールセットおよび組み込みエージェント ツールセットに追加し、個々の MCP ツール呼び出しをプラットフォーム レベルのガバナンスの下に置き、[章 4](04-harness-engineering.md) の AWS AgentCore の決定論的な Temporal ポリシーと並行して配置します。
+ただし、プロビジョニング時の認可は、呼び出しごとの認可とは異なります。**2026年九月10日**、AnthropicはManaged Agents向けの `auto` 権限ポリシーで、この後半の課題に対応しました。クライアントではなくサーバーが個々のツール呼び出しを評価し、実行するか、クライアントが覆せないエラーを返して拒否するか、承認を待って一時停止します。Anthropicの文書によれば、このポリシーは組み込みのエージェントツールセットだけでなくMCPツールセットにも適用されます。これにより、個々のMCPツール呼び出しがプラットフォームレベルのガバナンス下に置かれ、[第4章](04-harness-engineering.md)のAWS AgentCoreの決定論的なTemporal Policiesと並ぶ仕組みになっています。
 
 <a id="2026-07-28-the-specification-ships-final"></a><!-- i18n-anchor -->
 
@@ -221,7 +221,7 @@ IETF 草案では、認証と施行のギャップとエンタープライズ SS
 
 十週間の検証期間は予定通り終了しました。 **2026年七月28日**、MCP メンテナー (David Soria Parra と Den Delimarsky) は、最終的な **2026-07-28 仕様** を出荷しました。これは認可が追加されて以来最大の改訂であり、五月以来この章が追跡してきたリリース候補のアークが 21 として上陸したことを確認します。設計された。コアは **ステートレスなリクエスト / レスポンス**になりました。`initialize` / `initialized` ハンドシェイクと `Mcp-Session-Id` ヘッダーは完全になくなり、**Multi Round-Trip Requests** (SEP-2322) はステートレスな再試行を介してサーバー開始の対話を実行し、**拡張フレームワーク** は正式なものになりました --- タスクはプロトコル コアではなく `io.modelcontextprotocol/tasks` に存在します。
 
-認可は RC を一歩超えて強化されました。最終仕様では **RFC 9207 発行者検証** が義務付けられ、Dynamic Client Registration が **Client ID Metadata Documents (CIMD)** に置き換えられます --- クライアントは、サーバーごとの登録ダンスではなく、ホストされたメタデータ ドキュメントによって識別されます。ルート、サンプリング、ロギング、および元の HTTP+SSE トランスポートは、最小 12 月の削除期間で非推奨になりました。 四つの階層 1 SDK (Python、TypeScript、Go、C#) はすべて、AWS、Google Cloud、Microsoft、および Cloudflare からの承認を得て、一致する更新を出荷しました。
+認可はRCからさらに強化されました。最終仕様では**RFC 9207の発行者検証**が必須となり、Dynamic Client Registrationは**Client ID Metadata Documents (CIMD)**に置き換わります。クライアントはサーバーごとに登録手順を踏む代わりに、ホストされたメタデータ文書によって識別されます。Roots、Sampling、Logging、従来のHTTP+SSEトランスポートは、最低12か月の廃止猶予期間を設けて非推奨となります。四つのTier 1 SDK（Python、TypeScript、Go、C#）はすべて対応する更新をリリースし、AWS、Google Cloud、Microsoft、Cloudflareが支持を表明しました。
 
 ナレッジ エンジニアリングにとって、実際的な結果は、RC が約束した 二つであり、現在出荷されています。リモートの MCP サーバーは、スティッキー ルーティングなしでプレーンなロード バランサーの背後に配置でき、クライアントは `tools/list` をキャッシュできます。これは、通常のステートレス Web サービスのデプロイメント状態です。プロトコルの 2026 アークは完了しました。ステートフル ターン (四月)、再ステートレス RC (五月)、独立したセキュリティ調査 (六月)、そしてステートフル、インタラクティブ、またはエンタープライズ固有のすべてを拡張機能に押し込みながらコアを意図的に小さく保つ最終仕様です。
 
@@ -286,7 +286,7 @@ IETF 草案では、認証と施行のギャップとエンタープライズ SS
 16. IETF インターネット ドラフト。 "Security Considerations for Model Context Protocol (MCP) Implementations in AI Agent Systems," `draft-mohiuddin-mcp-security-considerations-00` (2026年六月; 有効期限は 2026年十二月3日)。 [https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/](https://datatracker.ietf.org/doc/draft-mohiuddin-mcp-security-considerations/) --- 著者 Anas Mohiuddin Syed。 六つの脆弱性クラスとオープンソースの `mcp-safeguard` 検出ツール。コンパニオンの書き込み: [https://dev.to/syedanas01/i-built-the-first-security-scanner-for-mcp-servers-heres-what-i-found-2np2](https://dev.to/syedanas01/i-built-the-first-security-scanner-for-mcp-servers-heres-what-i-found-2np2) (リンクされた GitHub リポジトリはドラフト時点では解決できません --- 検証用のフラグが立てられています)。
 17. Model Context Protocol ブログ。 "Enterprise-Managed Authorization" (2026年六月18日)。 [https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/](https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/) および仕様 [https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization](https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization) --- コアメンテナ Paul Carleton によって発表されました。 ID-JAGトークン交換。初日 Okta (IdP) / Anthropic + VS Code (クライアント) / 七 台のサーバー。
 18. Model Context Protocol ブログ。 "MCP SDK betas ahead of the 2026-07-28 finalization" (2026年六月29日)。 [https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/](https://blog.modelcontextprotocol.io/posts/sdk-betas-2026-07-28/) および SEP-2322 [https://modelcontextprotocol.io/seps/2322-MRTR](https://modelcontextprotocol.io/seps/2322-MRTR) --- Python / TypeScript / Go / C# ベータ版。 七月の 28 完成までの 四週間のテスト期間。 TypeScript v2 サーバー/クライアント パッケージ分割。 Multi Round-Trip Requests (SEP-2322、最終、作成された 2026-02-03)。
-19. Model Context Protocol ブログ。 "The 2026-07-28 specification" (2026年七月28日)。 [https://blog.modelcontextprotocol.io/posts/2026-07-28/](https://blog.modelcontextprotocol.io/posts/2026-07-28/) --- 最終仕様: ステートレス コア、MRTR (SEP-2322)、RFC 9207 発行者検証、Dynamic Client Registration を置き換える CIMD、拡張フレームワーク (`io.modelcontextprotocol/tasks`)、ルート / サンプリング / ロギング / の 12 月の非推奨期間HTTP+SSE。
+19. Model Context Protocolブログ。"The 2026-07-28 specification"（2026年七月28日）。[https://blog.modelcontextprotocol.io/posts/2026-07-28/](https://blog.modelcontextprotocol.io/posts/2026-07-28/) --- 最終仕様：ステートレスなコア、MRTR（SEP-2322）、RFC 9207の発行者検証、Dynamic Client Registrationを置き換えるCIMD、拡張フレームワーク（`io.modelcontextprotocol/tasks`）、Roots / Sampling / Logging / HTTP+SSEの12か月の廃止猶予期間。
 20. テッククランチ。 "AI's most important protocol is getting a little bit easier to use" (2026年七月20日)。 [https://techcrunch.com/2026/07/20/ais-most-important-protocol-is-getting-a-little-bit-easier-to-use/](https://techcrunch.com/2026/07/20/ais-most-important-protocol-is-getting-a-little-bit-easier-to-use/) --- ステートレスコア変更のファイナライズ前の二次カバレッジ。
 21. レジスター。 "Model Context Protocol prepares to break with its stateful past" (2026年七月23日)。 [https://www.theregister.com/devops/2026/07/23/model-context-protocol-prepares-to-break-with-its-stateful-past/5276722](https://www.theregister.com/devops/2026/07/23/model-context-protocol-prepares-to-break-with-its-stateful-past/5276722)
 22. ワークOS。 "MCP 2026 spec: agent authentication" (2026年七月)。 [https://workos.com/blog/mcp-2026-spec-agent-authentication](https://workos.com/blog/mcp-2026-spec-agent-authentication) --- CIMD と認証強化の二次的なカバレッジ。

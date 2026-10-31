@@ -108,14 +108,14 @@ AIを優秀な新入社員の初日だと想像してください。Prompt engin
 
 どこから始めるか迷う場合は、自分に最も合う説明を選ぼう。
 
-- **"I just want to understand what all these AI buzzwords mean."**：[Glossary](glossary_ja.md) から始め、[Chapter 1: The Three Generations](chapters/ja/01-evolution.md) を読む。
-- **"I'm building an AI application."**：[Ch02: RAG, Long Context & Knowledge Graphs](chapters/ja/02-knowledge-layer.md)、[Ch03: Context Engineering](chapters/ja/03-context-engineering.md)、[Ch04: Harness Engineering](chapters/ja/04-harness-engineering.md) の順で読む。
-- **"I want to make my AI tools work better."**：[Ch05: Skill Systems](chapters/ja/05-skill-systems.md)、[Ch06: Agent Memory](chapters/ja/06-agent-memory.md)、[Ch10: Case Study](chapters/ja/10-case-study.md) の順で読む。
-- **"I want my agents to run without me pushing every step."**：[Ch13: Loop Engineering](chapters/ja/13-loop-engineering.md) を読み、次に [Ch04: Harness Engineering](chapters/ja/04-harness-engineering.md) と [Ch06: Agent Memory](chapters/ja/06-agent-memory.md) を読む。
-- **"I'm wiring multiple agents together."**：[Ch14: Graph Engineering](chapters/ja/14-graph-engineering.md) を読み、次に [Ch13: Loop Engineering](chapters/ja/13-loop-engineering.md) と [Ch04: Harness Engineering](chapters/ja/04-harness-engineering.md) を読む。
-- **"I want to see real examples."**：[Ch10: Case Study](chapters/ja/10-case-study.md) へ直接進む。
-- **"I work with Chinese AI tools."**：[Ch09: The Chinese AI Ecosystem](chapters/ja/09-china-ecosystem.md) から始める。
-- **"I want the complete picture."**：第1章から順に通読する。
+- **「AIの流行語がそれぞれ何を意味するのか知りたい」**：[用語集](glossary_ja.md)から始め、[第1章：三つの世代](chapters/ja/01-evolution.md)を読んでください。
+- **「AIアプリケーションを開発している」**：[第02章：RAG、長いコンテキスト、ナレッジグラフ](chapters/ja/02-knowledge-layer.md)、[第03章：コンテキストエンジニアリング](chapters/ja/03-context-engineering.md)、[第04章：ハーネスエンジニアリング](chapters/ja/04-harness-engineering.md)の順に読んでください。
+- **「使っているAIツールをもっとよく動かしたい」**：[第05章：スキルシステム](chapters/ja/05-skill-systems.md)、[第06章：エージェントのメモリ](chapters/ja/06-agent-memory.md)、[第10章：ケーススタディ](chapters/ja/10-case-study.md)の順に読んでください。
+- **「毎回指示しなくてもエージェントが動くようにしたい」**：[第13章：ループエンジニアリング](chapters/ja/13-loop-engineering.md)を読み、次に[第04章：ハーネスエンジニアリング](chapters/ja/04-harness-engineering.md)と[第06章：エージェントのメモリ](chapters/ja/06-agent-memory.md)を読んでください。
+- **「複数のエージェントを連携させている」**：[第14章：グラフエンジニアリング](chapters/ja/14-graph-engineering.md)を読み、次に[第13章：ループエンジニアリング](chapters/ja/13-loop-engineering.md)と[第04章：ハーネスエンジニアリング](chapters/ja/04-harness-engineering.md)を読んでください。
+- **「実際の事例を見たい」**：[第10章：ケーススタディ](chapters/ja/10-case-study.md)へ直接進んでください。
+- **「中国のAIツールを使っている」**：[第09章：中国のAIエコシステム](chapters/ja/09-china-ecosystem.md)から始めてください。
+- **「全体像を把握したい」**：第1章から順に通読してください。
 
 ---
 

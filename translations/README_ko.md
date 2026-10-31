@@ -110,14 +110,14 @@ AI를 첫 출근한 뛰어난 신입 직원이라고 생각해 보라. 프롬프
 
 어디서 시작할지 모르겠다면 자신에게 가장 잘 맞는 설명을 고르라:
 
-- **"I just want to understand what all these AI buzzwords mean."**: [용어집](glossary_ko.md)부터 읽은 뒤 [1장: 세 세대](chapters/ko/01-evolution.md)를 보라.
-- **"I'm building an AI application."**: [Ch02: RAG, 긴 컨텍스트와 지식 그래프](chapters/ko/02-knowledge-layer.md), [Ch03: 컨텍스트 엔지니어링](chapters/ko/03-context-engineering.md), [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md) 순서로 읽으라.
-- **"I want to make my AI tools work better."**: [Ch05: 스킬 시스템](chapters/ko/05-skill-systems.md), [Ch06: 에이전트 메모리](chapters/ko/06-agent-memory.md), [Ch10: 사례 연구](chapters/ko/10-case-study.md) 순서로 읽으라.
-- **"I want my agents to run without me pushing every step."**: [Ch13: 루프 엔지니어링](chapters/ko/13-loop-engineering.md)을 읽은 뒤 [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md)과 [Ch06: 에이전트 메모리](chapters/ko/06-agent-memory.md)를 읽으라.
-- **"I'm wiring multiple agents together."**: [Ch14: 그래프 엔지니어링](chapters/ko/14-graph-engineering.md)을 읽은 뒤 [Ch13: 루프 엔지니어링](chapters/ko/13-loop-engineering.md)과 [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md)을 읽으라.
-- **"I want to see real examples."**: [Ch10: 사례 연구](chapters/ko/10-case-study.md)로 바로 가라.
-- **"I work with Chinese AI tools."**: [Ch09: 중국 AI 생태계](chapters/ko/09-china-ecosystem.md)부터 읽으라.
-- **"I want the complete picture."**: 1장부터 순서대로 끝까지 읽으라.
+- **"AI 유행어들이 무슨 뜻인지 알고 싶다."**: [용어집](glossary_ko.md)부터 읽은 뒤 [1장: 세 세대](chapters/ko/01-evolution.md)를 보라.
+- **"AI 애플리케이션을 개발하고 있다."**: [Ch02: RAG, 긴 컨텍스트와 지식 그래프](chapters/ko/02-knowledge-layer.md), [Ch03: 컨텍스트 엔지니어링](chapters/ko/03-context-engineering.md), [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md) 순서로 읽으라.
+- **"내 AI 도구들이 더 잘 작동하게 만들고 싶다."**: [Ch05: 스킬 시스템](chapters/ko/05-skill-systems.md), [Ch06: 에이전트 메모리](chapters/ko/06-agent-memory.md), [Ch10: 사례 연구](chapters/ko/10-case-study.md) 순서로 읽으라.
+- **"내가 단계마다 지시하지 않아도 에이전트가 스스로 작업하게 하고 싶다."**: [Ch13: 루프 엔지니어링](chapters/ko/13-loop-engineering.md)을 읽은 뒤 [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md)과 [Ch06: 에이전트 메모리](chapters/ko/06-agent-memory.md)를 읽으라.
+- **"여러 에이전트를 서로 연결하고 있다."**: [Ch14: 그래프 엔지니어링](chapters/ko/14-graph-engineering.md)을 읽은 뒤 [Ch13: 루프 엔지니어링](chapters/ko/13-loop-engineering.md)과 [Ch04: 하네스 엔지니어링](chapters/ko/04-harness-engineering.md)을 읽으라.
+- **"실제 사례를 보고 싶다."**: [Ch10: 사례 연구](chapters/ko/10-case-study.md)로 바로 가라.
+- **"중국 AI 도구를 사용한다."**: [Ch09: 중국 AI 생태계](chapters/ko/09-china-ecosystem.md)부터 읽으라.
+- **"전체적인 그림을 이해하고 싶다."**: 1장부터 순서대로 끝까지 읽으라.
 
 ---
 

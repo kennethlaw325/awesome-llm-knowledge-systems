@@ -111,10 +111,10 @@ def classify(rel, from_dir):
 def repoint_unstaged(path):
     """Fix links whose target was never staged.
 
-    The Spanish translation ships 2 of its 14 chapters but its chapter footers
-    still link to the siblings.  `classify` decides each case; the source files
-    are not ours to edit either way.  Returns (target, action, is_error)
-    triples so the caller can report them and fail on the errors.
+    Partial or future language editions may link to chapters not yet staged.
+    `classify` selects an existing English fallback or a GitHub source link;
+    source files remain unchanged. Returns (target, action, is_error) triples
+    so the caller can report them and fail on genuine missing targets.
     """
     moved = []
 

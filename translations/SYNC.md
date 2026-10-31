@@ -12,7 +12,7 @@ Synchronized on **November 1, 2026**, against the October 31 English content sna
 | 한국어 | [Read](README_ko.md) | 14 / 14 | [Terms](glossary_ko.md) |
 | Español | [Read](README_es.md) | 14 / 14 | [Terms](glossary_es.md) |
 
-The translations combine existing translations of unchanged source passages, machine-assisted drafts and native-language AI revision. They are not presented as professional human copy editing. Code blocks, diagram labels, technical identifiers, verbatim quotations and original reference titles retain their source form. Reading-time estimates refer to the English source.
+The translations combine existing translations of unchanged source passages, machine-assisted drafts and native-language AI revision. They are not presented as professional human copy editing. Code blocks, diagram labels, technical identifiers, attributed quotations and original reference titles retain their source form. Unattributed reader prompts and explanatory scare quotes are translated. Reading-time estimates refer to the English source.
 
 Acceptance checks compare source and translation line structure, heading levels, table rows, numeric literals, inline/fenced code, HTML and citation targets. Stable original-heading anchors preserve section links after headings are translated. A source/content hash manifest identifies the exact edition checked; hashes establish byte identity, not semantic accuracy.
 

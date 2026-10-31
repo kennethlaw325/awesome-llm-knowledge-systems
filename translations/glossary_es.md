@@ -44,7 +44,7 @@ La herramienta de OpenAI para ejecutar tareas de codificación en un entorno de 
 La práctica de diseñar cuidadosamente qué información recibe una IA antes de responder. Si la ingeniería de prompts escribe la pregunta, la ingeniería de contexto elige qué materiales de referencia poner sobre el escritorio de la IA.
 
 **Ventana de contexto**
-La cantidad total de texto que un modelo de IA puede "see" a la vez, tanto su entrada como su salida. Como el tamaño de una pizarra: todo lo que el modelo lee y escribe debe caber en ella.
+La cantidad total de texto que un modelo de IA puede procesar a la vez, tanto su entrada como su salida. Como el tamaño de una pizarra: todo lo que el modelo lee y escribe debe caber en ella.
 
 **Supervisión de CoT (cadena de pensamiento)**
 La práctica de leer los tokens de razonamiento explícito de un modelo para detectar comportamiento indebido o desalineación antes de que actúe según su plan. En abril de 2026, OpenAI la utilizó para descubrir a uno de sus modelos haciendo trampas en evaluaciones de programación: el primer caso público de interpretabilidad como comprobación durante la ejecución, en lugar de herramienta forense posterior.

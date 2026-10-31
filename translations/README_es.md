@@ -108,14 +108,14 @@ Si es nuevo en este tema, comience con el [Glosario](glossary_es.md) para obtene
 
 ¿No sabe por dónde empezar? Elija la descripción que mejor encaje con su situación:
 
-- **"I just want to understand what all these AI buzzwords mean."** -- Comience con el [Glosario](glossary_es.md), luego lea el [Capítulo 1: Las Tres Generaciones](chapters/es/01-evolution.md).
-- **"I'm building an AI application."** -- Lea [Ch02: RAG, contexto largo y gráficos de conocimiento](chapters/es/02-knowledge-layer.md), luego [Ch03: Ingeniería de Contexto](chapters/es/03-context-engineering.md), luego [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md).
-- **"I want to make my AI tools work better."** -- Lea [Ch05: Sistemas de habilidades](chapters/es/05-skill-systems.md), después [Ch06: Memoria de agentes](chapters/es/06-agent-memory.md) y [Ch10: Estudio de caso](chapters/es/10-case-study.md).
-- **"I want my agents to run without me pushing every step."** -- Lea [Ch13: Ingeniería de Bucles](chapters/es/13-loop-engineering.md), luego [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md) y [Ch06: Memoria del agente](chapters/es/06-agent-memory.md).
-- **"I'm wiring multiple agents together."** -- Lea [Cap.14: Ingeniería de Grafos](chapters/es/14-graph-engineering.md), luego [Ch13: Ingeniería de Bucles](chapters/es/13-loop-engineering.md) y [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md).
-- **"I want to see real examples."** -- Vaya directamente a [Capítulo 10: Estudio de caso](chapters/es/10-case-study.md).
-- **"I work with Chinese AI tools."** -- Comience con [Capítulo 09: El ecosistema de IA chino](chapters/es/09-china-ecosystem.md).
-- **"I want the complete picture."** -- Lea de adelante hacia atrás, comenzando con el capítulo 1.
+- **"Solo quiero entender qué significan todos estos términos de moda de la IA."** -- Comience con el [Glosario](glossary_es.md), luego lea el [Capítulo 1: Las Tres Generaciones](chapters/es/01-evolution.md).
+- **"Estoy desarrollando una aplicación de IA."** -- Lea [Ch02: RAG, contexto largo y gráficos de conocimiento](chapters/es/02-knowledge-layer.md), luego [Ch03: Ingeniería de Contexto](chapters/es/03-context-engineering.md), luego [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md).
+- **"Quiero que mis herramientas de IA funcionen mejor."** -- Lea [Ch05: Sistemas de habilidades](chapters/es/05-skill-systems.md), después [Ch06: Memoria de agentes](chapters/es/06-agent-memory.md) y [Ch10: Estudio de caso](chapters/es/10-case-study.md).
+- **"Quiero que mis agentes trabajen sin tener que indicarles cada paso."** -- Lea [Ch13: Ingeniería de Bucles](chapters/es/13-loop-engineering.md), luego [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md) y [Ch06: Memoria del agente](chapters/es/06-agent-memory.md).
+- **"Estoy conectando varios agentes entre sí."** -- Lea [Cap.14: Ingeniería de Grafos](chapters/es/14-graph-engineering.md), luego [Ch13: Ingeniería de Bucles](chapters/es/13-loop-engineering.md) y [Ch04: Ingeniería de Harness](chapters/es/04-harness-engineering.md).
+- **"Quiero ver ejemplos reales."** -- Vaya directamente a [Capítulo 10: Estudio de caso](chapters/es/10-case-study.md).
+- **"Trabajo con herramientas de IA chinas."** -- Comience con [Capítulo 09: El ecosistema de IA chino](chapters/es/09-china-ecosystem.md).
+- **"Quiero tener una visión completa."** -- Lea de adelante hacia atrás, comenzando con el capítulo 1.
 
 ---
 
