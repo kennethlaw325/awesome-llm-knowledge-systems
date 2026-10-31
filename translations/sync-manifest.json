@@ -27,7 +27,7 @@
       "source": "glossary.md",
       "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
       "translation": "translations/glossary_zh-CN.md",
-      "translation_sha256": "787cbf0afefc050fd9cf4990b1c1b08e3d1e7a690e14ec10a57d685ff33b017d",
+      "translation_sha256": "cee3135347a027efb59ed9b9ef0a6fb76e668af67dfeb1ce12ca7ba65863554c",
       "language": "zh-CN",
       "source_lines": 255,
       "translated_body_lines": 255
@@ -171,7 +171,7 @@
       "source": "glossary.md",
       "source_sha256": "ae3d9847b4639bed533029e1676a737be66171130534a8a7a957d9ce5e365727",
       "translation": "translations/glossary_zh.md",
-      "translation_sha256": "1954cf92e303f49ea2d246feaed550138892cf50d540cee568e0806f77e5d8a8",
+      "translation_sha256": "d63ddcee06b32de8d5d0ac67a245004a2269ecccd8e293af88c9a5f2c3928923",
       "language": "zh",
       "source_lines": 255,
       "translated_body_lines": 255
@@ -396,7 +396,7 @@
       "source": "chapters/09-china-ecosystem.md",
       "source_sha256": "00ba7ea132a1b4d90fb51748da71400a6ab523b3ab252a0bb66f415b78c01665",
       "translation": "translations/chapters/ja/09-china-ecosystem.md",
-      "translation_sha256": "169ec41bbdfbdef7121dd1dd517c91d9251bdd4c3892a88f7d8e84a8444b68a8",
+      "translation_sha256": "969e794f7db77ebdc1a064ca5a5c3ecfac190fd0247d84b56563e563f650a881",
       "language": "ja",
       "source_lines": 227,
       "translated_body_lines": 227
