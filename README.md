@@ -117,6 +117,7 @@ This guide helps you design systems for these real-world scenarios. Each row lin
 | **Developer Documentation Assistant** | Engineers query codebases / API docs / past incident postmortems across multi-repo environments | [Ch02](/chapters/02-knowledge-layer.md) · [Ch05](/chapters/05-skill-systems.md) · [Ch07](/chapters/07-mcp.md) |
 | **Support / QA Agent** | Customer or internal tickets → context-aware replies with cited sources and follow-up memory | [Ch03](/chapters/03-context-engineering.md) · [Ch06](/chapters/06-agent-memory.md) · [Ch04](/chapters/04-harness-engineering.md) |
 | **Domain-Specific Knowledge Automation** *(legal, healthcare, finance, engineering)* | Reuse decades of domain documents — regulated, IP-sensitive, often requires local models and audit trails | [Ch02](/chapters/02-knowledge-layer.md) · [Ch09](/chapters/09-china-ecosystem.md) · [Ch12](/chapters/12-local-models.md) |
+| **Live Music & Local Venue Discovery** *(example: [No Stairs Please MCP](https://nostairsplease.com/mcp))* | Query structured 50-state venue and booking-contact knowledge bases via [MCP](https://nostairsplease.com/venues) | [Ch07](/chapters/07-mcp.md) · [Ch08](/chapters/08-tools-landscape.md) |
 
 If your scenario doesn't fit cleanly, it's probably a composition of these — start from the closest row and adapt.
 
